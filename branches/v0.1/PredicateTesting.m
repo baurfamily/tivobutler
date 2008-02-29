@@ -8,7 +8,6 @@
 
 #import "PredicateTesting.h"
 
-
 @implementation PredicateTesting
 
 - (void)awakeFromNib
