@@ -61,6 +61,7 @@
 }
 
 - (void)parseData:(NSData *)xmlData fromPlayer:(TiVoPlayer *)sourcePlayer;
+- (void)disableCurrentPrograms;
 - (void)addNewProgram;
 
 - (BOOL)isProgramIDUsed:(NSString *)programID;

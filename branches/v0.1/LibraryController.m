@@ -55,6 +55,7 @@
 			[NSDictionary dictionary],
 			[NSDictionary dictionary],
 			[NSDictionary dictionary],
+			[NSDictionary dictionary],
 			nil
 		] retain];
 	}
@@ -62,9 +63,19 @@
 	NSDictionary *tempDict = [NSDictionary dictionaryWithObjectsAndKeys:
 		[NSNumber numberWithBool:NO],	@"isSourceGroup",
 		@"Library",						@"name",
+		[NSPredicate predicateWithFormat:@"deletedFromPlayer = NO"], @"predicate",
 		nil
 	];
 	[libraryArray replaceObjectAtIndex:LCLibraryPosition withObject:tempDict];
+	
+	tempDict = [NSDictionary dictionaryWithObjectsAndKeys:
+		[NSNumber numberWithBool:NO],	@"isSourceGroup",
+		@"History",						@"name",
+		nil
+	];
+	[libraryArray replaceObjectAtIndex:LCHistoryPosition withObject:tempDict];
+		
+	
 	
 	//- update each of the component pieces of the library list
 	[self updateWorkQueue];
@@ -86,7 +97,7 @@
 		withObject:[NSDictionary dictionaryWithObjectsAndKeys:
 			[NSNumber numberWithBool:NO],	@"isSourceGroup",
 			@"Work Queue",					@"name",
-			[NSPredicate predicateWithFormat:@"ANY workQueueItems.active == YES"], @"predicate",
+			[NSPredicate predicateWithFormat:@"ANY workQueueItems.active = YES"], @"predicate",
 			nil ]
 	];
 	[self didChangeValueForKey:@"libraryArray"];
@@ -105,7 +116,7 @@
 		[nameArray addObject:[NSDictionary dictionaryWithObjectsAndKeys:
 			[NSNumber numberWithBool:NO],		@"isSourceGroup",
 			[tempObject valueForKey:@"name"],	@"name",
-			[NSPredicate predicateWithFormat:@"player = %@", tempObject ],
+			[NSPredicate predicateWithFormat:@"player = %@ AND deletedFromPlayer = NO", tempObject ],
 												@"predicate", 
 			nil ]
 		];
@@ -136,7 +147,7 @@
 		[nameArray addObject:[NSDictionary dictionaryWithObjectsAndKeys:
 			[NSNumber numberWithBool:NO],		@"isSourceGroup",
 			[tempObject valueForKey:@"title"],	@"name",
-			[NSPredicate predicateWithFormat:@"series = %@", tempObject ],
+			[NSPredicate predicateWithFormat:@"series = %@ AND deletedFromPlayer = NO", tempObject ],
 												@"predicate", 
 			nil ]
 		];
@@ -168,7 +179,7 @@
 			[NSNumber numberWithBool:NO],		@"isSourceGroup",
 			[NSString stringWithFormat:@"%@ (%@)", [tempObject valueForKey:@"name"], [tempObject valueForKey:@"channel"] ],
 												@"name",
-			[NSPredicate predicateWithFormat:@"station = %@", tempObject ],
+			[NSPredicate predicateWithFormat:@"station = %@ AND deletedFromPlayer = NO", tempObject ],
 												@"predicate", 
 			nil ]
 		];

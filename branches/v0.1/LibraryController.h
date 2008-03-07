@@ -12,6 +12,7 @@
 
 typedef enum {
 	LCLibraryPosition = 0,
+	LCHistoryPosition,
 	LCWorkQueuePosition,
 	LCPlayersPosition,
 	LCProgramGroupingsPosition,
