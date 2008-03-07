@@ -36,12 +36,23 @@
 	xmlParser = [[NSXMLParser alloc] initWithData:xmlData];
 	[xmlParser setDelegate:self];
 	[xmlParser setShouldResolveExternalEntities:NO];
-		
+
+	[self disableCurrentPrograms];
+	
 	[xmlParser parse];
 	
 	DEBUG( @"releasing XML Parser" );
 	[xmlParser release];
 	xmlParser = nil;
+}
+
+- (void)disableCurrentPrograms
+{
+	NSArray *programsArray = [EntityHelper
+		arrayOfEntityWithName:TiVoProgramEntityName
+		usingPredicate:[NSPredicate predicateWithFormat:@"player = %@", player]
+	];
+	[programsArray makeObjectsPerformSelector:@selector(setDeletedFromPlayer:) withObject:[NSNumber numberWithBool:YES] ];
 }
 
 - (void)addNewProgram
@@ -322,6 +333,11 @@
 	NSError *error;
 	@synchronized (TiVoProgramEntityName) {
 		if ( [managedObjectContext countForFetchRequest:request error:&error] > 0 ) {
+			NSArray *tempArray = [managedObjectContext executeFetchRequest:request error:&error];
+			if ( [tempArray count] > 1 ) {
+				WARNING( @"Found %d matching program IDs, will enable the first one.", [tempArray count] );
+			}
+			[[tempArray objectAtIndex:0] setDeletedFromPlayer:[NSNumber numberWithBool:NO] ];
 			return YES;
 		} else {
 			return NO;

@@ -149,16 +149,7 @@
 		parser = [[CalypsoXMLParser alloc] init];
 	}	
 	DEBUG( @"beginning parse" );
-/*	[NSThread
-		detachNewThreadSelector:@selector(beginParseThreadWithSettings:)
-		toTarget:parser
-		withObject:[NSDictionary dictionaryWithObjectsAndKeys:
-			self,			@"player",
-			receivedData,	@"data",
-			nil
-		]
-	];
-*/
+
 	[parser parseData:receivedData fromPlayer:self];
 	DEBUG( @"ended parse" );
 	[urlConnection release];

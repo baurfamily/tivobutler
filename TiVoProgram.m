@@ -31,5 +31,6 @@
 @dynamic inProgress;
 @dynamic series;
 @dynamic player;
+@dynamic deletedFromPlayer;
 
 @end

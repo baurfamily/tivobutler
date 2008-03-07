@@ -31,7 +31,7 @@
 @property (retain) NSNumber * inProgress;
 @property (retain) NSManagedObject * series;
 @property (retain) TiVoPlayer * player;
-
+@property (retain) NSNumber * deletedFromPlayer;
 
 @end
 
