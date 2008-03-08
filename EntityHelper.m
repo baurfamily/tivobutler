@@ -14,10 +14,32 @@ static NSManagedObjectContext *managedObjectContext;
 
 + (NSArray *)arrayOfEntityWithName:(NSString *)entityString usingPredicateString:(NSString *)predicateString
 {
-	return [EntityHelper arrayOfEntityWithName:entityString usingPredicate:[NSPredicate predicateWithFormat:predicateString] ];
+	return [EntityHelper
+		arrayOfEntityWithName:entityString
+		usingPredicate:[NSPredicate predicateWithFormat:predicateString]
+		withSortKeys:[NSArray array]
+	];
+}
+
++ (NSArray *)arrayOfEntityWithName:(NSString *)entityString usingPredicateString:(NSString *)predicateString withSortKeys:(NSArray *)sortKeys
+{
+	return [EntityHelper
+		arrayOfEntityWithName:entityString
+		usingPredicate:[NSPredicate predicateWithFormat:predicateString]
+		withSortKeys:sortKeys
+	];
 }
 
 + (NSArray *)arrayOfEntityWithName:(NSString *)entityString usingPredicate:(NSPredicate *)predicate
+{
+	return [EntityHelper	
+		arrayOfEntityWithName:entityString
+		usingPredicate:predicate
+		withSortKeys:[NSArray array]
+	];
+}
+
++ (NSArray *)arrayOfEntityWithName:(NSString *)entityString usingPredicate:(NSPredicate *)predicate withSortKeys:(NSArray *)sortKeys
 {
 	NSError *error = [[[NSError alloc] init] autorelease];
 
@@ -35,10 +57,19 @@ static NSManagedObjectContext *managedObjectContext;
 		entityForName:entityString
 		inManagedObjectContext:managedObjectContext
 	];
-	NSFetchRequest *request = [[[NSFetchRequest alloc] init] autorelease];
 	
+	NSMutableArray *descriptorArray = [NSMutableArray array];
+	NSString *tempString;
+	for ( tempString in sortKeys ) {
+		[descriptorArray addObject:
+			[[[NSSortDescriptor alloc] initWithKey:tempString ascending:YES] autorelease]
+		];
+	}
+	
+	NSFetchRequest *request = [[[NSFetchRequest alloc] init] autorelease];
 	[request setEntity:entityDesc];
 	[request setPredicate:predicate];
+	[request setSortDescriptors:[descriptorArray copy] ];
 	
 	//DEBUG( @"Executing: %@", [request description] );
 	NSArray *array = [managedObjectContext executeFetchRequest:request error:&error];

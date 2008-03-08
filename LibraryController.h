@@ -14,6 +14,7 @@ typedef enum {
 	LCLibraryPosition = 0,
 	LCHistoryPosition,
 	LCWorkQueuePosition,
+	LCWorkQueueHistoryPosition,
 	LCPlayersPosition,
 	LCProgramGroupingsPosition,
 	LCStationsPostion
@@ -32,6 +33,7 @@ typedef enum {
 - (IBAction)update:(id)sender;
 
 - (void)updateWorkQueue;
+- (void)updateWorkHistoryQueue;
 - (void)updatePlayerList;
 - (void)updateProgramGroups;
 - (void)updateStations;

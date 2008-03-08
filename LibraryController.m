@@ -48,8 +48,10 @@
 	[self willChangeValueForKey:@"libraryArray"];
 
 	//- create the library array if we don't already have one
+	//- this is kind of ugly to me, actually
 	if ( !libraryArray ) {
 		libraryArray = [[NSMutableArray arrayWithObjects:
+			[NSDictionary dictionary],
 			[NSDictionary dictionary],
 			[NSDictionary dictionary],
 			[NSDictionary dictionary],
@@ -70,7 +72,8 @@
 	
 	tempDict = [NSDictionary dictionaryWithObjectsAndKeys:
 		[NSNumber numberWithBool:NO],	@"isSourceGroup",
-		@"History",						@"name",
+		@"Deleted Shows",				@"name",
+		[NSPredicate predicateWithFormat:@"deletedFromPlayer = YES"], @"predicate",
 		nil
 	];
 	[libraryArray replaceObjectAtIndex:LCHistoryPosition withObject:tempDict];
@@ -79,6 +82,7 @@
 	
 	//- update each of the component pieces of the library list
 	[self updateWorkQueue];
+	[self updateWorkHistoryQueue];
 	[self updatePlayerList];
 	[self updateProgramGroups];
 	[self updateStations];
@@ -103,12 +107,32 @@
 	[self didChangeValueForKey:@"libraryArray"];
 }
 
+- (void)updateWorkHistoryQueue
+{
+	ENTRY;
+
+	[self willChangeValueForKey:@"libraryArray"];
+	[libraryArray
+		replaceObjectAtIndex:LCWorkQueueHistoryPosition
+		withObject:[NSDictionary dictionaryWithObjectsAndKeys:
+			[NSNumber numberWithBool:NO],	@"isSourceGroup",
+			@"Queue History",			@"name",
+			[NSPredicate predicateWithFormat:@"ANY workQueueItems.completedDate != nil"], @"predicate",
+			nil ]
+	];
+	[self didChangeValueForKey:@"libraryArray"];
+}
+
 - (void)updatePlayerList
 {
 	ENTRY;
 	NSArray *entityArray;
 	@synchronized (TiVoPlayerEntityName) {
-		entityArray = [EntityHelper arrayOfEntityWithName:TiVoPlayerEntityName usingPredicateString:@"active = YES"];
+		entityArray = [EntityHelper
+			arrayOfEntityWithName:TiVoPlayerEntityName
+			usingPredicateString:@"active = YES"
+			withSortKeys:[NSArray arrayWithObject:@"name"]
+		];
 	}
 	NSMutableArray *nameArray = [NSMutableArray array];
 	NSManagedObject *tempObject;
@@ -139,7 +163,11 @@
 	ENTRY;
 	NSArray *entityArray;
 	@synchronized (TiVoSeriesEntityName) {
-		entityArray = [EntityHelper arrayOfEntityWithName:TiVoSeriesEntityName usingPredicate:[NSPredicate predicateWithValue:TRUE] ];
+		entityArray = [EntityHelper
+			arrayOfEntityWithName:TiVoSeriesEntityName
+			usingPredicate:[NSPredicate predicateWithValue:TRUE]
+			withSortKeys:[NSArray arrayWithObject:@"title"]
+		];
 	}
 	NSMutableArray *nameArray = [NSMutableArray array];
 	NSManagedObject *tempObject;
@@ -170,14 +198,19 @@
 	ENTRY;
 	NSArray *entityArray;
 	@synchronized (TiVoStationEntityName) {
-		entityArray = [EntityHelper arrayOfEntityWithName:TiVoStationEntityName usingPredicate:[NSPredicate predicateWithValue:TRUE] ];
+		entityArray = [EntityHelper
+			arrayOfEntityWithName:TiVoStationEntityName
+			usingPredicate:[NSPredicate predicateWithValue:TRUE]
+			withSortKeys:[NSArray arrayWithObject:@"name"]
+		];
 	}
+	
 	NSMutableArray *nameArray = [NSMutableArray array];
 	NSManagedObject *tempObject;
 	for ( tempObject in entityArray ) {
 		[nameArray addObject:[NSDictionary dictionaryWithObjectsAndKeys:
 			[NSNumber numberWithBool:NO],		@"isSourceGroup",
-			[NSString stringWithFormat:@"%@ (%@)", [tempObject valueForKey:@"name"], [tempObject valueForKey:@"channel"] ],
+			[NSString stringWithFormat:@"%@/%@", [tempObject valueForKey:@"name"], [tempObject valueForKey:@"channel"] ],
 												@"name",
 			[NSPredicate predicateWithFormat:@"station = %@ AND deletedFromPlayer = NO", tempObject ],
 												@"predicate", 
