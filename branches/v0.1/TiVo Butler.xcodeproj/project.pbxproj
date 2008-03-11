@@ -19,7 +19,10 @@
 		3F6A88FB0D53472300212FBA /* TiVoProgram.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F6A88F90D53472300212FBA /* TiVoProgram.m */; };
 		3F8E37E60D4D52AA009B89B3 /* LibraryController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F8E37E40D4D52AA009B89B3 /* LibraryController.m */; };
 		3F8E38A90D4DA62E009B89B3 /* BHLogger.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3F8E38A80D4DA2E8009B89B3 /* BHLogger.framework */; };
-		3F8E38AC0D4DA644009B89B3 /* BHLogger.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 3F8E38A80D4DA2E8009B89B3 /* BHLogger.framework */; };
+		3F8E38AC0D4DA644009B89B3 /* BHLogger.framework in Copy Frameworks */ = {isa = PBXBuildFile; fileRef = 3F8E38A80D4DA2E8009B89B3 /* BHLogger.framework */; };
+		3FCB2D190D8265BD00C2B5BD /* mencoder in Copy Executables */ = {isa = PBXBuildFile; fileRef = 3FCB2D170D8265BD00C2B5BD /* mencoder */; };
+		3FCB2D1A0D8265BD00C2B5BD /* tivodecode in Copy Executables */ = {isa = PBXBuildFile; fileRef = 3FCB2D180D8265BD00C2B5BD /* tivodecode */; };
+		3FCB2ED90D845C9400C2B5BD /* TiVoButler.icns in Resources */ = {isa = PBXBuildFile; fileRef = 3FCB2ED80D845C9400C2B5BD /* TiVoButler.icns */; };
 		3FE3C8F60D3DD46C00D5105A /* TiVoPlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 3FE3C8F40D3DD46C00D5105A /* TiVoPlayer.m */; };
 		3FF63FE00D5663DF00F2EAD9 /* EntityHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 3FF63FDF0D5663DF00F2EAD9 /* EntityHelper.m */; };
 		3FF645230D5B05FA00F2EAD9 /* WorkQueueController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3FF645220D5B05FA00F2EAD9 /* WorkQueueController.m */; };
@@ -51,14 +54,27 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
-		3F8E38C20D4DA684009B89B3 /* CopyFiles */ = {
+		3F8E38C20D4DA684009B89B3 /* Copy Frameworks */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				3F8E38AC0D4DA644009B89B3 /* BHLogger.framework in CopyFiles */,
+				3F8E38AC0D4DA644009B89B3 /* BHLogger.framework in Copy Frameworks */,
 			);
+			name = "Copy Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		3FCB2ED60D8451E200C2B5BD /* Copy Executables */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 6;
+			files = (
+				3FCB2D190D8265BD00C2B5BD /* mencoder in Copy Executables */,
+				3FCB2D1A0D8265BD00C2B5BD /* tivodecode in Copy Executables */,
+			);
+			name = "Copy Executables";
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXCopyFilesBuildPhase section */
@@ -90,6 +106,9 @@
 		3F8E37E40D4D52AA009B89B3 /* LibraryController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LibraryController.m; sourceTree = "<group>"; };
 		3F8E37E50D4D52AA009B89B3 /* LibraryController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LibraryController.h; sourceTree = "<group>"; };
 		3F8E389D0D4DA2E8009B89B3 /* BHLogging.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = BHLogging.xcodeproj; path = BHLogging/BHLogging.xcodeproj; sourceTree = "<group>"; };
+		3FCB2D170D8265BD00C2B5BD /* mencoder */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.executable"; path = mencoder; sourceTree = "<group>"; };
+		3FCB2D180D8265BD00C2B5BD /* tivodecode */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.executable"; path = tivodecode; sourceTree = "<group>"; };
+		3FCB2ED80D845C9400C2B5BD /* TiVoButler.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = TiVoButler.icns; sourceTree = "<group>"; };
 		3FE3C8F30D3DD46C00D5105A /* TiVoPlayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TiVoPlayer.h; sourceTree = "<group>"; };
 		3FE3C8F40D3DD46C00D5105A /* TiVoPlayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TiVoPlayer.m; sourceTree = "<group>"; };
 		3FF63FDE0D5663DF00F2EAD9 /* EntityHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EntityHelper.h; sourceTree = "<group>"; };
@@ -127,13 +146,8 @@
 				3F6A87D90D532FB400212FBA /* Headers */,
 				3FF850410D71D56600BA2628 /* PredicateTesting.m */,
 				3F44D8450D53042F00DA286E /* CalypsoXMLParser.m */,
-				3FF63FDF0D5663DF00F2EAD9 /* EntityHelper.m */,
 				3F8E37E40D4D52AA009B89B3 /* LibraryController.m */,
-				3FE3C8F40D3DD46C00D5105A /* TiVoPlayer.m */,
-				3F6A88F90D53472300212FBA /* TiVoProgram.m */,
 				77C8280C06725ACE000B614F /* TiVo_Butler_AppDelegate.m */,
-				3FF645220D5B05FA00F2EAD9 /* WorkQueueController.m */,
-				3FF645250D5B09D000F2EAD9 /* WorkQueueItem.m */,
 			);
 			name = Classes;
 			sourceTree = "<group>";
@@ -170,10 +184,13 @@
 				3F8E389D0D4DA2E8009B89B3 /* BHLogging.xcodeproj */,
 				7756732906782D8800D1FEB8 /* Models */,
 				3F44C4960D4453F800F0F6F4 /* SourceListView */,
+				3FCB2D130D817D4A00C2B5BD /* Entities */,
 				080E96DDFE201D6D7F000001 /* Classes */,
 				29B97315FDCFA39411CA2CEA /* Other Sources */,
 				29B97317FDCFA39411CA2CEA /* Resources */,
+				3FCB2ED70D845C9400C2B5BD /* Images */,
 				29B97323FDCFA39411CA2CEA /* Frameworks */,
+				3FCB2D160D8265BD00C2B5BD /* 3rd Party Binaries */,
 				19C28FACFE9D520D11CA2CBB /* Products */,
 			);
 			name = "TiVo Butler";
@@ -230,14 +247,9 @@
 			isa = PBXGroup;
 			children = (
 				3FF850400D71D56600BA2628 /* PredicateTesting.h */,
-				3FF63FDE0D5663DF00F2EAD9 /* EntityHelper.h */,
 				3F8E37E50D4D52AA009B89B3 /* LibraryController.h */,
-				3FE3C8F30D3DD46C00D5105A /* TiVoPlayer.h */,
-				3F6A88FA0D53472300212FBA /* TiVoProgram.h */,
 				77C8280B06725ACE000B614F /* TiVo_Butler_AppDelegate.h */,
 				3F44D8440D53042F00DA286E /* CalypsoXMLParser.h */,
-				3FF645210D5B05FA00F2EAD9 /* WorkQueueController.h */,
-				3FF645240D5B09D000F2EAD9 /* WorkQueueItem.h */,
 			);
 			name = Headers;
 			sourceTree = "<group>";
@@ -249,6 +261,50 @@
 				3F8E38A80D4DA2E8009B89B3 /* BHLogger.framework */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		3FCB2D130D817D4A00C2B5BD /* Entities */ = {
+			isa = PBXGroup;
+			children = (
+				3FCB2D140D817D6200C2B5BD /* Headers */,
+				3FF63FDF0D5663DF00F2EAD9 /* EntityHelper.m */,
+				3FE3C8F40D3DD46C00D5105A /* TiVoPlayer.m */,
+				3F6A88F90D53472300212FBA /* TiVoProgram.m */,
+				3FF645220D5B05FA00F2EAD9 /* WorkQueueController.m */,
+				3FF645250D5B09D000F2EAD9 /* WorkQueueItem.m */,
+			);
+			name = Entities;
+			sourceTree = "<group>";
+		};
+		3FCB2D140D817D6200C2B5BD /* Headers */ = {
+			isa = PBXGroup;
+			children = (
+				3FF63FDE0D5663DF00F2EAD9 /* EntityHelper.h */,
+				3FE3C8F30D3DD46C00D5105A /* TiVoPlayer.h */,
+				3F6A88FA0D53472300212FBA /* TiVoProgram.h */,
+				3FF645210D5B05FA00F2EAD9 /* WorkQueueController.h */,
+				3FF645240D5B09D000F2EAD9 /* WorkQueueItem.h */,
+			);
+			name = Headers;
+			sourceTree = "<group>";
+		};
+		3FCB2D160D8265BD00C2B5BD /* 3rd Party Binaries */ = {
+			isa = PBXGroup;
+			children = (
+				3FCB2D170D8265BD00C2B5BD /* mencoder */,
+				3FCB2D180D8265BD00C2B5BD /* tivodecode */,
+			);
+			name = "3rd Party Binaries";
+			path = binaries;
+			sourceTree = "<group>";
+		};
+		3FCB2ED70D845C9400C2B5BD /* Images */ = {
+			isa = PBXGroup;
+			children = (
+				3FCB2ED80D845C9400C2B5BD /* TiVoButler.icns */,
+			);
+			name = Images;
+			path = images;
 			sourceTree = "<group>";
 		};
 		7756732906782D8800D1FEB8 /* Models */ = {
@@ -269,7 +325,8 @@
 				8D1107290486CEB800E47090 /* Resources */,
 				8D11072C0486CEB800E47090 /* Sources */,
 				8D11072E0486CEB800E47090 /* Frameworks */,
-				3F8E38C20D4DA684009B89B3 /* CopyFiles */,
+				3F8E38C20D4DA684009B89B3 /* Copy Frameworks */,
+				3FCB2ED60D8451E200C2B5BD /* Copy Executables */,
 			);
 			buildRules = (
 			);
@@ -332,6 +389,7 @@
 				3F44C4A40D4453F800F0F6F4 /* highlight_blue.tiff in Resources */,
 				3F44C4A50D4453F800F0F6F4 /* highlight_grey.tiff in Resources */,
 				3F44C4A60D4453F800F0F6F4 /* License.txt in Resources */,
+				3FCB2ED90D845C9400C2B5BD /* TiVoButler.icns in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

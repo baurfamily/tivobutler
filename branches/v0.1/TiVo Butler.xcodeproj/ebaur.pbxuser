@@ -21,6 +21,7 @@
 			3FF645150D5AD84900F2EAD9 /* malloc_error_break */,
 			3F4867810D5D6D0D00C949DF /* NSException */,
 			3F4867890D5D6D5B00C949DF /* objc_exception_throw */,
+			3FCB2FA00D864B6300C2B5BD /* WorkQueueController.m:74 */,
 		);
 		codeSenseManager = 3FE3C8EE0D3DD03400D5105A /* Code sense */;
 		executables = (
@@ -71,7 +72,7 @@
 				PBXFileTableDataSourceColumnWidthsKey = (
 					20,
 					300,
-					524.20849609375,
+					525,
 				);
 				PBXFileTableDataSourceColumnsKey = (
 					PBXErrorsWarningsDataSource_TypeID,
@@ -98,7 +99,7 @@
 				PBXFileTableDataSourceColumnSortingKey = PBXFileDataSource_Filename_ColumnID;
 				PBXFileTableDataSourceColumnWidthsKey = (
 					20,
-					634,
+					635,
 					20,
 					48,
 					43,
@@ -143,6 +144,30 @@
 					PBXSymbolsDataSource_ReferenceNameID,
 				);
 			};
+			PBXConfiguration.PBXFileTableDataSource3.XCSCMDataSource = {
+				PBXFileTableDataSourceColumnSortingDirectionKey = "-1";
+				PBXFileTableDataSourceColumnSortingKey = PBXFileDataSource_Filename_ColumnID;
+				PBXFileTableDataSourceColumnWidthsKey = (
+					20,
+					20,
+					611,
+					20,
+					48,
+					43,
+					43,
+					20,
+				);
+				PBXFileTableDataSourceColumnsKey = (
+					PBXFileDataSource_SCM_ColumnID,
+					PBXFileDataSource_FiletypeID,
+					PBXFileDataSource_Filename_ColumnID,
+					PBXFileDataSource_Built_ColumnID,
+					PBXFileDataSource_ObjectSize_ColumnID,
+					PBXFileDataSource_Errors_ColumnID,
+					PBXFileDataSource_Warnings_ColumnID,
+					PBXFileDataSource_Target_ColumnID,
+				);
+			};
 			PBXConfiguration.PBXTargetDataSource.PBXTargetDataSource = {
 				PBXFileTableDataSourceColumnSortingDirectionKey = "-1";
 				PBXFileTableDataSourceColumnSortingKey = PBXFileDataSource_Filename_ColumnID;
@@ -165,61 +190,63 @@
 					PBXFileDataSource_Warnings_ColumnID,
 				);
 			};
-			PBXPerProjectTemplateStateSaveDate = 225956908;
-			PBXWorkspaceStateSaveDate = 225956908;
+			PBXPerProjectTemplateStateSaveDate = 226938600;
+			PBXWorkspaceStateSaveDate = 226938600;
 		};
 		perUserProjectItems = {
-			3F3FD2C30D50AF49002A1147 /* PBXTextBookmark */ = 3F3FD2C30D50AF49002A1147 /* PBXTextBookmark */;
-			3F3FD2C60D50AF49002A1147 /* PBXTextBookmark */ = 3F3FD2C60D50AF49002A1147 /* PBXTextBookmark */;
-			3F4868190D5D72F500C949DF /* PBXTextBookmark */ = 3F4868190D5D72F500C949DF /* PBXTextBookmark */;
-			3F6A88290D533C8000212FBA /* PBXTextBookmark */ = 3F6A88290D533C8000212FBA /* PBXTextBookmark */;
-			3F6A89140D53473F00212FBA /* PBXTextBookmark */ = 3F6A89140D53473F00212FBA /* PBXTextBookmark */;
-			3F6A896D0D534D0200212FBA /* PBXTextBookmark */ = 3F6A896D0D534D0200212FBA /* PBXTextBookmark */;
-			3F6A89900D54316100212FBA /* PBXTextBookmark */ = 3F6A89900D54316100212FBA /* PBXTextBookmark */;
-			3F71932B0D654234000AAB11 /* PBXTextBookmark */ = 3F71932B0D654234000AAB11 /* PBXTextBookmark */;
-			3F71934D0D654DDB000AAB11 /* XDModelBookmark */ = 3F71934D0D654DDB000AAB11 /* XDModelBookmark */;
-			3F71942A0D66B793000AAB11 /* PBXTextBookmark */ = 3F71942A0D66B793000AAB11 /* PBXTextBookmark */;
-			3F71942D0D66B793000AAB11 /* PBXTextBookmark */ = 3F71942D0D66B793000AAB11 /* PBXTextBookmark */;
-			3F7E4A570D4EF18500CF3AAB /* PBXTextBookmark */ = 3F7E4A570D4EF18500CF3AAB /* PBXTextBookmark */;
-			3F8E37F00D4D81F2009B89B3 /* PBXTextBookmark */ = 3F8E37F00D4D81F2009B89B3 /* PBXTextBookmark */;
-			3F8E38500D4DA080009B89B3 /* PBXTextBookmark */ = 3F8E38500D4DA080009B89B3 /* PBXTextBookmark */;
-			3F8E38580D4DA080009B89B3 /* PBXTextBookmark */ = 3F8E38580D4DA080009B89B3 /* PBXTextBookmark */;
-			3F8E38BE0D4DA684009B89B3 /* PBXTextBookmark */ = 3F8E38BE0D4DA684009B89B3 /* PBXTextBookmark */;
-			3FC7C1600D61F44600A21D1B /* PBXTextBookmark */ = 3FC7C1600D61F44600A21D1B /* PBXTextBookmark */;
-			3FC7C1620D61F44600A21D1B /* PBXTextBookmark */ = 3FC7C1620D61F44600A21D1B /* PBXTextBookmark */;
-			3FC7C1C80D62B44700A21D1B /* PBXTextBookmark */ = 3FC7C1C80D62B44700A21D1B /* PBXTextBookmark */;
-			3FC7C1C90D62B44700A21D1B /* PBXTextBookmark */ = 3FC7C1C90D62B44700A21D1B /* PBXTextBookmark */;
-			3FC7C1CD0D62B44700A21D1B /* PBXTextBookmark */ = 3FC7C1CD0D62B44700A21D1B /* PBXTextBookmark */;
-			3FD160610D77D3C3004F2232 /* PBXTextBookmark */ = 3FD160610D77D3C3004F2232 /* PBXTextBookmark */;
-			3FD160640D77D3C3004F2232 /* XDModelBookmark */ = 3FD160640D77D3C3004F2232 /* XDModelBookmark */;
-			3FD160820D77D435004F2232 /* PBXTextBookmark */ = 3FD160820D77D435004F2232 /* PBXTextBookmark */;
-			3FD160850D77D435004F2232 /* XDModelBookmark */ = 3FD160850D77D435004F2232 /* XDModelBookmark */;
-			3FD62DFA0D66F7F50058F3A8 /* PBXTextBookmark */ = 3FD62DFA0D66F7F50058F3A8 /* PBXTextBookmark */;
-			3FE3C9050D42092200D5105A /* XDModelBookmark */ = 3FE3C9050D42092200D5105A /* XDModelBookmark */;
-			3FF63EE50D55B98A00F2EAD9 /* PBXTextBookmark */ = 3FF63EE50D55B98A00F2EAD9 /* PBXTextBookmark */;
-			3FF63EEF0D55B9D600F2EAD9 /* PBXTextBookmark */ = 3FF63EEF0D55B9D600F2EAD9 /* PBXTextBookmark */;
-			3FF63EF10D55B9D600F2EAD9 /* PBXTextBookmark */ = 3FF63EF10D55B9D600F2EAD9 /* PBXTextBookmark */;
-			3FF6400C0D56D62700F2EAD9 /* PBXTextBookmark */ = 3FF6400C0D56D62700F2EAD9 /* PBXTextBookmark */;
-			3FF640190D56D62700F2EAD9 /* PBXTextBookmark */ = 3FF640190D56D62700F2EAD9 /* PBXTextBookmark */;
-			3FF6403F0D56D62700F2EAD9 /* PBXTextBookmark */ = 3FF6403F0D56D62700F2EAD9 /* PBXTextBookmark */;
-			3FF640F40D56E72A00F2EAD9 /* PBXTextBookmark */ = 3FF640F40D56E72A00F2EAD9 /* PBXTextBookmark */;
-			3FF641210D56ED8900F2EAD9 /* PBXTextBookmark */ = 3FF641210D56ED8900F2EAD9 /* PBXTextBookmark */;
-			3FF645380D5B0B4300F2EAD9 /* PBXTextBookmark */ = 3FF645380D5B0B4300F2EAD9 /* PBXTextBookmark */;
-			3FF6454A0D5B0B4300F2EAD9 /* PBXTextBookmark */ = 3FF6454A0D5B0B4300F2EAD9 /* PBXTextBookmark */;
-			3FF8504C0D7218F600BA2628 /* PBXTextBookmark */ = 3FF8504C0D7218F600BA2628 /* PBXTextBookmark */;
-			3FF8504D0D7218F600BA2628 /* PBXTextBookmark */ = 3FF8504D0D7218F600BA2628 /* PBXTextBookmark */;
-			3FF8504E0D7218F600BA2628 /* PBXTextBookmark */ = 3FF8504E0D7218F600BA2628 /* PBXTextBookmark */;
-			3FF850540D7218F600BA2628 /* PBXTextBookmark */ = 3FF850540D7218F600BA2628 /* PBXTextBookmark */;
-			3FF850550D7218F600BA2628 /* PBXTextBookmark */ = 3FF850550D7218F600BA2628 /* PBXTextBookmark */;
-			3FF850A60D728D6600BA2628 /* PBXTextBookmark */ = 3FF850A60D728D6600BA2628 /* PBXTextBookmark */;
-			3FF850A70D728D6600BA2628 /* PBXTextBookmark */ = 3FF850A70D728D6600BA2628 /* PBXTextBookmark */;
-			3FF850A80D728D6600BA2628 /* PBXTextBookmark */ = 3FF850A80D728D6600BA2628 /* PBXTextBookmark */;
-			3FF850D50D728F6C00BA2628 /* PBXTextBookmark */ = 3FF850D50D728F6C00BA2628 /* PBXTextBookmark */;
-			3FF851990D75237B00BA2628 /* PBXTextBookmark */ = 3FF851990D75237B00BA2628 /* PBXTextBookmark */;
-			3FF8519A0D75237B00BA2628 /* PBXTextBookmark */ = 3FF8519A0D75237B00BA2628 /* PBXTextBookmark */;
-			3FF851C00D7523FC00BA2628 /* PBXTextBookmark */ = 3FF851C00D7523FC00BA2628 /* PBXTextBookmark */;
-			3FF851C10D7523FC00BA2628 /* PBXTextBookmark */ = 3FF851C10D7523FC00BA2628 /* PBXTextBookmark */;
-			3FF851C20D7523FC00BA2628 /* PBXTextBookmark */ = 3FF851C20D7523FC00BA2628 /* PBXTextBookmark */;
+			3F3FD2C30D50AF49002A1147 = 3F3FD2C30D50AF49002A1147 /* PBXTextBookmark */;
+			3F3FD2C60D50AF49002A1147 = 3F3FD2C60D50AF49002A1147 /* PBXTextBookmark */;
+			3F6A88290D533C8000212FBA = 3F6A88290D533C8000212FBA /* PBXTextBookmark */;
+			3F6A89140D53473F00212FBA = 3F6A89140D53473F00212FBA /* PBXTextBookmark */;
+			3F6A896D0D534D0200212FBA = 3F6A896D0D534D0200212FBA /* PBXTextBookmark */;
+			3F71934D0D654DDB000AAB11 = 3F71934D0D654DDB000AAB11 /* XDModelBookmark */;
+			3F7E4A570D4EF18500CF3AAB = 3F7E4A570D4EF18500CF3AAB /* PBXTextBookmark */;
+			3F8E37F00D4D81F2009B89B3 = 3F8E37F00D4D81F2009B89B3 /* PBXTextBookmark */;
+			3F8E38500D4DA080009B89B3 = 3F8E38500D4DA080009B89B3 /* PBXTextBookmark */;
+			3F8E38580D4DA080009B89B3 = 3F8E38580D4DA080009B89B3 /* PBXTextBookmark */;
+			3F8E38BE0D4DA684009B89B3 = 3F8E38BE0D4DA684009B89B3 /* PBXTextBookmark */;
+			3FB14A7D0D86CEF70059831C /* PBXBookmark */ = 3FB14A7D0D86CEF70059831C /* PBXBookmark */;
+			3FC7C1C90D62B44700A21D1B = 3FC7C1C90D62B44700A21D1B /* PBXTextBookmark */;
+			3FC7C1CD0D62B44700A21D1B = 3FC7C1CD0D62B44700A21D1B /* PBXTextBookmark */;
+			3FCB2C5D0D80F8D200C2B5BD = 3FCB2C5D0D80F8D200C2B5BD /* PBXTextBookmark */;
+			3FCB2C980D81118B00C2B5BD = 3FCB2C980D81118B00C2B5BD /* PBXTextBookmark */;
+			3FCB2C990D81118B00C2B5BD = 3FCB2C990D81118B00C2B5BD /* PBXTextBookmark */;
+			3FCB2CA40D81118B00C2B5BD = 3FCB2CA40D81118B00C2B5BD /* PBXTextBookmark */;
+			3FCB2CA80D81118B00C2B5BD = 3FCB2CA80D81118B00C2B5BD /* PBXTextBookmark */;
+			3FCB2CD00D81130800C2B5BD = 3FCB2CD00D81130800C2B5BD /* PBXTextBookmark */;
+			3FCB2CDF0D81140C00C2B5BD = 3FCB2CDF0D81140C00C2B5BD /* PBXTextBookmark */;
+			3FCB2D280D8266DE00C2B5BD = 3FCB2D280D8266DE00C2B5BD /* PBXTextBookmark */;
+			3FCB2D530D826B8E00C2B5BD = 3FCB2D530D826B8E00C2B5BD /* PBXTextBookmark */;
+			3FCB2D540D826B8E00C2B5BD = 3FCB2D540D826B8E00C2B5BD /* PBXTextBookmark */;
+			3FCB2D560D826B8E00C2B5BD = 3FCB2D560D826B8E00C2B5BD /* PBXTextBookmark */;
+			3FCB2D570D826B8E00C2B5BD = 3FCB2D570D826B8E00C2B5BD /* PBXTextBookmark */;
+			3FCB2D700D82F2F700C2B5BD = 3FCB2D700D82F2F700C2B5BD /* PBXTextBookmark */;
+			3FCB2D710D82F2F700C2B5BD = 3FCB2D710D82F2F700C2B5BD /* PBXTextBookmark */;
+			3FCB2D720D82F2F700C2B5BD = 3FCB2D720D82F2F700C2B5BD /* PBXTextBookmark */;
+			3FCB2D730D82F2F700C2B5BD = 3FCB2D730D82F2F700C2B5BD /* PBXTextBookmark */;
+			3FCB2D770D82F2F700C2B5BD = 3FCB2D770D82F2F700C2B5BD /* PBXTextBookmark */;
+			3FCB2D870D82F2F700C2B5BD = 3FCB2D870D82F2F700C2B5BD /* PBXTextBookmark */;
+			3FCB2DF20D8311AE00C2B5BD = 3FCB2DF20D8311AE00C2B5BD /* PBXTextBookmark */;
+			3FCB2DF30D8311AE00C2B5BD = 3FCB2DF30D8311AE00C2B5BD /* PBXTextBookmark */;
+			3FCB2E530D83ACC300C2B5BD = 3FCB2E530D83ACC300C2B5BD /* PBXTextBookmark */;
+			3FCB2E540D83ACC300C2B5BD = 3FCB2E540D83ACC300C2B5BD /* PBXTextBookmark */;
+			3FCB2E5C0D83ACC300C2B5BD = 3FCB2E5C0D83ACC300C2B5BD /* PBXTextBookmark */;
+			3FCB2F100D8464BA00C2B5BD = 3FCB2F100D8464BA00C2B5BD /* PBXBookmark */;
+			3FCB2FD80D864E5600C2B5BD = 3FCB2FD80D864E5600C2B5BD /* PBXTextBookmark */;
+			3FCB301B0D86604900C2B5BD = 3FCB301B0D86604900C2B5BD /* PBXTextBookmark */;
+			3FCB301D0D86604900C2B5BD = 3FCB301D0D86604900C2B5BD /* PBXTextBookmark */;
+			3FCB301E0D86604900C2B5BD = 3FCB301E0D86604900C2B5BD /* PBXTextBookmark */;
+			3FCB30330D86610300C2B5BD = 3FCB30330D86610300C2B5BD /* PBXTextBookmark */;
+			3FCB30340D86610300C2B5BD = 3FCB30340D86610300C2B5BD /* PBXTextBookmark */;
+			3FCB30380D86614800C2B5BD = 3FCB30380D86614800C2B5BD /* PBXBookmark */;
+			3FCB303D0D86CD5E00C2B5BD = 3FCB303D0D86CD5E00C2B5BD /* PBXBookmark */;
+			3FE3C9050D42092200D5105A = 3FE3C9050D42092200D5105A /* XDModelBookmark */;
+			3FF6400C0D56D62700F2EAD9 = 3FF6400C0D56D62700F2EAD9 /* PBXTextBookmark */;
+			3FF640190D56D62700F2EAD9 = 3FF640190D56D62700F2EAD9 /* PBXTextBookmark */;
+			3FF8504D0D7218F600BA2628 = 3FF8504D0D7218F600BA2628 /* PBXTextBookmark */;
+			3FF850540D7218F600BA2628 = 3FF850540D7218F600BA2628 /* PBXTextBookmark */;
+			3FF850550D7218F600BA2628 = 3FF850550D7218F600BA2628 /* PBXTextBookmark */;
+			3FF850A70D728D6600BA2628 = 3FF850A70D728D6600BA2628 /* PBXTextBookmark */;
 		};
 		sourceControlManager = 3FE3C8ED0D3DD03400D5105A /* Source Control */;
 		userBuildSettings = {
@@ -234,9 +261,9 @@
 	};
 	32CA4F630368D1EE00C91783 /* TiVo_Butler_Prefix.pch */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {812, 586}}";
-			sepNavSelRange = "{176, 0}";
-			sepNavVisRange = "{0, 184}";
+			sepNavIntBoundsRect = "{{0, 0}, {671, 126}}";
+			sepNavSelRange = "{156, 20}";
+			sepNavVisRange = "{0, 185}";
 		};
 	};
 	3F3FD2C30D50AF49002A1147 /* PBXTextBookmark */ = {
@@ -269,16 +296,17 @@
 	3F44D8440D53042F00DA286E /* CalypsoXMLParser.h */ = {
 		uiCtxt = {
 			sepNavIntBoundsRect = "{{0, 0}, {812, 994}}";
-			sepNavSelRange = "{290, 0}";
-			sepNavVisRange = "{215, 1457}";
+			sepNavSelRange = "{1932, 0}";
+			sepNavVisRange = "{745, 1430}";
 			sepNavWindowFrame = "{{61, 209}, {803, 922}}";
 		};
 	};
 	3F44D8450D53042F00DA286E /* CalypsoXMLParser.m */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {812, 5922}}";
-			sepNavSelRange = "{6648, 10}";
-			sepNavVisRange = "{5741, 1973}";
+			sepNavIntBoundsRect = "{{0, 0}, {812, 6622}}";
+			sepNavSelRange = "{173, 0}";
+			sepNavVisRange = "{0, 1024}";
+			sepNavWindowFrame = "{{107, 228}, {1222, 861}}";
 		};
 	};
 	3F4867810D5D6D0D00C949DF /* NSException */ = {
@@ -292,7 +320,7 @@
 		hitCount = 0;
 		ignoreCount = 0;
 		location = "";
-		modificationTime = 225780733.319556;
+		modificationTime = 226905066.612121;
 		state = 1;
 		symbolName = NSException;
 	};
@@ -307,26 +335,9 @@
 		hitCount = 0;
 		ignoreCount = 0;
 		location = libobjc.A.dylib;
-		modificationTime = 225780733.31956;
+		modificationTime = 226905066.612128;
 		state = 1;
 		symbolName = objc_exception_throw;
-	};
-	3F4867920D5D6E2E00C949DF /* LibraryController.m */ = {
-		isa = PBXFileReference;
-		lastKnownFileType = sourcecode.c.objc;
-		name = LibraryController.m;
-		path = "/Users/ebaur/Projects/Current Projects/TiVo Butler/LibraryController.m";
-		sourceTree = "<group>";
-	};
-	3F4868190D5D72F500C949DF /* PBXTextBookmark */ = {
-		isa = PBXTextBookmark;
-		fRef = 3F4867920D5D6E2E00C949DF /* LibraryController.m */;
-		name = "LibraryController.m: 117";
-		rLen = 0;
-		rLoc = 2545;
-		rType = 0;
-		vrLen = 1603;
-		vrLoc = 2057;
 	};
 	3F6A87C10D52D66F00212FBA /* TiVoProgram.m:33 */ = {
 		isa = PBXFileBreakpoint;
@@ -341,15 +352,8 @@
 		hitCount = 0;
 		ignoreCount = 0;
 		lineNumber = 33;
-		modificationTime = 225780733.815348;
-		state = 0;
-	};
-	3F6A88120D533C5400212FBA /* TiVoPlayer.h */ = {
-		isa = PBXFileReference;
-		lastKnownFileType = sourcecode.c.h;
-		name = TiVoPlayer.h;
-		path = "/Users/ebaur/Projects/Current Projects/TiVo Butler/TiVoPlayer.h";
-		sourceTree = "<absolute>";
+		modificationTime = 226905151.921522;
+		state = 1;
 	};
 	3F6A88290D533C8000212FBA /* PBXTextBookmark */ = {
 		isa = PBXTextBookmark;
@@ -363,16 +367,16 @@
 	};
 	3F6A88F90D53472300212FBA /* TiVoProgram.m */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {746, 553}}";
-			sepNavSelRange = "{446, 0}";
-			sepNavVisRange = "{0, 618}";
+			sepNavIntBoundsRect = "{{0, 0}, {671, 518}}";
+			sepNavSelRange = "{636, 0}";
+			sepNavVisRange = "{532, 110}";
 		};
 	};
 	3F6A88FA0D53472300212FBA /* TiVoProgram.h */ = {
 		uiCtxt = {
 			sepNavIntBoundsRect = "{{0, 0}, {812, 586}}";
-			sepNavSelRange = "{573, 0}";
-			sepNavVisRange = "{0, 936}";
+			sepNavSelRange = "{976, 0}";
+			sepNavVisRange = "{0, 984}";
 		};
 	};
 	3F6A89140D53473F00212FBA /* PBXTextBookmark */ = {
@@ -395,50 +399,10 @@
 		vrLen = 936;
 		vrLoc = 0;
 	};
-	3F6A89900D54316100212FBA /* PBXTextBookmark */ = {
-		isa = PBXTextBookmark;
-		fRef = 3F44D8440D53042F00DA286E /* CalypsoXMLParser.h */;
-		name = "CalypsoXMLParser.h: 79";
-		rLen = 0;
-		rLoc = 1693;
-		rType = 0;
-		vrLen = 996;
-		vrLoc = 978;
-	};
-	3F71932B0D654234000AAB11 /* PBXTextBookmark */ = {
-		isa = PBXTextBookmark;
-		fRef = 3F8E37E50D4D52AA009B89B3 /* LibraryController.h */;
-		name = "LibraryController.h: 24";
-		rLen = 24;
-		rLoc = 448;
-		rType = 0;
-		vrLen = 829;
-		vrLoc = 0;
-	};
 	3F71934D0D654DDB000AAB11 /* XDModelBookmark */ = {
 		isa = XDModelBookmark;
 		fRef = 770B37EC0679A11B001EADE2 /* TiVo_Butler_DataModel.xcdatamodel */;
 		fallbackIsa = PBXBookmark;
-	};
-	3F71942A0D66B793000AAB11 /* PBXTextBookmark */ = {
-		isa = PBXTextBookmark;
-		fRef = 3F44D8440D53042F00DA286E /* CalypsoXMLParser.h */;
-		name = "CalypsoXMLParser.h: 16";
-		rLen = 0;
-		rLoc = 290;
-		rType = 0;
-		vrLen = 1457;
-		vrLoc = 215;
-	};
-	3F71942D0D66B793000AAB11 /* PBXTextBookmark */ = {
-		isa = PBXTextBookmark;
-		fRef = 3F6A88120D533C5400212FBA /* TiVoPlayer.h */;
-		name = "TiVoPlayer.h: 16";
-		rLen = 0;
-		rLoc = 313;
-		rType = 0;
-		vrLen = 886;
-		vrLoc = 167;
 	};
 	3F7E4A570D4EF18500CF3AAB /* PBXTextBookmark */ = {
 		isa = PBXTextBookmark;
@@ -452,17 +416,17 @@
 	};
 	3F8E37E40D4D52AA009B89B3 /* LibraryController.m */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {812, 3066}}";
-			sepNavSelRange = "{1345, 0}";
-			sepNavVisRange = "{575, 1140}";
+			sepNavIntBoundsRect = "{{0, 0}, {818, 2940}}";
+			sepNavSelRange = "{4873, 0}";
+			sepNavVisRange = "{758, 1049}";
 			sepNavWindowFrame = "{{15, 251}, {803, 922}}";
 		};
 	};
 	3F8E37E50D4D52AA009B89B3 /* LibraryController.h */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {812, 586}}";
-			sepNavSelRange = "{448, 24}";
-			sepNavVisRange = "{0, 829}";
+			sepNavIntBoundsRect = "{{0, 0}, {812, 588}}";
+			sepNavSelRange = "{303, 0}";
+			sepNavVisRange = "{0, 910}";
 		};
 	};
 	3F8E37F00D4D81F2009B89B3 /* PBXTextBookmark */ = {
@@ -500,40 +464,14 @@
 		fRef = 32CA4F630368D1EE00C91783 /* TiVo_Butler_Prefix.pch */;
 		name = "TiVo_Butler_Prefix.pch: 7";
 		rLen = 0;
-		rLoc = 176;
+		rLoc = 177;
 		rType = 0;
 		vrLen = 184;
 		vrLoc = 0;
 	};
-	3FC7C1600D61F44600A21D1B /* PBXTextBookmark */ = {
-		isa = PBXTextBookmark;
-		fRef = 3FF645210D5B05FA00F2EAD9 /* WorkQueueController.h */;
-		name = "WorkQueueController.h: 16";
-		rLen = 0;
-		rLoc = 289;
-		rType = 0;
-		vrLen = 449;
-		vrLoc = 0;
-	};
-	3FC7C1620D61F44600A21D1B /* PBXTextBookmark */ = {
-		isa = PBXTextBookmark;
-		fRef = 77C8280C06725ACE000B614F /* TiVo_Butler_AppDelegate.m */;
-		name = "TiVo_Butler_AppDelegate.m: 185";
-		rLen = 0;
-		rLoc = 5967;
-		rType = 0;
-		vrLen = 1259;
-		vrLoc = 2792;
-	};
-	3FC7C1C80D62B44700A21D1B /* PBXTextBookmark */ = {
-		isa = PBXTextBookmark;
-		fRef = 32CA4F630368D1EE00C91783 /* TiVo_Butler_Prefix.pch */;
-		name = "TiVo_Butler_Prefix.pch: 7";
-		rLen = 0;
-		rLoc = 176;
-		rType = 0;
-		vrLen = 184;
-		vrLoc = 0;
+	3FB14A7D0D86CEF70059831C /* PBXBookmark */ = {
+		isa = PBXBookmark;
+		fRef = 3FCB2ED80D845C9400C2B5BD /* TiVoButler.icns */;
 	};
 	3FC7C1C90D62B44700A21D1B /* PBXTextBookmark */ = {
 		isa = PBXTextBookmark;
@@ -555,212 +493,371 @@
 		vrLen = 254;
 		vrLoc = 0;
 	};
-	3FD160610D77D3C3004F2232 /* PBXTextBookmark */ = {
+	3FCB2C5D0D80F8D200C2B5BD /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 77C8280C06725ACE000B614F /* TiVo_Butler_AppDelegate.m */;
+		name = "TiVo_Butler_AppDelegate.m: 91";
+		rLen = 0;
+		rLoc = 2987;
+		rType = 0;
+		vrLen = 1565;
+		vrLoc = 1844;
+	};
+	3FCB2C960D81117600C2B5BD /* LibraryController.m */ = {
+		isa = PBXFileReference;
+		lastKnownFileType = sourcecode.c.objc;
+		name = LibraryController.m;
+		path = "/Users/ebaur/Projects/Current Projects/TiVo Butler v0.1/LibraryController.m";
+		sourceTree = "<absolute>";
+	};
+	3FCB2C980D81118B00C2B5BD /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 32CA4F630368D1EE00C91783 /* TiVo_Butler_Prefix.pch */;
+		name = "TiVo_Butler_Prefix.pch: 7";
+		rLen = 20;
+		rLoc = 156;
+		rType = 0;
+		vrLen = 185;
+		vrLoc = 0;
+	};
+	3FCB2C990D81118B00C2B5BD /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 3FCB2C9A0D81118B00C2B5BD /* BHLogging.h */;
+		name = "BHLogging.h: 21";
+		rLen = 0;
+		rLoc = 404;
+		rType = 0;
+		vrLen = 2023;
+		vrLoc = 3;
+	};
+	3FCB2C9A0D81118B00C2B5BD /* BHLogging.h */ = {
+		isa = PBXFileReference;
+		lastKnownFileType = sourcecode.c.h;
+		name = BHLogging.h;
+		path = /Users/ebaur/Temp/Debug/BHLogger.framework/Versions/A/Headers/BHLogging.h;
+		sourceTree = "<absolute>";
+	};
+	3FCB2CA40D81118B00C2B5BD /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 3FCB2CA50D81118B00C2B5BD /* BHLogging.h */;
+		name = "BHLogging.h: 21";
+		rLen = 0;
+		rLoc = 404;
+		rType = 0;
+		vrLen = 2023;
+		vrLoc = 3;
+	};
+	3FCB2CA50D81118B00C2B5BD /* BHLogging.h */ = {
+		isa = PBXFileReference;
+		lastKnownFileType = sourcecode.c.h;
+		name = BHLogging.h;
+		path = /Users/ebaur/Temp/Debug/BHLogger.framework/Versions/A/Headers/BHLogging.h;
+		sourceTree = "<absolute>";
+	};
+	3FCB2CA80D81118B00C2B5BD /* PBXTextBookmark */ = {
 		isa = PBXTextBookmark;
 		fRef = 3F44D8450D53042F00DA286E /* CalypsoXMLParser.m */;
-		name = "CalypsoXMLParser.m: 202";
-		rLen = 10;
-		rLoc = 6648;
+		name = "CalypsoXMLParser.m: 53";
+		rLen = 0;
+		rLoc = 1358;
 		rType = 0;
-		vrLen = 1864;
-		vrLoc = 5850;
+		vrLen = 1066;
+		vrLoc = 553;
 	};
-	3FD160640D77D3C3004F2232 /* XDModelBookmark */ = {
-		isa = XDModelBookmark;
-		fRef = 770B37EC0679A11B001EADE2 /* TiVo_Butler_DataModel.xcdatamodel */;
-		fallbackIsa = PBXBookmark;
+	3FCB2CD00D81130800C2B5BD /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 3F44D8440D53042F00DA286E /* CalypsoXMLParser.h */;
+		name = "CalypsoXMLParser.h: 65";
+		rLen = 0;
+		rLoc = 1955;
+		rType = 0;
+		vrLen = 1339;
+		vrLoc = 841;
 	};
-	3FD160820D77D435004F2232 /* PBXTextBookmark */ = {
+	3FCB2CDF0D81140C00C2B5BD /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 3F6A88FA0D53472300212FBA /* TiVoProgram.h */;
+		name = "TiVoProgram.h: 35";
+		rLen = 0;
+		rLoc = 976;
+		rType = 0;
+		vrLen = 984;
+		vrLoc = 0;
+	};
+	3FCB2D280D8266DE00C2B5BD /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 3FF850410D71D56600BA2628 /* PredicateTesting.m */;
+		name = "PredicateTesting.m: 17";
+		rLen = 0;
+		rLoc = 326;
+		rType = 0;
+		vrLen = 610;
+		vrLoc = 0;
+	};
+	3FCB2D530D826B8E00C2B5BD /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 3FF63FDE0D5663DF00F2EAD9 /* EntityHelper.h */;
+		name = "EntityHelper.h: 22";
+		rLen = 0;
+		rLoc = 540;
+		rType = 0;
+		vrLen = 924;
+		vrLoc = 0;
+	};
+	3FCB2D540D826B8E00C2B5BD /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 3FF63FDF0D5663DF00F2EAD9 /* EntityHelper.m */;
+		name = "EntityHelper.m: 20";
+		rLen = 0;
+		rLoc = 515;
+		rType = 0;
+		vrLen = 1247;
+		vrLoc = 1186;
+	};
+	3FCB2D560D826B8E00C2B5BD /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 3FCB2C960D81117600C2B5BD /* LibraryController.m */;
+		name = "LibraryController.m: 191";
+		rLen = 0;
+		rLoc = 5334;
+		rType = 0;
+		vrLen = 1253;
+		vrLoc = 2329;
+	};
+	3FCB2D570D826B8E00C2B5BD /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 3FF63FDF0D5663DF00F2EAD9 /* EntityHelper.m */;
+		name = "EntityHelper.m: 25";
+		rLen = 132;
+		rLoc = 1051;
+		rType = 0;
+		vrLen = 1350;
+		vrLoc = 137;
+	};
+	3FCB2D700D82F2F700C2B5BD /* PBXTextBookmark */ = {
 		isa = PBXTextBookmark;
 		fRef = 3F44D8450D53042F00DA286E /* CalypsoXMLParser.m */;
-		name = "CalypsoXMLParser.m: 202";
-		rLen = 10;
-		rLoc = 6648;
+		name = "CalypsoXMLParser.m: 11";
+		rLen = 0;
+		rLoc = 173;
 		rType = 0;
-		vrLen = 1973;
-		vrLoc = 5741;
+		vrLen = 1024;
+		vrLoc = 0;
 	};
-	3FD160850D77D435004F2232 /* XDModelBookmark */ = {
-		isa = XDModelBookmark;
-		fRef = 770B37EC0679A11B001EADE2 /* TiVo_Butler_DataModel.xcdatamodel */;
-		fallbackIsa = PBXBookmark;
+	3FCB2D710D82F2F700C2B5BD /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 3F44D8440D53042F00DA286E /* CalypsoXMLParser.h */;
+		name = "CalypsoXMLParser.h: 64";
+		rLen = 0;
+		rLoc = 1932;
+		rType = 0;
+		vrLen = 1430;
+		vrLoc = 745;
+	};
+	3FCB2D720D82F2F700C2B5BD /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 3FCB2C960D81117600C2B5BD /* LibraryController.m */;
+		name = "LibraryController.m: 154";
+		rLen = 0;
+		rLoc = 4118;
+		rType = 0;
+		vrLen = 1404;
+		vrLoc = 3507;
+	};
+	3FCB2D730D82F2F700C2B5BD /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 3F8E37E50D4D52AA009B89B3 /* LibraryController.h */;
+		name = "LibraryController.h: 17";
+		rLen = 0;
+		rLoc = 303;
+		rType = 0;
+		vrLen = 910;
+		vrLoc = 0;
+	};
+	3FCB2D770D82F2F700C2B5BD /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 3F6A88F90D53472300212FBA /* TiVoProgram.m */;
+		name = "TiVoProgram.m: 35";
+		rLen = 0;
+		rLoc = 636;
+		rType = 0;
+		vrLen = 642;
+		vrLoc = 0;
+	};
+	3FCB2D870D82F2F700C2B5BD /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 3FF645250D5B09D000F2EAD9 /* WorkQueueItem.m */;
+		name = "WorkQueueItem.m: 104";
+		rLen = 0;
+		rLoc = 891;
+		rType = 0;
+		vrLen = 1148;
+		vrLoc = 2317;
+	};
+	3FCB2DDA0D830FC900C2B5BD /* WorkQueueController.h */ = {
+		isa = PBXFileReference;
+		lastKnownFileType = sourcecode.c.h;
+		name = WorkQueueController.h;
+		path = "/Users/ebaur/Projects/Current Projects/TiVo Butler v0.1/WorkQueueController.h";
+		sourceTree = "<absolute>";
+	};
+	3FCB2DF20D8311AE00C2B5BD /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 3FE3C8F30D3DD46C00D5105A /* TiVoPlayer.h */;
+		name = "TiVoPlayer.h: 35";
+		rLen = 14;
+		rLoc = 599;
+		rType = 0;
+		vrLen = 818;
+		vrLoc = 0;
+	};
+	3FCB2DF30D8311AE00C2B5BD /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 3FE3C8F40D3DD46C00D5105A /* TiVoPlayer.m */;
+		name = "TiVoPlayer.m: 151";
+		rLen = 0;
+		rLoc = 3510;
+		rType = 0;
+		vrLen = 691;
+		vrLoc = 0;
+	};
+	3FCB2E460D83A79000C2B5BD /* WorkQueueController.m */ = {
+		isa = PBXFileReference;
+		lastKnownFileType = sourcecode.c.objc;
+		name = WorkQueueController.m;
+		path = "/Users/ebaur/Projects/Current Projects/TiVo Butler v0.1/WorkQueueController.m";
+		sourceTree = "<absolute>";
+	};
+	3FCB2E530D83ACC300C2B5BD /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 3FF645240D5B09D000F2EAD9 /* WorkQueueItem.h */;
+		name = "WorkQueueItem.h: 26";
+		rLen = 0;
+		rLoc = 577;
+		rType = 0;
+		vrLen = 585;
+		vrLoc = 0;
+	};
+	3FCB2E540D83ACC300C2B5BD /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 3FF645250D5B09D000F2EAD9 /* WorkQueueItem.m */;
+		name = "WorkQueueItem.m: 25";
+		rLen = 13;
+		rLoc = 360;
+		rType = 0;
+		vrLen = 674;
+		vrLoc = 224;
+	};
+	3FCB2E5C0D83ACC300C2B5BD /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 3FCB2E460D83A79000C2B5BD /* WorkQueueController.m */;
+		name = "WorkQueueController.m: 238";
+		rLen = 0;
+		rLoc = 8886;
+		rType = 0;
+		vrLen = 1142;
+		vrLoc = 6626;
+	};
+	3FCB2ED80D845C9400C2B5BD /* TiVoButler.icns */ = {
 		uiCtxt = {
-			UIContextForDetailArea = {
-				_indexOfSelectedPane = 0;
-				_indexOfSelectedView = 0;
-			};
-			UIContextForEntityArea = {
-				_indexOfSelectedView = 0;
-				chosenTableColumnns = (
-					"ET Entity",
-					"ET Abstract",
-					"ET Class",
-				);
-				chosenTableColumnns_sortDirections = (
-					YES,
-				);
-				chosenTableColumnns_sortKeys = (
-					name,
-				);
-				chosenTableColumnns_sortSelectors = (
-					"_xdcaseInsensitiveNumericCompare:",
-				);
-				chosenTableWidths = (
-					103.000000,
-					22.000000,
-					32.080078,
-				);
-			};
-			UIContextForLayoutManager = {
-				detailSplitGeometry = {
-					_collapsingFrameDimension = 0;
-					_indexOfCollapsedView = 0;
-					_percentageOfCollapsedView = 0;
-					isCollapsed = yes;
-					sizes = (
-						"{{0, 0}, {523, 220}}",
-						"{{528, 0}, {275, 220}}",
-					);
-				};
-				diagramSplitGeometry = {
-					_collapsingFrameDimension = 0;
-					_indexOfCollapsedView = 0;
-					_percentageOfCollapsedView = 0;
-					isCollapsed = yes;
-					sizes = (
-						"{{0, 0}, {803, 220}}",
-						"{{0, 225}, {803, 584}}",
-					);
-				};
-				tableSplitGeometry = {
-					_collapsingFrameDimension = 0;
-					_indexOfCollapsedView = 0;
-					_percentageOfCollapsedView = 0;
-					isCollapsed = yes;
-					sizes = (
-						"{{0, 0}, {170, 218}}",
-						"{{175, 0}, {346, 218}}",
-					);
-				};
-			};
-			UIContextForPropertyArea = {
-				_indexOfSelectedView = 0;
-				chosenTableColumnnFRTs = (
-					"FT Fetch Request",
-					"FT Predicate",
-				);
-				chosenTableColumnnFRTs_sortDirections = (
-					YES,
-				);
-				chosenTableColumnnFRTs_sortKeys = (
-					name,
-				);
-				chosenTableColumnnFRTs_sortSelectors = (
-					"_xdcaseInsensitiveNumericCompare:",
-				);
-				chosenTableColumnnsAT = (
-					"AT Attribute",
-					"AT Type",
-				);
-				chosenTableColumnnsAT_sortDirections = (
-					YES,
-				);
-				chosenTableColumnnsAT_sortKeys = (
-					name,
-				);
-				chosenTableColumnnsAT_sortSelectors = (
-					"_xdcaseInsensitiveNumericCompare:",
-				);
-				chosenTableColumnnsFPT = (
-					"FP FetchedProperty",
-					"FP Destination",
-					"FP Predicate",
-				);
-				chosenTableColumnnsFPT_sortDirections = (
-					YES,
-				);
-				chosenTableColumnnsFPT_sortKeys = (
-					name,
-				);
-				chosenTableColumnnsFPT_sortSelectors = (
-					"_xdcaseInsensitiveNumericCompare:",
-				);
-				chosenTableColumnnsPT = (
-					"PT Property",
-					"PT Kind",
-					"PT SharedKeyOne",
-					"PT SyncIdentityKey",
-					"PT Optional",
-					"PT Transient",
-				);
-				chosenTableColumnnsPT_sortDirections = (
-					YES,
-					YES,
-				);
-				chosenTableColumnnsPT_sortKeys = (
-					isSyncIdentityProperty,
-					name,
-				);
-				chosenTableColumnnsPT_sortSelectors = (
-					"compare:",
-					"_xdcaseInsensitiveNumericCompare:",
-				);
-				chosenTableColumnnsRT = (
-					"RT Relationship",
-					"RT Destination",
-				);
-				chosenTableColumnnsRT_sortDirections = (
-					YES,
-				);
-				chosenTableColumnnsRT_sortKeys = (
-					name,
-				);
-				chosenTableColumnnsRT_sortSelectors = (
-					"_xdcaseInsensitiveNumericCompare:",
-				);
-				chosenTableWidthsAT = (
-					128.000000,
-					176.000000,
-				);
-				chosenTableWidthsFPT = (
-					128.000000,
-					64.000000,
-					158.764160,
-				);
-				chosenTableWidthsFRT = (
-					128.000000,
-					249.764160,
-				);
-				chosenTableWidthsPT = (
-					99.000000,
-					81.110840,
-					96.570801,
-					12.000000,
-					12.000000,
-					12.000000,
-				);
-				chosenTableWidthsRT = (
-					128.000000,
-					64.000000,
-				);
-			};
-			"xdesign model browser state key - shown/hidden" = 1;
-			"xdesign model diagram view visible rect key" = "{{-34, -29}, {788, 569}}";
-			"xdesign model selected entities key" = (
-			);
-			"xdesign model selected properties key" = (
-			);
+			sepNavWindowFrame = "{{222, 123}, {1222, 861}}";
 		};
 	};
-	3FD62DFA0D66F7F50058F3A8 /* PBXTextBookmark */ = {
+	3FCB2F100D8464BA00C2B5BD /* PBXBookmark */ = {
+		isa = PBXBookmark;
+		fRef = 3FCB2ED80D845C9400C2B5BD /* TiVoButler.icns */;
+	};
+	3FCB2F9E0D864B6300C2B5BD /* WorkQueueController.m */ = {
+		isa = PBXFileReference;
+		lastKnownFileType = sourcecode.c.objc;
+		name = WorkQueueController.m;
+		path = "/Users/ebaur/Projects/Current Projects/TiVo Butler v0.1/WorkQueueController.m";
+		sourceTree = "<group>";
+	};
+	3FCB2FA00D864B6300C2B5BD /* WorkQueueController.m:74 */ = {
+		isa = PBXFileBreakpoint;
+		actions = (
+		);
+		breakpointStyle = 0;
+		continueAfterActions = 0;
+		countType = 0;
+		delayBeforeContinue = 0;
+		fileReference = 3FCB2F9E0D864B6300C2B5BD /* WorkQueueController.m */;
+		functionName = "-beginDownload";
+		hitCount = 1;
+		ignoreCount = 0;
+		lineNumber = 74;
+		location = "TiVo Butler";
+		modificationTime = 226905079.117935;
+		state = 1;
+	};
+	3FCB2FD80D864E5600C2B5BD /* PBXTextBookmark */ = {
 		isa = PBXTextBookmark;
-		fRef = 3FF63FF70D56D5B700F2EAD9 /* EntityHelper.m */;
-		name = "EntityHelper.m: 37";
+		fRef = 3FCB2DDA0D830FC900C2B5BD /* WorkQueueController.h */;
+		name = "WorkQueueController.h: 35";
 		rLen = 0;
-		rLoc = 1150;
+		rLoc = 701;
 		rType = 0;
-		vrLen = 1402;
-		vrLoc = 134;
+		vrLen = 767;
+		vrLoc = 259;
+	};
+	3FCB301B0D86604900C2B5BD /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 3FCB2DDA0D830FC900C2B5BD /* WorkQueueController.h */;
+		name = "WorkQueueController.h: 58";
+		rLen = 0;
+		rLoc = 1169;
+		rType = 0;
+		vrLen = 1057;
+		vrLoc = 145;
+	};
+	3FCB301D0D86604900C2B5BD /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 3FCB2F9E0D864B6300C2B5BD /* WorkQueueController.m */;
+		name = "WorkQueueController.m: 179";
+		rLen = 59;
+		rLoc = 5458;
+		rType = 0;
+		vrLen = 1385;
+		vrLoc = 5067;
+	};
+	3FCB301E0D86604900C2B5BD /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 3FCB2DDA0D830FC900C2B5BD /* WorkQueueController.h */;
+		name = "WorkQueueController.h: 58";
+		rLen = 0;
+		rLoc = 1169;
+		rType = 0;
+		vrLen = 1057;
+		vrLoc = 145;
+	};
+	3FCB30330D86610300C2B5BD /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 3FCB2F9E0D864B6300C2B5BD /* WorkQueueController.m */;
+		name = "WorkQueueController.m: 239";
+		rLen = 0;
+		rLoc = 7166;
+		rType = 0;
+		vrLen = 1654;
+		vrLoc = 6009;
+	};
+	3FCB30340D86610300C2B5BD /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 3FCB2F9E0D864B6300C2B5BD /* WorkQueueController.m */;
+		name = "WorkQueueController.m: 239";
+		rLen = 0;
+		rLoc = 7166;
+		rType = 0;
+		vrLen = 1654;
+		vrLoc = 6009;
+	};
+	3FCB30380D86614800C2B5BD /* PBXBookmark */ = {
+		isa = PBXBookmark;
+		fRef = 3FCB2ED80D845C9400C2B5BD /* TiVoButler.icns */;
+	};
+	3FCB303D0D86CD5E00C2B5BD /* PBXBookmark */ = {
+		isa = PBXBookmark;
+		fRef = 3FCB2ED80D845C9400C2B5BD /* TiVoButler.icns */;
 	};
 	3FE3C8D50D3DD01900D5105A /* TiVo Butler */ = {
 		isa = PBXExecutable;
@@ -810,6 +907,7 @@
 		fallbackIsa = XCSourceControlManager;
 		isSCMEnabled = 0;
 		scmConfiguration = {
+			repositoryName = TiVoButler;
 		};
 	};
 	3FE3C8EE0D3DD03400D5105A /* Code sense */ = {
@@ -826,16 +924,16 @@
 	};
 	3FE3C8F30D3DD46C00D5105A /* TiVoPlayer.h */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {746, 938}}";
-			sepNavSelRange = "{490, 6}";
-			sepNavVisRange = "{0, 813}";
+			sepNavIntBoundsRect = "{{0, 0}, {812, 938}}";
+			sepNavSelRange = "{599, 14}";
+			sepNavVisRange = "{0, 818}";
 		};
 	};
 	3FE3C8F40D3DD46C00D5105A /* TiVoPlayer.m */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {848, 2980}}";
-			sepNavSelRange = "{578, 0}";
-			sepNavVisRange = "{0, 856}";
+			sepNavIntBoundsRect = "{{0, 0}, {902, 2604}}";
+			sepNavSelRange = "{3510, 0}";
+			sepNavVisRange = "{0, 691}";
 		};
 	};
 	3FE3C9050D42092200D5105A /* XDModelBookmark */ = {
@@ -843,75 +941,19 @@
 		fRef = 770B37EC0679A11B001EADE2 /* TiVo_Butler_DataModel.xcdatamodel */;
 		fallbackIsa = PBXBookmark;
 	};
-	3FF63E950D54DE9700F2EAD9 /* CalypsoXMLParser.m */ = {
-		isa = PBXFileReference;
-		lastKnownFileType = sourcecode.c.objc;
-		name = CalypsoXMLParser.m;
-		path = "/Users/ebaur/Projects/Current Projects/TiVo Butler/CalypsoXMLParser.m";
-		sourceTree = "<group>";
-		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {812, 5922}}";
-			sepNavSelRange = "{6648, 10}";
-			sepNavVisRange = "{5741, 1973}";
-		};
-	};
-	3FF63EDE0D55B98800F2EAD9 /* designable.nib */ = {
-		isa = PBXFileReference;
-		lastKnownFileType = text.xml;
-		name = designable.nib;
-		path = "/Users/ebaur/Projects/Current Projects/TiVo Butler/English.lproj/MainMenu.nib/designable.nib";
-		sourceTree = "<absolute>";
-	};
-	3FF63EE50D55B98A00F2EAD9 /* PBXTextBookmark */ = {
-		isa = PBXTextBookmark;
-		fRef = 3FF63E950D54DE9700F2EAD9 /* CalypsoXMLParser.m */;
-		name = "CalypsoXMLParser.m: 222";
-		rLen = 0;
-		rLoc = 10607;
-		rType = 0;
-		vrLen = 1024;
-		vrLoc = 6717;
-	};
-	3FF63EEF0D55B9D600F2EAD9 /* PBXTextBookmark */ = {
-		isa = PBXTextBookmark;
-		fRef = 3FF63EDE0D55B98800F2EAD9 /* designable.nib */;
-		name = "designable.nib: 7694";
-		rLen = 0;
-		rLoc = 386265;
-		rType = 0;
-		vrLen = 1609;
-		vrLoc = 150065;
-	};
-	3FF63EF10D55B9D600F2EAD9 /* PBXTextBookmark */ = {
-		isa = PBXTextBookmark;
-		fRef = 3FF63EDE0D55B98800F2EAD9 /* designable.nib */;
-		name = "designable.nib: 7694";
-		rLen = 0;
-		rLoc = 386265;
-		rType = 0;
-		vrLen = 1609;
-		vrLoc = 150065;
-	};
 	3FF63FDE0D5663DF00F2EAD9 /* EntityHelper.h */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {812, 586}}";
-			sepNavSelRange = "{387, 0}";
-			sepNavVisRange = "{0, 647}";
+			sepNavIntBoundsRect = "{{0, 0}, {860, 563}}";
+			sepNavSelRange = "{540, 0}";
+			sepNavVisRange = "{0, 924}";
 		};
 	};
 	3FF63FDF0D5663DF00F2EAD9 /* EntityHelper.m */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {812, 742}}";
-			sepNavSelRange = "{1234, 0}";
-			sepNavVisRange = "{77, 1419}";
+			sepNavIntBoundsRect = "{{0, 0}, {854, 1176}}";
+			sepNavSelRange = "{515, 0}";
+			sepNavVisRange = "{1186, 1247}";
 		};
-	};
-	3FF63FF70D56D5B700F2EAD9 /* EntityHelper.m */ = {
-		isa = PBXFileReference;
-		lastKnownFileType = sourcecode.c.objc;
-		name = EntityHelper.m;
-		path = "/Users/ebaur/Projects/Current Projects/TiVo Butler/EntityHelper.m";
-		sourceTree = "<absolute>";
 	};
 	3FF6400C0D56D62700F2EAD9 /* PBXTextBookmark */ = {
 		isa = PBXTextBookmark;
@@ -933,43 +975,6 @@
 		vrLen = 210;
 		vrLoc = 0;
 	};
-	3FF6403F0D56D62700F2EAD9 /* PBXTextBookmark */ = {
-		isa = PBXTextBookmark;
-		fRef = 3F6A88120D533C5400212FBA /* TiVoPlayer.h */;
-		name = "TiVoPlayer.h: 28";
-		rLen = 0;
-		rLoc = 500;
-		rType = 0;
-		vrLen = 798;
-		vrLoc = 0;
-	};
-	3FF640A20D56E67300F2EAD9 /* TiVoPlayer.m */ = {
-		isa = PBXFileReference;
-		lastKnownFileType = sourcecode.c.objc;
-		name = TiVoPlayer.m;
-		path = "/Users/ebaur/Projects/Current Projects/TiVo Butler/TiVoPlayer.m";
-		sourceTree = "<absolute>";
-	};
-	3FF640F40D56E72A00F2EAD9 /* PBXTextBookmark */ = {
-		isa = PBXTextBookmark;
-		fRef = 3FF63FF70D56D5B700F2EAD9 /* EntityHelper.m */;
-		name = "EntityHelper.m: 15";
-		rLen = 0;
-		rLoc = 318;
-		rType = 0;
-		vrLen = 1371;
-		vrLoc = 134;
-	};
-	3FF641210D56ED8900F2EAD9 /* PBXTextBookmark */ = {
-		isa = PBXTextBookmark;
-		fRef = 3FF640A20D56E67300F2EAD9 /* TiVoPlayer.m */;
-		name = "TiVoPlayer.m: 26";
-		rLen = 0;
-		rLoc = 337;
-		rType = 0;
-		vrLen = 1120;
-		vrLoc = 1932;
-	};
 	3FF645150D5AD84900F2EAD9 /* malloc_error_break */ = {
 		isa = PBXSymbolicBreakpoint;
 		actions = (
@@ -981,57 +986,37 @@
 		hitCount = 0;
 		ignoreCount = 0;
 		location = libSystem.B.dylib;
-		modificationTime = 225780733.319551;
+		modificationTime = 226905066.612112;
 		state = 1;
 		symbolName = malloc_error_break;
 	};
 	3FF645210D5B05FA00F2EAD9 /* WorkQueueController.h */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {812, 586}}";
-			sepNavSelRange = "{289, 0}";
-			sepNavVisRange = "{0, 449}";
+			sepNavIntBoundsRect = "{{0, 0}, {812, 826}}";
+			sepNavSelRange = "{291, 0}";
+			sepNavVisRange = "{144, 936}";
 		};
 	};
 	3FF645220D5B05FA00F2EAD9 /* WorkQueueController.m */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {812, 672}}";
-			sepNavSelRange = "{1289, 0}";
-			sepNavVisRange = "{48, 1244}";
+			sepNavIntBoundsRect = "{{0, 0}, {842, 3248}}";
+			sepNavSelRange = "{4984, 0}";
+			sepNavVisRange = "{3709, 1349}";
 		};
 	};
 	3FF645240D5B09D000F2EAD9 /* WorkQueueItem.h */ = {
 		uiCtxt = {
 			sepNavIntBoundsRect = "{{0, 0}, {812, 586}}";
-			sepNavSelRange = "{390, 0}";
-			sepNavVisRange = "{0, 561}";
+			sepNavSelRange = "{577, 0}";
+			sepNavVisRange = "{0, 585}";
 		};
 	};
 	3FF645250D5B09D000F2EAD9 /* WorkQueueItem.m */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {812, 1904}}";
-			sepNavSelRange = "{1064, 0}";
-			sepNavVisRange = "{308, 1257}";
+			sepNavIntBoundsRect = "{{0, 0}, {812, 798}}";
+			sepNavSelRange = "{360, 13}";
+			sepNavVisRange = "{224, 674}";
 		};
-	};
-	3FF645380D5B0B4300F2EAD9 /* PBXTextBookmark */ = {
-		isa = PBXTextBookmark;
-		fRef = 3FF63FDE0D5663DF00F2EAD9 /* EntityHelper.h */;
-		name = "EntityHelper.h: 15";
-		rLen = 0;
-		rLoc = 387;
-		rType = 0;
-		vrLen = 647;
-		vrLoc = 0;
-	};
-	3FF6454A0D5B0B4300F2EAD9 /* PBXTextBookmark */ = {
-		isa = PBXTextBookmark;
-		fRef = 3FF645210D5B05FA00F2EAD9 /* WorkQueueController.h */;
-		name = "WorkQueueController.h: 6";
-		rLen = 0;
-		rLoc = 118;
-		rType = 0;
-		vrLen = 224;
-		vrLoc = 0;
 	};
 	3FF850400D71D56600BA2628 /* PredicateTesting.h */ = {
 		uiCtxt = {
@@ -1044,18 +1029,8 @@
 		uiCtxt = {
 			sepNavIntBoundsRect = "{{0, 0}, {812, 586}}";
 			sepNavSelRange = "{326, 0}";
-			sepNavVisRange = "{0, 611}";
+			sepNavVisRange = "{0, 610}";
 		};
-	};
-	3FF8504C0D7218F600BA2628 /* PBXTextBookmark */ = {
-		isa = PBXTextBookmark;
-		fRef = 3F4867920D5D6E2E00C949DF /* LibraryController.m */;
-		name = "LibraryController.m: 89";
-		rLen = 11;
-		rLoc = 2066;
-		rType = 0;
-		vrLen = 1128;
-		vrLoc = 430;
 	};
 	3FF8504D0D7218F600BA2628 /* PBXTextBookmark */ = {
 		isa = PBXTextBookmark;
@@ -1065,16 +1040,6 @@
 		rLoc = 262;
 		rType = 0;
 		vrLen = 315;
-		vrLoc = 0;
-	};
-	3FF8504E0D7218F600BA2628 /* PBXTextBookmark */ = {
-		isa = PBXTextBookmark;
-		fRef = 3FF850410D71D56600BA2628 /* PredicateTesting.m */;
-		name = "PredicateTesting.m: 17";
-		rLen = 0;
-		rLoc = 326;
-		rType = 0;
-		vrLen = 611;
 		vrLoc = 0;
 	};
 	3FF850540D7218F600BA2628 /* PBXTextBookmark */ = {
@@ -1097,101 +1062,14 @@
 		vrLen = 213;
 		vrLoc = 0;
 	};
-	3FF8509C0D728D5200BA2628 /* WorkQueueItem.m */ = {
-		isa = PBXFileReference;
-		lastKnownFileType = sourcecode.c.objc;
-		name = WorkQueueItem.m;
-		path = "/Users/ebaur/Projects/Current Projects/TiVo Butler/WorkQueueItem.m";
-		sourceTree = "<absolute>";
-	};
-	3FF850A60D728D6600BA2628 /* PBXTextBookmark */ = {
-		isa = PBXTextBookmark;
-		fRef = 3FF645220D5B05FA00F2EAD9 /* WorkQueueController.m */;
-		name = "WorkQueueController.m: 17";
-		rLen = 0;
-		rLoc = 371;
-		rType = 0;
-		vrLen = 1192;
-		vrLoc = 45;
-	};
 	3FF850A70D728D6600BA2628 /* PBXTextBookmark */ = {
 		isa = PBXTextBookmark;
 		fRef = 3FF645240D5B09D000F2EAD9 /* WorkQueueItem.h */;
 		name = "WorkQueueItem.h: 14";
 		rLen = 0;
-		rLoc = 258;
+		rLoc = 253;
 		rType = 0;
 		vrLen = 518;
-		vrLoc = 0;
-	};
-	3FF850A80D728D6600BA2628 /* PBXTextBookmark */ = {
-		isa = PBXTextBookmark;
-		fRef = 3FF8509C0D728D5200BA2628 /* WorkQueueItem.m */;
-		name = "WorkQueueItem.m: 24";
-		rLen = 21;
-		rLoc = 337;
-		rType = 0;
-		vrLen = 920;
-		vrLoc = 0;
-	};
-	3FF850D50D728F6C00BA2628 /* PBXTextBookmark */ = {
-		isa = PBXTextBookmark;
-		fRef = 3FF645220D5B05FA00F2EAD9 /* WorkQueueController.m */;
-		name = "WorkQueueController.m: 44";
-		rLen = 0;
-		rLoc = 1289;
-		rType = 0;
-		vrLen = 1244;
-		vrLoc = 48;
-	};
-	3FF851990D75237B00BA2628 /* PBXTextBookmark */ = {
-		isa = PBXTextBookmark;
-		fRef = 3FF640A20D56E67300F2EAD9 /* TiVoPlayer.m */;
-		name = "TiVoPlayer.m: 120";
-		rLen = 0;
-		rLoc = 2643;
-		rType = 0;
-		vrLen = 1315;
-		vrLoc = 2209;
-	};
-	3FF8519A0D75237B00BA2628 /* PBXTextBookmark */ = {
-		isa = PBXTextBookmark;
-		fRef = 3FF8509C0D728D5200BA2628 /* WorkQueueItem.m */;
-		name = "WorkQueueItem.m: 77";
-		rLen = 0;
-		rLoc = 1760;
-		rType = 0;
-		vrLen = 847;
-		vrLoc = 1367;
-	};
-	3FF851C00D7523FC00BA2628 /* PBXTextBookmark */ = {
-		isa = PBXTextBookmark;
-		fRef = 3FF645240D5B09D000F2EAD9 /* WorkQueueItem.h */;
-		name = "WorkQueueItem.h: 21";
-		rLen = 0;
-		rLoc = 390;
-		rType = 0;
-		vrLen = 561;
-		vrLoc = 0;
-	};
-	3FF851C10D7523FC00BA2628 /* PBXTextBookmark */ = {
-		isa = PBXTextBookmark;
-		fRef = 3F6A88FA0D53472300212FBA /* TiVoProgram.h */;
-		name = "TiVoProgram.h: 25";
-		rLen = 0;
-		rLoc = 573;
-		rType = 0;
-		vrLen = 936;
-		vrLoc = 0;
-	};
-	3FF851C20D7523FC00BA2628 /* PBXTextBookmark */ = {
-		isa = PBXTextBookmark;
-		fRef = 3FE3C8F20D3DD46C00D5105A /* TiVoProgram.m */;
-		name = "TiVoProgram.m: 28";
-		rLen = 0;
-		rLoc = 507;
-		rType = 0;
-		vrLen = 614;
 		vrLoc = 0;
 	};
 	770B37EC0679A11B001EADE2 /* TiVo_Butler_DataModel.xcdatamodel */ = {
@@ -1230,8 +1108,8 @@
 						_percentageOfCollapsedView = 0;
 						isCollapsed = yes;
 						sizes = (
-							"{{0, 0}, {523, 220}}",
-							"{{528, 0}, {275, 220}}",
+							"{{0, 0}, {523, 218}}",
+							"{{528, 0}, {275, 218}}",
 						);
 					};
 					diagramSplitGeometry = {
@@ -1250,8 +1128,8 @@
 						_percentageOfCollapsedView = 0;
 						isCollapsed = yes;
 						sizes = (
-							"{{0, 0}, {170, 218}}",
-							"{{175, 0}, {346, 218}}",
+							"{{0, 0}, {171, 218}}",
+							"{{176, 0}, {347, 218}}",
 						);
 					};
 				};
@@ -1371,9 +1249,9 @@
 	};
 	77C8280C06725ACE000B614F /* TiVo_Butler_AppDelegate.m */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {896, 2618}}";
-			sepNavSelRange = "{5967, 0}";
-			sepNavVisRange = "{2792, 1259}";
+			sepNavIntBoundsRect = "{{0, 0}, {812, 2632}}";
+			sepNavSelRange = "{2987, 0}";
+			sepNavVisRange = "{1844, 1565}";
 			sepNavWindowFrame = "{{38, 230}, {803, 922}}";
 		};
 	};
