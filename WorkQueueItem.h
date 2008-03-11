@@ -11,19 +11,19 @@
 #import "TiVoProgram.h"
 
 @interface WorkQueueItem : NSManagedObject {
-	NSURLDownload *programDownload;
 	int receivedBytes;
 }
-
-- (void)beginDownload;
 
 @property (retain) NSNumber * active;
 @property (retain) NSDate * addedDate;
 @property (retain) NSDate * completedDate;
 @property (retain) NSString * name;
 @property (retain) NSDate * startedDate;
+@property (retain) NSNumber * receivedBytes;
 
 @property (retain) TiVoProgram * program;
+
+- (void)addByteLength:(int)length;
 
 @end
 
