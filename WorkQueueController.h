@@ -42,8 +42,11 @@ typedef enum {
 	
 	NSTask *decodeTask;
 	NSFileHandle *decodeFileHandle;
+	NSTimer *decodeTimer;
+	
 	NSTask *convertTask;
 	NSFileHandle *convertFileHandle;
+	NSTimer *convertTimer;
 }
 
 - (IBAction)addSelection:(id)sender;
@@ -52,10 +55,12 @@ typedef enum {
 - (void)setupDownloadPath;
 
 - (void)beginDecode;
-- (void)decodeDataAvailable:(NSNotification *)notification;
+- (void)decoderDidTerminate:(NSNotification *)notification;
+- (void)decodeCheckDataAvailable:(NSTimer *)timer;
 
 - (void)beginConversion;
-- (void)convertDataAvailable:(NSNotification *)notification;
+- (void)convertDidTerminate:(NSNotification *)notification;
+- (void)convertCheckDataAvailable:(NSTimer *)timer;
 
 - (NSString *)endingFilePath;
 
