@@ -132,13 +132,15 @@
 	[decodeFileHandle release];
 	decodeFileHandle = [pipe fileHandleForReading];
 	
+/*
 	[[NSNotificationCenter defaultCenter]
 		addObserver:self
 		selector:@selector(decodeDataAvailable:)
-		name:NSFileHandleDataAvailableNotification
+		name:NSFileHandleReadCompletionNotification
 		object:decodeFileHandle
 	];
-	[decodeFileHandle waitForDataInBackgroundAndNotify];
+	[decodeFileHandle readInBackgroundAndNotify];
+*/
 	[decodeTask setStandardError:decodeFileHandle];
 	
 	NSString *launchPath = [[NSBundle mainBundle] pathForAuxiliaryExecutable:@"tivodecode"];
@@ -165,8 +167,8 @@
 	[decodeTask waitUntilExit];	//- this shouldn't take long
 	
 	NSError *error;
-	[[NSFileManager defaultManager] removeItemAtPath:downloadPath error:&error];
-	if ( error ) {
+	BOOL succeeded = [[NSFileManager defaultManager] removeItemAtPath:downloadPath error:&error];
+	if ( !succeeded ) {
 		ERROR( [error localizedDescription] );
 	}
 	
@@ -181,8 +183,9 @@
 {
 	NSFileHandle *fileHandle = [notification object];
 	NSData *data = [fileHandle availableData];
+	INFO( [fileHandle description] );
 	INFO( [data description] );
-	[fileHandle waitForDataInBackgroundAndNotify];
+	[fileHandle readInBackgroundAndNotify];
 }
 
 - (void)beginConversion
@@ -195,7 +198,7 @@
 	NSPipe *pipe = [NSPipe pipe];
 	[convertFileHandle release];
 	convertFileHandle = [pipe fileHandleForReading];
-	
+/*	
 	[[NSNotificationCenter defaultCenter]
 		addObserver:self
 		selector:@selector(convertDataAvailable:)
@@ -203,7 +206,8 @@
 		object:convertFileHandle
 	];
 	[convertFileHandle waitForDataInBackgroundAndNotify];
-	[convertTask setStandardError:convertFileHandle];
+*/
+	[convertTask setStandardOutput:convertFileHandle];
 	
 	NSString *launchPath = [[NSBundle mainBundle] pathForAuxiliaryExecutable:@"mencoder"];
 	if ( !launchPath ) {
@@ -215,8 +219,7 @@
 	[convertTask setLaunchPath:launchPath];
 	
 	NSArray *argumentArray = [NSArray arrayWithObjects:
-		@"-af",
-		@"volume=13:1",
+		@"-af", @"volume=13:1",
 		@"-of", @"lavf",
 		@"-lavfopts", @"i_certify_that_my_video_stream_does_not_use_b_frames",
 		@"-demuxer", @"lavf",
@@ -224,7 +227,7 @@
 		@"-oac", @"lavc",
 		@"-ovc", @"lavc",
 		@"-lavcopts", @"keyint=15:aglobal=1:vglobal=1:coder=1:vcodec=mpeg4:acodec=aac:vbitrate=1800:abitrate=128",
-		@"-vf", @"pp=lb,scale=640:480,harddup"
+		@"-vf", @"pp=lb,scale=640:480,harddup",
 		@"-o", convertPath,
 		decodePath,
 		nil
