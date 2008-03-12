@@ -40,7 +40,7 @@
 		insertNewObjectForEntityForName:TiVoWorkQueueItemEntityName
 		inManagedObjectContext:managedObjectContext
 	];
-	[self willChangeValueForKey:@"currentItem"];
+	[self didChangeValueForKey:@"currentItem"];
 	NSManagedObjectID *selectedProgramID = [[programArrayController selection] valueForKey:@"objectID"];
 	id selectedProgram = [managedObjectContext objectWithID:selectedProgramID];
 	
@@ -132,15 +132,6 @@
 	[decodeFileHandle release];
 	decodeFileHandle = [pipe fileHandleForReading];
 	
-/*
-	[[NSNotificationCenter defaultCenter]
-		addObserver:self
-		selector:@selector(decodeDataAvailable:)
-		name:NSFileHandleReadCompletionNotification
-		object:decodeFileHandle
-	];
-	[decodeFileHandle readInBackgroundAndNotify];
-*/
 	[decodeTask setStandardError:decodeFileHandle];
 	
 	NSString *launchPath = [[NSBundle mainBundle] pathForAuxiliaryExecutable:@"tivodecode"];
@@ -163,14 +154,34 @@
 	DEBUG( @"decode task arguments:\n%@", [argumentArray description] );
 	[decodeTask setArguments:argumentArray];
 	
-	[decodeTask launch];
-	[decodeTask waitUntilExit];	//- this shouldn't take long
+	decodeTimer = [[NSTimer
+		timerWithTimeInterval:1
+		target:self
+		selector:@selector(decodeCheckDataAvailable:)
+		userInfo:nil
+		repeats:YES
+	] retain];
 	
+	[[NSNotificationCenter defaultCenter]
+		addObserver:self
+		selector:@selector(decoderDidTerminate:)
+		name:NSTaskDidTerminateNotification
+		object:decodeTask
+	];
+	[decodeTask launch];
+}
+
+- (void)decoderDidTerminate:(NSNotification *)notification
+{
+	ENTRY;
 	NSError *error;
 	BOOL succeeded = [[NSFileManager defaultManager] removeItemAtPath:downloadPath error:&error];
 	if ( !succeeded ) {
 		ERROR( [error localizedDescription] );
 	}
+	[decodeTimer invalidate];
+	[decodeTimer release];
+	decodeTimer = nil;
 	
 	if ( convertPath ) {
 		[self beginConversion];
@@ -179,13 +190,13 @@
 	}
 }
 
-- (void)decodeDataAvailable:(NSNotification *)notification
+- (void)decodeCheckDataAvailable:(NSTimer *)timer
 {
-	NSFileHandle *fileHandle = [notification object];
-	NSData *data = [fileHandle availableData];
-	INFO( [fileHandle description] );
-	INFO( [data description] );
-	[fileHandle readInBackgroundAndNotify];
+	ENTRY;
+	NSData *data = [decodeFileHandle availableData];
+	if ( [data length] ) {
+		INFO( [data description] );
+	}
 }
 
 - (void)beginConversion
@@ -198,15 +209,7 @@
 	NSPipe *pipe = [NSPipe pipe];
 	[convertFileHandle release];
 	convertFileHandle = [pipe fileHandleForReading];
-/*	
-	[[NSNotificationCenter defaultCenter]
-		addObserver:self
-		selector:@selector(convertDataAvailable:)
-		name:NSFileHandleDataAvailableNotification
-		object:convertFileHandle
-	];
-	[convertFileHandle waitForDataInBackgroundAndNotify];
-*/
+
 	[convertTask setStandardOutput:convertFileHandle];
 	
 	NSString *launchPath = [[NSBundle mainBundle] pathForAuxiliaryExecutable:@"mencoder"];
@@ -235,15 +238,45 @@
 	DEBUG( @"convert task arguments:\n%@", [argumentArray description] );
 	[convertTask setArguments:argumentArray];
 	
+	convertTimer = [[NSTimer
+		timerWithTimeInterval:5
+		target:self
+		selector:@selector(convertCheckDataAvailable:)
+		userInfo:nil
+		repeats:YES
+	] retain];
+	
+	[[NSNotificationCenter defaultCenter]
+		addObserver:self
+		selector:@selector(convertDidTerminate:)
+		name:NSTaskDidTerminateNotification
+		object:convertTask
+	];
 	[convertTask launch];
 }
 
-- (void)convertDataAvailable:(NSNotification *)notification
+- (void)convertDidTerminate:(NSNotification *)notification
 {
-	NSFileHandle *fileHandle = [notification object];
-	NSData *data = [fileHandle availableData];
-	INFO( [data description] );
-	[fileHandle waitForDataInBackgroundAndNotify];
+	ENTRY;
+	NSError *error;
+	BOOL succeeded = [[NSFileManager defaultManager] removeItemAtPath:decodePath error:&error];
+	if ( !succeeded ) {
+		ERROR( [error localizedDescription] );
+	}
+	[convertTimer invalidate];
+	[convertTimer release];
+	convertTimer = nil;
+	
+	currentItem.completedDate = [NSDate date];
+}
+
+- (void)convertCheckDataAvailable:(NSTimer *)timer
+{
+	ENTRY;
+	NSData *data = [convertFileHandle availableData];
+	if ( [data length] ) {
+		INFO( [data description] );
+	}
 }
 
 #pragma mark -
