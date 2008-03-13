@@ -16,7 +16,7 @@
 	NSUserDefaultsController *defaults = [NSUserDefaultsController sharedUserDefaultsController];
 	[defaults setInitialValues:[NSDictionary dictionaryWithObjectsAndKeys:
 			@"~/Downloads/",									@"downloadFolder",
-			[NSNumber numberWithInt:WQDownloadOnlyAction],			@"downloadAction",
+			[NSNumber numberWithInt:WQDownloadOnlyAction],		@"downloadAction",
 			[NSNumber numberWithInt:WQPromptOverwriteAction],	@"overwriteAction",
 			nil
 		]
@@ -26,6 +26,9 @@
 - (void)awakeFromNib
 {
 	managedObjectContext = [[[[NSApplication sharedApplication] delegate] managedObjectContext] retain];
+
+	//- assume the window is at its larger size and shrink it to start with
+	[self setShowWorkQueue:NO];
 }
 
 #pragma mark -
@@ -66,13 +69,17 @@
 
 	//- need to figure out what to do	
 	NSUserDefaultsController *defaults = [NSUserDefaultsController sharedUserDefaultsController];
-	WQDownloadAction downloadAction = [[[defaults valueForKey:@"values"] valueForKey:@"downloadAction"] intValue];
+	[self willChangeValueForKey:@"maxActionDisplay"];
+	[self willChangeValueForKey:@"showActionProgress"];
+	finalAction = [[[defaults valueForKey:@"values"] valueForKey:@"downloadAction"] intValue];
+	[self didChangeValueForKey:@"maxActionDisplay"];
+	[self didChangeValueForKey:@"showActionProgress"];
 	
 	[downloadPath release];
 	[decodePath release];
 	[convertPath release];
 	NSString *tempDirectory = NSTemporaryDirectory();
-	switch ( downloadAction ) {
+	switch ( finalAction ) {
 		case WQConvertAction:
 			downloadPath = [[NSString pathWithComponents:
 				[NSArray arrayWithObjects:tempDirectory, [NSString stringWithFormat:@"%@.tivo", currentItem.program.programID, nil] ]
@@ -106,6 +113,9 @@
 	INFO( @"converting to: %@", convertPath );
 	
 	programDownload = [[NSURLDownload alloc] initWithRequest:request delegate:self];
+	[self willChangeValueForKey:@"currentActionDisplay"];
+	currentAction = WQDownloadOnlyAction;
+	[self didChangeValueForKey:@"currentActionDisplay"];
 	
 	[self setupDownloadPath];
 }
@@ -184,6 +194,9 @@
 	decodeTimer = nil;
 	
 	if ( convertPath ) {
+		[self willChangeValueForKey:@"currentActionDisplay"];
+		currentAction = WQConvertAction;
+		[self didChangeValueForKey:@"currentActionDisplay"];
 		[self beginConversion];
 	} else {
 		currentItem.completedDate = [NSDate date];
@@ -295,6 +308,72 @@
 	return pathString;
 }
 
+- (int)maxActionDisplay
+{
+	INFO( @"finalAction: %d", finalAction );
+	return 3 - finalAction;		//- ugly hack?
+}
+
+- (int)currentActionDisplay
+{
+	INFO( @"currentAction: %d", currentAction );
+	return 3 - currentAction;	//- ugly hack?
+}
+
+- (BOOL)showActionProgress
+{
+	if ( WQDownloadOnlyAction == finalAction ) {
+		RETURN( @"NO" );
+		return NO;
+	} else {
+		RETURN( @"YES" );
+		return YES;
+	}
+}
+
+- (NSPredicate *)workQueuePredicate
+{
+	if ( showCompletedItems ) {
+		return [NSPredicate predicateWithValue:TRUE];
+	} else {
+		return [NSPredicate predicateWithFormat:@"completedDate = nil"];
+	}
+}
+
+- (void)setShowCompletedItems:(BOOL)newValue
+{
+	//- need to look at keyPathsForValuesAffectingValueForKey:
+	[self willChangeValueForKey:@"showCompletedItems"];
+	[self willChangeValueForKey:@"workQueuePredicate"];
+	showCompletedItems = newValue;
+	[self didChangeValueForKey:@"showCompletedItems"];
+	[self didChangeValueForKey:@"workQueuePredicate"];
+}
+
+- (void)setShowWorkQueue:(BOOL)newValue
+{
+	NSRect windowRect = [workQueueWindow frame];
+	
+	[self willChangeValueForKey:@"showWorkQueue"];
+	if ( YES == newValue ) {
+		windowRect.size = oldWindowSize;
+		[workQueueWindow setFrame:windowRect display:YES animate:YES];
+		[workQueueWindow setShowsResizeIndicator:YES];
+		[workQueueScrollView setHidden:NO];
+		[showCompletedItemsCheckBox setHidden:NO];
+	} else {
+		oldWindowSize = windowRect.size;
+		windowRect.size.width = WQDefaultWindowWidth;
+		windowRect.size.height = WQDefaultWindowHeight;
+		[workQueueWindow setFrame:windowRect display:YES animate:YES];
+		[workQueueWindow setShowsResizeIndicator:NO];
+		[workQueueScrollView setHidden:YES];
+		[showCompletedItemsCheckBox setHidden:YES];
+	}
+	showWorkQueue = newValue;
+	[self didChangeValueForKey:@"showWorkQueue"];
+}
+
 #pragma mark -
 #pragma mark NSURLDownload delegate methods
 
@@ -316,7 +395,15 @@
 
 - (void)download:(NSURLDownload *)download didReceiveDataOfLength:(NSUInteger)length
 {
-	[currentItem addByteLength:length];
+	receivedBytes += length;
+	NSNumber *sourceSize = currentItem.program.sourceSize;
+	int newActionPercent = ( 100 * receivedBytes ) / [sourceSize intValue];
+	if ( newActionPercent != currentActionPercent ) {
+		[self willChangeValueForKey:@"currentActionPercent"];
+		currentActionPercent = newActionPercent;
+		INFO( @"currentActionPercent: %d for receivedBytes: %d", currentActionPercent, receivedBytes );
+		[self didChangeValueForKey:@"currentActionPercent"];	
+	}
 }
 
 - (void)downloadDidFinish:(NSURLDownload *)download
@@ -326,6 +413,9 @@
 	programDownload = nil;
 	
 	if ( decodePath ) {
+		[self willChangeValueForKey:@"currentActionDisplay"];
+		currentAction = WQDecodeAction;
+		[self didChangeValueForKey:@"currentActionDisplay"];
 		[self beginDecode];
 	} else {
 		currentItem.completedDate = [NSDate date];

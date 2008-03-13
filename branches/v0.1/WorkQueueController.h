@@ -23,6 +23,9 @@ typedef enum {
 	WQDoOverwriteAction
 } WQOverwriteAction;
 
+#define WQDefaultWindowHeight	285
+#define WQDefaultWindowWidth	454
+
 @interface WorkQueueController : NSObject {
 
 	NSManagedObjectContext *managedObjectContext;
@@ -33,6 +36,9 @@ typedef enum {
 	NSURLDownload *programDownload;
 	
 	WorkQueueItem *currentItem;
+	WQDownloadAction finalAction;
+	WQDownloadAction currentAction;
+	int currentActionPercent;
 	
 	int receivedBytes;
 
@@ -47,6 +53,14 @@ typedef enum {
 	NSTask *convertTask;
 	NSFileHandle *convertFileHandle;
 	NSTimer *convertTimer;
+	
+	BOOL showCompletedItems;
+	BOOL showWorkQueue;
+	
+	IBOutlet NSScrollView *workQueueScrollView;
+	IBOutlet NSButton *showCompletedItemsCheckBox;
+	IBOutlet NSWindow *workQueueWindow;
+	NSSize oldWindowSize;
 }
 
 - (IBAction)addSelection:(id)sender;
@@ -63,5 +77,14 @@ typedef enum {
 - (void)convertCheckDataAvailable:(NSTimer *)timer;
 
 - (NSString *)endingFilePath;
+
+- (int)maxActionDisplay;
+- (int)currentActionDisplay;
+- (BOOL)showActionProgress;
+
+- (NSPredicate *)workQueuePredicate;
+
+- (void)setShowCompletedItems:(BOOL)newValue;
+- (void)setShowWorkQueue:(BOOL)newValue;
 
 @end
