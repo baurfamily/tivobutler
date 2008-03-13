@@ -25,7 +25,6 @@
 @dynamic completedDate;
 @dynamic name;
 @dynamic startedDate;
-@dynamic receivedBytes;
 
 @dynamic program;
 
@@ -44,13 +43,6 @@
 	} else {
 		return @"";
 	}
-}
-
-- (void)addByteLength:(int)length
-{
-	[self willChangeValueForKey:@"receivedBytes"];
-	receivedBytes += length;
-	[self didChangeValueForKey:@"receivedBytes"];
 }
 
 @end
