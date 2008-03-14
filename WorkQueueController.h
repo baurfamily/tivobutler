@@ -10,6 +10,7 @@
 
 #import "EntityHelper.h"
 #import "WorkQueueItem.h"
+#import "WorkQueueDisplayController.h"
 
 typedef enum {
 	WQConvertAction = 0,
@@ -22,9 +23,6 @@ typedef enum {
 	WQDontOverwriteAction,
 	WQDoOverwriteAction
 } WQOverwriteAction;
-
-#define WQDefaultWindowHeight	285
-#define WQDefaultWindowWidth	454
 
 @interface WorkQueueController : NSObject {
 
@@ -53,17 +51,12 @@ typedef enum {
 	NSTask *convertTask;
 	NSFileHandle *convertFileHandle;
 	NSTimer *convertTimer;
-	
-	BOOL showCompletedItems;
-	BOOL showWorkQueue;
-	
-	IBOutlet NSScrollView *workQueueScrollView;
-	IBOutlet NSButton *showCompletedItemsCheckBox;
-	IBOutlet NSWindow *workQueueWindow;
-	NSSize oldWindowSize;
+
+	IBOutlet WorkQueueDisplayController *workQueueDisplayController;
 }
 
 - (IBAction)addSelection:(id)sender;
+- (IBAction)showWorkQueueWindow:(id)sender;
 
 - (void)beginDownload;
 - (void)setupDownloadPath;
@@ -81,10 +74,10 @@ typedef enum {
 - (int)maxActionDisplay;
 - (int)currentActionDisplay;
 - (BOOL)showActionProgress;
-
-- (NSPredicate *)workQueuePredicate;
-
-- (void)setShowCompletedItems:(BOOL)newValue;
-- (void)setShowWorkQueue:(BOOL)newValue;
+//
+//- (NSPredicate *)workQueuePredicate;
+//
+//- (void)setShowCompletedItems:(BOOL)newValue;
+//- (void)setShowWorkQueue:(BOOL)newValue;
 
 @end
