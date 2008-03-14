@@ -11,7 +11,7 @@
 @interface TiVo_Butler_AppDelegate : NSObject 
 {
     IBOutlet NSWindow *window;
-    
+	
     NSPersistentStoreCoordinator *persistentStoreCoordinator;
     NSManagedObjectModel *managedObjectModel;
     NSManagedObjectContext *managedObjectContext;
