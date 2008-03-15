@@ -40,6 +40,15 @@
 		options:(NSKeyValueObservingOptionNew|NSKeyValueObservingOptionOld)
 		context:NULL
 	];
+	[smartGroupArrayController
+		addObserver:self
+		forKeyPath:@"arrangedObjects"
+		options:(NSKeyValueObservingOptionNew|NSKeyValueObservingOptionOld)
+		context:NULL
+	];
+	
+	[sourceListView setTarget:self];
+	[sourceListView setDoubleAction:@selector(update:)];
 }
 
 - (IBAction)update:(id)sender
@@ -51,6 +60,7 @@
 	//- this is kind of ugly to me, actually
 	if ( !libraryArray ) {
 		libraryArray = [[NSMutableArray arrayWithObjects:
+			[NSDictionary dictionary],
 			[NSDictionary dictionary],
 			[NSDictionary dictionary],
 			[NSDictionary dictionary],
@@ -86,6 +96,8 @@
 	[self updatePlayerList];
 	[self updateProgramGroups];
 	[self updateStations];
+	
+	[self updateSmartGroups];
 	
 	[self didChangeValueForKey:@"libraryArray"];
 	EXIT;
@@ -165,7 +177,7 @@
 	@synchronized (TiVoSeriesEntityName) {
 		entityArray = [EntityHelper
 			arrayOfEntityWithName:TiVoSeriesEntityName
-			usingPredicate:[NSPredicate predicateWithValue:TRUE]
+			usingPredicateString:@"ANY programs.deletedFromPlayer = NO"
 			withSortKeys:[NSArray arrayWithObject:@"title"]
 		];
 	}
@@ -200,7 +212,7 @@
 	@synchronized (TiVoStationEntityName) {
 		entityArray = [EntityHelper
 			arrayOfEntityWithName:TiVoStationEntityName
-			usingPredicate:[NSPredicate predicateWithValue:TRUE]
+			usingPredicateString:@"ANY programs.deletedFromPlayer = NO"
 			withSortKeys:[NSArray arrayWithObject:@"name"]
 		];
 	}
@@ -230,9 +242,47 @@
 	[self didChangeValueForKey:@"libraryArray"];
 }
 
+- (void)updateSmartGroups
+{
+	ENTRY;
+	NSArray *entityArray;
+	@synchronized (TiVoSmartGroupName) {
+		entityArray = [EntityHelper
+			arrayOfEntityWithName:TiVoSmartGroupName
+			usingPredicateString:@"TRUEPREDICATE"
+			withSortKeys:[NSArray arrayWithObject:@"name"]
+		];
+	}
+	
+	NSMutableArray *nameArray = [NSMutableArray array];
+	NSManagedObject *tempObject;
+	for ( tempObject in entityArray ) {
+		[nameArray addObject:[NSDictionary dictionaryWithObjectsAndKeys:
+			[NSNumber numberWithBool:NO],		@"isSourceGroup",
+			[tempObject valueForKey:@"name"],	@"name",
+			[NSPredicate predicateWithFormat:[tempObject valueForKey:@"predicateString"] ],
+												@"predicate", 
+			nil ]
+		];
+	}
+	
+	[self willChangeValueForKey:@"libraryArray"];
+	[libraryArray
+		replaceObjectAtIndex:LCSmartGroupsPosition
+		withObject:[NSDictionary dictionaryWithObjectsAndKeys:
+			[NSNumber numberWithBool:YES],	@"isSourceGroup",
+			@"Smart Groups",				@"name",
+			nameArray,						@"children",
+			nil ]
+	];
+	[self didChangeValueForKey:@"libraryArray"];
+}
+
+#pragma mark -
+#pragma mark Obsevation methods
+
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
 {
-	//TODO: Make the observation more granular
 	DEBUG( @"keyPath:%@\nobject: %@\nchange: %@", keyPath, [object description], [change description] );
 	if ( object == workQueueArrayController ) {
 		[self updateWorkQueue];
@@ -244,6 +294,8 @@
 		[self updateProgramGroups];
 	} else if ( object == stationArrayController ) {
 		[self updateStations];
+	} else if ( object == smartGroupArrayController ) {
+		[self updateSmartGroups];
 	} else {
 		WARNING( @"no update done for observed object: %@", [object description] );
 	}

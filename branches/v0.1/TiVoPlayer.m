@@ -27,6 +27,14 @@
 	anchor = 0;
 	receivedData = [[NSMutableData alloc] init];
 	[self connect];
+	
+	checkTimer = [[NSTimer
+		scheduledTimerWithTimeInterval:(60 * [self.checkInterval intValue])
+		target:self
+		selector:@selector(connect)
+		userInfo:nil
+		repeats:YES
+	] retain];
 }
 
 #pragma mark -
@@ -75,6 +83,7 @@
 @dynamic dateLastChecked;
 @dynamic dateLastUpdated;
 @dynamic nowPlayingList;
+@dynamic checkInterval;
 
 @dynamic url;
 
@@ -83,10 +92,12 @@
 {
     [self willChangeValueForKey:@"host"];
     [self setPrimitiveHost:value];
+
 	NSString *tempValue = [self primitiveMediaAccessKey];
 	if (tempValue) {
 		[self connect];
 	}
+
     [self didChangeValueForKey:@"host"];
 }
 
@@ -94,11 +105,30 @@
 {
     [self willChangeValueForKey:@"mediaAccessKey"];
     [self setPrimitiveMediaAccessKey:value];
+
 	NSString *tempValue = [self primitiveHost];
 	if (tempValue) {
 		[self connect];
 	}
+
 	[self didChangeValueForKey:@"mediaAccessKey"];
+}
+
+- (void)setCheckInterval:(NSNumber *)value
+{
+	[self willChangeValueForKey:@"checkInterval"];
+	[self setPrimitiveCheckInterval:value];
+
+	[checkTimer invalidate];
+	checkTimer = [[NSTimer
+		scheduledTimerWithTimeInterval:(60 * [self.checkInterval intValue])
+		target:self
+		selector:@selector(connect)
+		userInfo:nil
+		repeats:YES
+	] retain];
+
+	[self didChangeValueForKey:@"checkInterval"];
 }
 
 #pragma mark -

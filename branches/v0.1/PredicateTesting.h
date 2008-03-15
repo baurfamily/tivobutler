@@ -13,8 +13,12 @@
 	NSString *predicateString;
 	NSPredicate *predicate;
 	
+	IBOutlet NSWindow *predicateTestingWindow;
+
+	NSManagedObjectContext *managedObjectContext;
 }
 
+- (IBAction)showPredicateTestingWindow:(id)sender;
 - (IBAction)refreshPredicate:(id)sender;
 
 @end

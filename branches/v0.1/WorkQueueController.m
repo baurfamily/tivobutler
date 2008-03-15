@@ -25,8 +25,9 @@
 
 - (void)awakeFromNib
 {
+	[self willChangeValueForKey:@"managedObjectContext"];	
 	managedObjectContext = [[[[NSApplication sharedApplication] delegate] managedObjectContext] retain];
-
+	[self didChangeValueForKey:@"managedObjectContext"];
 }
 
 #pragma mark -

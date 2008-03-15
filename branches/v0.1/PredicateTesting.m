@@ -15,10 +15,24 @@
 	[self willChangeValueForKey:@"predicateString"];
 	predicateString = [@"TRUEPREDICATE" retain];
 	[self didChangeValueForKey:@"predicateString"];
+	
+	[self willChangeValueForKey:@"managedObjectContext"];	
+	managedObjectContext = [[[[NSApplication sharedApplication] delegate] managedObjectContext] retain];
+	[self didChangeValueForKey:@"managedObjectContext"];
+}
+
+- (IBAction)showPredicateTestingWindow:(id)sender
+{
+	if ( ![NSBundle loadNibNamed:@"PredicateTesting" owner:self] ) {
+		ERROR( @"could not load PredicateTesting.nib" );
+		return;
+	} else { INFO( @"loaded PredicateTesting.nib" ); }
+	[predicateTestingWindow makeKeyAndOrderFront:self];
 }
 
 - (IBAction)refreshPredicate:(id)sender
 {
+	DEBUG( predicateString );
 	[self willChangeValueForKey:@"predicate"];
 	[predicate release];
 	predicate = [[NSPredicate predicateWithFormat:predicateString] retain];

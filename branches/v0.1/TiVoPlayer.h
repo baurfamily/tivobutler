@@ -27,6 +27,8 @@
 	NSMutableData *receivedData;
 	
 	id parser;
+	
+	NSTimer *checkTimer;
 }
 
 - (void)connect;
@@ -37,6 +39,7 @@
 @property (retain) NSDate * dateLastChecked;
 @property (retain) NSDate * dateLastUpdated;
 @property (retain) NSSet* nowPlayingList;
+@property (retain) NSNumber * checkInterval;
 
 @property (readonly) NSURL *url;
 
@@ -49,6 +52,9 @@
 
 - (NSString *)primitiveMediaAccessKey;
 - (void)setPrimitiveMediaAccessKey:(NSString *)value;
+
+- (NSNumber *)primitiveCheckInterval;
+- (void)setPrimitiveCheckInterval:(NSNumber *)value;
 
 @end
 

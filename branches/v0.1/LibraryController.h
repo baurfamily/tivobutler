@@ -10,6 +10,8 @@
 
 #import "EntityHelper.h"
 
+#include "LNSSourceListView.h"
+
 typedef enum {
 	LCLibraryPosition = 0,
 	LCHistoryPosition,
@@ -17,7 +19,8 @@ typedef enum {
 	LCWorkQueueHistoryPosition,
 	LCPlayersPosition,
 	LCProgramGroupingsPosition,
-	LCStationsPostion
+	LCStationsPostion,
+	LCSmartGroupsPosition
 } LCListingPostion;
 
 @interface LibraryController : NSObject {
@@ -28,6 +31,9 @@ typedef enum {
 	IBOutlet NSArrayController *programArrayController;
 	IBOutlet NSArrayController *seriesArrayController;
 	IBOutlet NSArrayController *stationArrayController;
+	IBOutlet NSArrayController *smartGroupArrayController;
+	
+	IBOutlet LNSSourceListView *sourceListView;
 }
 
 - (IBAction)update:(id)sender;
@@ -37,5 +43,7 @@ typedef enum {
 - (void)updatePlayerList;
 - (void)updateProgramGroups;
 - (void)updateStations;
+
+- (void)updateSmartGroups;
 
 @end
