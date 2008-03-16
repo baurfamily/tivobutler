@@ -47,24 +47,26 @@
 	NSRect windowRect = [workQueueWindow frame];
 	
 	[self willChangeValueForKey:@"showWorkQueue"];
+	[self setItemsHidden:!newValue];
 	if ( YES == newValue ) {
 		windowRect.size = oldWindowSize;
-		[workQueueWindow setFrame:windowRect display:YES animate:YES];
-		[workQueueWindow setShowsResizeIndicator:YES];
-		[workQueueScrollView setHidden:NO];
-		[showCompletedItemsCheckBox setHidden:NO];
 	} else {
 		oldWindowSize = windowRect.size;
 		windowRect.size.width = WQDefaultWindowWidth;
 		windowRect.size.height = WQDefaultWindowHeight;
-		[workQueueWindow setFrame:windowRect display:YES animate:YES];
-		[workQueueWindow setShowsResizeIndicator:NO];
-		[workQueueScrollView setHidden:YES];
-		[showCompletedItemsCheckBox setHidden:YES];
 	}
+	[workQueueWindow setFrame:windowRect display:YES animate:YES];
 	showWorkQueue = newValue;
 	[self didChangeValueForKey:@"showWorkQueue"];
 }
 
+- (void)setItemsHidden:(BOOL)value
+{
+	[workQueueScrollView		setHidden:value];
+	[showCompletedItemsCheckBox	setHidden:value];
+	[removeItemButton			setHidden:value];
+	//- if the controls are hidden (YES), hide this (NO)
+	[workQueueWindow setShowsResizeIndicator:!value];
+}
 
 @end

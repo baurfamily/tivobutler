@@ -939,6 +939,7 @@
 											</object>
 											<string key="NSFrame">{{1, 1}, {142, 590}}</string>
 											<reference key="NSSuperview" ref="420125362"/>
+											<reference key="NSNextKeyView" ref="423896477"/>
 											<reference key="NSDocView" ref="423896477"/>
 											<reference key="NSBGColor" ref="122885922"/>
 											<int key="NScvFlags">4</int>
@@ -965,6 +966,7 @@
 									</object>
 									<string key="NSFrameSize">{144, 592}</string>
 									<reference key="NSSuperview" ref="75852118"/>
+									<reference key="NSNextKeyView" ref="360506547"/>
 									<int key="NSsFlags">530</int>
 									<reference key="NSVScroller" ref="1057165152"/>
 									<reference key="NSHScroller" ref="36254000"/>
@@ -1390,6 +1392,7 @@
 																	</object>
 																	<string key="NSFrame">{{1, 17}, {654, 359}}</string>
 																	<reference key="NSSuperview" ref="516422229"/>
+																	<reference key="NSNextKeyView" ref="913783973"/>
 																	<reference key="NSDocView" ref="913783973"/>
 																	<reference key="NSBGColor" ref="122885922"/>
 																	<int key="NScvFlags">4</int>
@@ -1422,6 +1425,7 @@
 																	</object>
 																	<string key="NSFrame">{{1, 0}, {654, 17}}</string>
 																	<reference key="NSSuperview" ref="516422229"/>
+																	<reference key="NSNextKeyView" ref="137854374"/>
 																	<reference key="NSDocView" ref="137854374"/>
 																	<reference key="NSBGColor" ref="122885922"/>
 																	<int key="NScvFlags">4</int>
@@ -1430,6 +1434,7 @@
 															</object>
 															<string key="NSFrame">{{18, 14}, {671, 392}}</string>
 															<reference key="NSSuperview" ref="1054104868"/>
+															<reference key="NSNextKeyView" ref="317665104"/>
 															<int key="NSsFlags">50</int>
 															<reference key="NSVScroller" ref="776244414"/>
 															<reference key="NSHScroller" ref="542368818"/>
@@ -3598,6 +3603,14 @@
 					</object>
 					<int key="connectionID">1626</int>
 				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBOutletConnection" key="connection">
+						<string key="label">programArrayController</string>
+						<reference key="source" ref="311297890"/>
+						<reference key="destination" ref="287821267"/>
+					</object>
+					<int key="connectionID">1627</int>
+				</object>
 			</object>
 			<object class="IBMutableOrderedSet" key="objectRecords">
 				<object class="NSArray" key="orderedObjects">
@@ -4225,7 +4238,7 @@
 						<int key="objectID">1012</int>
 						<reference key="object" ref="287821267"/>
 						<reference key="parent" ref="100367828"/>
-						<string key="objectName">TiVoProgram Array Controller</string>
+						<string key="objectName">Program Array Controller</string>
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">1295</int>
@@ -5117,7 +5130,7 @@
 						<int key="objectID">653</int>
 						<reference key="object" ref="567727526"/>
 						<reference key="parent" ref="100367828"/>
-						<string key="objectName">TiVoPlayer Array Controller</string>
+						<string key="objectName">Player Array Controller</string>
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">1348</int>
@@ -5684,7 +5697,7 @@
 				</object>
 			</object>
 			<nil key="sourceID"/>
-			<int key="maxID">1626</int>
+			<int key="maxID">1627</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<object class="NSMutableArray" key="referencedPartialClassDescriptions">
