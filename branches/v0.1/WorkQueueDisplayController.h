@@ -19,6 +19,8 @@
 	IBOutlet NSScrollView *workQueueScrollView;
 	IBOutlet NSButton *showCompletedItemsCheckBox;
 	IBOutlet NSWindow *workQueueWindow;
+	IBOutlet NSButton *removeItemButton;
+	
 	NSSize oldWindowSize;
 }
 
@@ -28,5 +30,7 @@
 
 - (void)setShowCompletedItems:(BOOL)newValue;
 - (void)setShowWorkQueue:(BOOL)newValue;
+
+- (void)setItemsHidden:(BOOL)value;
 
 @end

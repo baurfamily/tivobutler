@@ -14,11 +14,14 @@
 	int receivedBytes;
 }
 
+- (BOOL)canRemove;
+
 @property (retain) NSNumber * active;
 @property (retain) NSDate * addedDate;
 @property (retain) NSDate * completedDate;
-@property (retain) NSString * name;
+@property (retain) NSString * message;
 @property (retain) NSDate * startedDate;
+@property (retain) NSString * savedPath;
 
 @property (retain) TiVoProgram * program;
 

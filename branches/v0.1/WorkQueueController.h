@@ -15,7 +15,8 @@
 typedef enum {
 	WQConvertAction = 0,
 	WQDecodeAction,
-	WQDownloadOnlyAction
+	WQDownloadOnlyAction,
+	WQNoAction
 } WQDownloadAction;
 
 typedef enum {
@@ -23,6 +24,10 @@ typedef enum {
 	WQDontOverwriteAction,
 	WQDoOverwriteAction
 } WQOverwriteAction;
+
+#define WQConvertActionString	@"Converting..."
+#define WQDecodeActionString	@"Decoding..."
+#define WQDownloadOnlyString	@"Downloading..."
 
 @interface WorkQueueController : NSObject {
 
@@ -36,9 +41,10 @@ typedef enum {
 	WorkQueueItem *currentItem;
 	WQDownloadAction finalAction;
 	WQDownloadAction currentAction;
-	int currentActionPercent;
-	
-	int receivedBytes;
+
+	long currentActionPercent;
+	long receivedBytes;
+	long expectedBytes;
 
 	NSString *downloadPath;
 	NSString *decodePath;
@@ -57,7 +63,9 @@ typedef enum {
 
 - (IBAction)addSelection:(id)sender;
 - (IBAction)showWorkQueueWindow:(id)sender;
+- (IBAction)cancelDownload:(id)sender;
 
+- (void)checkForPendingItems;
 - (void)beginDownload;
 - (void)setupDownloadPath;
 
@@ -69,15 +77,15 @@ typedef enum {
 - (void)convertDidTerminate:(NSNotification *)notification;
 - (void)convertCheckDataAvailable:(NSTimer *)timer;
 
+- (void)completeProcessing;
+
 - (NSString *)endingFilePath;
 
+- (BOOL)okayToDownload;
 - (int)maxActionDisplay;
 - (int)currentActionDisplay;
+- (NSString *)currentActionString;
 - (BOOL)showActionProgress;
-//
-//- (NSPredicate *)workQueuePredicate;
-//
-//- (void)setShowCompletedItems:(BOOL)newValue;
-//- (void)setShowWorkQueue:(BOOL)newValue;
+- (BOOL)showProgress;
 
 @end

@@ -17,14 +17,24 @@
 	self.addedDate = [NSDate date];
 }
 
+- (BOOL)canRemove
+{
+	if ( self.startedDate ) {
+		return NO;
+	} else {
+		return YES;
+	}
+}
+
 #pragma mark -
 #pragma mark Accessor methods
 
 @dynamic active;
 @dynamic addedDate;
 @dynamic completedDate;
-@dynamic name;
+@dynamic message;
 @dynamic startedDate;
+@dynamic savedPath;
 
 @dynamic program;
 

@@ -16,6 +16,8 @@
 			<string>ObjC</string>
 			<key>OUTLETS</key>
 			<dict>
+				<key>removeItemButton</key>
+				<string>NSButton</string>
 				<key>showCompletedItemsCheckBox</key>
 				<string>NSButton</string>
 				<key>workQueueScrollView</key>
@@ -38,6 +40,8 @@
 			<key>ACTIONS</key>
 			<dict>
 				<key>addSelection</key>
+				<string>id</string>
+				<key>cancelDownload</key>
 				<string>id</string>
 				<key>showWorkQueueWindow</key>
 				<string>id</string>
