@@ -195,7 +195,7 @@ static BOOL loaded = NO;
 	ENTRY;
 	NSArray *smartGroups = [EntityHelper
 		arrayOfEntityWithName:TiVoSmartGroupEntityName 
-		usingPredicateString:@"autoDownload = YES AND ANY programs.deletedFromPlayer = NO"
+		usingPredicateString:@"autoDownload = YES"
 	];
 	DEBUG( @"checking %d smart groups", [smartGroups count] );
 	SmartGroup *tempGroup;
@@ -210,7 +210,7 @@ static BOOL loaded = NO;
 			arrayOfEntityWithName:TiVoProgramEntityName
 			usingPredicateString:predicateString
 		];
-		DEBUG( @"found %@ candiate programs", [programs count] );
+		DEBUG( @"found %d candiate programs", [programs count] );
 		TiVoProgram *tempProgram;
 		for ( tempProgram in programs ) {
 			DEBUG( @"adding pending item for: %@", tempProgram.title );
@@ -306,10 +306,18 @@ static BOOL loaded = NO;
 	decodeTask = [[NSTask alloc] init];
 	
 	NSPipe *pipe = [NSPipe pipe];
-	[decodeFileHandle release];
-	decodeFileHandle = [pipe fileHandleForReading];
+	[decodeTask setStandardError:pipe];
 	
-	[decodeTask setStandardError:decodeFileHandle];
+	[decodeFileHandle release];
+	decodeFileHandle = [[pipe fileHandleForReading] retain];
+	
+	[[NSNotificationCenter defaultCenter]
+		addObserver:self 
+		selector:@selector(decodeReadAvailableData:) 
+		name:NSFileHandleDataAvailableNotification 
+		object:decodeFileHandle
+	];
+	[decodeFileHandle waitForDataInBackgroundAndNotify];
 	
 	NSString *launchPath = [[NSBundle mainBundle] pathForAuxiliaryExecutable:@"tivodecode"];
 	if ( !launchPath ) {
@@ -332,14 +340,6 @@ static BOOL loaded = NO;
 	INFO( @"decode task arguments:\n%@", [argumentArray description] );
 	[decodeTask setArguments:argumentArray];
 	
-	decodeTimer = [[NSTimer
-		scheduledTimerWithTimeInterval:1
-		target:self
-		selector:@selector(decodeCheckDataAvailable:)
-		userInfo:nil
-		repeats:YES
-	] retain];
-	
 	[[NSNotificationCenter defaultCenter]
 		addObserver:self
 		selector:@selector(decoderDidTerminate:)
@@ -357,9 +357,6 @@ static BOOL loaded = NO;
 	if ( !succeeded ) {
 		ERROR( [error localizedDescription] );
 	}
-	[decodeTimer invalidate];
-	[decodeTimer release];
-	decodeTimer = nil;
 
 	if ( [decodeTask terminationStatus] == 0 ) {
 		DEBUG(@"Decode finished.");
@@ -378,13 +375,15 @@ static BOOL loaded = NO;
 	}
 }
 
-- (void)decodeCheckDataAvailable:(NSTimer *)timer
+- (void)decodeReadAvailableData:(NSNotification *)notification
 {
 	ENTRY;
 	NSData *data = [decodeFileHandle availableData];
 	if ( [data length] ) {
-		INFO( [data description] );
+		NSString *tempString = [[[NSString alloc] initWithData:data encoding:NSASCIIStringEncoding] autorelease];
+		INFO( tempString );
 	}
+	[decodeFileHandle waitForDataInBackgroundAndNotify];
 }
 
 - (void)beginConversion
@@ -395,10 +394,18 @@ static BOOL loaded = NO;
 	convertTask = [[NSTask alloc] init];
 	
 	NSPipe *pipe = [NSPipe pipe];
+	[convertTask setStandardOutput:pipe];
+	
 	[convertFileHandle release];
-	convertFileHandle = [pipe fileHandleForReading];
+	convertFileHandle = [[pipe fileHandleForReading] retain];
 
-	[convertTask setStandardOutput:convertFileHandle];
+	[[NSNotificationCenter defaultCenter]
+		addObserver:self 
+		selector:@selector(convertReadAvailableData:) 
+		name:NSFileHandleDataAvailableNotification 
+		object:convertFileHandle
+	];
+	[convertFileHandle waitForDataInBackgroundAndNotify];
 	
 	NSString *launchPath = [[NSBundle mainBundle] pathForAuxiliaryExecutable:@"mencoder"];
 	if ( !launchPath ) {
@@ -426,15 +433,7 @@ static BOOL loaded = NO;
 	];
 	INFO( @"convert task arguments:\n%@", [argumentArray description] );
 	[convertTask setArguments:argumentArray];
-	
-	convertTimer = [[NSTimer
-		scheduledTimerWithTimeInterval:5
-		target:self
-		selector:@selector(convertCheckDataAvailable:)
-		userInfo:nil
-		repeats:YES
-	] retain];
-	
+
 	[[NSNotificationCenter defaultCenter]
 		addObserver:self
 		selector:@selector(convertDidTerminate:)
@@ -452,27 +451,29 @@ static BOOL loaded = NO;
 	if ( !succeeded ) {
 		ERROR( [error localizedDescription] );
 	}
-	[convertTimer invalidate];
-	[convertTimer release];
-	convertTimer = nil;
 	
-	if ( [decodeTask terminationStatus] == 0 ) {
-		DEBUG(@"Decode finished.");
+	[convertFileHandle release];
+	convertFileHandle = nil;
+	
+	if ( [convertTask terminationStatus] == 0 ) {
+		DEBUG(@"Convert finished.");
 	} else {
-		ERROR(@"Decode failed.");
+		ERROR(@"Convert failed.");
 	}
 	
 	currentItem.savedPath = convertPath;
 	[self completeWithMessage:nil];
 }
 
-- (void)convertCheckDataAvailable:(NSTimer *)timer
+- (void)convertReadAvailableData:(NSNotification *)notification
 {
 	ENTRY;
 	NSData *data = [convertFileHandle availableData];
 	if ( [data length] ) {
-		INFO( [data description] );
+		NSString *tempString = [[[NSString alloc] initWithData:data encoding:NSASCIIStringEncoding] autorelease];
+		INFO( tempString );
 	}
+	[convertFileHandle waitForDataInBackgroundAndNotify];
 }
 
 - (void)removeFiles
@@ -679,7 +680,9 @@ static BOOL loaded = NO;
 	if ( newActionPercent != currentActionPercent ) {
 		[self willChangeValueForKey:@"currentActionPercent"];
 		currentActionPercent = newActionPercent;
-		INFO( @"currentActionPercent: %d for ( %d / %d )", currentActionPercent, receivedBytes, expectedBytes );
+		if ( 0 == currentActionPercent % 10 ) {
+			INFO( @"currentActionPercent: %d for ( %d / %d )", currentActionPercent, receivedBytes, expectedBytes );
+		}
 		[self didChangeValueForKey:@"currentActionPercent"];	
 	}
 }

@@ -36,6 +36,7 @@
 
 - (NSSet *)programs
 {
+	ENTRY;
 	NSArray *entityArray = [EntityHelper
 		arrayOfEntityWithName:TiVoProgramEntityName
 		usingPredicate:[self predicate]

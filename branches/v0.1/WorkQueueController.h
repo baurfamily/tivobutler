@@ -66,11 +66,9 @@ typedef enum {
 	
 	NSTask *decodeTask;
 	NSFileHandle *decodeFileHandle;
-	NSTimer *decodeTimer;
 	
 	NSTask *convertTask;
 	NSFileHandle *convertFileHandle;
-	NSTimer *convertTimer;
 
 	IBOutlet WorkQueueDisplayController *workQueueDisplayController;
 }
@@ -87,11 +85,11 @@ typedef enum {
 
 - (void)beginDecode;
 - (void)decoderDidTerminate:(NSNotification *)notification;
-- (void)decodeCheckDataAvailable:(NSTimer *)timer;
+- (void)decodeReadAvailableData:(NSNotification *)notification;
 
 - (void)beginConversion;
 - (void)convertDidTerminate:(NSNotification *)notification;
-- (void)convertCheckDataAvailable:(NSTimer *)timer;
+- (void)convertReadAvailableData:(NSNotification *)notification;
 
 - (void)removeFiles;
 - (void)completeWithMessage:(NSString *)message;
