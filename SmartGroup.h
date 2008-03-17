@@ -8,6 +8,7 @@
 
 #import <Cocoa/Cocoa.h>
 
+#import "EntityHelper.h"
 
 @interface SmartGroup : NSManagedObject {
 
@@ -18,5 +19,7 @@
 @property (retain) NSString * name;
 @property (retain) NSPredicate * predicate;
 @property (retain) NSString * predicateString;
+
+@property (readonly) NSSet * programs;
 
 @end

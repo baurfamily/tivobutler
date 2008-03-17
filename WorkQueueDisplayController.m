@@ -23,39 +23,22 @@
 	[workQueueWindow makeKeyAndOrderFront:self];
 }
 
-- (NSPredicate *)workQueuePredicate
-{
-	if ( showCompletedItems ) {
-		return [NSPredicate predicateWithValue:TRUE];
-	} else {
-		return [NSPredicate predicateWithFormat:@"completedDate = nil"];
-	}
-}
-
-- (void)setShowCompletedItems:(BOOL)newValue
-{
-	//- need to look at keyPathsForValuesAffectingValueForKey:
-	[self willChangeValueForKey:@"showCompletedItems"];
-	[self willChangeValueForKey:@"workQueuePredicate"];
-	showCompletedItems = newValue;
-	[self didChangeValueForKey:@"showCompletedItems"];
-	[self didChangeValueForKey:@"workQueuePredicate"];
-}
-
 - (void)setShowWorkQueue:(BOOL)newValue
 {
 	NSRect windowRect = [workQueueWindow frame];
 	
 	[self willChangeValueForKey:@"showWorkQueue"];
-	[self setItemsHidden:!newValue];
 	if ( YES == newValue ) {
 		windowRect.size = oldWindowSize;
+		[workQueueWindow setFrame:windowRect display:YES animate:YES];
+		[self setItemsHidden:NO];
 	} else {
+		[self setItemsHidden:YES];
 		oldWindowSize = windowRect.size;
 		windowRect.size.width = WQDefaultWindowWidth;
 		windowRect.size.height = WQDefaultWindowHeight;
+		[workQueueWindow setFrame:windowRect display:YES animate:YES];
 	}
-	[workQueueWindow setFrame:windowRect display:YES animate:YES];
 	showWorkQueue = newValue;
 	[self didChangeValueForKey:@"showWorkQueue"];
 }
@@ -63,10 +46,20 @@
 - (void)setItemsHidden:(BOOL)value
 {
 	[workQueueScrollView		setHidden:value];
-	[showCompletedItemsCheckBox	setHidden:value];
 	[removeItemButton			setHidden:value];
 	//- if the controls are hidden (YES), hide this (NO)
-	[workQueueWindow setShowsResizeIndicator:!value];
+	//- except that re-sizing is wonky, so we'll ignore this for now.
+	//[workQueueWindow setShowsResizeIndicator:!value];
+}
+
+- (NSArray *)sortDescriptors
+{
+	ENTRY;
+	NSSortDescriptor *sortDescriptor = [[[NSSortDescriptor alloc]
+		initWithKey:[workQueueController valueForKey:@"pendingItemsSortKey"] ascending:YES
+	] autorelease];
+	
+	return [NSArray arrayWithObject:sortDescriptor];
 }
 
 @end

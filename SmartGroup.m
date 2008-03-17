@@ -17,6 +17,8 @@
 @dynamic predicate;
 @dynamic predicateString;
 
+@dynamic programs;
+
 - (NSPredicate *)predicate
 {
 	ENTRY;
@@ -30,6 +32,15 @@
 	self.predicateString = [newPredicate predicateFormat];
 	[self didChangeValueForKey:@"predicate"];
 	[self didChangeValueForKey:@"predicateString"];
+}
+
+- (NSSet *)programs
+{
+	NSArray *entityArray = [EntityHelper
+		arrayOfEntityWithName:TiVoProgramEntityName
+		usingPredicate:[self predicate]
+	];
+	return [NSSet setWithArray:entityArray];
 }
 
 @end

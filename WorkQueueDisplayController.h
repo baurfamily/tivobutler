@@ -8,16 +8,16 @@
 
 #import <Cocoa/Cocoa.h>
 
-
 #define WQDefaultWindowHeight	285
 #define WQDefaultWindowWidth	454
 
 @interface WorkQueueDisplayController : NSObject {
 	BOOL showCompletedItems;
 	BOOL showWorkQueue;
+
+	IBOutlet id workQueueController;
 	
 	IBOutlet NSScrollView *workQueueScrollView;
-	IBOutlet NSButton *showCompletedItemsCheckBox;
 	IBOutlet NSWindow *workQueueWindow;
 	IBOutlet NSButton *removeItemButton;
 	
@@ -26,9 +26,6 @@
 
 - (IBAction)showWindow:(id)sender;
 
-- (NSPredicate *)workQueuePredicate;
-
-- (void)setShowCompletedItems:(BOOL)newValue;
 - (void)setShowWorkQueue:(BOOL)newValue;
 
 - (void)setItemsHidden:(BOOL)value;

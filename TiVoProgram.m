@@ -32,5 +32,17 @@
 @dynamic series;
 @dynamic player;
 @dynamic deletedFromPlayer;
+@dynamic smartGroups;
+
+- (NSSet *)smartGroups
+{
+	//TODO: make sure this will work
+	NSArray *entityArray = [EntityHelper
+		arrayOfEntityWithName:TiVoSmartGroupEntityName
+		usingPredicateString:[NSString stringWithFormat:@"%@ IN programs", self]
+	];
+	
+	return [NSSet setWithArray:entityArray];
+}
 
 @end

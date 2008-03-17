@@ -9,7 +9,11 @@
 #import <Cocoa/Cocoa.h>
 
 #import "EntityHelper.h"
+
+#import "TiVoProgram.h"
+#import "SmartGroup.h"
 #import "WorkQueueItem.h"
+
 #import "WorkQueueDisplayController.h"
 
 typedef enum {
@@ -25,6 +29,14 @@ typedef enum {
 	WQDoOverwriteAction
 } WQOverwriteAction;
 
+typedef enum {
+	WQAddedDateOrder = 0,
+	WQRecordedDateOrder
+} WQDateOrder;
+
+#define WQAddedDateString		@"addedDate"
+#define WQRecordedDateString	@"recordedDate"
+
 #define WQConvertActionString	@"Converting..."
 #define WQDecodeActionString	@"Decoding..."
 #define WQDownloadOnlyString	@"Downloading..."
@@ -32,6 +44,8 @@ typedef enum {
 @interface WorkQueueController : NSObject {
 
 	NSManagedObjectContext *managedObjectContext;
+	
+	NSTimer *downloadCheckTimer;
 	
 	IBOutlet NSArrayController *programArrayController;
 	IBOutlet NSArrayController *workQueueItemArrayController;
@@ -42,9 +56,9 @@ typedef enum {
 	WQDownloadAction finalAction;
 	WQDownloadAction currentAction;
 
-	long currentActionPercent;
-	long receivedBytes;
-	long expectedBytes;
+	int currentActionPercent;
+	unsigned long receivedBytes;
+	unsigned long expectedBytes;
 
 	NSString *downloadPath;
 	NSString *decodePath;
@@ -65,7 +79,9 @@ typedef enum {
 - (IBAction)showWorkQueueWindow:(id)sender;
 - (IBAction)cancelDownload:(id)sender;
 
+- (void)addPendingItemWithProgram:(TiVoProgram *)program;
 - (void)checkForPendingItems;
+- (void)checkForAutoDownloads;
 - (void)beginDownload;
 - (void)setupDownloadPath;
 
@@ -77,7 +93,8 @@ typedef enum {
 - (void)convertDidTerminate:(NSNotification *)notification;
 - (void)convertCheckDataAvailable:(NSTimer *)timer;
 
-- (void)completeProcessing;
+- (void)removeFiles;
+- (void)completeWithMessage:(NSString *)message;
 
 - (NSString *)endingFilePath;
 
@@ -87,5 +104,6 @@ typedef enum {
 - (NSString *)currentActionString;
 - (BOOL)showActionProgress;
 - (BOOL)showProgress;
+- (NSString *)pendingItemsSortKey;
 
 @end
