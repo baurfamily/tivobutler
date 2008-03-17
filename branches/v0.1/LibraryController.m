@@ -113,7 +113,7 @@
 		withObject:[NSDictionary dictionaryWithObjectsAndKeys:
 			[NSNumber numberWithBool:NO],	@"isSourceGroup",
 			@"Work Queue",					@"name",
-			[NSPredicate predicateWithFormat:@"ANY workQueueItems.active = YES"], @"predicate",
+			[NSPredicate predicateWithFormat:@"ANY workQueueItems.completedDate = nil"], @"predicate",
 			nil ]
 	];
 	[self didChangeValueForKey:@"libraryArray"];
@@ -246,9 +246,9 @@
 {
 	ENTRY;
 	NSArray *entityArray;
-	@synchronized (TiVoSmartGroupName) {
+	@synchronized (TiVoSmartGroupEntityName) {
 		entityArray = [EntityHelper
-			arrayOfEntityWithName:TiVoSmartGroupName
+			arrayOfEntityWithName:TiVoSmartGroupEntityName
 			usingPredicateString:@"TRUEPREDICATE"
 			withSortKeys:[NSArray arrayWithObject:@"name"]
 		];

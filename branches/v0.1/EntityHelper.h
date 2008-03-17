@@ -9,7 +9,7 @@
 #import <Cocoa/Cocoa.h>
 
 #define TiVoSeriesEntityName		@"Series"
-#define TiVoSmartGroupName			@"SmartGroup"
+#define TiVoSmartGroupEntityName	@"SmartGroup"
 #define TiVoStationEntityName		@"Station"
 #define TiVoPlayerEntityName		@"TiVoPlayer"
 #define TiVoProgramEntityName		@"TiVoProgram"

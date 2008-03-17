@@ -33,6 +33,8 @@
 @property (retain) TiVoPlayer * player;
 @property (retain) NSNumber * deletedFromPlayer;
 
+@property (readonly) NSSet * smartGroups;
+
 @end
 
 

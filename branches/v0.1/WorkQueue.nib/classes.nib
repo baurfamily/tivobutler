@@ -20,6 +20,8 @@
 				<string>NSButton</string>
 				<key>showCompletedItemsCheckBox</key>
 				<string>NSButton</string>
+				<key>workQueueController</key>
+				<string>id</string>
 				<key>workQueueScrollView</key>
 				<string>NSScrollView</string>
 				<key>workQueueWindow</key>

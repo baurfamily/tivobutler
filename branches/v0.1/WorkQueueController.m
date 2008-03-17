@@ -8,6 +8,7 @@
 
 #import "WorkQueueController.h"
 
+static BOOL loaded = NO;
 
 @implementation WorkQueueController
 
@@ -17,11 +18,13 @@
 	[defaults setInitialValues:[NSDictionary dictionaryWithObjectsAndKeys:
 			@"~/Downloads/",									@"downloadFolder",
 			[NSNumber numberWithBool:YES],						@"createSeriesSubFolders",
-			[NSNumber numberWithInt:WQPromptOverwriteAction],	@"overwriteAction",
+			[NSNumber numberWithInt:WQDownloadOnlyAction],		@"downloadAction",
+			[NSNumber numberWithInt:WQAddedDateOrder],			@"downloadOrder",
 			[NSNumber numberWithBool:YES],						@"restartDownloads",
 			[NSNumber numberWithBool:NO],						@"cancelDownloadsOnStartup",
 			[NSNumber numberWithBool:NO],						@"restrictDownloadTimes",
-			[NSNumber numberWithInt:WQDownloadOnlyAction],		@"downloadAction",
+			[NSNumber numberWithInt:WQPromptOverwriteAction],	@"overwriteAction",
+			[NSNumber numberWithInt:60],						@"downloadCheckInterval",
 			nil
 		]
 	];
@@ -29,26 +32,39 @@
 
 + (NSSet *)keyPathsForValuesAffectingValueForKey:(NSString *)key
 {
-	DEBUG( @"looking at key: %@", key );
-	if ( @"maxActionDisplay" == key ) {
-		return [NSSet setWithObjects:@"currentItem", @"currentAction", @"finalAction", nil];
-	} else if ( @"currentActionDisplay" == key ) {
-		return [NSSet setWithObjects:@"currentItem", @"currentAction", @"finalAction", nil];
-	} else if ( @"currentActionString" == key ) {
-		return [NSSet setWithObjects:@"currentAction", nil];
-	} else if ( @"showActionProgress" == key ) {
-		return [NSSet setWithObjects:@"currentAction", @"finalAction", nil];
-	} else if ( @"showProgress" == key ) {
-		return [NSSet setWithObjects:@"currentAction", nil];
-	} else if ( @"maxActionProgress" == key ) {
-		return [NSSet setWithObjects:@"finalAction", nil];
+	NSSet *returnSet;
+	if ( [key isEqualToString:@"maxActionDisplay"] ) {
+		returnSet = [NSSet setWithObjects:@"currentItem", @"currentAction", @"finalAction", nil];
+
+	} else if ( [key isEqualToString:@"currentActionDisplay"] ) {
+		returnSet = [NSSet setWithObjects:@"currentItem", @"currentAction", @"finalAction", nil];
+
+	} else if ( [key isEqualToString:@"currentActionString"] ) {
+		returnSet = [NSSet setWithObjects:@"currentAction", nil];
+
+	} else if ( [key isEqualToString:@"showActionProgress"] ) {
+		returnSet = [NSSet setWithObjects:@"currentAction", @"finalAction", nil];
+
+	} else if ( [key isEqualToString:@"showProgress"] ) {
+		returnSet = [NSSet setWithObjects:@"currentAction", nil];
+
+	} else if ( [key isEqualToString:@"maxActionProgress"] ) {
+		returnSet = [NSSet setWithObjects:@"finalAction", nil];
+
+	} else if ( [key isEqualToString:@"currentActionPercent"] ) {
+		returnSet = [NSSet setWithObjects:@"currentAction", @"currentItem", nil];
+
 	} else {
-		return [NSSet set];
+		returnSet = [NSSet set];
 	}
+	RETURN( @"looked at key: %@\n%@", key, [returnSet description] );
+	return returnSet;
 }
 
 - (void)awakeFromNib
 {
+	if ( loaded ) return;
+	loaded = YES;
 	[self willChangeValueForKey:@"managedObjectContext"];	
 	managedObjectContext = [[[[NSApplication sharedApplication] delegate] managedObjectContext] retain];
 	[self didChangeValueForKey:@"managedObjectContext"];
@@ -71,6 +87,15 @@
 		INFO( @"abandoned %d downloads", [abandonedDownloads count] );
 	}
 	
+	int downloadCheckInterval = [[[defaults valueForKey:@"values"] valueForKey:@"downloadCheckInterval"] intValue];
+	downloadCheckTimer = [NSTimer scheduledTimerWithTimeInterval:( 60 * downloadCheckInterval )
+		target:self
+		selector:@selector(checkForAutoDownloads)
+		userInfo:nil
+		repeats:YES
+	];
+	
+	[self checkForAutoDownloads];
 	[self checkForPendingItems];
 }
 
@@ -80,23 +105,13 @@
 - (IBAction)addSelection:(id)sender
 {
 	ENTRY;
-	
-	WorkQueueItem *selectedItem = [NSEntityDescription
-		insertNewObjectForEntityForName:TiVoWorkQueueItemEntityName
-		inManagedObjectContext:managedObjectContext
-	];
-	[self didChangeValueForKey:@"currentItem"];
 	NSManagedObjectID *selectedProgramID = [[programArrayController selection] valueForKey:@"objectID"];
 	if ( ! selectedProgramID ) {
 		ERROR( @"could not find the selected items object ID\n%@", [programArrayController description] );
 	}
-	id selectedProgram = [managedObjectContext objectWithID:selectedProgramID];
+	TiVoProgram *selectedProgram = (TiVoProgram *)[managedObjectContext objectWithID:selectedProgramID];
 	
-	[selectedItem setValue:selectedProgram forKey:@"program"];
-	[workQueueItemArrayController addObject:selectedItem];
-	
-	//- this allows other items to complete before starting this one
-	[self checkForPendingItems];
+	[self addPendingItemWithProgram:selectedProgram];
 }
 
 - (IBAction)showWorkQueueWindow:(id)sender
@@ -110,32 +125,28 @@
 
 - (IBAction)cancelDownload:(id)sender
 {
-	[convertTask terminate];
-	[[NSFileManager defaultManager] removeItemAtPath:convertPath error:NULL];
-	[convertPath release];
-	convertPath = nil;
-	
-	[decodeTask terminate];
-	[[NSFileManager defaultManager] removeItemAtPath:decodePath error:NULL];
-	[decodePath release];
-	decodePath = nil;
-	
-	[programDownload cancel];
-	[[NSFileManager defaultManager] removeItemAtPath:downloadPath error:NULL];
-	[downloadPath release];
-	downloadPath = nil;
-	
-	currentItem.message = @"Canceled";
-	currentItem.completedDate = [NSDate date];
-	
-	[self willChangeValueForKey:@"currentItem"];
-	[currentItem release];
-	currentItem = nil;
-	[self didChangeValueForKey:@"currentItem"];
+	[self removeFiles];
+	[self completeWithMessage:@"Canceled"];
 }
+
 
 #pragma mark -
 #pragma mark Workflow methods
+
+- (void)addPendingItemWithProgram:(TiVoProgram *)program
+{
+	ENTRY;	
+	WorkQueueItem *newItem = [NSEntityDescription
+		insertNewObjectForEntityForName:TiVoWorkQueueItemEntityName
+		inManagedObjectContext:managedObjectContext
+	];
+	
+	[newItem setValue:program forKey:@"program"];
+	[workQueueItemArrayController addObject:newItem];
+	
+	//- this allows other items to complete before starting this one
+	[self checkForPendingItems];
+}
 
 - (void)checkForPendingItems
 {
@@ -167,7 +178,7 @@
 	NSArray *pendingItems = [EntityHelper
 		arrayOfEntityWithName:TiVoWorkQueueItemEntityName
 		usingPredicateString:@"completedDate = nil"
-		withSortKeys:[NSArray arrayWithObjects:@"startedDate", @"addedDate", nil]
+		withSortKeys:[NSArray arrayWithObject:[self pendingItemsSortKey] ]
 	];
 	
 	if ( [pendingItems count] ) {
@@ -177,6 +188,35 @@
 		[self didChangeValueForKey:@"currentItem"];
 		[self beginDownload];
 	}
+}
+
+- (void)checkForAutoDownloads
+{
+	ENTRY;
+	NSArray *smartGroups = [EntityHelper
+		arrayOfEntityWithName:TiVoSmartGroupEntityName 
+		usingPredicateString:@"autoDownload = YES AND ANY programs.deletedFromPlayer = NO"
+	];
+	DEBUG( @"checking %d smart groups", [smartGroups count] );
+	SmartGroup *tempGroup;
+	for ( tempGroup in smartGroups ) {
+		NSString *predicateString = [NSString stringWithFormat:@"(%@) AND %@ AND %@",
+			tempGroup.predicateString,
+			@"NONE workQueueItems.addedDate <> nil",
+			@"deletedFromPlayer = NO"
+		];
+		DEBUG( @"using predicate string: %@", predicateString );
+		NSArray *programs = [EntityHelper
+			arrayOfEntityWithName:TiVoProgramEntityName
+			usingPredicateString:predicateString
+		];
+		DEBUG( @"found %@ candiate programs", [programs count] );
+		TiVoProgram *tempProgram;
+		for ( tempProgram in programs ) {
+			DEBUG( @"adding pending item for: %@", tempProgram.title );
+			[self addPendingItemWithProgram:tempProgram];
+		}
+	} 
 }
 
 - (void)beginDownload
@@ -274,7 +314,8 @@
 	NSString *launchPath = [[NSBundle mainBundle] pathForAuxiliaryExecutable:@"tivodecode"];
 	if ( !launchPath ) {
 		ERROR( @"launch path not set for decode task, can't continue" );
-		//TODO: cleanup
+		[self removeFiles];
+		[self completeWithMessage:@"Failed"];
 		return;
 	}
 	DEBUG( @"using launchPath: %@", launchPath );
@@ -292,7 +333,7 @@
 	[decodeTask setArguments:argumentArray];
 	
 	decodeTimer = [[NSTimer
-		timerWithTimeInterval:1
+		scheduledTimerWithTimeInterval:1
 		target:self
 		selector:@selector(decodeCheckDataAvailable:)
 		userInfo:nil
@@ -319,7 +360,13 @@
 	[decodeTimer invalidate];
 	[decodeTimer release];
 	decodeTimer = nil;
-	
+
+	if ( [decodeTask terminationStatus] == 0 ) {
+		DEBUG(@"Decode finished.");
+	} else {
+		ERROR(@"Decode failed.");
+	}
+
 	if ( convertPath ) {
 		[self willChangeValueForKey:@"currentAction"];
 		currentAction = WQConvertAction;
@@ -327,7 +374,7 @@
 		[self beginConversion];
 	} else {
 		currentItem.savedPath = decodePath;
-		[self completeProcessing];
+		[self completeWithMessage:nil];
 	}
 }
 
@@ -356,7 +403,8 @@
 	NSString *launchPath = [[NSBundle mainBundle] pathForAuxiliaryExecutable:@"mencoder"];
 	if ( !launchPath ) {
 		ERROR( @"launch path not set for conversion task, can't continue" );
-		//TODO: cleanup
+		[self removeFiles];
+		[self completeWithMessage:@"Failed"];
 		return;
 	}
 	DEBUG( @"using launchPath: %@", launchPath );
@@ -380,7 +428,7 @@
 	[convertTask setArguments:argumentArray];
 	
 	convertTimer = [[NSTimer
-		timerWithTimeInterval:5
+		scheduledTimerWithTimeInterval:5
 		target:self
 		selector:@selector(convertCheckDataAvailable:)
 		userInfo:nil
@@ -408,8 +456,14 @@
 	[convertTimer release];
 	convertTimer = nil;
 	
+	if ( [decodeTask terminationStatus] == 0 ) {
+		DEBUG(@"Decode finished.");
+	} else {
+		ERROR(@"Decode failed.");
+	}
+	
 	currentItem.savedPath = convertPath;
-	[self completeProcessing];
+	[self completeWithMessage:nil];
 }
 
 - (void)convertCheckDataAvailable:(NSTimer *)timer
@@ -421,10 +475,30 @@
 	}
 }
 
-- (void)completeProcessing
+- (void)removeFiles
 {
+	[convertTask terminate];
+	[[NSFileManager defaultManager] removeItemAtPath:convertPath error:NULL];
+	[convertPath release];
+	convertPath = nil;
+	
+	[decodeTask terminate];
+	[[NSFileManager defaultManager] removeItemAtPath:decodePath error:NULL];
+	[decodePath release];
+	decodePath = nil;
+	
+	[programDownload cancel];
+	[[NSFileManager defaultManager] removeItemAtPath:downloadPath error:NULL];
+	[downloadPath release];
+	downloadPath = nil;
+}
+
+- (void)completeWithMessage:(NSString *)message
+{
+	if ( message )
+		currentItem.message = message;
 	currentItem.completedDate = [NSDate date];
-		
+	
 	[self willChangeValueForKey:@"currentItem"];
 	[currentItem release];
 	currentItem = nil;
@@ -433,7 +507,7 @@
 	[self willChangeValueForKey:@"currentAction"];
 	currentAction = WQNoAction;
 	[self didChangeValueForKey:@"currentAction"];
-
+	
 	[self checkForPendingItems];
 }
 
@@ -446,7 +520,6 @@
 	NSString *folder = [[defaults valueForKey:@"values"] valueForKey:@"downloadFolder"];
 	BOOL createSubFolders = [[[defaults valueForKey:@"values"] valueForKey:@"createSeriesSubFolders"] boolValue];
 	
-	//TODO: allow for subfolders or filename changes, etc.
 	NSString *pathString;
 	
 	//- check preference and make sure there is a series title to use
@@ -566,6 +639,18 @@
 	}
 }
 
+- (NSString *)pendingItemsSortKey
+{
+	NSUserDefaultsController *defaults = [NSUserDefaultsController sharedUserDefaultsController];
+	WQDateOrder downloadOrder = [[[defaults valueForKey:@"values"] valueForKey:@"downloadOrder"] intValue];
+	
+	switch ( downloadOrder ) {
+		case WQAddedDateOrder:		RETURN( WQAddedDateString );	return WQAddedDateString;		break;
+		case WQRecordedDateOrder:	RETURN( WQRecordedDateString );	return WQRecordedDateString;	break;
+		default:					DEBUG( @"using default: %@", WQAddedDateString ); return WQAddedDateString;
+	}
+}
+
 #pragma mark -
 #pragma mark NSURLDownload delegate methods
 
@@ -577,18 +662,20 @@
 	);
 	[programDownload release];
 	programDownload = nil;
+	
+	[self removeFiles];
+	[self completeWithMessage:@"Failed"];
 }
 
 - (void)download:(NSURLDownload *)download didCreateDestination:(NSString *)path
 {
 	//- I can see if the name changed from the suggested name here...
-	currentItem.startedDate = [NSDate date];
 }
 
 - (void)download:(NSURLDownload *)download didReceiveDataOfLength:(NSUInteger)length
 {
 	receivedBytes += length;
-	long newActionPercent = ( 100 * receivedBytes ) / expectedBytes;
+	int newActionPercent = ( 100.0 * receivedBytes ) / expectedBytes;
 	if ( newActionPercent != currentActionPercent ) {
 		[self willChangeValueForKey:@"currentActionPercent"];
 		currentActionPercent = newActionPercent;
@@ -610,7 +697,7 @@
 		[self beginDecode];
 	} else {
 		currentItem.savedPath = downloadPath;
-		[self completeProcessing];
+		[self completeWithMessage:nil];
 	}
 }
 
