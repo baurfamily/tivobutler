@@ -80,28 +80,32 @@ typedef enum {
 - (void)addPendingItemWithProgram:(TiVoProgram *)program;
 - (void)checkForPendingItems;
 - (void)checkForAutoDownloads;
-- (void)beginDownload;
-- (void)setupDownloadPath;
-
-- (void)beginDecode;
-- (void)decoderDidTerminate:(NSNotification *)notification;
-- (void)decodeReadAvailableData:(NSNotification *)notification;
-
-- (void)beginConversion;
-- (void)convertDidTerminate:(NSNotification *)notification;
-- (void)convertReadAvailableData:(NSNotification *)notification;
-
-- (void)removeFiles;
-- (void)completeWithMessage:(NSString *)message;
 
 - (NSString *)endingFilePath;
-
 - (BOOL)okayToDownload;
+- (NSString *)pendingItemsSortKey;
+
 - (int)maxActionDisplay;
 - (int)currentActionDisplay;
 - (NSString *)currentActionString;
 - (BOOL)showActionProgress;
 - (BOOL)showProgress;
-- (NSString *)pendingItemsSortKey;
+
+@end
+
+@interface WorkQueueController (Workflows)
+
+- (void)beginDownload;
+- (void)setupDownloadPath;
+- (void)removeFiles;
+- (void)completeWithMessage:(NSString *)message;
+
+- (void)beginDecode;
+- (void)decodeReadAvailableData:(NSNotification *)notification;
+- (void)decoderDidTerminate:(NSNotification *)notification;
+
+- (void)beginConversion;
+- (void)convertReadAvailableData:(NSNotification *)notification;
+- (void)convertDidTerminate:(NSNotification *)notification;
 
 @end
