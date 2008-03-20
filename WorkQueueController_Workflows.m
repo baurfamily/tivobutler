@@ -10,8 +10,76 @@
 
 @implementation WorkQueueController (Workflow)
 
++ (NSDictionary *)workflowDefaults
+{
+	ENTRY;
+	return [NSDictionary dictionaryWithObjectsAndKeys:
+		//decode arguments
+		[NSArray arrayWithObjects:
+			[NSDictionary dictionaryWithObject:@"--no-verify"									forKey:@"value"],
+			//[NSDictionary dictionaryWithObject:@"--verbose"									forKey:@"value"],
+			[NSDictionary dictionaryWithObject:@"--mak"											forKey:@"value"],
+			[NSDictionary dictionaryWithObject:[NSNumber numberWithInt:WQArgumentMAK]			forKey:@"variable"],
+			[NSDictionary dictionaryWithObject:@"--out"											forKey:@"value"],
+			[NSDictionary dictionaryWithObject:[NSNumber numberWithInt:WQArgumentOutputFile]	forKey:@"variable"],
+			[NSDictionary dictionaryWithObject:[NSNumber numberWithInt:WQArgumentInputFile]		forKey:@"variable"],
+			nil
+		], @"decodeAppArguments",
+		//convert arguments
+		[NSArray arrayWithObjects:
+			[NSDictionary dictionaryWithObject:@"-af"							forKey:@"value"],
+			[NSDictionary dictionaryWithObject:@"volume=13:1"					forKey:@"value"],
+			[NSDictionary dictionaryWithObject:@"-of"							forKey:@"value"],
+			[NSDictionary dictionaryWithObject:@"lavf"							forKey:@"value"],
+			[NSDictionary dictionaryWithObject:@"-lavfopts"						forKey:@"value"],
+			[NSDictionary dictionaryWithObject:@"i_certify_that_my_video_stream_does_not_use_b_frames" forKey:@"value"],
+			[NSDictionary dictionaryWithObject:@"-demuxer"						forKey:@"value"],
+			[NSDictionary dictionaryWithObject:@"lavf"							forKey:@"value"],
+			[NSDictionary dictionaryWithObject:@"-lavfdopts"					forKey:@"value"],
+			[NSDictionary dictionaryWithObject:@"probesize=128"					forKey:@"value"],
+			[NSDictionary dictionaryWithObject:@"-oac"							forKey:@"value"],
+			[NSDictionary dictionaryWithObject:@"lavc"							forKey:@"value"],
+			[NSDictionary dictionaryWithObject:@"-ovc"							forKey:@"value"],
+			[NSDictionary dictionaryWithObject:@"lavc"							forKey:@"value"],
+			[NSDictionary dictionaryWithObject:@"-lavcopts"						forKey:@"value"],
+			[NSDictionary dictionaryWithObject:@"keyint=15:aglobal=1:vglobal=1:coder=1:vcodec=mpeg4:acodec=aac:vbitrate=1800:abitrate=128" forKey:@"value"],
+			[NSDictionary dictionaryWithObject:@"-vf"							forKey:@"value"],
+			[NSDictionary dictionaryWithObject:@"pp=lb,scale=640:480,harddup"	forKey:@"value"],
+			[NSDictionary dictionaryWithObject:@"-o"							forKey:@"value"],
+			[NSDictionary dictionaryWithObject:[NSNumber numberWithInt:WQArgumentOutputFile]	forKey:@"variable"],
+			[NSDictionary dictionaryWithObject:[NSNumber numberWithInt:WQArgumentInputFile]		forKey:@"variable"],
+			nil
+		], @"convertAppArguments",
+		nil
+	];
+}
+
 #pragma mark -
 #pragma mark Generic methods
+
+- (NSString *)stringForSubstitutionValue:(WQArgumentSubstitutionValue)substitutionValue atStage:(WQDownloadAction)actionStage
+{
+	switch ( substitutionValue ) {
+		case WQArgumentNone:
+			return nil;
+			break;
+		case WQArgumentMAK:
+			return [currentItem valueForKeyPath:@"program.player.mediaAccessKey"];
+			break;
+		case WQArgumentInputFile:
+			if		( WQDecodeAction == actionStage )	{ return downloadPath; }
+			else if	( WQConvertAction == actionStage )	{ return decodePath; }
+			else										{ return nil; }
+			break;
+		case WQArgumentOutputFile:
+			if		( WQDecodeAction == actionStage )	{ return decodePath; }
+			else if	( WQConvertAction == actionStage )	{ return convertPath; }
+			else										{ return nil; }
+			break;
+		default:
+			return nil;
+	}
+}
 
 - (void)beginDownload
 {
@@ -142,6 +210,8 @@
 {
 	ENTRY;
 
+	NSUserDefaultsController *defaults = [NSUserDefaultsController sharedUserDefaultsController];
+
 	[decodeTask release];
 	decodeTask = [[NSTask alloc] init];
 	
@@ -159,7 +229,14 @@
 	];
 	[decodeFileHandle waitForDataInBackgroundAndNotify];
 	
-	NSString *launchPath = [[NSBundle mainBundle] pathForAuxiliaryExecutable:@"tivodecode"];
+	BOOL useExternalApp = [[[defaults valueForKey:@"values"] valueForKey:@"decodeWithExternalApp"] boolValue];
+	
+	NSString *launchPath;
+	if ( useExternalApp ) {
+		launchPath =  [[defaults valueForKey:@"values"] valueForKey:@"decodeAppPath"];
+	} else {
+		launchPath = [[NSBundle mainBundle] pathForAuxiliaryExecutable:@"tivodecode"];
+	}
 	if ( !launchPath ) {
 		ERROR( @"launch path not set for decode task, can't continue" );
 		[self removeFiles];
@@ -169,7 +246,27 @@
 	DEBUG( @"using launchPath: %@", launchPath );
 	[decodeTask setLaunchPath:launchPath ];
 	
-	NSArray *argumentArray = [NSArray arrayWithObjects:
+	NSMutableArray *arguments = [NSMutableArray array];
+	NSArray *defaultsArgumentArray = [[defaults valueForKey:@"values"] valueForKey:@"decodeAppArguments"];
+	NSDictionary *tempDict;
+	for ( tempDict in defaultsArgumentArray ) {
+		NSString *tempString = [tempDict valueForKey:@"value"];
+		WQArgumentSubstitutionValue tempSub = [[tempDict valueForKey:@"variable"] intValue];
+		
+		if ( tempString && WQArgumentNone != tempSub && ![tempString isEqualToString:@""]) {
+			[arguments addObject:
+				[NSString stringWithFormat:@"%@ %@",
+					tempString,
+					[self stringForSubstitutionValue:tempSub atStage:currentAction]
+				]
+			];
+		} else if ( WQArgumentNone != tempSub ) {
+			[arguments addObject:[self stringForSubstitutionValue:tempSub atStage:currentAction] ];
+		} else {
+			[arguments addObject:tempString];
+		}
+	}
+/*	NSArray *argumentArray = [NSArray arrayWithObjects:
 		@"--no-verify",	//- makes it faster?
 		//@"--verbose",	//- prints out progress
 		@"--mak",	[currentItem valueForKeyPath:@"program.player.mediaAccessKey"],
@@ -177,8 +274,9 @@
 		downloadPath,
 		nil
 	];
-	INFO( @"decode task arguments:\n%@", [argumentArray description] );
-	[decodeTask setArguments:argumentArray];
+*/
+	INFO( @"decode task arguments:\n%@", [arguments description] );
+	[decodeTask setArguments:arguments];
 	
 	[[NSNotificationCenter defaultCenter]
 		addObserver:self
@@ -239,6 +337,8 @@
 {
 	ENTRY;
 
+	NSUserDefaultsController *defaults = [NSUserDefaultsController sharedUserDefaultsController];
+
 	[convertTask release];
 	convertTask = [[NSTask alloc] init];
 	
@@ -256,32 +356,46 @@
 	];
 	[convertFileHandle waitForDataInBackgroundAndNotify];
 	
-	NSString *launchPath = [[NSBundle mainBundle] pathForAuxiliaryExecutable:@"mencoder"];
+	BOOL useExternalApp = [[[defaults valueForKey:@"values"] valueForKey:@"convertWithExternalApp"] boolValue];
+	
+	NSString *launchPath;
+	if ( useExternalApp ) {
+		launchPath = [[defaults valueForKey:@"values"] valueForKey:@"convertAppPath"];
+	} else {
+		launchPath = [[NSBundle mainBundle] pathForAuxiliaryExecutable:@"mencoder"];
+	}
 	if ( !launchPath ) {
 		ERROR( @"launch path not set for conversion task, can't continue" );
 		[self removeFiles];
 		[self completeWithMessage:@"Failed"];
 		return;
 	}
+	
+	NSMutableArray *arguments = [NSMutableArray array];
+	NSArray *defaultsArgumentArray = [[defaults valueForKey:@"values"] valueForKey:@"convertAppArguments"];
+	NSDictionary *tempDict;
+	for ( tempDict in defaultsArgumentArray ) {
+		NSString *tempString = [tempDict valueForKey:@"value"];
+		WQArgumentSubstitutionValue tempSub = [[tempDict valueForKey:@"variable"] intValue];
+		
+		if ( tempString && WQArgumentNone != tempSub && ![tempString isEqualToString:@""]) {
+			[arguments addObject:
+				[NSString stringWithFormat:@"%@ %@",
+					tempString,
+					[self stringForSubstitutionValue:tempSub atStage:currentAction]
+				]
+			];
+		} else if ( WQArgumentNone != tempSub ) {
+			[arguments addObject:[self stringForSubstitutionValue:tempSub atStage:currentAction] ];
+		} else {
+			[arguments addObject:tempString];
+		}
+	}
 	DEBUG( @"using launchPath: %@", launchPath );
 	[convertTask setLaunchPath:launchPath];
-	
-	NSArray *argumentArray = [NSArray arrayWithObjects:
-		@"-af", @"volume=13:1",
-		@"-of", @"lavf",
-		@"-lavfopts", @"i_certify_that_my_video_stream_does_not_use_b_frames",
-		@"-demuxer", @"lavf",
-		@"-lavfdopts", @"probesize=128",
-		@"-oac", @"lavc",
-		@"-ovc", @"lavc",
-		@"-lavcopts", @"keyint=15:aglobal=1:vglobal=1:coder=1:vcodec=mpeg4:acodec=aac:vbitrate=1800:abitrate=128",
-		@"-vf", @"pp=lb,scale=640:480,harddup",
-		@"-o", convertPath,
-		decodePath,
-		nil
-	];
-	INFO( @"convert task arguments:\n%@", [argumentArray description] );
-	[convertTask setArguments:argumentArray];
+
+	INFO( @"convert task arguments:\n%@", [arguments description] );
+	[convertTask setArguments:arguments];
 
 	[[NSNotificationCenter defaultCenter]
 		addObserver:self

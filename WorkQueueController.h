@@ -34,6 +34,13 @@ typedef enum {
 	WQRecordedDateOrder
 } WQDateOrder;
 
+typedef enum {
+	WQArgumentNone = 0,
+	WQArgumentMAK,
+	WQArgumentInputFile,
+	WQArgumentOutputFile
+} WQArgumentSubstitutionValue;
+
 #define WQAddedDateString		@"addedDate"
 #define WQRecordedDateString	@"recordedDate"
 
@@ -94,6 +101,10 @@ typedef enum {
 @end
 
 @interface WorkQueueController (Workflows)
+
++ (NSDictionary *)workflowDefaults;
+
+- (NSString *)stringForSubstitutionValue:(WQArgumentSubstitutionValue)substitutionValue atStage:(WQDownloadAction)actionStage;
 
 - (void)beginDownload;
 - (void)setupDownloadPath;

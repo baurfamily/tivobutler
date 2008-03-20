@@ -14,8 +14,12 @@ static BOOL loaded = NO;
 
 + (void)initialize 
 {
+	ENTRY;
 	NSUserDefaultsController *defaults = [NSUserDefaultsController sharedUserDefaultsController];
-	[defaults setInitialValues:[NSDictionary dictionaryWithObjectsAndKeys:
+	NSMutableDictionary *tempDefaults = [[self workflowDefaults] mutableCopy];
+
+	[tempDefaults addEntriesFromDictionary:
+		[NSDictionary dictionaryWithObjectsAndKeys:
 			@"~/Downloads/",									@"downloadFolder",
 			[NSNumber numberWithBool:YES],						@"createSeriesSubFolders",
 			[NSNumber numberWithInt:WQDownloadOnlyAction],		@"downloadAction",
@@ -28,6 +32,8 @@ static BOOL loaded = NO;
 			nil
 		]
 	];
+	
+	[defaults setInitialValues:tempDefaults];
 }
 
 + (NSSet *)keyPathsForValuesAffectingValueForKey:(NSString *)key
