@@ -20,15 +20,15 @@ static BOOL loaded = NO;
 
 	[tempDefaults addEntriesFromDictionary:
 		[NSDictionary dictionaryWithObjectsAndKeys:
-			@"~/Downloads/",									@"downloadFolder",
-			[NSNumber numberWithBool:YES],						@"createSeriesSubFolders",
-			[NSNumber numberWithInt:WQDownloadOnlyAction],		@"downloadAction",
-			[NSNumber numberWithInt:WQAddedDateOrder],			@"downloadOrder",
-			[NSNumber numberWithBool:YES],						@"restartDownloads",
-			[NSNumber numberWithBool:NO],						@"cancelDownloadsOnStartup",
-			[NSNumber numberWithBool:NO],						@"restrictDownloadTimes",
-			[NSNumber numberWithInt:WQPromptOverwriteAction],	@"overwriteAction",
-			[NSNumber numberWithInt:60],						@"downloadCheckInterval",
+			@"~/Downloads/",										@"downloadFolder",
+			[NSNumber numberWithBool:YES],							@"createSeriesSubFolders",
+			[NSNumber numberWithInt:WQDownloadOnlyAction],			@"downloadAction",
+			[NSNumber numberWithInt:WQAddedDateOrder],				@"downloadOrder",
+			[NSNumber numberWithBool:YES],							@"restartDownloads",
+			[NSNumber numberWithBool:NO],							@"cancelDownloadsOnStartup",
+			[NSNumber numberWithBool:NO],							@"restrictDownloadTimes",
+			[NSNumber numberWithInt:WQFileExistsChangeNameAction],	@"fileExistsAction",
+			[NSNumber numberWithInt:60],							@"downloadCheckInterval",
 			nil
 		]
 	];
@@ -63,7 +63,6 @@ static BOOL loaded = NO;
 	} else {
 		returnSet = [NSSet set];
 	}
-	//RETURN( @"looked at key: %@\n%@", key, [returnSet description] );
 	return returnSet;
 }
 
@@ -267,25 +266,51 @@ static BOOL loaded = NO;
 			hitError = YES;
 		}
 		
+		//- if we still couldn't create the path, fall back to just the name
 		if ( hitError ) {
-			pathString = [NSString stringWithFormat:@"%@/%@", beginningPath, currentItem.program.title];
+			pathString = [
+				[NSString stringWithFormat:@"%@/%@", folder, currentItem.program.title] stringByExpandingTildeInPath
+			];
 		} else {
 			pathString = [
-				[NSString stringWithFormat:@"%@/%@",
-					beginningPath,
-					currentItem.program.title
-				]
-				stringByExpandingTildeInPath
+				[NSString stringWithFormat:@"%@/%@", beginningPath, currentItem.program.title] stringByExpandingTildeInPath
 			];
 		}
 	} else {
 		pathString = [
-			[NSString stringWithFormat:@"%@/%@",
-				folder,
-				currentItem.program.title
-			]
-			stringByExpandingTildeInPath
+			[NSString stringWithFormat:@"%@/%@", folder, currentItem.program.title] stringByExpandingTildeInPath
 		];
+	}
+	
+	NSFileManager *fileManager = [NSFileManager defaultManager];
+	
+	if ( [fileManager fileExistsAtPath:[pathString stringByAppendingString:@".tivo"] ]
+		|| [fileManager fileExistsAtPath:[pathString stringByAppendingString:@".mpg"] ]
+		|| [fileManager fileExistsAtPath:[pathString stringByAppendingString:@".mp4"] ]
+	) {
+		WQFileExistsAction fileExistsAction = [[[defaults valueForKey:@"values"] valueForKey:@"fileExistsAction"] intValue];
+		
+		int i = 0;
+		NSString *testPath = [pathString copy];
+		
+		switch ( fileExistsAction ) {
+			case WQFileExistsFailAction:
+				pathString = nil;
+				break;
+			case WQFileExistsOverwriteAction:
+				//- existing path string is fine
+				break;
+			case WQFileExistsChangeNameAction:
+			//default:
+				while ( [fileManager fileExistsAtPath:[pathString stringByAppendingString:@".tivo"] ]
+					|| [fileManager fileExistsAtPath:[pathString stringByAppendingString:@".mpg"] ]
+					|| [fileManager fileExistsAtPath:[pathString stringByAppendingString:@".mp4"] ]
+				) {
+					i++;
+					pathString = [testPath stringByAppendingFormat:@"-%d", i];
+				}
+				break;
+		}
 	}
 	return pathString;
 }

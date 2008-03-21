@@ -111,6 +111,12 @@
 		[self completeWithMessage:@"Failed"];
 		return;
 	}
+	NSString *endingPath = [self endingFilePath];
+	if ( !endingPath ) {
+		WARNING( @"no valid file path, probably set to fail in preferences" );
+		[self completeWithMessage:@"File exists"];
+		return;
+	}
 	switch ( finalAction ) {
 		case WQConvertAction:
 			downloadPath = [[NSString pathWithComponents:
@@ -119,23 +125,23 @@
 			decodePath = [[NSString pathWithComponents:
 				[NSArray arrayWithObjects:tempDirectory, [NSString stringWithFormat:@"%@.mpg", programID], nil ]
 			] retain];
-			convertPath = [[NSString stringWithFormat:@"%@.mp4", [self endingFilePath]] retain];
+			convertPath = [[NSString stringWithFormat:@"%@.mp4", endingPath] retain];
 			break;
 		case WQDecodeAction:
 			downloadPath = [[NSString pathWithComponents:
 				[NSArray arrayWithObjects:tempDirectory, [NSString stringWithFormat:@"%@.tivo", programID], nil ]
 			] retain];
-			decodePath = [[NSString stringWithFormat:@"%@.mpg", [self endingFilePath]] retain];
+			decodePath = [[NSString stringWithFormat:@"%@.mpg", endingPath] retain];
 			convertPath = nil;
 			break;
 		case WQDownloadOnlyAction:
-			downloadPath = [[NSString stringWithFormat:@"%@.tivo", [self endingFilePath]] retain];
+			downloadPath = [[NSString stringWithFormat:@"%@.tivo", endingPath] retain];
 			decodePath = nil;
 			convertPath = nil;
 			break;
 		default:
 			WARNING( @"no download action set, downloading only" );
-			downloadPath = [[NSString stringWithFormat:@"%@.tivo", [self endingFilePath]] retain];
+			downloadPath = [[NSString stringWithFormat:@"%@.tivo", endingPath] retain];
 			decodePath = nil;
 			convertPath = nil;
 			break;

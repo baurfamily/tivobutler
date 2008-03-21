@@ -24,10 +24,10 @@ typedef enum {
 } WQDownloadAction;
 
 typedef enum {
-	WQPromptOverwriteAction = 0,
-	WQDontOverwriteAction,
-	WQDoOverwriteAction
-} WQOverwriteAction;
+	WQFileExistsChangeNameAction = 0,
+	WQFileExistsFailAction,
+	WQFileExistsOverwriteAction
+} WQFileExistsAction;
 
 typedef enum {
 	WQAddedDateOrder = 0,
