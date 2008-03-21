@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3F0FD9220D8B847A00F9C7E2 /* SmartGroup.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F0FD9210D8B847A00F9C7E2 /* SmartGroup.m */; };
+		3F0FD9E40D8C0A3F00F9C7E2 /* PredicateTesting.nib in Resources */ = {isa = PBXBuildFile; fileRef = 3F0FD9E30D8C0A3F00F9C7E2 /* PredicateTesting.nib */; };
 		3F44C4A30D4453F800F0F6F4 /* Folder.tif in Resources */ = {isa = PBXBuildFile; fileRef = 3F44C4970D4453F800F0F6F4 /* Folder.tif */; };
 		3F44C4A40D4453F800F0F6F4 /* highlight_blue.tiff in Resources */ = {isa = PBXBuildFile; fileRef = 3F44C4980D4453F800F0F6F4 /* highlight_blue.tiff */; };
 		3F44C4A50D4453F800F0F6F4 /* highlight_grey.tiff in Resources */ = {isa = PBXBuildFile; fileRef = 3F44C4990D4453F800F0F6F4 /* highlight_grey.tiff */; };
@@ -18,8 +20,9 @@
 		3F44D8460D53042F00DA286E /* CalypsoXMLParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F44D8450D53042F00DA286E /* CalypsoXMLParser.m */; };
 		3F6A88FB0D53472300212FBA /* TiVoProgram.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F6A88F90D53472300212FBA /* TiVoProgram.m */; };
 		3F8E37E60D4D52AA009B89B3 /* LibraryController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F8E37E40D4D52AA009B89B3 /* LibraryController.m */; };
-		3F8E38A90D4DA62E009B89B3 /* BHLogger.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3F8E38A80D4DA2E8009B89B3 /* BHLogger.framework */; };
-		3F8E38AC0D4DA644009B89B3 /* BHLogger.framework in Copy Frameworks */ = {isa = PBXBuildFile; fileRef = 3F8E38A80D4DA2E8009B89B3 /* BHLogger.framework */; };
+		3FB8E0FF0D8EC3CD008BD58C /* BHLogger.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3FB8E0FE0D8EC3CD008BD58C /* BHLogger.framework */; };
+		3FB8E1070D8EC3D0008BD58C /* BHLogger.framework in Copy Frameworks */ = {isa = PBXBuildFile; fileRef = 3FB8E0FE0D8EC3CD008BD58C /* BHLogger.framework */; };
+		3FB8E11E0D900577008BD58C /* WorkQueueController_Workflows.m in Sources */ = {isa = PBXBuildFile; fileRef = 3FB8E11D0D900577008BD58C /* WorkQueueController_Workflows.m */; };
 		3FCB2D190D8265BD00C2B5BD /* mencoder in Copy Executables */ = {isa = PBXBuildFile; fileRef = 3FCB2D170D8265BD00C2B5BD /* mencoder */; };
 		3FCB2D1A0D8265BD00C2B5BD /* tivodecode in Copy Executables */ = {isa = PBXBuildFile; fileRef = 3FCB2D180D8265BD00C2B5BD /* tivodecode */; };
 		3FCB2ED90D845C9400C2B5BD /* TiVoButler.icns in Resources */ = {isa = PBXBuildFile; fileRef = 3FCB2ED80D845C9400C2B5BD /* TiVoButler.icns */; };
@@ -27,6 +30,10 @@
 		3FF63FE00D5663DF00F2EAD9 /* EntityHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 3FF63FDF0D5663DF00F2EAD9 /* EntityHelper.m */; };
 		3FF645230D5B05FA00F2EAD9 /* WorkQueueController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3FF645220D5B05FA00F2EAD9 /* WorkQueueController.m */; };
 		3FF645260D5B09D000F2EAD9 /* WorkQueueItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 3FF645250D5B09D000F2EAD9 /* WorkQueueItem.m */; };
+		3FF708640D89F0650041CEAE /* WorkQueueDisplayController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3FF708630D89F0650041CEAE /* WorkQueueDisplayController.m */; };
+		3FF708670D89F1780041CEAE /* WorkQueue.nib in Resources */ = {isa = PBXBuildFile; fileRef = 3FF708660D89F1780041CEAE /* WorkQueue.nib */; };
+		3FF70A170D8B4E240041CEAE /* PreferencesDisplayController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3FF70A160D8B4E240041CEAE /* PreferencesDisplayController.m */; };
+		3FF70A270D8B50010041CEAE /* Preferences.nib in Resources */ = {isa = PBXBuildFile; fileRef = 3FF70A260D8B50010041CEAE /* Preferences.nib */; };
 		3FF850420D71D56600BA2628 /* PredicateTesting.m in Sources */ = {isa = PBXBuildFile; fileRef = 3FF850410D71D56600BA2628 /* PredicateTesting.m */; };
 		770B37ED0679A11B001EADE2 /* TiVo_Butler_DataModel.xcdatamodel in Sources */ = {isa = PBXBuildFile; fileRef = 770B37EC0679A11B001EADE2 /* TiVo_Butler_DataModel.xcdatamodel */; };
 		77C8280E06725ACE000B614F /* TiVo_Butler_AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 77C8280C06725ACE000B614F /* TiVo_Butler_AppDelegate.m */; };
@@ -36,23 +43,6 @@
 		8D11072F0486CEB800E47090 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */; };
 /* End PBXBuildFile section */
 
-/* Begin PBXContainerItemProxy section */
-		3F8E38A50D4DA2E8009B89B3 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 3F8E389D0D4DA2E8009B89B3 /* BHLogging.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 8D1107320486CEB800E47090;
-			remoteInfo = "BHLog Viewer";
-		};
-		3F8E38A70D4DA2E8009B89B3 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 3F8E389D0D4DA2E8009B89B3 /* BHLogging.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 3F6991C30B0EC21B007910F7;
-			remoteInfo = BHLogger;
-		};
-/* End PBXContainerItemProxy section */
-
 /* Begin PBXCopyFilesBuildPhase section */
 		3F8E38C20D4DA684009B89B3 /* Copy Frameworks */ = {
 			isa = PBXCopyFilesBuildPhase;
@@ -60,7 +50,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				3F8E38AC0D4DA644009B89B3 /* BHLogger.framework in Copy Frameworks */,
+				3FB8E1070D8EC3D0008BD58C /* BHLogger.framework in Copy Frameworks */,
 			);
 			name = "Copy Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -87,6 +77,9 @@
 		29B97324FDCFA39411CA2CEA /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = /System/Library/Frameworks/AppKit.framework; sourceTree = "<absolute>"; };
 		29B97325FDCFA39411CA2CEA /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = /System/Library/Frameworks/Foundation.framework; sourceTree = "<absolute>"; };
 		32CA4F630368D1EE00C91783 /* TiVo_Butler_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TiVo_Butler_Prefix.pch; sourceTree = "<group>"; };
+		3F0FD9200D8B847A00F9C7E2 /* SmartGroup.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SmartGroup.h; sourceTree = "<group>"; };
+		3F0FD9210D8B847A00F9C7E2 /* SmartGroup.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SmartGroup.m; sourceTree = "<group>"; };
+		3F0FD9E30D8C0A3F00F9C7E2 /* PredicateTesting.nib */ = {isa = PBXFileReference; lastKnownFileType = wrapper.nib; path = PredicateTesting.nib; sourceTree = "<group>"; };
 		3F44C4970D4453F800F0F6F4 /* Folder.tif */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = Folder.tif; sourceTree = "<group>"; };
 		3F44C4980D4453F800F0F6F4 /* highlight_blue.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = highlight_blue.tiff; sourceTree = "<group>"; };
 		3F44C4990D4453F800F0F6F4 /* highlight_grey.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = highlight_grey.tiff; sourceTree = "<group>"; };
@@ -105,7 +98,8 @@
 		3F6A88FA0D53472300212FBA /* TiVoProgram.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TiVoProgram.h; sourceTree = "<group>"; };
 		3F8E37E40D4D52AA009B89B3 /* LibraryController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LibraryController.m; sourceTree = "<group>"; };
 		3F8E37E50D4D52AA009B89B3 /* LibraryController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LibraryController.h; sourceTree = "<group>"; };
-		3F8E389D0D4DA2E8009B89B3 /* BHLogging.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = BHLogging.xcodeproj; path = BHLogging/BHLogging.xcodeproj; sourceTree = "<group>"; };
+		3FB8E0FE0D8EC3CD008BD58C /* BHLogger.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = BHLogger.framework; sourceTree = "<group>"; };
+		3FB8E11D0D900577008BD58C /* WorkQueueController_Workflows.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WorkQueueController_Workflows.m; sourceTree = "<group>"; };
 		3FCB2D170D8265BD00C2B5BD /* mencoder */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.executable"; path = mencoder; sourceTree = "<group>"; };
 		3FCB2D180D8265BD00C2B5BD /* tivodecode */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.executable"; path = tivodecode; sourceTree = "<group>"; };
 		3FCB2ED80D845C9400C2B5BD /* TiVoButler.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = TiVoButler.icns; sourceTree = "<group>"; };
@@ -117,6 +111,12 @@
 		3FF645220D5B05FA00F2EAD9 /* WorkQueueController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WorkQueueController.m; sourceTree = "<group>"; };
 		3FF645240D5B09D000F2EAD9 /* WorkQueueItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WorkQueueItem.h; sourceTree = "<group>"; };
 		3FF645250D5B09D000F2EAD9 /* WorkQueueItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WorkQueueItem.m; sourceTree = "<group>"; };
+		3FF708620D89F0650041CEAE /* WorkQueueDisplayController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WorkQueueDisplayController.h; sourceTree = "<group>"; };
+		3FF708630D89F0650041CEAE /* WorkQueueDisplayController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WorkQueueDisplayController.m; sourceTree = "<group>"; };
+		3FF708660D89F1780041CEAE /* WorkQueue.nib */ = {isa = PBXFileReference; lastKnownFileType = wrapper.nib; path = WorkQueue.nib; sourceTree = "<group>"; };
+		3FF70A150D8B4E240041CEAE /* PreferencesDisplayController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PreferencesDisplayController.h; sourceTree = "<group>"; };
+		3FF70A160D8B4E240041CEAE /* PreferencesDisplayController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PreferencesDisplayController.m; sourceTree = "<group>"; };
+		3FF70A260D8B50010041CEAE /* Preferences.nib */ = {isa = PBXFileReference; lastKnownFileType = wrapper.nib; path = Preferences.nib; sourceTree = "<group>"; };
 		3FF850400D71D56600BA2628 /* PredicateTesting.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PredicateTesting.h; sourceTree = "<group>"; };
 		3FF850410D71D56600BA2628 /* PredicateTesting.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PredicateTesting.m; sourceTree = "<group>"; };
 		770B37EC0679A11B001EADE2 /* TiVo_Butler_DataModel.xcdatamodel */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = wrapper.xcdatamodel; path = TiVo_Butler_DataModel.xcdatamodel; sourceTree = "<group>"; };
@@ -132,8 +132,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3F8E38A90D4DA62E009B89B3 /* BHLogger.framework in Frameworks */,
 				8D11072F0486CEB800E47090 /* Cocoa.framework in Frameworks */,
+				3FB8E0FF0D8EC3CD008BD58C /* BHLogger.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -148,6 +148,10 @@
 				3F44D8450D53042F00DA286E /* CalypsoXMLParser.m */,
 				3F8E37E40D4D52AA009B89B3 /* LibraryController.m */,
 				77C8280C06725ACE000B614F /* TiVo_Butler_AppDelegate.m */,
+				3FF70A160D8B4E240041CEAE /* PreferencesDisplayController.m */,
+				3FF645220D5B05FA00F2EAD9 /* WorkQueueController.m */,
+				3FB8E11D0D900577008BD58C /* WorkQueueController_Workflows.m */,
+				3FF708630D89F0650041CEAE /* WorkQueueDisplayController.m */,
 			);
 			name = Classes;
 			sourceTree = "<group>";
@@ -181,7 +185,6 @@
 		29B97314FDCFA39411CA2CEA /* TiVo Butler */ = {
 			isa = PBXGroup;
 			children = (
-				3F8E389D0D4DA2E8009B89B3 /* BHLogging.xcodeproj */,
 				7756732906782D8800D1FEB8 /* Models */,
 				3F44C4960D4453F800F0F6F4 /* SourceListView */,
 				3FCB2D130D817D4A00C2B5BD /* Entities */,
@@ -211,6 +214,9 @@
 				8D1107310486CEB800E47090 /* Info.plist */,
 				089C165CFE840E0CC02AAC07 /* InfoPlist.strings */,
 				29B97318FDCFA39411CA2CEA /* MainMenu.nib */,
+				3F0FD9E30D8C0A3F00F9C7E2 /* PredicateTesting.nib */,
+				3FF70A260D8B50010041CEAE /* Preferences.nib */,
+				3FF708660D89F1780041CEAE /* WorkQueue.nib */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -218,6 +224,7 @@
 		29B97323FDCFA39411CA2CEA /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				3FB8E0FE0D8EC3CD008BD58C /* BHLogger.framework */,
 				1058C7A0FEA54F0111CA2CBB /* Linked Frameworks */,
 				1058C7A2FEA54F0111CA2CBB /* Other Frameworks */,
 			);
@@ -248,19 +255,13 @@
 			children = (
 				3FF850400D71D56600BA2628 /* PredicateTesting.h */,
 				3F8E37E50D4D52AA009B89B3 /* LibraryController.h */,
-				77C8280B06725ACE000B614F /* TiVo_Butler_AppDelegate.h */,
 				3F44D8440D53042F00DA286E /* CalypsoXMLParser.h */,
+				77C8280B06725ACE000B614F /* TiVo_Butler_AppDelegate.h */,
+				3FF70A150D8B4E240041CEAE /* PreferencesDisplayController.h */,
+				3FF645210D5B05FA00F2EAD9 /* WorkQueueController.h */,
+				3FF708620D89F0650041CEAE /* WorkQueueDisplayController.h */,
 			);
 			name = Headers;
-			sourceTree = "<group>";
-		};
-		3F8E389E0D4DA2E8009B89B3 /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				3F8E38A60D4DA2E8009B89B3 /* BHLog Viewer.app */,
-				3F8E38A80D4DA2E8009B89B3 /* BHLogger.framework */,
-			);
-			name = Products;
 			sourceTree = "<group>";
 		};
 		3FCB2D130D817D4A00C2B5BD /* Entities */ = {
@@ -268,9 +269,9 @@
 			children = (
 				3FCB2D140D817D6200C2B5BD /* Headers */,
 				3FF63FDF0D5663DF00F2EAD9 /* EntityHelper.m */,
+				3F0FD9210D8B847A00F9C7E2 /* SmartGroup.m */,
 				3FE3C8F40D3DD46C00D5105A /* TiVoPlayer.m */,
 				3F6A88F90D53472300212FBA /* TiVoProgram.m */,
-				3FF645220D5B05FA00F2EAD9 /* WorkQueueController.m */,
 				3FF645250D5B09D000F2EAD9 /* WorkQueueItem.m */,
 			);
 			name = Entities;
@@ -280,9 +281,9 @@
 			isa = PBXGroup;
 			children = (
 				3FF63FDE0D5663DF00F2EAD9 /* EntityHelper.h */,
+				3F0FD9200D8B847A00F9C7E2 /* SmartGroup.h */,
 				3FE3C8F30D3DD46C00D5105A /* TiVoPlayer.h */,
 				3F6A88FA0D53472300212FBA /* TiVoProgram.h */,
-				3FF645210D5B05FA00F2EAD9 /* WorkQueueController.h */,
 				3FF645240D5B09D000F2EAD9 /* WorkQueueItem.h */,
 			);
 			name = Headers;
@@ -348,35 +349,12 @@
 			hasScannedForEncodings = 1;
 			mainGroup = 29B97314FDCFA39411CA2CEA /* TiVo Butler */;
 			projectDirPath = "";
-			projectReferences = (
-				{
-					ProductGroup = 3F8E389E0D4DA2E8009B89B3 /* Products */;
-					ProjectRef = 3F8E389D0D4DA2E8009B89B3 /* BHLogging.xcodeproj */;
-				},
-			);
 			projectRoot = "";
 			targets = (
 				8D1107260486CEB800E47090 /* TiVo Butler */,
 			);
 		};
 /* End PBXProject section */
-
-/* Begin PBXReferenceProxy section */
-		3F8E38A60D4DA2E8009B89B3 /* BHLog Viewer.app */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.application;
-			path = "BHLog Viewer.app";
-			remoteRef = 3F8E38A50D4DA2E8009B89B3 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		3F8E38A80D4DA2E8009B89B3 /* BHLogger.framework */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.framework;
-			path = BHLogger.framework;
-			remoteRef = 3F8E38A70D4DA2E8009B89B3 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-/* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
 		8D1107290486CEB800E47090 /* Resources */ = {
@@ -390,6 +368,9 @@
 				3F44C4A50D4453F800F0F6F4 /* highlight_grey.tiff in Resources */,
 				3F44C4A60D4453F800F0F6F4 /* License.txt in Resources */,
 				3FCB2ED90D845C9400C2B5BD /* TiVoButler.icns in Resources */,
+				3FF708670D89F1780041CEAE /* WorkQueue.nib in Resources */,
+				3FF70A270D8B50010041CEAE /* Preferences.nib in Resources */,
+				3F0FD9E40D8C0A3F00F9C7E2 /* PredicateTesting.nib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -415,6 +396,10 @@
 				3FF645230D5B05FA00F2EAD9 /* WorkQueueController.m in Sources */,
 				3FF645260D5B09D000F2EAD9 /* WorkQueueItem.m in Sources */,
 				3FF850420D71D56600BA2628 /* PredicateTesting.m in Sources */,
+				3FF708640D89F0650041CEAE /* WorkQueueDisplayController.m in Sources */,
+				3FF70A170D8B4E240041CEAE /* PreferencesDisplayController.m in Sources */,
+				3F0FD9220D8B847A00F9C7E2 /* SmartGroup.m in Sources */,
+				3FB8E11E0D900577008BD58C /* WorkQueueController_Workflows.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -444,6 +429,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				COPY_PHASE_STRIP = NO;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)\"",
+				);
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_ENABLE_FIX_AND_CONTINUE = YES;
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
@@ -463,6 +452,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)\"",
+				);
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
 				GCC_MODEL_TUNING = G5;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
