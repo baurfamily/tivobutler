@@ -272,15 +272,6 @@
 			[arguments addObject:tempString];
 		}
 	}
-/*	NSArray *argumentArray = [NSArray arrayWithObjects:
-		@"--no-verify",	//- makes it faster?
-		//@"--verbose",	//- prints out progress
-		@"--mak",	[currentItem valueForKeyPath:@"program.player.mediaAccessKey"],
-		@"--out",	decodePath,
-		downloadPath,
-		nil
-	];
-*/
 	INFO( @"decode task arguments:\n%@", [arguments description] );
 	[decodeTask setArguments:arguments];
 	
