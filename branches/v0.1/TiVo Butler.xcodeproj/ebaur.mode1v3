@@ -382,7 +382,7 @@
 										<key>_historyCapacity</key>
 										<integer>0</integer>
 										<key>bookmark</key>
-										<string>3FB7F5D30D936ABB00D97046</string>
+										<string>3FB7F7020D93FD7100D97046</string>
 										<key>history</key>
 										<array>
 											<string>3F8E38500D4DA080009B89B3</string>
@@ -414,7 +414,7 @@
 											<string>3FB7F5830D92B93C00D97046</string>
 											<string>3FB7F5A90D9367FE00D97046</string>
 											<string>3FB7F5C90D93694E00D97046</string>
-											<string>3FB7F5C50D93690900D97046</string>
+											<string>3FB7F6CE0D937AC000D97046</string>
 										</array>
 										<key>prevStack</key>
 										<array>
@@ -447,10 +447,6 @@
 											<string>3FB8E03A0D8EA51D008BD58C</string>
 											<string>3FB8E1620D901140008BD58C</string>
 											<string>3FB8E1E70D9155FA008BD58C</string>
-											<string>3FB7F5890D92B93C00D97046</string>
-											<string>3FB7F5AD0D9367FE00D97046</string>
-											<string>3FB7F5AE0D9367FE00D97046</string>
-											<string>3FB7F5AF0D9367FE00D97046</string>
 											<string>3FB7F5C60D93690900D97046</string>
 											<string>3FB7F5CA0D93694E00D97046</string>
 										</array>
@@ -510,9 +506,9 @@
 			</array>
 			<key>TableOfContents</key>
 			<array>
-				<string>3FB7F5970D93664D00D97046</string>
+				<string>3FB7F7030D93FD7100D97046</string>
 				<string>1CE0B1FE06471DED0097A5F4</string>
-				<string>3FB7F5980D93664D00D97046</string>
+				<string>3FB7F7040D93FD7100D97046</string>
 				<string>1CE0B20306471E060097A5F4</string>
 				<string>1CE0B20506471E060097A5F4</string>
 			</array>
@@ -646,7 +642,7 @@
 	<key>StatusbarIsVisible</key>
 	<true/>
 	<key>TimeStamp</key>
-	<real>227764923.30800301</real>
+	<real>227802479.640654</real>
 	<key>ToolbarDisplayMode</key>
 	<integer>2</integer>
 	<key>ToolbarIsVisible</key>
@@ -661,14 +657,7 @@
 	<integer>5</integer>
 	<key>WindowOrderList</key>
 	<array>
-		<string>3FB7F5D40D936ABB00D97046</string>
-		<string>3FB7F5D10D93698600D97046</string>
-		<string>3FB7F5B20D9367FE00D97046</string>
-		<string>3FB7F5B30D9367FE00D97046</string>
-		<string>1CD10A99069EF8BA00B06720</string>
-		<string>3FE3C8E10D3DD03300D5105A</string>
-		<string>1C78EAAD065D492600B07095</string>
-		<string>/Users/ebaur/Projects/Current Projects/TiVo Butler v0.1/TiVo Butler.xcodeproj</string>
+		<string>/Users/ebaur/Projects/Current Projects/TiVo Butler v1.0b/TiVo Butler.xcodeproj</string>
 	</array>
 	<key>WindowString</key>
 	<string>227 223 1061 925 0 0 1920 1178 </string>
@@ -709,6 +698,8 @@
 							<string>400pt</string>
 						</dict>
 						<dict>
+							<key>BecomeActive</key>
+							<true/>
 							<key>ContentConfiguration</key>
 							<dict>
 								<key>PBXProjectModuleGUID</key>
@@ -748,7 +739,7 @@
 			<key>TableOfContents</key>
 			<array>
 				<string>3FE3C8E10D3DD03300D5105A</string>
-				<string>3FB7F59B0D93665200D97046</string>
+				<string>3FB7F6CA0D937A3B00D97046</string>
 				<string>1CD0528F0623707200166675</string>
 				<string>XCMainBuildResultsModuleGUID</string>
 			</array>
@@ -868,13 +859,13 @@
 			<key>TableOfContents</key>
 			<array>
 				<string>1CD10A99069EF8BA00B06720</string>
-				<string>3FB7F59D0D93676400D97046</string>
+				<string>3FB7F6D10D937AC000D97046</string>
 				<string>1C162984064C10D400B95A72</string>
-				<string>3FB7F59E0D93676400D97046</string>
-				<string>3FB7F59F0D93676400D97046</string>
-				<string>3FB7F5A00D93676400D97046</string>
-				<string>3FB7F5A10D93676400D97046</string>
-				<string>3FB7F5A20D93676400D97046</string>
+				<string>3FB7F6D20D937AC000D97046</string>
+				<string>3FB7F6D30D937AC000D97046</string>
+				<string>3FB7F6D40D937AC000D97046</string>
+				<string>3FB7F6D50D937AC000D97046</string>
+				<string>3FB7F6D60D937AC000D97046</string>
 			</array>
 			<key>ToolbarConfiguration</key>
 			<string>xcode.toolbar.config.debugV3</string>
