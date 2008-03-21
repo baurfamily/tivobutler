@@ -20,4 +20,5 @@
 - (IBAction)showWindow:(id)sender;
 - (IBAction)addSmartGroup:(id)sender;
 - (IBAction)predicateEditorChanged:(id)sender;
+
 @end

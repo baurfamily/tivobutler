@@ -93,11 +93,17 @@ static BOOL loaded = NO;
 	}
 	
 	int downloadCheckInterval = [[[defaults valueForKey:@"values"] valueForKey:@"downloadCheckInterval"] intValue];
-	downloadCheckTimer = [NSTimer scheduledTimerWithTimeInterval:( 60 * downloadCheckInterval )
+	downloadCheckTimer = [[NSTimer scheduledTimerWithTimeInterval:( 60 * downloadCheckInterval )
 		target:self
 		selector:@selector(checkForAutoDownloads)
 		userInfo:nil
 		repeats:YES
+	] retain];
+	
+	[defaults addObserver:self
+		forKeyPath:@"values.downloadCheckInterval" 
+		options:(NSKeyValueObservingOptionNew | NSKeyValueObservingOptionOld) 
+		context:NULL
 	];
 	
 	[self checkForAutoDownloads];
@@ -110,13 +116,12 @@ static BOOL loaded = NO;
 - (IBAction)addSelection:(id)sender
 {
 	ENTRY;
-	NSManagedObjectID *selectedProgramID = [[programArrayController selection] valueForKey:@"objectID"];
-	if ( ! selectedProgramID ) {
-		ERROR( @"could not find the selected items object ID\n%@", [programArrayController description] );
-	}
-	TiVoProgram *selectedProgram = (TiVoProgram *)[managedObjectContext objectWithID:selectedProgramID];
+	NSArray *selectedPrograms = [programArrayController selectedObjects];
 	
-	[self addPendingItemWithProgram:selectedProgram];
+	TiVoProgram *selectedProgram;
+	for ( selectedProgram in selectedPrograms ) {
+		[self addPendingItemWithProgram:selectedProgram];
+	}
 }
 
 - (IBAction)showWorkQueueWindow:(id)sender
@@ -391,6 +396,25 @@ static BOOL loaded = NO;
 		case WQDownloadOnlyAction:	RETURN( @"YES" );	return YES;		break;
 		default:					RETURN( @"NO" );	return NO;		break;
 	}
+}
+
+#pragma mark -
+#pragma mark Observer methods
+
+- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
+{
+	if ([keyPath isEqual:@"values.downloadCheckInterval"]) {
+			int downloadCheckInterval = [[object valueForKeyPath:keyPath] intValue];
+			[downloadCheckTimer invalidate];
+			[downloadCheckTimer release];
+			downloadCheckTimer = [[NSTimer scheduledTimerWithTimeInterval:( 60 * downloadCheckInterval )
+				target:self
+				selector:@selector(checkForAutoDownloads)
+				userInfo:nil
+				repeats:YES
+			] retain];
+			INFO( @"updated check timer interval to %d minutes", downloadCheckInterval );
+		}
 }
 
 @end
