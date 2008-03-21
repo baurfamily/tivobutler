@@ -186,7 +186,6 @@
 			isa = PBXGroup;
 			children = (
 				7756732906782D8800D1FEB8 /* Models */,
-				3F44C4960D4453F800F0F6F4 /* SourceListView */,
 				3FCB2D130D817D4A00C2B5BD /* Entities */,
 				080E96DDFE201D6D7F000001 /* Classes */,
 				29B97315FDCFA39411CA2CEA /* Other Sources */,
@@ -202,6 +201,7 @@
 		29B97315FDCFA39411CA2CEA /* Other Sources */ = {
 			isa = PBXGroup;
 			children = (
+				3F44C4960D4453F800F0F6F4 /* SourceListView */,
 				32CA4F630368D1EE00C91783 /* TiVo_Butler_Prefix.pch */,
 				29B97316FDCFA39411CA2CEA /* main.m */,
 			);
