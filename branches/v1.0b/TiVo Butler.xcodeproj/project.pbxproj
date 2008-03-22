@@ -20,8 +20,11 @@
 		3F44D8460D53042F00DA286E /* CalypsoXMLParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F44D8450D53042F00DA286E /* CalypsoXMLParser.m */; };
 		3F6A88FB0D53472300212FBA /* TiVoProgram.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F6A88F90D53472300212FBA /* TiVoProgram.m */; };
 		3F8E37E60D4D52AA009B89B3 /* LibraryController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F8E37E40D4D52AA009B89B3 /* LibraryController.m */; };
-		3FB8E0FF0D8EC3CD008BD58C /* BHLogger.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3FB8E0FE0D8EC3CD008BD58C /* BHLogger.framework */; };
-		3FB8E1070D8EC3D0008BD58C /* BHLogger.framework in Copy Frameworks */ = {isa = PBXBuildFile; fileRef = 3FB8E0FE0D8EC3CD008BD58C /* BHLogger.framework */; };
+		3FB7F7F00D94D32100D97046 /* Beta Tester Notes.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 3FB7F7ED0D94D32100D97046 /* Beta Tester Notes.rtf */; };
+		3FB7F7F10D94D32100D97046 /* GPL.txt in Resources */ = {isa = PBXBuildFile; fileRef = 3FB7F7EE0D94D32100D97046 /* GPL.txt */; };
+		3FB7F7F20D94D32100D97046 /* README.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 3FB7F7EF0D94D32100D97046 /* README.rtf */; };
+		3FB7F8240D94D71600D97046 /* BHLogger.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3FB8E0FE0D8EC3CD008BD58C /* BHLogger.framework */; };
+		3FB7F8270D94D74100D97046 /* BHLogger.framework in Copy Frameworks */ = {isa = PBXBuildFile; fileRef = 3FB8E0FE0D8EC3CD008BD58C /* BHLogger.framework */; };
 		3FB8E11E0D900577008BD58C /* WorkQueueController_Workflows.m in Sources */ = {isa = PBXBuildFile; fileRef = 3FB8E11D0D900577008BD58C /* WorkQueueController_Workflows.m */; };
 		3FCB2D190D8265BD00C2B5BD /* mencoder in Copy Executables */ = {isa = PBXBuildFile; fileRef = 3FCB2D170D8265BD00C2B5BD /* mencoder */; };
 		3FCB2D1A0D8265BD00C2B5BD /* tivodecode in Copy Executables */ = {isa = PBXBuildFile; fileRef = 3FCB2D180D8265BD00C2B5BD /* tivodecode */; };
@@ -50,7 +53,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				3FB8E1070D8EC3D0008BD58C /* BHLogger.framework in Copy Frameworks */,
+				3FB7F8270D94D74100D97046 /* BHLogger.framework in Copy Frameworks */,
 			);
 			name = "Copy Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -98,6 +101,9 @@
 		3F6A88FA0D53472300212FBA /* TiVoProgram.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TiVoProgram.h; sourceTree = "<group>"; };
 		3F8E37E40D4D52AA009B89B3 /* LibraryController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LibraryController.m; sourceTree = "<group>"; };
 		3F8E37E50D4D52AA009B89B3 /* LibraryController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LibraryController.h; sourceTree = "<group>"; };
+		3FB7F7ED0D94D32100D97046 /* Beta Tester Notes.rtf */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; path = "Beta Tester Notes.rtf"; sourceTree = "<group>"; };
+		3FB7F7EE0D94D32100D97046 /* GPL.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = GPL.txt; sourceTree = "<group>"; };
+		3FB7F7EF0D94D32100D97046 /* README.rtf */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; path = README.rtf; sourceTree = "<group>"; };
 		3FB8E0FE0D8EC3CD008BD58C /* BHLogger.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = BHLogger.framework; sourceTree = "<group>"; };
 		3FB8E11D0D900577008BD58C /* WorkQueueController_Workflows.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WorkQueueController_Workflows.m; sourceTree = "<group>"; };
 		3FCB2D170D8265BD00C2B5BD /* mencoder */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.executable"; path = mencoder; sourceTree = "<group>"; };
@@ -132,8 +138,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3FB7F8240D94D71600D97046 /* BHLogger.framework in Frameworks */,
 				8D11072F0486CEB800E47090 /* Cocoa.framework in Frameworks */,
-				3FB8E0FF0D8EC3CD008BD58C /* BHLogger.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -189,6 +195,7 @@
 				3FCB2D130D817D4A00C2B5BD /* Entities */,
 				080E96DDFE201D6D7F000001 /* Classes */,
 				29B97315FDCFA39411CA2CEA /* Other Sources */,
+				3FB7F7EC0D94D32100D97046 /* Documentation */,
 				29B97317FDCFA39411CA2CEA /* Resources */,
 				3FCB2ED70D845C9400C2B5BD /* Images */,
 				29B97323FDCFA39411CA2CEA /* Frameworks */,
@@ -262,6 +269,16 @@
 				3FF708620D89F0650041CEAE /* WorkQueueDisplayController.h */,
 			);
 			name = Headers;
+			sourceTree = "<group>";
+		};
+		3FB7F7EC0D94D32100D97046 /* Documentation */ = {
+			isa = PBXGroup;
+			children = (
+				3FB7F7ED0D94D32100D97046 /* Beta Tester Notes.rtf */,
+				3FB7F7EE0D94D32100D97046 /* GPL.txt */,
+				3FB7F7EF0D94D32100D97046 /* README.rtf */,
+			);
+			path = Documentation;
 			sourceTree = "<group>";
 		};
 		3FCB2D130D817D4A00C2B5BD /* Entities */ = {
@@ -371,6 +388,9 @@
 				3FF708670D89F1780041CEAE /* WorkQueue.nib in Resources */,
 				3FF70A270D8B50010041CEAE /* Preferences.nib in Resources */,
 				3F0FD9E40D8C0A3F00F9C7E2 /* PredicateTesting.nib in Resources */,
+				3FB7F7F00D94D32100D97046 /* Beta Tester Notes.rtf in Resources */,
+				3FB7F7F10D94D32100D97046 /* GPL.txt in Resources */,
+				3FB7F7F20D94D32100D97046 /* README.rtf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -451,17 +471,13 @@
 		26FC0A860875C7B200E6366F /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)\"",
 				);
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
-				GCC_MODEL_TUNING = G5;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = TiVo_Butler_Prefix.pch;
-				INFOPLIST_FILE = Info.plist;
-				INSTALL_PATH = "$(HOME)/Applications";
 				PRODUCT_NAME = "TiVo Butler";
 				WRAPPER_EXTENSION = app;
 			};

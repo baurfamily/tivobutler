@@ -512,7 +512,7 @@
 {
 	ENTRY;
 	NSString *mak = [currentItem valueForKeyPath:@"program.player.mediaAccessKey"];
-	DEBUG( @"using MAK: %@", mak );
+
 	if ( [challenge previousFailureCount] == 0 ) {
 		NSURLCredential *newCredential = [NSURLCredential
 			credentialWithUser:@"tivo"

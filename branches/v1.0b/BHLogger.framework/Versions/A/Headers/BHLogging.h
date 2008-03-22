@@ -29,7 +29,7 @@
 #define BHLoggerDebugColor		[NSColor blueColor]
 #define BHLoggerInfoColor		[NSColor grayColor]
 #define BHLoggerEntryColor		[NSColor greenColor]
-#define BHLoggerExitColor		[NSColor yellowColor]
+#define BHLoggerExitColor		[NSColor brownColor]
 
 #define ERROR(string,...)	[BHLogger log:[NSString stringWithFormat:string,##__VA_ARGS__] forObject:self method:_cmd filename:__FILE__ lineNumber:__LINE__ as:BHLoggerError];
 #define WARNING(string,...)	[BHLogger log:[NSString stringWithFormat:string,##__VA_ARGS__] forObject:self method:_cmd filename:__FILE__ lineNumber:__LINE__ as:BHLoggerWarning];
