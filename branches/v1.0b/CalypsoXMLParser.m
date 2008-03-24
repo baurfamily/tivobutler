@@ -29,7 +29,7 @@
 	
 	if (xmlParser) {
 		[xmlParser abortParsing];
-		xmlParser = nil;
+		[xmlParser release], xmlParser = nil;
 	}
 
 	DEBUG( @"creating XML Parser" );
@@ -40,10 +40,9 @@
 	[self disableCurrentPrograms];
 	
 	[xmlParser parse];
-	
-	DEBUG( @"releasing XML Parser" );
-	[xmlParser release];
-	xmlParser = nil;
+
+//	DEBUG( @"releasing XML Parser" );
+//	[xmlParser release], xmlParser = nil;
 }
 
 - (void)disableCurrentPrograms
@@ -61,7 +60,7 @@
 	NSString *key;
 	
 	//- check to see if the dictionary has "basic" information
-	if ( [tempDict objectForKey:@"programID"] == nil ) {
+	if ( programIDUsed || [tempDict objectForKey:@"programID"] == nil ) {
 		DEBUG( @"won't add program with nil programID" );
 		return;
 	}
@@ -93,18 +92,22 @@
 - (void)parser:(NSXMLParser *)parser didStartElement:(NSString *)elementName 
 	namespaceURI:(NSString *)namespaceURI qualifiedName:(NSString *)qName attributes:(NSDictionary *)attributeDict
 {
-	[tempValueString setString:@""];
+	//[tempValueString setString:@""];
+	[tempValueString release], tempValueString = nil;
  
 	if ( [elementName isEqualToString:TiVoPlayerItemTag] ) {
 		//- create a new dictionary and clear out the series info
-		tempDict = [NSMutableDictionary dictionary];
-		tempSeriesString = nil;
-		tempStationString = nil;
+		[tempDict release];
+		tempDict = [[NSMutableDictionary dictionary] retain];
+		programIDUsed = NO;
+		[tempSeriesString release], tempSeriesString = nil;
+		[tempStationString release], tempStationString = nil;
 		
 	} else if ( [elementName isEqualToString:CalypsoLastChangeDateTag] ) {
-		unsigned int timestamp;
-		[[NSScanner scannerWithString:tempValueString] scanHexInt:&timestamp]; 
-		player.dateLastUpdated = [NSDate dateWithTimeIntervalSince1970:timestamp];
+		//- this doesn't make sense...
+//		unsigned int timestamp;
+//		[[NSScanner scannerWithString:tempValueString] scanHexInt:&timestamp]; 
+//		player.dateLastUpdated = [NSDate dateWithTimeIntervalSince1970:timestamp];
 
 	} else if ( [elementName isEqualToString:CalypsoContentTag] ) {
 		contentFlag = YES;
@@ -129,10 +132,10 @@
 - (void)parser:(NSXMLParser *)parser didEndElement:(NSString *)elementName
 	namespaceURI:(NSString *)namespaceURI qualifiedName:(NSString *)qName
 {
-	//INFO( @"element %@ value: %@", elementName, [tempValueString copy] );
+	//INFO( @"element %@ value: %@", elementName, tempValueString );
 	
 	//- see if we have a valid dictionary to work with
-	if ( !tempDict ) return;
+	if ( !tempDict || programIDUsed ) return;
 		
 	//- check the element...
 	if ( [elementName isEqualToString:CalypsoItemTag] ) {
@@ -150,17 +153,17 @@
 					andChannel:[NSNumber numberWithInt:[tempValueString intValue]] ]
 				forKey:@"station"
 			];
-			tempStationString = nil;
+			[tempStationString release], tempStationString = nil;
 		} else {
-			tempStationString = [tempValueString copy];
+			tempStationString = [tempValueString retain];
 		}
 
 		
 	} else if ( [elementName isEqualToString:CalypsoSourceFormatTag] ) {
-		[tempDict setObject:[tempValueString copy] forKey:@"sourceFormat"];
+		[tempDict setObject:tempValueString forKey:@"sourceFormat"];
 				
 	} else if ( [elementName isEqualToString:CalypsoContentTypeTag] ) {
-		[tempDict setObject:[tempValueString copy] forKey:@"contentType"];
+		[tempDict setObject:tempValueString forKey:@"contentType"];
 		
 	} else if ( [elementName isEqualToString:CalypsoDurationTag] ) {
 		[tempDict setObject:[NSNumber numberWithInt:[tempValueString integerValue] ] forKey:@"duration"];
@@ -171,10 +174,10 @@
 		[tempDict setObject:[NSDate dateWithTimeIntervalSince1970:timestamp] forKey:@"captureDate"];
 		
 	} else if ( [elementName isEqualToString:CalypsoEpisodeTitleTag] ) {
-		[tempDict setObject:[tempValueString copy] forKey:@"title"];
+		[tempDict setObject:tempValueString forKey:@"title"];
 		
 	} else if ( [elementName isEqualToString:CalypsoDescriptionTag] ) {
-		[tempDict setObject:[tempValueString copy] forKey:@"programDescription"];
+		[tempDict setObject:tempValueString forKey:@"programDescription"];
 		
 	} else if ( [elementName isEqualToString:CalypsoSourceStationTag] ) {
 		if ( tempStationString ) {
@@ -184,19 +187,19 @@
 					andChannel:[NSNumber numberWithInt:[tempStationString intValue]] ]
 				forKey:@"station"
 			];
-			tempStationString = nil;
+			[tempStationString release], tempStationString = nil;
 		} else {
-			tempStationString = [tempValueString copy];
+			tempStationString = [tempValueString retain];
 		}
 		
 	} else if ( [elementName isEqualToString:CalypsoSeriesIDTag] ) {
 		if ( tempSeriesString ) {
 			//- since we have a tempSeriesString, this is the second piece of info we need check for adding a new one
 			[tempDict setObject:[self seriesWithIdentifier:tempValueString title:tempSeriesString] forKey:@"series"];
-			tempSeriesString = nil;
+			[tempSeriesString release], tempSeriesString = nil;
 		} else {
 			//- since we don't have a tempSeriesString, then we'll save this info for later
-			tempSeriesString = [tempValueString copy];
+			tempSeriesString = [tempValueString retain];
 		}
 		
 	} else if ( [elementName isEqualToString:CalypsoHighDefinitionTag] ) {
@@ -213,30 +216,32 @@
 		[tempDict setObject:[NSNumber numberWithInt:[tempValueString integerValue]] forKey:@"sourceSize"];
 
 	} else if ( [elementName isEqualToString:CalypsoProgramIDTag] ) {
-		[tempDict setObject:[tempValueString copy] forKey:@"programID"];
+		[tempDict setObject:tempValueString forKey:@"programID"];
 		if ( [self isProgramIDUsed:tempValueString] ) {
 			DEBUG( @"programID (%@) found", tempValueString );
 			//- this programID was already in use, so we'll nil it out
-			tempDict = nil;
+			programIDUsed = YES;
+			//[tempDict release];
+			//tempDict = nil;
 		}
 
 	} else if ( [elementName isEqualToString:CalypsoTitleTag] ) {
 		if ( tempSeriesString ) {
 			//- since we have a tempSeriesString, this is the second piece of info we need check for adding a new one
 			[tempDict setObject:[self seriesWithIdentifier:tempSeriesString title:tempValueString] forKey:@"series"];
-			tempSeriesString = nil;
+			[tempSeriesString release], tempSeriesString = nil;
 		} else {
 			//- since we don't have a tempSeriesString, then we'll save this info for later
-			tempSeriesString = [tempValueString copy];
+			tempSeriesString = [tempValueString retain];
 		}
 		if ( [tempDict valueForKey:@"title"] == nil ) {
 			//- since we don't already have a title, we'll use this title
 			//- ...this may be wrong (some assumption about order here)
-			[tempDict setObject:[tempValueString copy] forKey:@"title"];
+			[tempDict setObject:tempValueString forKey:@"title"];
 		}
 
 	} else if ( [elementName isEqualToString:CalypsoEpisodeNumberTag] ) {
-		[tempDict setObject:[tempValueString copy] forKey:@"episodeNumber"];
+		[tempDict setObject:tempValueString forKey:@"episodeNumber"];
 		
 	} else if ( [elementName isEqualToString:CalypsoCopyProtectedTag] ) {
 		if ( [tempValueString isEqualToString:@"Yes"] ) {
@@ -247,9 +252,9 @@
 		
 	} else if ( [elementName isEqualToString:CalypsoUrlTag] ) {
 		if ( contentFlag ) {
-			[tempDict setObject:[tempValueString copy] forKey:@"contentURL"];
+			[tempDict setObject:tempValueString forKey:@"contentURL"];
 		} else if ( videoDetailsFlag ) {
-			[tempDict setObject:[tempValueString copy] forKey:@"videoDetailsURL"];
+			[tempDict setObject:tempValueString forKey:@"videoDetailsURL"];
 		} else if ( customIconFlag ) {
 			//- don't know if this could change...
 			if ( [tempValueString isEqualTo:@"urn:tivo:image:in-progress-recording"] )
@@ -290,6 +295,10 @@
 		//- don't really care about Links right now
 	} else if ( [elementName isEqualToString:CalypsoDetailsTag] ) {
 		//- don't really care about Details right now
+	} else if ( [elementName isEqualToString:CalypsoLastChangeDateTag] ) {
+		unsigned int timestamp;
+		[[NSScanner scannerWithString:tempValueString] scanHexInt:&timestamp]; 
+		player.dateLastUpdated = [NSDate dateWithTimeIntervalSince1970:timestamp];
 	} else {
 		WARNING( @"[parser:didEndElement:...] no match for elementName: %@", [elementName copy] );
 	}
@@ -298,17 +307,15 @@
 - (void)parserDidEndDocument:(NSXMLParser *)parser
 {
 	EXIT;
-	[player release];
-	player = nil;
-	[managedObjectContext release];
-	managedObjectContext = nil;
+	[player release], player = nil;
+	[managedObjectContext release], managedObjectContext = nil;
+	[tempValueString release], tempValueString = nil;
 }
 
 - (void)parser:(NSXMLParser *)parser parseErrorOccurred:(NSError *)parseError
 {
 	ERROR( [parseError description] );
-	[tempValueString release];
-	tempValueString = nil;
+	[tempValueString release], tempValueString = nil;
 }
 
 
@@ -350,7 +357,7 @@
 - (NSManagedObject *)stationWithName:(NSString *)name andChannel:(NSNumber *)channel
 {
 	if ( nil==name || nil==channel ) NSLog ( @"bad!" );
-	NSError *error = [[NSError alloc] init];
+	NSError *error;// = [[NSError alloc] init];
 	
 	NSEntityDescription *entityDesc = [NSEntityDescription
 		entityForName:TiVoStationEntityName
@@ -401,7 +408,7 @@
 
 - (NSManagedObject *)seriesWithIdentifier:(NSString *)ident title:(NSString *)title
 {
-	NSError *error = [[NSError alloc] init];
+	NSError *error;// = [[NSError alloc] init];
 	
 	NSEntityDescription *entityDesc = [NSEntityDescription
 		entityForName:TiVoSeriesEntityName
@@ -443,6 +450,21 @@
 	}
 	ERROR( @"shouldn't have gotten to this point!" );
 	return nil;
+}
+
+- (void)dealloc
+{
+	[managedObjectContext release], managedObjectContext = nil;
+	[xmlParser release], xmlParser = nil;
+
+	[player release], player = nil;
+	
+	[tempValueString release], tempValueString = nil;
+	[tempSeriesString release], tempSeriesString = nil;
+	[tempStationString release], tempStationString = nil;
+	
+	[tempDict release], tempDict = nil;
+	[super dealloc];
 }
 
 @end

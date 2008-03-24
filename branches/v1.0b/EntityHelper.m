@@ -41,7 +41,7 @@ static NSManagedObjectContext *managedObjectContext;
 
 + (NSArray *)arrayOfEntityWithName:(NSString *)entityString usingPredicate:(NSPredicate *)predicate withSortKeys:(NSArray *)sortKeys
 {
-	NSError *error = [[[NSError alloc] init] autorelease];
+	NSError *error;// = [[[NSError alloc] init] autorelease];
 
 	//- check to see if we have a context to work with
 	if (!managedObjectContext) {
@@ -69,7 +69,7 @@ static NSManagedObjectContext *managedObjectContext;
 	NSFetchRequest *request = [[[NSFetchRequest alloc] init] autorelease];
 	[request setEntity:entityDesc];
 	[request setPredicate:predicate];
-	[request setSortDescriptors:[descriptorArray copy] ];
+	[request setSortDescriptors:descriptorArray];
 	
 	//DEBUG( @"Executing: %@", [request description] );
 	NSArray *array = [managedObjectContext executeFetchRequest:request error:&error];

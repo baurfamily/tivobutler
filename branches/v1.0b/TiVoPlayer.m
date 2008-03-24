@@ -50,7 +50,7 @@
 	if (urlConnection) {
 		WARNING( @"already connected" );
 		[urlConnection cancel];
-		urlConnection = nil;
+		[urlConnection release], urlConnection = nil;
 	}
 	
 	[self setDateLastChecked:[NSDate date] ];
@@ -120,6 +120,7 @@
 	[self setPrimitiveCheckInterval:value];
 
 	[checkTimer invalidate];
+	[checkTimer release];
 	checkTimer = [[NSTimer
 		scheduledTimerWithTimeInterval:(60 * [self.checkInterval intValue])
 		target:self
@@ -138,11 +139,11 @@
 {
 	ENTRY;
 	if ( [challenge previousFailureCount] == 0 ) {
-		NSURLCredential *newCredential = [NSURLCredential
+		NSURLCredential *newCredential = [[NSURLCredential
 			credentialWithUser:@"tivo"
 			password:[self mediaAccessKey]
 			persistence:NSURLCredentialPersistenceNone
-		];
+		] autorelease];
 		
 		[[challenge sender] useCredential:newCredential forAuthenticationChallenge:challenge];
 	} else {
@@ -159,11 +160,11 @@
 
 - (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error
 {
-	//I shouldn't need to release because of GC
 	ERROR( @"Connection failed! Error - %@ %@" ,
 		[error localizedDescription],
 		[[error userInfo] objectForKey:NSErrorFailingURLStringKey]
 	);
+	[urlConnection release], urlConnection = nil;
 }
 
 - (void)connection:(NSURLConnection *)connection didReceiveResponse:(NSURLResponse *)response
@@ -175,15 +176,16 @@
 - (void)connectionDidFinishLoading:(NSURLConnection *)connection
 {
 	INFO( @"Succeeded! Received %d bytes of data", [receivedData length] );
-	if ( !parser ) {
-		parser = [[CalypsoXMLParser alloc] init];
-	}	
+	CalypsoXMLParser *parser = [[[CalypsoXMLParser alloc] init] autorelease];
+	
 	DEBUG( @"beginning parse" );
 
 	[parser parseData:receivedData fromPlayer:self];
 	DEBUG( @"ended parse" );
-	[urlConnection release];
-	urlConnection = nil;
+	
+	//[parser release], parser = nil;
+	
+	[urlConnection release], urlConnection = nil;
 }
 
 - (NSURLRequest *)connection:(NSURLConnection *)connection willSendRequest:(NSURLRequest *)request redirectResponse:(NSURLResponse *)redirectResponse

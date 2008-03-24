@@ -16,7 +16,7 @@ static BOOL loaded = NO;
 {
 	ENTRY;
 	NSUserDefaultsController *defaults = [NSUserDefaultsController sharedUserDefaultsController];
-	NSMutableDictionary *tempDefaults = [[self workflowDefaults] mutableCopy];
+	NSMutableDictionary *tempDefaults = [[[self workflowDefaults] mutableCopy] autorelease];
 
 	[tempDefaults addEntriesFromDictionary:
 		[NSDictionary dictionaryWithObjectsAndKeys:

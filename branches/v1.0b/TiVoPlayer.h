@@ -26,7 +26,7 @@
 	NSURLConnection *urlConnection;
 	NSMutableData *receivedData;
 	
-	id parser;
+	//id parser;
 	
 	NSTimer *checkTimer;
 }

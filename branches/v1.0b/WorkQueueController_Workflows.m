@@ -8,7 +8,7 @@
 
 #import "WorkQueueController.h"
 
-@implementation WorkQueueController (Workflow)
+@implementation WorkQueueController (Workflows)
 
 + (NSDictionary *)workflowDefaults
 {
@@ -514,11 +514,11 @@
 	NSString *mak = [currentItem valueForKeyPath:@"program.player.mediaAccessKey"];
 
 	if ( [challenge previousFailureCount] == 0 ) {
-		NSURLCredential *newCredential = [NSURLCredential
+		NSURLCredential *newCredential = [[NSURLCredential
 			credentialWithUser:@"tivo"
 			password:mak
 			persistence:NSURLCredentialPersistenceNone
-		];
+		] autorelease];
 		
 		[[challenge sender] useCredential:newCredential forAuthenticationChallenge:challenge];
 	} else {

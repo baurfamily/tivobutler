@@ -48,6 +48,8 @@
 	NSXMLParser *xmlParser;
 
 	TiVoPlayer *player;
+	
+	BOOL programIDUsed;
 
 	BOOL contentFlag;
 	BOOL videoDetailsFlag;
