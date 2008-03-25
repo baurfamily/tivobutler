@@ -25,6 +25,8 @@
 		3FB7F7F20D94D32100D97046 /* README.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 3FB7F7EF0D94D32100D97046 /* README.rtf */; };
 		3FB7F8240D94D71600D97046 /* BHLogger.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3FB8E0FE0D8EC3CD008BD58C /* BHLogger.framework */; };
 		3FB7F8270D94D74100D97046 /* BHLogger.framework in Copy Frameworks */ = {isa = PBXBuildFile; fileRef = 3FB8E0FE0D8EC3CD008BD58C /* BHLogger.framework */; };
+		3FB7FE350D99A06C00D97046 /* TiVoSizeValueTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = 3FB7FE340D99A06C00D97046 /* TiVoSizeValueTransformer.m */; };
+		3FB7FE380D99A0A000D97046 /* TiVoDurationValueTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = 3FB7FE370D99A0A000D97046 /* TiVoDurationValueTransformer.m */; };
 		3FB8E11E0D900577008BD58C /* WorkQueueController_Workflows.m in Sources */ = {isa = PBXBuildFile; fileRef = 3FB8E11D0D900577008BD58C /* WorkQueueController_Workflows.m */; };
 		3FCB2D190D8265BD00C2B5BD /* mencoder in Copy Executables */ = {isa = PBXBuildFile; fileRef = 3FCB2D170D8265BD00C2B5BD /* mencoder */; };
 		3FCB2D1A0D8265BD00C2B5BD /* tivodecode in Copy Executables */ = {isa = PBXBuildFile; fileRef = 3FCB2D180D8265BD00C2B5BD /* tivodecode */; };
@@ -104,6 +106,10 @@
 		3FB7F7ED0D94D32100D97046 /* Beta Tester Notes.rtf */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; path = "Beta Tester Notes.rtf"; sourceTree = "<group>"; };
 		3FB7F7EE0D94D32100D97046 /* GPL.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = GPL.txt; sourceTree = "<group>"; };
 		3FB7F7EF0D94D32100D97046 /* README.rtf */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; path = README.rtf; sourceTree = "<group>"; };
+		3FB7FE330D99A06C00D97046 /* TiVoSizeValueTransformer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TiVoSizeValueTransformer.h; sourceTree = "<group>"; };
+		3FB7FE340D99A06C00D97046 /* TiVoSizeValueTransformer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TiVoSizeValueTransformer.m; sourceTree = "<group>"; };
+		3FB7FE360D99A0A000D97046 /* TiVoDurationValueTransformer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TiVoDurationValueTransformer.h; sourceTree = "<group>"; };
+		3FB7FE370D99A0A000D97046 /* TiVoDurationValueTransformer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TiVoDurationValueTransformer.m; sourceTree = "<group>"; };
 		3FB8E0FE0D8EC3CD008BD58C /* BHLogger.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = BHLogger.framework; sourceTree = "<group>"; };
 		3FB8E11D0D900577008BD58C /* WorkQueueController_Workflows.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WorkQueueController_Workflows.m; sourceTree = "<group>"; };
 		3FCB2D170D8265BD00C2B5BD /* mencoder */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.executable"; path = mencoder; sourceTree = "<group>"; };
@@ -192,6 +198,7 @@
 			isa = PBXGroup;
 			children = (
 				7756732906782D8800D1FEB8 /* Models */,
+				3FB7FE390D99A0AF00D97046 /* Value Transformers */,
 				3FCB2D130D817D4A00C2B5BD /* Entities */,
 				080E96DDFE201D6D7F000001 /* Classes */,
 				29B97315FDCFA39411CA2CEA /* Other Sources */,
@@ -279,6 +286,25 @@
 				3FB7F7EF0D94D32100D97046 /* README.rtf */,
 			);
 			path = Documentation;
+			sourceTree = "<group>";
+		};
+		3FB7FE390D99A0AF00D97046 /* Value Transformers */ = {
+			isa = PBXGroup;
+			children = (
+				3FB7FE3A0D99A0C500D97046 /* Headers */,
+				3FB7FE370D99A0A000D97046 /* TiVoDurationValueTransformer.m */,
+				3FB7FE340D99A06C00D97046 /* TiVoSizeValueTransformer.m */,
+			);
+			name = "Value Transformers";
+			sourceTree = "<group>";
+		};
+		3FB7FE3A0D99A0C500D97046 /* Headers */ = {
+			isa = PBXGroup;
+			children = (
+				3FB7FE360D99A0A000D97046 /* TiVoDurationValueTransformer.h */,
+				3FB7FE330D99A06C00D97046 /* TiVoSizeValueTransformer.h */,
+			);
+			name = Headers;
 			sourceTree = "<group>";
 		};
 		3FCB2D130D817D4A00C2B5BD /* Entities */ = {
@@ -420,6 +446,8 @@
 				3FF70A170D8B4E240041CEAE /* PreferencesDisplayController.m in Sources */,
 				3F0FD9220D8B847A00F9C7E2 /* SmartGroup.m in Sources */,
 				3FB8E11E0D900577008BD58C /* WorkQueueController_Workflows.m in Sources */,
+				3FB7FE350D99A06C00D97046 /* TiVoSizeValueTransformer.m in Sources */,
+				3FB7FE380D99A0A000D97046 /* TiVoDurationValueTransformer.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
