@@ -23,11 +23,12 @@
 - (IBAction)showWindow:(id)sender
 {
 	ENTRY;
-	if ( ![NSBundle loadNibNamed:@"Preferences" owner:self] ) {
-		ERROR( @"could not load Preferences.nib" );
-		return;
-	} else { INFO( @"loaded Preferences.nib" ); }
-
+	if ( ! preferencesWindow ) {
+		if ( ![NSBundle loadNibNamed:@"Preferences" owner:self] ) {
+			ERROR( @"could not load Preferences.nib" );
+			return;
+		} else { INFO( @"loaded Preferences.nib" ); }
+	}
 	[preferencesWindow makeKeyAndOrderFront:self];
 }
 

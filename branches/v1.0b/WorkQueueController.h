@@ -67,6 +67,7 @@ typedef enum {
 	unsigned long receivedBytes;
 	unsigned long expectedBytes;
 
+	bool keepIntermediateFiles;
 	NSString *downloadPath;
 	NSString *decodePath;
 	NSString *convertPath;

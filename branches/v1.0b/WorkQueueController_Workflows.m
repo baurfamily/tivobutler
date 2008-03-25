@@ -100,36 +100,41 @@
 	finalAction = [[[defaults valueForKey:@"values"] valueForKey:@"downloadAction"] intValue];
 	[self didChangeValueForKey:@"finalAction"];
 	
+	BOOL useIntermediateFolder = [[[defaults valueForKey:@"values"] valueForKey:@"useIntermediateFolder"] boolValue];
+	keepIntermediateFiles = [[[defaults valueForKey:@"values"] valueForKey:@"keepIntermediateFiles"] boolValue];
+
 	[downloadPath release];
 	[decodePath release];
 	[convertPath release];
-	NSString *tempDirectory = NSTemporaryDirectory();
-
-	NSString *programID = currentItem.program.programID;
-	if ( !programID ) {
-		ERROR( @"could not determine filename, programID is nil" );
-		[self completeWithMessage:@"Failed"];
-		return;
+	NSString *tempDirectory;
+	if ( useIntermediateFolder ) {
+		tempDirectory = [[[defaults valueForKey:@"values"] valueForKey:@"intermediateFolder"] stringByExpandingTildeInPath];
+	} else {
+		tempDirectory = NSTemporaryDirectory();
+		keepIntermediateFiles = NO;
 	}
+
 	NSString *endingPath = [self endingFilePath];
 	if ( !endingPath ) {
 		WARNING( @"no valid file path, probably set to fail in preferences" );
 		[self completeWithMessage:@"File exists"];
 		return;
 	}
+	NSString *fileName = [[endingPath pathComponents] lastObject];
+	
 	switch ( finalAction ) {
 		case WQConvertAction:
 			downloadPath = [[NSString pathWithComponents:
-				[NSArray arrayWithObjects:tempDirectory, [NSString stringWithFormat:@"%@.tivo", programID], nil ]
+				[NSArray arrayWithObjects:tempDirectory, [NSString stringWithFormat:@"%@.tivo", fileName], nil ]
 			] retain];
 			decodePath = [[NSString pathWithComponents:
-				[NSArray arrayWithObjects:tempDirectory, [NSString stringWithFormat:@"%@.mpg", programID], nil ]
+				[NSArray arrayWithObjects:tempDirectory, [NSString stringWithFormat:@"%@.mpg", fileName], nil ]
 			] retain];
 			convertPath = [[NSString stringWithFormat:@"%@.mp4", endingPath] retain];
 			break;
 		case WQDecodeAction:
 			downloadPath = [[NSString pathWithComponents:
-				[NSArray arrayWithObjects:tempDirectory, [NSString stringWithFormat:@"%@.tivo", programID], nil ]
+				[NSArray arrayWithObjects:tempDirectory, [NSString stringWithFormat:@"%@.tivo", fileName], nil ]
 			] retain];
 			decodePath = [[NSString stringWithFormat:@"%@.mpg", endingPath] retain];
 			convertPath = nil;
@@ -169,24 +174,27 @@
 		ERROR( @"can't download program, download connection not created" );
 		return;
 	}
-	[programDownload setDestination:downloadPath allowOverwrite:YES];	//TODO: make overwrite optional
+	[programDownload setDestination:downloadPath allowOverwrite:YES];
 	currentItem.startedDate = [NSDate date];
 }
 
 - (void)removeFiles
 {
 	[convertTask terminate];
-	[[NSFileManager defaultManager] removeItemAtPath:convertPath error:NULL];
+	if ( !keepIntermediateFiles )
+		[[NSFileManager defaultManager] removeItemAtPath:convertPath error:NULL];
 	[convertPath release];
 	convertPath = nil;
 	
 	[decodeTask terminate];
-	[[NSFileManager defaultManager] removeItemAtPath:decodePath error:NULL];
+	if ( !keepIntermediateFiles )
+		[[NSFileManager defaultManager] removeItemAtPath:decodePath error:NULL];
 	[decodePath release];
 	decodePath = nil;
 	
 	[programDownload cancel];
-	[[NSFileManager defaultManager] removeItemAtPath:downloadPath error:NULL];
+	if ( !keepIntermediateFiles )
+		[[NSFileManager defaultManager] removeItemAtPath:downloadPath error:NULL];
 	[downloadPath release];
 	downloadPath = nil;
 }
@@ -298,14 +306,16 @@
 - (void)decoderDidTerminate:(NSNotification *)notification
 {
 	ENTRY;
-	NSError *error;
-	BOOL succeeded = [[NSFileManager defaultManager] removeItemAtPath:downloadPath error:&error];
-	if ( !succeeded ) {
-		ERROR( [error localizedDescription] );
-	}
-
+	
 	if ( [decodeTask terminationStatus] == 0 ) {
 		DEBUG(@"Decode finished.");
+		if ( !keepIntermediateFiles ) {
+			NSError *error;
+			BOOL succeeded = [[NSFileManager defaultManager] removeItemAtPath:downloadPath error:&error];
+			if ( !succeeded ) {
+				ERROR( [error localizedDescription] );
+			}
+		}
 	} else {
 		ERROR(@"Decode failed.");
 	}
@@ -431,17 +441,18 @@
 - (void)convertDidTerminate:(NSNotification *)notification
 {
 	ENTRY;
-	NSError *error;
-	BOOL succeeded = [[NSFileManager defaultManager] removeItemAtPath:decodePath error:&error];
-	if ( !succeeded ) {
-		ERROR( [error localizedDescription] );
-	}
-	
 	[convertFileHandle release];
 	convertFileHandle = nil;
 	
 	if ( [convertTask terminationStatus] == 0 ) {
 		DEBUG(@"Convert finished.");
+		if ( !keepIntermediateFiles ) {
+			NSError *error;
+			BOOL succeeded = [[NSFileManager defaultManager] removeItemAtPath:decodePath error:&error];
+			if ( !succeeded ) {
+				ERROR( [error localizedDescription] );
+			}
+		}
 	} else {
 		ERROR(@"Convert failed.");
 	}

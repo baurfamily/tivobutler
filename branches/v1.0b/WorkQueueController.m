@@ -29,6 +29,10 @@ static BOOL loaded = NO;
 			[NSNumber numberWithBool:NO],							@"restrictDownloadTimes",
 			[NSNumber numberWithInt:WQFileExistsChangeNameAction],	@"fileExistsAction",
 			[NSNumber numberWithInt:60],							@"downloadCheckInterval",
+			[NSNumber numberWithBool:NO],							@"prependCaptureDate",
+			[NSNumber numberWithBool:NO],							@"useIntermediateFolder",
+			@"~/Downloads/",										@"intermediateFolder",
+			[NSNumber numberWithBool:NO],							@"keepIntermediateFiles",
 			nil
 		]
 	];
@@ -126,10 +130,12 @@ static BOOL loaded = NO;
 
 - (IBAction)showWorkQueueWindow:(id)sender
 {
-	if ( ![NSBundle loadNibNamed:@"WorkQueue" owner:self] ) {
-		ERROR( @"could not load WorkQueue.nib" );
-		return;
-	} else { INFO( @"loaded WorkQueue.nib" ); }
+	if ( !workQueueDisplayController ) {
+		if ( ![NSBundle loadNibNamed:@"WorkQueue" owner:self] ) {
+			ERROR( @"could not load WorkQueue.nib" );
+			return;
+		} else { INFO( @"loaded WorkQueue.nib" ); }
+	}
 	[workQueueDisplayController showWindow:self];
 }
 
@@ -237,18 +243,25 @@ static BOOL loaded = NO;
 	NSUserDefaultsController *defaults = [NSUserDefaultsController sharedUserDefaultsController];
 	NSString *folder = [[defaults valueForKey:@"values"] valueForKey:@"downloadFolder"];
 	BOOL createSubFolders = [[[defaults valueForKey:@"values"] valueForKey:@"createSeriesSubFolders"] boolValue];
+	BOOL prependCaptureDate = [[[defaults valueForKey:@"values"] valueForKey:@"prependCaptureDate"] boolValue];
 	
 	NSString *pathString;
+	NSString *fileName;
+	NSString *beginningPath;
 	
+	if ( prependCaptureDate && currentItem.program.captureDate ) {
+		NSDateFormatter *dateFormatter = [[[NSDateFormatter alloc] initWithDateFormat:@"%Y-%m-%d" allowNaturalLanguage:NO] autorelease];
+		NSString *dateString = [dateFormatter stringFromDate:currentItem.program.captureDate];
+		fileName = [NSString stringWithFormat:@"%@ %@", dateString, currentItem.program.title];
+	} else {
+		fileName = currentItem.program.title;
+	}
+
 	//- check preference and make sure there is a series title to use
 	if ( createSubFolders && [currentItem valueForKeyPath:@"program.series.title"] ) {
-		NSString *beginningPath = [
-			[NSString stringWithFormat:@"%@/%@",
-				folder,
-				[currentItem valueForKeyPath:@"program.series.title"]
-			]
-			stringByExpandingTildeInPath
-		];
+		beginningPath = [[NSString
+			stringWithFormat:@"%@/%@", folder, [currentItem valueForKeyPath:@"program.series.title"]
+		] stringByExpandingTildeInPath ];
 		
 		BOOL hitError = NO;
 		BOOL isDirectory;
@@ -274,16 +287,16 @@ static BOOL loaded = NO;
 		//- if we still couldn't create the path, fall back to just the name
 		if ( hitError ) {
 			pathString = [
-				[NSString stringWithFormat:@"%@/%@", folder, currentItem.program.title] stringByExpandingTildeInPath
+				[NSString stringWithFormat:@"%@/%@", folder, fileName] stringByExpandingTildeInPath
 			];
 		} else {
 			pathString = [
-				[NSString stringWithFormat:@"%@/%@", beginningPath, currentItem.program.title] stringByExpandingTildeInPath
+				[NSString stringWithFormat:@"%@/%@", beginningPath, fileName] stringByExpandingTildeInPath
 			];
 		}
 	} else {
 		pathString = [
-			[NSString stringWithFormat:@"%@/%@", folder, currentItem.program.title] stringByExpandingTildeInPath
+			[NSString stringWithFormat:@"%@/%@", folder, fileName] stringByExpandingTildeInPath
 		];
 	}
 	
