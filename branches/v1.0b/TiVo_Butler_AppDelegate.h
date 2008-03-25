@@ -8,6 +8,9 @@
 
 #import <Cocoa/Cocoa.h>
 
+#import "TiVoDurationValueTransformer.h"
+#import "TiVoSizeValueTransformer.h"
+
 @interface TiVo_Butler_AppDelegate : NSObject 
 {
     IBOutlet NSWindow *window;

@@ -49,8 +49,8 @@ or contact the author at:\
 \b\fs28 \ul Acknowledgments:
 \b0\fs24 \ulnone \
 	TiVo Butler uses two other open source components for decoding .tivo files and then converting them to MP4 files.\
-	For more information about tivodecode, please see http://tivodecode.sourceforge.net/\
-	For more informatoin about mencoder, please see http://www.mplayerhq.hu/design7/news.html\
+	\'95 For more information about tivodecode, please see http://tivodecode.sourceforge.net/\
+	\'95 For more informatoin about mencoder, please see http://www.mplayerhq.hu/design7/news.html\
 
 \b\fs28 \ul \
 Requirements:
@@ -88,9 +88,11 @@ Requirements:
 \b0 \ulnone \
 	Fixed - crash if the View menu was access while the main window was closed\
 	Fixed - some major memory leaks (some minor ones remain)\
-	Fixes - multiple Work Queue / Preferences windows could be opened (which was a minor memory leak as well)\
+	Fixed - multiple Work Queue / Preferences windows could be opened (which was a minor memory leak as well)\
+	Fixed - crash when canceling a run that was only downloading or decoding, but not converting\
 	Added - preference to prepend a capture date at the beginning of the filename to help avoid conflicts\
 	Added - preferences for saving intermediate files used during the downloading / decoding and converting\
+	Added - formatting for program duration and size\
 \
 
 \b \ul v1.0b

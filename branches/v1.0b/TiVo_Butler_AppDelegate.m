@@ -10,6 +10,17 @@
 
 @implementation TiVo_Butler_AppDelegate
 
++ (void)initialize
+{
+	[NSValueTransformer
+		setValueTransformer:[[[TiVoDurationValueTransformer alloc] init] autorelease]
+		forName:@"TiVoDuration"
+	];
+	[NSValueTransformer
+		setValueTransformer:[[[TiVoSizeValueTransformer alloc] init] autorelease]
+		forName:@"TiVoSize"
+	];
+}
 
 /**
     Returns the support folder for the application, used to store the Core Data

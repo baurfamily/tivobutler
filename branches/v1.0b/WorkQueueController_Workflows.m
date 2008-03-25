@@ -181,19 +181,19 @@
 - (void)removeFiles
 {
 	[convertTask terminate];
-	if ( !keepIntermediateFiles )
+	if ( !keepIntermediateFiles && convertPath )
 		[[NSFileManager defaultManager] removeItemAtPath:convertPath error:NULL];
 	[convertPath release];
 	convertPath = nil;
 	
 	[decodeTask terminate];
-	if ( !keepIntermediateFiles )
+	if ( !keepIntermediateFiles && decodePath )
 		[[NSFileManager defaultManager] removeItemAtPath:decodePath error:NULL];
 	[decodePath release];
 	decodePath = nil;
 	
 	[programDownload cancel];
-	if ( !keepIntermediateFiles )
+	if ( !keepIntermediateFiles && downloadPath )
 		[[NSFileManager defaultManager] removeItemAtPath:downloadPath error:NULL];
 	[downloadPath release];
 	downloadPath = nil;
