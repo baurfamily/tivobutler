@@ -64,8 +64,8 @@ typedef enum {
 	WQDownloadAction currentAction;
 
 	int currentActionPercent;
-	unsigned long receivedBytes;
-	unsigned long expectedBytes;
+	unsigned long long receivedBytes;
+	unsigned long long expectedBytes;
 
 	bool keepIntermediateFiles;
 	NSString *downloadPath;

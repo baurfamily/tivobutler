@@ -1045,7 +1045,7 @@
 																			<object class="NSMutableArray" key="NSTableColumns">
 																				<bool key="EncodedWithXMLCoder">YES</bool>
 																				<object class="NSTableColumn" id="10015697">
-																					<double key="NSWidth">1.282163e+02</double>
+																					<double key="NSWidth">1.152163e+02</double>
 																					<double key="NSMinWidth">7.421631e+01</double>
 																					<double key="NSMaxWidth">3.402823e+38</double>
 																					<object class="NSTableHeaderCell" key="NSHeaderCell">
@@ -1102,7 +1102,7 @@
 																					<reference key="NSTableView" ref="913783973"/>
 																				</object>
 																				<object class="NSTableColumn" id="770481153">
-																					<double key="NSWidth">9.400000e+01</double>
+																					<double key="NSWidth">8.522949e+01</double>
 																					<double key="NSMinWidth">4.000000e+01</double>
 																					<double key="NSMaxWidth">3.402823e+38</double>
 																					<object class="NSTableHeaderCell" key="NSHeaderCell">
@@ -1127,7 +1127,7 @@
 																					<reference key="NSTableView" ref="913783973"/>
 																				</object>
 																				<object class="NSTableColumn" id="838789061">
-																					<double key="NSWidth">8.155762e+01</double>
+																					<double key="NSWidth">1.625576e+02</double>
 																					<double key="NSMinWidth">2.755762e+01</double>
 																					<double key="NSMaxWidth">3.402823e+38</double>
 																					<object class="NSTableHeaderCell" key="NSHeaderCell">
@@ -1152,7 +1152,7 @@
 																					<reference key="NSTableView" ref="913783973"/>
 																				</object>
 																				<object class="NSTableColumn" id="245626794">
-																					<double key="NSWidth">1.255190e+02</double>
+																					<double key="NSWidth">1.415190e+02</double>
 																					<double key="NSMinWidth">7.251904e+01</double>
 																					<double key="NSMaxWidth">3.402823e+38</double>
 																					<object class="NSTableHeaderCell" key="NSHeaderCell">
@@ -1177,13 +1177,13 @@
 																					<reference key="NSTableView" ref="913783973"/>
 																				</object>
 																				<object class="NSTableColumn" id="738711128">
-																					<double key="NSWidth">9.222949e+01</double>
+																					<double key="NSWidth">5.822949e+01</double>
 																					<double key="NSMinWidth">4.000000e+01</double>
 																					<double key="NSMaxWidth">3.402823e+38</double>
 																					<object class="NSTableHeaderCell" key="NSHeaderCell">
 																						<int key="NSCellFlags">67239424</int>
 																						<int key="NSCellFlags2">0</int>
-																						<string key="NSContents">Duration</string>
+																						<string key="NSContents">Length</string>
 																						<reference key="NSSupport" ref="26"/>
 																						<reference key="NSBackgroundColor" ref="264105642"/>
 																						<reference key="NSTextColor" ref="518932839"/>
@@ -1202,7 +1202,7 @@
 																					<reference key="NSTableView" ref="913783973"/>
 																				</object>
 																				<object class="NSTableColumn" id="60118871">
-																					<double key="NSWidth">9.100000e+01</double>
+																					<double key="NSWidth">5.000000e+01</double>
 																					<double key="NSMinWidth">4.000000e+01</double>
 																					<double key="NSMaxWidth">3.402823e+38</double>
 																					<object class="NSTableHeaderCell" key="NSHeaderCell">
@@ -1267,7 +1267,7 @@
 																			<reference key="NSBackgroundColor" ref="122885922"/>
 																			<reference key="NSGridColor" ref="359766508"/>
 																			<double key="NSRowHeight">1.200000e+01</double>
-																			<int key="NSTvFlags">-96436224</int>
+																			<int key="NSTvFlags">-88047616</int>
 																			<int key="NSColumnAutoresizingStyle">1</int>
 																			<int key="NSDraggingSourceMaskForLocal">-1</int>
 																			<int key="NSDraggingSourceMaskForNonLocal">0</int>
@@ -1297,8 +1297,7 @@
 																	<int key="NSsFlags">1</int>
 																	<reference key="NSTarget" ref="516422229"/>
 																	<string key="NSAction">_doScroller:</string>
-																	<double key="NSCurValue">1.529052e-03</double>
-																	<double key="NSPercent">2.500000e-01</double>
+																	<double key="NSPercent">9.984733e-01</double>
 																</object>
 																<object class="NSClipView" id="168084164">
 																	<reference key="NSNextResponder" ref="516422229"/>
@@ -3495,7 +3494,7 @@
 								</object>
 								<object class="NSMutableArray" key="dict.values">
 									<bool key="EncodedWithXMLCoder">YES</bool>
-									<integer value="1" id="5"/>
+									<reference ref="9"/>
 									<string>TiVoSize</string>
 								</object>
 							</object>
@@ -3524,7 +3523,7 @@
 								</object>
 								<object class="NSMutableArray" key="dict.values">
 									<bool key="EncodedWithXMLCoder">YES</bool>
-									<reference ref="5"/>
+									<reference ref="9"/>
 									<string>TiVoDuration</string>
 								</object>
 							</object>

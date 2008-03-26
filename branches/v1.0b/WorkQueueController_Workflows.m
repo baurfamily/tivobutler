@@ -280,7 +280,7 @@
 			[arguments addObject:tempString];
 		}
 	}
-	INFO( @"decode task arguments:\n%@", [arguments description] );
+	//INFO( @"decode task arguments:\n%@", [arguments description] );	//- don't want to log the MAK
 	[decodeTask setArguments:arguments];
 	
 	[[NSNotificationCenter defaultCenter]
@@ -485,7 +485,11 @@
 
 - (void)download:(NSURLDownload *)download didCreateDestination:(NSString *)path
 {
-	//- I can see if the name changed from the suggested name here...
+	if ( ![downloadPath isEqualToString:path] ) {
+		WARNING( @"Changing download path:\nfrom '%@'\nto %@'", downloadPath, path );
+		[downloadPath release];
+		downloadPath = [path retain];
+	}
 }
 
 - (void)download:(NSURLDownload *)download didReceiveDataOfLength:(NSUInteger)length
