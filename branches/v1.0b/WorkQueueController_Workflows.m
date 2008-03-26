@@ -421,7 +421,7 @@
 		NSScanner *scanner = [NSScanner scannerWithString:tempString];
 		
 		NSString *otherTempString;
-		[scanner scanUpToString:@"(" intoString:&otherTempString];
+		[scanner scanUpToString:@"(" intoString:NULL];
 		[scanner scanString:@"(" intoString:NULL];
 		[scanner scanUpToString:@"%)" intoString:&otherTempString];
 		int newActionPercent = [otherTempString intValue];

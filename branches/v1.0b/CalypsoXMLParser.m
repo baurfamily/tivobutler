@@ -56,29 +56,31 @@
 
 - (void)addNewProgram
 {
-	ENTRY;
-	NSString *key;
-	
 	//- check to see if the dictionary has "basic" information
-	if ( programIDUsed || [tempDict objectForKey:@"programID"] == nil ) {
-		DEBUG( @"won't add program with nil programID" );
+	if ( [tempDict objectForKey:@"internalID"] == nil ) {
+		DEBUG( @"won't add program with nil internalID" );
 		return;
 	}
 	
-	//- create the program we'll be inserting
-	TiVoProgram *tempProgram = [NSEntityDescription
-		insertNewObjectForEntityForName:TiVoProgramEntityName
-		inManagedObjectContext:managedObjectContext
-	];
-	[tempProgram setValue:player forKey:@"player"];
+	if ( !currentProgram ) {
+		DEBUG( @"adding new program" );
+		//- create a new program to insert
+		currentProgram = [[NSEntityDescription
+			insertNewObjectForEntityForName:TiVoProgramEntityName
+			inManagedObjectContext:managedObjectContext
+		] retain];
+		[currentProgram setValue:player forKey:@"player"];
+	}
 	
 	//- add all the keys from the dictionary to the program
+	NSString *key;
 	for ( key in tempDict ) {
-		//INFO( @"setting key: %@\nvalue: %@", key, [tempDict valueForKey:key] );
-		[tempProgram setValue:[tempDict valueForKey:key] forKey:key];
+		[currentProgram setValue:[tempDict valueForKey:key] forKey:key];
 	}
 	//- now add the program to the player
-	[player addNowPlayingListObject:tempProgram];
+	[player addProgramsObject:currentProgram];
+	
+	[currentProgram release], currentProgram = nil;
 }
 
 #pragma mark -
@@ -92,22 +94,19 @@
 - (void)parser:(NSXMLParser *)parser didStartElement:(NSString *)elementName 
 	namespaceURI:(NSString *)namespaceURI qualifiedName:(NSString *)qName attributes:(NSDictionary *)attributeDict
 {
-	//[tempValueString setString:@""];
 	[tempValueString release], tempValueString = nil;
  
 	if ( [elementName isEqualToString:TiVoPlayerItemTag] ) {
 		//- create a new dictionary and clear out the series info
 		[tempDict release];
 		tempDict = [[NSMutableDictionary dictionary] retain];
-		programIDUsed = NO;
+
+		//- since we can't be sure we'll get a status
+		[tempDict setObject:[NSNumber numberWithInt:TiVoProgramNoStatus] forKey:@"status"];
+		
+		[currentProgram release], currentProgram = nil;
 		[tempSeriesString release], tempSeriesString = nil;
 		[tempStationString release], tempStationString = nil;
-		
-	} else if ( [elementName isEqualToString:CalypsoLastChangeDateTag] ) {
-		//- this doesn't make sense...
-//		unsigned int timestamp;
-//		[[NSScanner scannerWithString:tempValueString] scanHexInt:&timestamp]; 
-//		player.dateLastUpdated = [NSDate dateWithTimeIntervalSince1970:timestamp];
 
 	} else if ( [elementName isEqualToString:CalypsoContentTag] ) {
 		contentFlag = YES;
@@ -132,15 +131,13 @@
 - (void)parser:(NSXMLParser *)parser didEndElement:(NSString *)elementName
 	namespaceURI:(NSString *)namespaceURI qualifiedName:(NSString *)qName
 {
-	//INFO( @"element %@ value: %@", elementName, tempValueString );
-	
 	//- see if we have a valid dictionary to work with
-	if ( !tempDict || programIDUsed ) return;
+	//- this prevents seeing errors when parsing the first part of the XML
+	if ( !tempDict ) return;
 		
 	//- check the element...
 	if ( [elementName isEqualToString:CalypsoItemTag] ) {
 		//- only add a new program if we have a dictionary with data in it
-		//if ( tempDict ) [self addNewProgram];
 		if ( tempDict ) {
 			[self performSelectorOnMainThread:@selector(addNewProgram) withObject:nil waitUntilDone:YES]; 
 		}
@@ -217,13 +214,6 @@
 
 	} else if ( [elementName isEqualToString:CalypsoProgramIDTag] ) {
 		[tempDict setObject:tempValueString forKey:@"programID"];
-		if ( [self isProgramIDUsed:tempValueString] ) {
-			DEBUG( @"programID (%@) found", tempValueString );
-			//- this programID was already in use, so we'll nil it out
-			programIDUsed = YES;
-			//[tempDict release];
-			//tempDict = nil;
-		}
 
 	} else if ( [elementName isEqualToString:CalypsoTitleTag] ) {
 		if ( tempSeriesString ) {
@@ -251,16 +241,39 @@
 		}
 		
 	} else if ( [elementName isEqualToString:CalypsoUrlTag] ) {
+		//- first, strip off the ID used internally by TiVo to track the show
+		if ( !currentProgram ) {
+			NSScanner *scanner = [NSScanner scannerWithString:tempValueString];
+			[scanner scanUpToString:@"id=" intoString:NULL];
+			[scanner scanString:@"id=" intoString:NULL];
+			int tempID = 0;
+			//- make sure we scanned and we got a good result
+			if ( [scanner scanInt:&tempID] && tempID ) {
+				if ( currentProgram = [[self programForInternalID:tempID] retain] ) {
+					DEBUG( @"internalID (%d) found", tempID );
+				}
+				[tempDict setObject:[NSNumber numberWithInt:tempID] forKey:@"internalID"];
+			}
+		}
+		//- second, check which URL we have and save it off
 		if ( contentFlag ) {
 			[tempDict setObject:tempValueString forKey:@"contentURL"];
 		} else if ( videoDetailsFlag ) {
 			[tempDict setObject:tempValueString forKey:@"videoDetailsURL"];
-		} else if ( customIconFlag ) {
+		} else if ( customIconFlag ) {	//- this is the image used to represent it
 			//- don't know if this could change...
-			if ( [tempValueString isEqualTo:@"urn:tivo:image:in-progress-recording"] )
-				[tempDict setObject:[NSNumber numberWithBool:YES] forKey:@"inProgress"];
-			else
-				[tempDict setObject:[NSNumber numberWithBool:NO] forKey:@"inProgress"];
+			if ( [tempValueString isEqualTo:@"urn:tivo:image:in-progress-recording"] ) {
+				[tempDict setObject:[NSNumber numberWithInt:TiVoProgramInProgressStatus] forKey:@"status"];
+			} else if ( [tempValueString isEqualTo:@"urn:tivo:image:expired-recording"] ) {
+				[tempDict setObject:[NSNumber numberWithInt:TiVoProgramExpiredStatus] forKey:@"status"];
+			} else if ( [tempValueString isEqualTo:@"urn:tivo:image:expires-soon-recording"] ) {
+				[tempDict setObject:[NSNumber numberWithInt:TiVoProgramExpiresSoonStatus] forKey:@"status"];
+			} else if ( [tempValueString isEqualTo:@"urn:tivo:image:save-until-i-delete-recording"] ) {
+				[tempDict setObject:[NSNumber numberWithInt:TiVoProgramSaveStatus] forKey:@"status"];
+			} else {
+				[tempDict setObject:[NSNumber numberWithInt:TiVoProgramNoStatus] forKey:@"status"];
+			}
+			
 		} else {
 			WARNING( @"URL tag found outside of expected context." );
 		}
@@ -299,8 +312,13 @@
 		unsigned int timestamp;
 		[[NSScanner scannerWithString:tempValueString] scanHexInt:&timestamp]; 
 		player.dateLastUpdated = [NSDate dateWithTimeIntervalSince1970:timestamp];
+	} else if ( [elementName isEqualToString:CalypsoInProgressTag] ) {
+		if ( [tempValueString isEqualToString:@"Yes"] )
+			[tempDict setObject:[NSNumber numberWithBool:YES] forKey:@"inProgress"];
+		else
+			[tempDict setObject:[NSNumber numberWithBool:NO] forKey:@"inProgress"];
 	} else {
-		WARNING( @"[parser:didEndElement:...] no match for elementName: %@", [elementName copy] );
+		WARNING( @"[parser:didEndElement:...] no match for elementName: %@", elementName );
 	}
 }
 
@@ -322,7 +340,7 @@
 #pragma mark -
 #pragma mark Entity helper methods
 
-- (BOOL)isProgramIDUsed:(NSString *)programID
+- (TiVoProgram *)programForInternalID:(int)internalID
 {
 	NSEntityDescription *entityDesc = [NSEntityDescription
 		entityForName:TiVoProgramEntityName
@@ -333,21 +351,21 @@
 	[request setEntity:entityDesc];
 	
 	NSPredicate *predicate = [NSPredicate predicateWithFormat:
-		@"programID = %@", programID
+		@"internalID = %d", internalID
 	];
 	[request setPredicate:predicate];
-	//DEBUG( @"Executing predicate: %@", [predicate description] );
+	
 	NSError *error;
 	@synchronized (TiVoProgramEntityName) {
 		if ( [managedObjectContext countForFetchRequest:request error:&error] > 0 ) {
 			NSArray *tempArray = [managedObjectContext executeFetchRequest:request error:&error];
 			if ( [tempArray count] > 1 ) {
-				WARNING( @"Found %d matching program IDs, will enable the first one.", [tempArray count] );
+				WARNING( @"Found %d matching internal IDs, will use the first one.", [tempArray count] );
 			}
 			[[tempArray objectAtIndex:0] setDeletedFromPlayer:[NSNumber numberWithBool:NO] ];
-			return YES;
+			return [tempArray objectAtIndex:0];
 		} else {
-			return NO;
+			return nil;
 		}
 	}
 	ERROR( @"shouldn't have gotten to this point!" );

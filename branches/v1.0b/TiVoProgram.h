@@ -10,6 +10,14 @@
 
 @class TiVoPlayer;
 
+typedef enum {
+	TiVoProgramInProgressStatus = 0,
+	TiVoProgramSaveStatus,
+	TiVoProgramNoStatus,
+	TiVoProgramExpiresSoonStatus,
+	TiVoProgramExpiredStatus,
+} TiVoProgramStatus;
+
 @interface TiVoProgram :  NSManagedObject  
 {	
 
@@ -32,8 +40,12 @@
 @property (retain) NSManagedObject * series;
 @property (retain) TiVoPlayer * player;
 @property (retain) NSNumber * deletedFromPlayer;
+@property (retain) NSNumber * internalID;
+@property (retain) NSNumber * status;
 
 @property (readonly) NSSet * smartGroups;
+
+@property (readonly) NSImage * statusImage;
 
 @end
 

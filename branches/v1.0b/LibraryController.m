@@ -75,7 +75,7 @@
 	NSDictionary *tempDict = [NSDictionary dictionaryWithObjectsAndKeys:
 		[NSNumber numberWithBool:NO],	@"isSourceGroup",
 		@"Library",						@"name",
-		[NSPredicate predicateWithFormat:@"deletedFromPlayer = NO"], @"predicate",
+		[NSPredicate predicateWithFormat:@"deletedFromPlayer = NO and player != nil"], @"predicate",
 		nil
 	];
 	[libraryArray replaceObjectAtIndex:LCLibraryPosition withObject:tempDict];

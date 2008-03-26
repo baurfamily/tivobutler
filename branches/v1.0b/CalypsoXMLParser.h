@@ -41,6 +41,7 @@
 #define CalypsoCustomIconTag		@"CustomIcon"
 #define CalypsoAcceptsParamsTag		@"AcceptsParams"
 #define CalypsoContentTypeTag		@"ContentType"
+#define CalypsoInProgressTag		@"InProgress"
 
 @interface CalypsoXMLParser : NSObject
 {
@@ -49,7 +50,7 @@
 
 	TiVoPlayer *player;
 	
-	BOOL programIDUsed;
+	TiVoProgram *currentProgram;
 
 	BOOL contentFlag;
 	BOOL videoDetailsFlag;
@@ -66,7 +67,7 @@
 - (void)disableCurrentPrograms;
 - (void)addNewProgram;
 
-- (BOOL)isProgramIDUsed:(NSString *)programID;
+- (TiVoProgram *)programForInternalID:(int)internalID;
 - (NSManagedObject *)stationWithName:(NSString *)name andChannel:(NSNumber *)channel;
 - (NSManagedObject *)seriesWithIdentifier:(NSString *)ident title:(NSString *)title;
 @end

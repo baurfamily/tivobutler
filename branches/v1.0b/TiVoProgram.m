@@ -12,6 +12,20 @@
 
 @implementation TiVoProgram 
 
+
++ (NSSet *)keyPathsForValuesAffectingValueForKey:(NSString *)key
+{
+	NSSet *returnSet;
+	if ( [key isEqualToString:@"statusImage"] ) {
+		returnSet = [NSSet setWithObject:@"status"];
+
+	} else {
+		returnSet = [NSSet set];
+	}
+	return returnSet;
+}
+
+
 #pragma mark -
 #pragma mark Accessor methods
 
@@ -32,7 +46,12 @@
 @dynamic series;
 @dynamic player;
 @dynamic deletedFromPlayer;
+@dynamic internalID;
+@dynamic status;
+
 @dynamic smartGroups;
+
+@dynamic statusImage;
 
 - (NSSet *)smartGroups
 {
@@ -43,6 +62,20 @@
 	];
 	
 	return [NSSet setWithArray:entityArray];
+}
+
+- (NSImage *)statusImage
+{
+	switch ( self.status.intValue ) {
+		case TiVoProgramNoStatus:	return nil;		break;
+		case TiVoProgramInProgressStatus:	return [NSImage imageNamed:@"in-progress-recording.png"];			break;
+		case TiVoProgramSaveStatus:			return [NSImage imageNamed:@"save-until-i-delete-recording.png"];	break;
+		case TiVoProgramExpiresSoonStatus:	return [NSImage imageNamed:@"expires-soon-recording.png"];			break;
+		case TiVoProgramExpiredStatus:		return [NSImage imageNamed:@"expired-recording.png"];				break;
+		default:
+			WARNING( @"no valid status found for program" );
+			return nil;
+	}
 }
 
 @end

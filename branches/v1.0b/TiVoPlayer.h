@@ -38,7 +38,7 @@
 @property (retain) NSString * host;
 @property (retain) NSDate * dateLastChecked;
 @property (retain) NSDate * dateLastUpdated;
-@property (retain) NSSet* nowPlayingList;
+@property (retain) NSSet * programs;
 @property (retain) NSNumber * checkInterval;
 
 @property (readonly) NSURL *url;
@@ -59,9 +59,9 @@
 @end
 
 @interface TiVoPlayer (CoreDataGeneratedAccessors)
-- (void)addNowPlayingListObject:(TiVoProgram *)value;
-- (void)removeNowPlayingListObject:(TiVoProgram *)value;
-- (void)addNowPlayingList:(NSSet *)value;
-- (void)removeNowPlayingList:(NSSet *)value;
+- (void)addProgramsObject:(TiVoProgram *)value;
+- (void)removeProgramsObject:(TiVoProgram *)value;
+- (void)programs:(NSSet *)value;
+- (void)removePrograms:(NSSet *)value;
 
 @end

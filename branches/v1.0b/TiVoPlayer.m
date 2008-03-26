@@ -82,7 +82,7 @@
 @dynamic host;
 @dynamic dateLastChecked;
 @dynamic dateLastUpdated;
-@dynamic nowPlayingList;
+@dynamic programs;
 @dynamic checkInterval;
 
 @dynamic url;
