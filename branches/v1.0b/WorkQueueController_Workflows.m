@@ -420,7 +420,7 @@
 		NSString *tempString = [[[NSString alloc] initWithData:data encoding:NSASCIIStringEncoding] autorelease];
 		NSScanner *scanner = [NSScanner scannerWithString:tempString];
 		
-		NSString *otherTempString;
+		NSString *otherTempString = nil;
 		[scanner scanUpToString:@"(" intoString:NULL];
 		[scanner scanString:@"(" intoString:NULL];
 		[scanner scanUpToString:@"%)" intoString:&otherTempString];
