@@ -18,13 +18,13 @@
 		3F44C4A90D4453F800F0F6F4 /* LNSSourceListSourceGroupCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F44C4A00D4453F800F0F6F4 /* LNSSourceListSourceGroupCell.m */; };
 		3F44C4AA0D4453F800F0F6F4 /* LNSSourceListView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F44C4A20D4453F800F0F6F4 /* LNSSourceListView.m */; };
 		3F44D8460D53042F00DA286E /* CalypsoXMLParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F44D8450D53042F00DA286E /* CalypsoXMLParser.m */; };
+		3F6638330DA0A44500803251 /* Preferences.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3F6638320DA0A44500803251 /* Preferences.xib */; };
 		3F6A88FB0D53472300212FBA /* TiVoProgram.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F6A88F90D53472300212FBA /* TiVoProgram.m */; };
 		3F8E37E60D4D52AA009B89B3 /* LibraryController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F8E37E40D4D52AA009B89B3 /* LibraryController.m */; };
 		3FB3C6170D9E8DD5001CEE9D /* download.png in Resources */ = {isa = PBXBuildFile; fileRef = 3FB3C6140D9E8DD5001CEE9D /* download.png */; };
 		3FB3C6180D9E8DD5001CEE9D /* processing.png in Resources */ = {isa = PBXBuildFile; fileRef = 3FB3C6150D9E8DD5001CEE9D /* processing.png */; };
 		3FB3C6190D9E8DD5001CEE9D /* smart_folders.png in Resources */ = {isa = PBXBuildFile; fileRef = 3FB3C6160D9E8DD5001CEE9D /* smart_folders.png */; };
 		3FB3C61D0D9E8F9A001CEE9D /* tivo_small.png in Resources */ = {isa = PBXBuildFile; fileRef = 3FB3C61C0D9E8F9A001CEE9D /* tivo_small.png */; };
-		3FB3C6830DA09597001CEE9D /* Preferences.nib in Resources */ = {isa = PBXBuildFile; fileRef = 3FB3C6820DA09597001CEE9D /* Preferences.nib */; };
 		3FB701680D9A1F0200D97046 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8D1107310486CEB800E47090 /* Info.plist */; };
 		3FB7F7F00D94D32100D97046 /* Beta Tester Notes.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 3FB7F7ED0D94D32100D97046 /* Beta Tester Notes.rtf */; };
 		3FB7F7F10D94D32100D97046 /* GPL.txt in Resources */ = {isa = PBXBuildFile; fileRef = 3FB7F7EE0D94D32100D97046 /* GPL.txt */; };
@@ -108,6 +108,7 @@
 		3F44C4A20D4453F800F0F6F4 /* LNSSourceListView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LNSSourceListView.m; sourceTree = "<group>"; };
 		3F44D8440D53042F00DA286E /* CalypsoXMLParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CalypsoXMLParser.h; sourceTree = "<group>"; };
 		3F44D8450D53042F00DA286E /* CalypsoXMLParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CalypsoXMLParser.m; sourceTree = "<group>"; };
+		3F6638320DA0A44500803251 /* Preferences.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = Preferences.xib; sourceTree = "<group>"; };
 		3F6A88F90D53472300212FBA /* TiVoProgram.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TiVoProgram.m; sourceTree = "<group>"; };
 		3F6A88FA0D53472300212FBA /* TiVoProgram.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TiVoProgram.h; sourceTree = "<group>"; };
 		3F8E37E40D4D52AA009B89B3 /* LibraryController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LibraryController.m; sourceTree = "<group>"; };
@@ -116,7 +117,6 @@
 		3FB3C6150D9E8DD5001CEE9D /* processing.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = processing.png; sourceTree = "<group>"; };
 		3FB3C6160D9E8DD5001CEE9D /* smart_folders.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = smart_folders.png; sourceTree = "<group>"; };
 		3FB3C61C0D9E8F9A001CEE9D /* tivo_small.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tivo_small.png; sourceTree = "<group>"; };
-		3FB3C6820DA09597001CEE9D /* Preferences.nib */ = {isa = PBXFileReference; lastKnownFileType = wrapper.nib; path = Preferences.nib; sourceTree = "<group>"; };
 		3FB7F7ED0D94D32100D97046 /* Beta Tester Notes.rtf */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; path = "Beta Tester Notes.rtf"; sourceTree = "<group>"; };
 		3FB7F7EE0D94D32100D97046 /* GPL.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = GPL.txt; sourceTree = "<group>"; };
 		3FB7F7EF0D94D32100D97046 /* README.rtf */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; path = README.rtf; sourceTree = "<group>"; };
@@ -246,8 +246,8 @@
 				089C165CFE840E0CC02AAC07 /* InfoPlist.strings */,
 				29B97318FDCFA39411CA2CEA /* MainMenu.nib */,
 				3F0FD9E30D8C0A3F00F9C7E2 /* PredicateTesting.nib */,
-				3FB3C6820DA09597001CEE9D /* Preferences.nib */,
 				3FF708660D89F1780041CEAE /* WorkQueue.nib */,
+				3F6638320DA0A44500803251 /* Preferences.xib */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -450,7 +450,7 @@
 				3FB3C6180D9E8DD5001CEE9D /* processing.png in Resources */,
 				3FB3C6190D9E8DD5001CEE9D /* smart_folders.png in Resources */,
 				3FB3C61D0D9E8F9A001CEE9D /* tivo_small.png in Resources */,
-				3FB3C6830DA09597001CEE9D /* Preferences.nib in Resources */,
+				3F6638330DA0A44500803251 /* Preferences.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

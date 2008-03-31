@@ -334,7 +334,7 @@
 							<key>PBXSmartGroupTreeModuleOutlineStateSelectionKey</key>
 							<array>
 								<array>
-									<integer>25</integer>
+									<integer>26</integer>
 									<integer>20</integer>
 									<integer>0</integer>
 								</array>
@@ -389,7 +389,7 @@
 										<key>_historyCapacity</key>
 										<integer>0</integer>
 										<key>bookmark</key>
-										<string>3FB3C6870DA095B1001CEE9D</string>
+										<string>3F6638350DA0A45C00803251</string>
 										<key>history</key>
 										<array>
 											<string>3F8E38500D4DA080009B89B3</string>
@@ -439,7 +439,7 @@
 											<string>3FB3C6620DA0954A001CEE9D</string>
 											<string>3FB3C6630DA0954A001CEE9D</string>
 											<string>3FB3C6640DA0954A001CEE9D</string>
-											<string>3FB3C66D0DA0954A001CEE9D</string>
+											<string>3FB3C6900DA09644001CEE9D</string>
 										</array>
 										<key>nextStack</key>
 										<array>
@@ -544,9 +544,9 @@
 			</array>
 			<key>TableOfContents</key>
 			<array>
-				<string>3FB3C6800DA09579001CEE9D</string>
+				<string>3F66381E0DA09EFF00803251</string>
 				<string>1CE0B1FE06471DED0097A5F4</string>
-				<string>3FB3C6810DA09579001CEE9D</string>
+				<string>3F66381F0DA09EFF00803251</string>
 				<string>1CE0B20306471E060097A5F4</string>
 				<string>1CE0B20506471E060097A5F4</string>
 			</array>
@@ -680,7 +680,7 @@
 	<key>StatusbarIsVisible</key>
 	<true/>
 	<key>TimeStamp</key>
-	<real>228627825.223683</real>
+	<real>228631644.668538</real>
 	<key>ToolbarDisplayMode</key>
 	<integer>2</integer>
 	<key>ToolbarIsVisible</key>
@@ -695,9 +695,14 @@
 	<integer>5</integer>
 	<key>WindowOrderList</key>
 	<array>
+		<string>3F6638360DA0A45C00803251</string>
 		<string>3FCB2CDC0D8113E900C2B5BD</string>
+		<string>3F6638370DA0A45C00803251</string>
+		<string>3F6638380DA0A45C00803251</string>
+		<string>3FE3C8E10D3DD03300D5105A</string>
 		<string>1CD10A99069EF8BA00B06720</string>
 		<string>/Users/ebaur/Projects/Current Projects/TiVo Butler v1.0b/TiVo Butler.xcodeproj</string>
+		<string>1C78EAAD065D492600B07095</string>
 	</array>
 	<key>WindowString</key>
 	<string>227 246 1061 925 0 0 1920 1178 </string>
@@ -777,7 +782,7 @@
 			<key>TableOfContents</key>
 			<array>
 				<string>3FE3C8E10D3DD03300D5105A</string>
-				<string>3FB3C63F0DA08E34001CEE9D</string>
+				<string>3F6638250DA0A00200803251</string>
 				<string>1CD0528F0623707200166675</string>
 				<string>XCMainBuildResultsModuleGUID</string>
 			</array>
@@ -897,13 +902,13 @@
 			<key>TableOfContents</key>
 			<array>
 				<string>1CD10A99069EF8BA00B06720</string>
-				<string>3FB3C6780DA09574001CEE9D</string>
+				<string>3F6638260DA0A00200803251</string>
 				<string>1C162984064C10D400B95A72</string>
-				<string>3FB3C6790DA09574001CEE9D</string>
-				<string>3FB3C67A0DA09574001CEE9D</string>
-				<string>3FB3C67B0DA09574001CEE9D</string>
-				<string>3FB3C67C0DA09574001CEE9D</string>
-				<string>3FB3C67D0DA09574001CEE9D</string>
+				<string>3F6638270DA0A00200803251</string>
+				<string>3F6638280DA0A00200803251</string>
+				<string>3F6638290DA0A00200803251</string>
+				<string>3F66382A0DA0A00200803251</string>
+				<string>3F66382B0DA0A00200803251</string>
 			</array>
 			<key>ToolbarConfiguration</key>
 			<string>xcode.toolbar.config.debugV3</string>
@@ -1059,7 +1064,7 @@
 			<key>TableOfContents</key>
 			<array>
 				<string>1C78EAAD065D492600B07095</string>
-				<string>3FB3C6470DA08E68001CEE9D</string>
+				<string>3F66382C0DA0A02500803251</string>
 				<string>1C78EAAC065D492600B07095</string>
 			</array>
 			<key>ToolbarConfiguration</key>
@@ -1176,7 +1181,7 @@
 								<dict>
 									<key>PBXCVSModuleTreeModuleColumnWidthsKey</key>
 									<array>
-										<real>264</real>
+										<real>280</real>
 										<real>56</real>
 										<real>63</real>
 										<real>60</real>
@@ -1228,7 +1233,7 @@
 			<key>TableOfContents</key>
 			<array>
 				<string>3FCB2CDC0D8113E900C2B5BD</string>
-				<string>3FB3C6860DA095AF001CEE9D</string>
+				<string>3F6638300DA0A2F800803251</string>
 				<string>1C78EAB2065D492600B07095</string>
 				<string>1CD052920623707200166675</string>
 			</array>
