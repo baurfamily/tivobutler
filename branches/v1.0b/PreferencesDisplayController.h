@@ -13,6 +13,11 @@
 	IBOutlet NSWindow *preferencesWindow;
 	IBOutlet NSArrayController *smartGroupArrayController;
 	IBOutlet NSPredicateEditor *predicateEditor;
+
+	IBOutlet NSView *devicesView;
+	IBOutlet NSView *smartGroupsView;
+	IBOutlet NSView *downloadingView;
+	IBOutlet NSView *postProcessingView;
 	
 	NSManagedObjectContext *managedObjectContext;
 }
@@ -20,5 +25,12 @@
 - (IBAction)showWindow:(id)sender;
 - (IBAction)addSmartGroup:(id)sender;
 - (IBAction)predicateEditorChanged:(id)sender;
+
+- (IBAction)showDevices:(id)sender;
+- (IBAction)showSmartGroups:(id)sender;
+- (IBAction)showDownloading:(id)sender;
+- (IBAction)showPostProcessing:(id)sender;
+
+- (void)setPreferencesView:(NSView *)newView;
 
 @end
