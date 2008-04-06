@@ -332,7 +332,8 @@
 							<key>PBXSmartGroupTreeModuleOutlineStateSelectionKey</key>
 							<array>
 								<array>
-									<integer>0</integer>
+									<integer>23</integer>
+									<integer>22</integer>
 								</array>
 							</array>
 							<key>PBXSmartGroupTreeModuleOutlineStateVisibleRectKey</key>
@@ -385,7 +386,7 @@
 										<key>_historyCapacity</key>
 										<integer>0</integer>
 										<key>bookmark</key>
-										<string>3F5E9B170DA90FF1004D2EE8</string>
+										<string>3F5E9B1C0DA91308004D2EE8</string>
 										<key>history</key>
 										<array>
 											<string>3F8E38500D4DA080009B89B3</string>
@@ -701,7 +702,7 @@
 	<key>StatusbarIsVisible</key>
 	<true/>
 	<key>TimeStamp</key>
-	<real>229183473.12338299</real>
+	<real>229184264.33843699</real>
 	<key>ToolbarDisplayMode</key>
 	<integer>2</integer>
 	<key>ToolbarIsVisible</key>
@@ -716,6 +717,7 @@
 	<integer>5</integer>
 	<key>WindowOrderList</key>
 	<array>
+		<string>3FCB2CDC0D8113E900C2B5BD</string>
 		<string>1CD10A99069EF8BA00B06720</string>
 		<string>3FE3C8E10D3DD03300D5105A</string>
 		<string>1C78EAAD065D492600B07095</string>
@@ -1171,7 +1173,7 @@
 								<key>PBXProjectModuleGUID</key>
 								<string>1C78EAB2065D492600B07095</string>
 								<key>PBXProjectModuleLabel</key>
-								<string>ebaur.mode1v3</string>
+								<string></string>
 								<key>StatusBarVisibility</key>
 								<true/>
 							</dict>
@@ -1198,7 +1200,7 @@
 								<dict>
 									<key>PBXCVSModuleTreeModuleColumnWidthsKey</key>
 									<array>
-										<real>296</real>
+										<real>312</real>
 										<real>56</real>
 										<real>63</real>
 										<real>60</real>
@@ -1250,7 +1252,7 @@
 			<key>TableOfContents</key>
 			<array>
 				<string>3FCB2CDC0D8113E900C2B5BD</string>
-				<string>3F5E9AC10DA8931B004D2EE8</string>
+				<string>3F5E9B1A0DA9109E004D2EE8</string>
 				<string>1C78EAB2065D492600B07095</string>
 				<string>1CD052920623707200166675</string>
 			</array>

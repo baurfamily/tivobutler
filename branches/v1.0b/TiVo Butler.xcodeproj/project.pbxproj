@@ -18,6 +18,8 @@
 		3F44C4AA0D4453F800F0F6F4 /* LNSSourceListView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F44C4A20D4453F800F0F6F4 /* LNSSourceListView.m */; };
 		3F44D8460D53042F00DA286E /* CalypsoXMLParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F44D8450D53042F00DA286E /* CalypsoXMLParser.m */; };
 		3F5E9AEB0DA90DAE004D2EE8 /* TiVoDocument.icns in Resources */ = {isa = PBXBuildFile; fileRef = 3F5E9AEA0DA90DAE004D2EE8 /* TiVoDocument.icns */; };
+		3F5E9B1F0DA922F4004D2EE8 /* NowPlaying.png in Resources */ = {isa = PBXBuildFile; fileRef = 3F5E9B1E0DA922F4004D2EE8 /* NowPlaying.png */; };
+		3F5E9B220DA92462004D2EE8 /* add_to_queue.png in Resources */ = {isa = PBXBuildFile; fileRef = 3F5E9B210DA92462004D2EE8 /* add_to_queue.png */; };
 		3F6A88FB0D53472300212FBA /* TiVoProgram.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F6A88F90D53472300212FBA /* TiVoProgram.m */; };
 		3F8E37E60D4D52AA009B89B3 /* LibraryController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F8E37E40D4D52AA009B89B3 /* LibraryController.m */; };
 		3FB3C6170D9E8DD5001CEE9D /* download.png in Resources */ = {isa = PBXBuildFile; fileRef = 3FB3C6140D9E8DD5001CEE9D /* download.png */; };
@@ -110,6 +112,8 @@
 		3F44D8440D53042F00DA286E /* CalypsoXMLParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CalypsoXMLParser.h; sourceTree = "<group>"; };
 		3F44D8450D53042F00DA286E /* CalypsoXMLParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CalypsoXMLParser.m; sourceTree = "<group>"; };
 		3F5E9AEA0DA90DAE004D2EE8 /* TiVoDocument.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = TiVoDocument.icns; sourceTree = "<group>"; };
+		3F5E9B1E0DA922F4004D2EE8 /* NowPlaying.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = NowPlaying.png; sourceTree = "<group>"; };
+		3F5E9B210DA92462004D2EE8 /* add_to_queue.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = add_to_queue.png; sourceTree = "<group>"; };
 		3F6638320DA0A44500803251 /* English */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = English; path = English.lproj/Preferences.xib; sourceTree = "<group>"; };
 		3F6A88F90D53472300212FBA /* TiVoProgram.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TiVoProgram.m; sourceTree = "<group>"; };
 		3F6A88FA0D53472300212FBA /* TiVoProgram.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TiVoProgram.h; sourceTree = "<group>"; };
@@ -310,6 +314,8 @@
 		3F5E9AF40DA90FDA004D2EE8 /* Toolbar */ = {
 			isa = PBXGroup;
 			children = (
+				3F5E9B210DA92462004D2EE8 /* add_to_queue.png */,
+				3F5E9B1E0DA922F4004D2EE8 /* NowPlaying.png */,
 				3FB3C61C0D9E8F9A001CEE9D /* tivo_small.png */,
 				3FFF42160DA86470008CBE8D /* mpg_to_mp4.png */,
 				3FFF42170DA86470008CBE8D /* tivo_to_movie.png */,
@@ -487,6 +493,8 @@
 				3FFF42570DA87908008CBE8D /* WorkQueue.xib in Resources */,
 				3FFF42700DA87AA9008CBE8D /* PredicateTesting.xib in Resources */,
 				3F5E9AEB0DA90DAE004D2EE8 /* TiVoDocument.icns in Resources */,
+				3F5E9B1F0DA922F4004D2EE8 /* NowPlaying.png in Resources */,
+				3F5E9B220DA92462004D2EE8 /* add_to_queue.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -582,6 +590,7 @@
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = TiVo_Butler_Prefix.pch;
+				IBC_FLATTEN_NIBS = NO;
 				INFOPLIST_FILE = Info.plist;
 				INSTALL_PATH = "$(HOME)/Applications";
 				PRODUCT_NAME = "TiVo Butler";
@@ -600,6 +609,7 @@
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = TiVo_Butler_Prefix.pch;
+				IBC_FLATTEN_NIBS = NO;
 				INFOPLIST_FILE = Info.plist;
 				PRODUCT_NAME = "TiVo Butler";
 				WRAPPER_EXTENSION = app;
