@@ -65,9 +65,14 @@
 	[self setPreferencesView:downloadingView];
 }
 
-- (IBAction)showPostProcessing:(id)sender
+- (IBAction)showDecoding:(id)sender
 {
-	[self setPreferencesView:postProcessingView];
+	[self setPreferencesView:decodingView];
+}
+
+- (IBAction)showConverting:(id)sender
+{
+	[self setPreferencesView:convertingView];
 }
 
 - (void)setPreferencesView:(NSView *)newView

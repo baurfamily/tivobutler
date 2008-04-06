@@ -17,7 +17,8 @@
 	IBOutlet NSView *devicesView;
 	IBOutlet NSView *smartGroupsView;
 	IBOutlet NSView *downloadingView;
-	IBOutlet NSView *postProcessingView;
+	IBOutlet NSView *decodingView;
+	IBOutlet NSView *convertingView;
 	
 	NSManagedObjectContext *managedObjectContext;
 }
@@ -29,7 +30,8 @@
 - (IBAction)showDevices:(id)sender;
 - (IBAction)showSmartGroups:(id)sender;
 - (IBAction)showDownloading:(id)sender;
-- (IBAction)showPostProcessing:(id)sender;
+- (IBAction)showDecoding:(id)sender;
+- (IBAction)showConverting:(id)sender;
 
 - (void)setPreferencesView:(NSView *)newView;
 
