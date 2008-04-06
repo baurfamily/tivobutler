@@ -29,12 +29,14 @@
 	
 	[self willChangeValueForKey:@"showWorkQueue"];
 	if ( YES == newValue ) {
+		windowRect.origin.y += WQDefaultWindowHeight - oldWindowSize.height;
 		windowRect.size = oldWindowSize;
 		[workQueueWindow setFrame:windowRect display:YES animate:YES];
 		[self setItemsHidden:NO];
 	} else {
 		[self setItemsHidden:YES];
 		oldWindowSize = windowRect.size;
+		windowRect.origin.y += windowRect.size.height - WQDefaultWindowHeight;
 		windowRect.size.width = WQDefaultWindowWidth;
 		windowRect.size.height = WQDefaultWindowHeight;
 		[workQueueWindow setFrame:windowRect display:YES animate:YES];
