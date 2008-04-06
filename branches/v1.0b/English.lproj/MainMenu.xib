@@ -8,7 +8,6 @@
 		<string key="IBDocument.HIToolboxVersion">352.00</string>
 		<object class="NSMutableArray" key="IBDocument.EditedObjectIDs">
 			<bool key="EncodedWithXMLCoder">YES</bool>
-			<integer value="1219"/>
 		</object>
 		<object class="NSArray" key="IBDocument.PluginDependencies">
 			<bool key="EncodedWithXMLCoder">YES</bool>
@@ -828,7 +827,7 @@
 					<bool key="NSToolbarPrefersToBeShown">YES</bool>
 					<bool key="NSToolbarShowsBaselineSeparator">YES</bool>
 					<bool key="NSToolbarAllowsUserCustomization">YES</bool>
-					<bool key="NSToolbarAutosavesConfiguration">NO</bool>
+					<bool key="NSToolbarAutosavesConfiguration">YES</bool>
 					<int key="NSToolbarDisplayMode">1</int>
 					<int key="NSToolbarSizeMode">1</int>
 					<object class="NSMutableDictionary" key="NSToolbarIBIdentifiedItems">
@@ -1221,7 +1220,7 @@ ELIAAAAAAAgACAAIAAgAAQABAAEAAQ</bytes>
 				</object>
 				<string key="NSWindowContentMinSize">{890, 606}</string>
 				<object class="NSView" key="NSWindowView" id="415594022">
-					<reference key="NSNextResponder"/>
+					<nil key="NSNextResponder"/>
 					<int key="NSvFlags">256</int>
 					<object class="NSMutableArray" key="NSSubviews">
 						<bool key="EncodedWithXMLCoder">YES</bool>
@@ -1337,7 +1336,6 @@ ELIAAAAAAAgACAAIAAgAAQABAAEAAQ</bytes>
 											</object>
 											<string key="NSFrame">{{1, 1}, {142, 590}}</string>
 											<reference key="NSSuperview" ref="420125362"/>
-											<reference key="NSNextKeyView" ref="423896477"/>
 											<reference key="NSDocView" ref="423896477"/>
 											<reference key="NSBGColor" ref="122885922"/>
 											<int key="NScvFlags">4</int>
@@ -1364,7 +1362,6 @@ ELIAAAAAAAgACAAIAAgAAQABAAEAAQ</bytes>
 									</object>
 									<string key="NSFrameSize">{144, 592}</string>
 									<reference key="NSSuperview" ref="75852118"/>
-									<reference key="NSNextKeyView" ref="360506547"/>
 									<int key="NSsFlags">530</int>
 									<reference key="NSVScroller" ref="1057165152"/>
 									<reference key="NSHScroller" ref="36254000"/>
@@ -1708,7 +1705,6 @@ ELIAAAAAAAgACAAIAAgAAQABAAEAAQ</bytes>
 																	</object>
 																	<string key="NSFrame">{{1, 17}, {654, 359}}</string>
 																	<reference key="NSSuperview" ref="516422229"/>
-																	<reference key="NSNextKeyView" ref="913783973"/>
 																	<reference key="NSDocView" ref="913783973"/>
 																	<reference key="NSBGColor" ref="122885922"/>
 																	<int key="NScvFlags">4</int>
@@ -1741,7 +1737,6 @@ ELIAAAAAAAgACAAIAAgAAQABAAEAAQ</bytes>
 																	</object>
 																	<string key="NSFrame">{{1, 0}, {654, 17}}</string>
 																	<reference key="NSSuperview" ref="516422229"/>
-																	<reference key="NSNextKeyView" ref="137854374"/>
 																	<reference key="NSDocView" ref="137854374"/>
 																	<reference key="NSBGColor" ref="122885922"/>
 																	<int key="NScvFlags">4</int>
@@ -1750,7 +1745,6 @@ ELIAAAAAAAgACAAIAAgAAQABAAEAAQ</bytes>
 															</object>
 															<string key="NSFrame">{{18, 14}, {671, 392}}</string>
 															<reference key="NSSuperview" ref="1054104868"/>
-															<reference key="NSNextKeyView" ref="317665104"/>
 															<int key="NSsFlags">50</int>
 															<reference key="NSVScroller" ref="776244414"/>
 															<reference key="NSHScroller" ref="542368818"/>
@@ -2760,7 +2754,6 @@ ELIAAAAAAAgACAAIAAgAAQABAAEAAQ</bytes>
 						</object>
 					</object>
 					<string key="NSFrameSize">{901, 624}</string>
-					<reference key="NSSuperview"/>
 				</object>
 				<string key="NSScreenRect">{{0, 0}, {1920, 1178}}</string>
 				<string key="NSMinSize">{890, 684}</string>

@@ -22,7 +22,7 @@ static BOOL loaded = NO;
 		[NSDictionary dictionaryWithObjectsAndKeys:
 			@"~/Downloads/",										@"downloadFolder",
 			[NSNumber numberWithBool:YES],							@"createSeriesSubFolders",
-			[NSNumber numberWithInt:WQDownloadOnlyAction],			@"downloadAction",
+			[NSNumber numberWithInt:WQConvertAction],				@"downloadAction",
 			[NSNumber numberWithInt:WQAddedDateOrder],				@"downloadOrder",
 			[NSNumber numberWithBool:YES],							@"restartDownloads",
 			[NSNumber numberWithBool:NO],							@"cancelDownloadsOnStartup",
@@ -33,6 +33,8 @@ static BOOL loaded = NO;
 			[NSNumber numberWithBool:NO],							@"useIntermediateFolder",
 			@"~/Downloads/",										@"intermediateFolder",
 			[NSNumber numberWithBool:NO],							@"keepIntermediateFiles",
+			[NSNumber numberWithBool:NO],							@"decodeWithExternalApp",
+			[NSNumber numberWithBool:NO],							@"convertWithExternalApp",
 			nil
 		]
 	];
