@@ -13,11 +13,10 @@
 
 - (void)awakeFromNib
 {
+	ENTRY;
 	[self willChangeValueForKey:@"managedObjectContext"];	
 	managedObjectContext = [[[[NSApplication sharedApplication] delegate] managedObjectContext] retain];
 	[self didChangeValueForKey:@"managedObjectContext"];
-	
-	[self showDevices:self];
 	
 	[predicateEditor addRow:self];
 }
@@ -31,6 +30,10 @@
 			return;
 		} else { INFO( @"loaded Preferences.nib" ); }
 	}
+	
+	[self endSheet:self];
+	
+	[self showDevices:self];
 	[preferencesWindow makeKeyAndOrderFront:self];
 }
 
@@ -49,6 +52,10 @@
 		[predicateEditor addRow:self];
 	}
 }
+
+
+#pragma mark -
+#pragma mark Window display methods
 
 - (IBAction)showDevices:(id)sender
 {
@@ -75,8 +82,70 @@
 	[self setPreferencesView:convertingView];
 }
 
+#pragma mark -
+#pragma mark Sheet display methods
+
+- (IBAction)showDevicesSheet:(id)sender
+{
+	if ( ! devicesView ) {
+		if ( ![NSBundle loadNibNamed:@"Preferences" owner:self] ) {
+			ERROR( @"could not load Preferences.nib" );
+			return;
+		} else { INFO( @"loaded Preferences.nib" ); }
+	}
+	[self setPreferencesSheet:devicesView];
+}
+
+- (IBAction)showSmartGroupsSheet:(id)sender
+{
+	if ( ! smartGroupsView ) {
+		if ( ![NSBundle loadNibNamed:@"Preferences" owner:self] ) {
+			ERROR( @"could not load Preferences.nib" );
+			return;
+		} else { INFO( @"loaded Preferences.nib" ); }
+	}
+	[self setPreferencesSheet:smartGroupsView];
+}
+
+- (IBAction)showDownloadingSheet:(id)sender
+{
+	if ( ! downloadingView ) {
+		if ( ![NSBundle loadNibNamed:@"Preferences" owner:self] ) {
+			ERROR( @"could not load Preferences.nib" );
+			return;
+		} else { INFO( @"loaded Preferences.nib" ); }
+	}
+	[self setPreferencesSheet:downloadingView];
+}
+
+- (IBAction)showDecodingSheet:(id)sender
+{
+	if ( ! decodingView ) {
+		if ( ![NSBundle loadNibNamed:@"Preferences" owner:self] ) {
+			ERROR( @"could not load Preferences.nib" );
+			return;
+		} else { INFO( @"loaded Preferences.nib" ); }
+	}
+	[self setPreferencesSheet:decodingView];
+}
+
+- (IBAction)showConvertingSheet:(id)sender
+{
+	if ( ! convertingView ) {
+		if ( ![NSBundle loadNibNamed:@"Preferences" owner:self] ) {
+			ERROR( @"could not load Preferences.nib" );
+			return;
+		} else { INFO( @"loaded Preferences.nib" ); }
+	}
+	[self setPreferencesSheet:convertingView];
+}
+
+#pragma mark -
+#pragma mark Generic display methods
+
 - (void)setPreferencesView:(NSView *)newView
 {
+	ENTRY;
 	NSRect windowFrame = [preferencesWindow frame];
 	NSRect viewFrame = [[preferencesWindow contentView] frame];
 	NSRect newViewFrame = [newView frame];
@@ -99,6 +168,48 @@
 	[preferencesWindow setFrame:windowFrame display:YES animate:YES];
 	[preferencesWindow setContentView:newView];
 	
+}
+
+- (void)setPreferencesSheet:(NSView *)newView
+{
+	ENTRY;
+	if ( ! ( preferencesSheetWindow && preferencesSheetBox &&  mainWindow ) ) {
+		//TODO: figure out why this is being called at launch...
+		return;
+	}
+	[preferencesWindow close];
+	
+	NSRect windowFrame = [preferencesSheetWindow frame];
+	NSRect viewFrame = [[preferencesSheetBox contentView] frame];
+	NSRect newViewFrame = [newView frame];
+	
+	int heightDiff = newViewFrame.size.height - viewFrame.size.height;
+	int widthDiff = newViewFrame.size.width - viewFrame.size.width;
+	
+	windowFrame.size.height += heightDiff;
+	windowFrame.size.width += widthDiff;
+	
+	//it crashes if I take this out...
+	[newView retain];	//TODO: figure out why the retain count goes up
+	
+	DEBUG( @"retain count: %d", [newView retainCount] );
+	
+	[preferencesSheetBox setContentView:newView];
+	[preferencesSheetWindow setFrame:windowFrame display:YES];
+	
+	[[NSApplication sharedApplication]
+		beginSheet:preferencesSheetWindow
+		modalForWindow:mainWindow
+		modalDelegate:nil
+		didEndSelector:nil
+		contextInfo:NULL
+	];
+}
+
+- (IBAction)endSheet:(id)sender
+{
+	[[NSApplication sharedApplication] endSheet:preferencesSheetWindow];
+	[preferencesSheetWindow orderOut:self];
 }
 
 @end

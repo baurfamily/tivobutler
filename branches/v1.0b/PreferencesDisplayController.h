@@ -11,6 +11,11 @@
 
 @interface PreferencesDisplayController : NSObject {
 	IBOutlet NSWindow *preferencesWindow;
+	IBOutlet NSWindow *preferencesSheetWindow;
+	IBOutlet NSWindow *mainWindow;
+	
+	IBOutlet NSBox *preferencesSheetBox;
+	
 	IBOutlet NSArrayController *smartGroupArrayController;
 	IBOutlet NSPredicateEditor *predicateEditor;
 
@@ -33,6 +38,15 @@
 - (IBAction)showDecoding:(id)sender;
 - (IBAction)showConverting:(id)sender;
 
+- (IBAction)showDevicesSheet:(id)sender;
+- (IBAction)showSmartGroupsSheet:(id)sender;
+- (IBAction)showDownloadingSheet:(id)sender;
+- (IBAction)showDecodingSheet:(id)sender;
+- (IBAction)showConvertingSheet:(id)sender;
+
 - (void)setPreferencesView:(NSView *)newView;
+- (void)setPreferencesSheet:(NSView *)newView;
+
+- (IBAction)endSheet:(id)sender;
 
 @end

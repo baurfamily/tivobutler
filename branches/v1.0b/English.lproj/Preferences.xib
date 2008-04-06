@@ -1852,7 +1852,7 @@
 																						<reference ref="197412425"/>
 																					</object>
 																				</object>
-																				<object class="NSMutableDictionary" id="272565443">
+																				<object class="NSMutableDictionary" id="255088941">
 																					<bool key="EncodedWithXMLCoder">YES</bool>
 																					<object class="NSMutableArray" key="dict.sortedKeys">
 																						<bool key="EncodedWithXMLCoder">YES</bool>
@@ -2126,7 +2126,7 @@
 																						<reference ref="1024743542"/>
 																					</object>
 																				</object>
-																				<object class="NSMutableDictionary" id="793690565">
+																				<object class="NSMutableDictionary" id="1010983702">
 																					<bool key="EncodedWithXMLCoder">YES</bool>
 																					<object class="NSMutableArray" key="dict.sortedKeys">
 																						<bool key="EncodedWithXMLCoder">YES</bool>
@@ -2252,7 +2252,7 @@
 																							<bool key="EncodedWithXMLCoder">YES</bool>
 																							<reference ref="398559534"/>
 																							<reference ref="771852932"/>
-																							<reference ref="272565443"/>
+																							<reference ref="255088941"/>
 																						</object>
 																						<object class="NSMutableArray">
 																							<bool key="EncodedWithXMLCoder">YES</bool>
@@ -2281,7 +2281,7 @@
 																							<bool key="EncodedWithXMLCoder">YES</bool>
 																							<reference ref="388139389"/>
 																							<reference ref="49279998"/>
-																							<reference ref="793690565"/>
+																							<reference ref="1010983702"/>
 																						</object>
 																						<object class="NSMutableArray">
 																							<bool key="EncodedWithXMLCoder">YES</bool>
@@ -7914,7 +7914,7 @@ biB0aGUgZmlsZS4</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>{{679, 873}, {364, 1}}</string>
 					<reference ref="9"/>
-					<reference ref="9"/>
+					<integer value="0"/>
 					<reference ref="8"/>
 					<reference ref="8"/>
 					<string>{1000, 406}</string>
@@ -8018,16 +8018,28 @@ biB0aGUgZmlsZS4</string>
 						<object class="NSMutableArray" key="dict.sortedKeys">
 							<bool key="EncodedWithXMLCoder">YES</bool>
 							<string>addSmartGroup:</string>
+							<string>endSheet:</string>
 							<string>predicateEditorChanged:</string>
 							<string>showConverting:</string>
+							<string>showConvertingSheet:</string>
 							<string>showDecoding:</string>
+							<string>showDecodingSheet:</string>
 							<string>showDevices:</string>
+							<string>showDevicesSheet:</string>
 							<string>showDownloading:</string>
+							<string>showDownloadingSheet:</string>
 							<string>showSmartGroups:</string>
+							<string>showSmartGroupsSheet:</string>
 							<string>showWindow:</string>
 						</object>
 						<object class="NSMutableArray" key="dict.values">
 							<bool key="EncodedWithXMLCoder">YES</bool>
+							<string>id</string>
+							<string>id</string>
+							<string>id</string>
+							<string>id</string>
+							<string>id</string>
+							<string>id</string>
 							<string>id</string>
 							<string>id</string>
 							<string>id</string>
@@ -8046,7 +8058,10 @@ biB0aGUgZmlsZS4</string>
 							<string>decodingView</string>
 							<string>devicesView</string>
 							<string>downloadingView</string>
+							<string>mainWindow</string>
 							<string>predicateEditor</string>
+							<string>preferencesSheetBox</string>
+							<string>preferencesSheetWindow</string>
 							<string>preferencesWindow</string>
 							<string>smartGroupArrayController</string>
 							<string>smartGroupsView</string>
@@ -8057,7 +8072,10 @@ biB0aGUgZmlsZS4</string>
 							<string>NSView</string>
 							<string>NSView</string>
 							<string>NSView</string>
+							<string>NSWindow</string>
 							<string>NSPredicateEditor</string>
+							<string>NSBox</string>
+							<string>NSWindow</string>
 							<string>NSWindow</string>
 							<string>NSArrayController</string>
 							<string>NSView</string>
@@ -8079,7 +8097,7 @@ biB0aGUgZmlsZS4</string>
 			</object>
 		</object>
 		<int key="IBDocument.localizationMode">0</int>
-		<string key="IBDocument.LastKnownRelativeProjectPath">TiVo Butler.xcodeproj</string>
+		<string key="IBDocument.LastKnownRelativeProjectPath">../TiVo Butler.xcodeproj</string>
 		<int key="IBDocument.defaultPropertyAccessControl">3</int>
 	</data>
 </archive>
