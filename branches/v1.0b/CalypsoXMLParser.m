@@ -210,7 +210,7 @@
 		[tempDict setObject:[NSNumber numberWithInt:[tempValueString intValue] ] forKey:@"byteOffset"];
 
 	} else if ( [elementName isEqualToString:CalypsoSourceSizeTag] ) {
-		[tempDict setObject:[NSNumber numberWithInt:[tempValueString integerValue]] forKey:@"sourceSize"];
+		[tempDict setObject:[NSNumber numberWithLongLong:[tempValueString longLongValue]] forKey:@"sourceSize"];
 
 	} else if ( [elementName isEqualToString:CalypsoProgramIDTag] ) {
 		[tempDict setObject:tempValueString forKey:@"programID"];
