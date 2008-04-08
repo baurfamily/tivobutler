@@ -15,6 +15,9 @@
 {
 	//- assume the window is at its larger size and shrink it to start with
 	[self setShowWorkQueue:NO];
+	[self willChangeValueForKey:@"sortDescriptors"];
+	sortDescriptors = nil;
+	[self didChangeValueForKey:@"sortDescriptors"];
 }
 
 - (IBAction)showWindow:(id)sender
@@ -62,6 +65,14 @@
 	] autorelease];
 	
 	return [NSArray arrayWithObject:sortDescriptor];
+}
+
+- (void)setSortDescriptors:(NSArray *)newDescriptors
+{
+	[self willChangeValueForKey:@"sortDescriptors"];
+	[sortDescriptors release];
+	sortDescriptors = [newDescriptors retain];
+	[self didChangeValueForKey:@"sortDescriptors"];
 }
 
 @end

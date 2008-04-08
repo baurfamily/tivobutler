@@ -42,7 +42,7 @@ typedef enum {
 } WQArgumentSubstitutionValue;
 
 #define WQAddedDateString		@"addedDate"
-#define WQRecordedDateString	@"recordedDate"
+#define WQRecordedDateString	@"program.recordedDate"
 
 #define WQConvertActionString	@"Converting..."
 #define WQDecodeActionString	@"Decoding..."

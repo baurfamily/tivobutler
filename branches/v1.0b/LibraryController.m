@@ -113,7 +113,7 @@
 		withObject:[NSDictionary dictionaryWithObjectsAndKeys:
 			[NSNumber numberWithBool:NO],	@"isSourceGroup",
 			@"Work Queue",					@"name",
-			[NSPredicate predicateWithFormat:@"ANY workQueueItems.completedDate = nil"], @"predicate",
+			[NSPredicate predicateWithFormat:@"ANY workQueueItems.completedDate = ''"], @"predicate",
 			nil ]
 	];
 	[self didChangeValueForKey:@"libraryArray"];

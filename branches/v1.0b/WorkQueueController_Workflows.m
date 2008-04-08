@@ -31,8 +31,6 @@
 			[NSDictionary dictionaryWithObject:@"volume=13:1"					forKey:@"value"],
 			[NSDictionary dictionaryWithObject:@"-of"							forKey:@"value"],
 			[NSDictionary dictionaryWithObject:@"lavf"							forKey:@"value"],
-			[NSDictionary dictionaryWithObject:@"-lavfopts"						forKey:@"value"],
-			[NSDictionary dictionaryWithObject:@"i_certify_that_my_video_stream_does_not_use_b_frames" forKey:@"value"],
 			[NSDictionary dictionaryWithObject:@"-demuxer"						forKey:@"value"],
 			[NSDictionary dictionaryWithObject:@"lavf"							forKey:@"value"],
 			[NSDictionary dictionaryWithObject:@"-lavfdopts"					forKey:@"value"],
@@ -255,6 +253,12 @@
 		ERROR( @"launch path not set for decode task, can't continue" );
 		[self removeFiles];
 		[self completeWithMessage:@"Failed"];
+
+		[decodeTask release];
+		decodeTask = nil;
+		[decodeFileHandle release];
+		decodeFileHandle = nil;
+
 		return;
 	}
 	DEBUG( @"using launchPath: %@", launchPath );
@@ -375,6 +379,11 @@
 		ERROR( @"launch path not set for conversion task, can't continue" );
 		[self removeFiles];
 		[self completeWithMessage:@"Failed"];
+		
+		[convertTask release];
+		convertTask = nil;
+		[convertFileHandle release];
+		convertFileHandle = nil;
 		return;
 	}
 	

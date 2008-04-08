@@ -22,6 +22,8 @@
 	IBOutlet NSButton *removeItemButton;
 	
 	NSSize oldWindowSize;
+	
+	NSArray *sortDescriptors;
 }
 
 - (IBAction)showWindow:(id)sender;
