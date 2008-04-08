@@ -181,20 +181,17 @@
 	[convertTask terminate];
 	if ( !keepIntermediateFiles && convertPath )
 		[[NSFileManager defaultManager] removeItemAtPath:convertPath error:NULL];
-	[convertPath release];
-	convertPath = nil;
+	[convertPath release], convertPath = nil;
 	
 	[decodeTask terminate];
 	if ( !keepIntermediateFiles && decodePath )
 		[[NSFileManager defaultManager] removeItemAtPath:decodePath error:NULL];
-	[decodePath release];
-	decodePath = nil;
+	[decodePath release], decodePath = nil;
 	
 	[programDownload cancel];
 	if ( !keepIntermediateFiles && downloadPath )
 		[[NSFileManager defaultManager] removeItemAtPath:downloadPath error:NULL];
-	[downloadPath release];
-	downloadPath = nil;
+	[downloadPath release], downloadPath = nil;
 }
 
 - (void)completeWithMessage:(NSString *)message
@@ -254,10 +251,8 @@
 		[self removeFiles];
 		[self completeWithMessage:@"Failed"];
 
-		[decodeTask release];
-		decodeTask = nil;
-		[decodeFileHandle release];
-		decodeFileHandle = nil;
+		[decodeTask release], decodeTask = nil;
+		[decodeFileHandle release], decodeFileHandle = nil;
 
 		return;
 	}
@@ -280,8 +275,10 @@
 			];
 		} else if ( WQArgumentNone != tempSub ) {
 			[arguments addObject:[self stringForSubstitutionValue:tempSub atStage:currentAction] ];
-		} else {
+		} else if ( tempString && ![tempString isEqualToString:@""] ) {
 			[arguments addObject:tempString];
+		} else {
+			WARNING( @"encountered empty argument for decode task, skipping..." );
 		}
 	}
 	//INFO( @"decode task arguments:\n%@", [arguments description] );	//- don't want to log the MAK
@@ -334,10 +331,8 @@
 		[self completeWithMessage:nil];
 	}
 	
-	[decodeTask release];
-	decodeTask = nil;
-	[decodeFileHandle release];
-	decodeFileHandle = nil;
+	[decodeTask release], decodeTask = nil;
+	[decodeFileHandle release], decodeFileHandle = nil;
 }
 
 
@@ -380,10 +375,8 @@
 		[self removeFiles];
 		[self completeWithMessage:@"Failed"];
 		
-		[convertTask release];
-		convertTask = nil;
-		[convertFileHandle release];
-		convertFileHandle = nil;
+		[convertTask release], convertTask = nil;
+		[convertFileHandle release], convertFileHandle = nil;
 		return;
 	}
 	
@@ -403,8 +396,10 @@
 			];
 		} else if ( WQArgumentNone != tempSub ) {
 			[arguments addObject:[self stringForSubstitutionValue:tempSub atStage:currentAction] ];
-		} else {
+		} else if ( tempString && ![tempString isEqualToString:@""] ) {
 			[arguments addObject:tempString];
+		} else {
+			WARNING( @"argument with empty value encountered for convert task, skipping" );
 		}
 	}
 	DEBUG( @"using launchPath: %@", launchPath );

@@ -60,11 +60,15 @@
 - (NSArray *)sortDescriptors
 {
 	ENTRY;
-	NSSortDescriptor *sortDescriptor = [[[NSSortDescriptor alloc]
-		initWithKey:[workQueueController valueForKey:@"pendingItemsSortKey"] ascending:YES
-	] autorelease];
-	
-	return [NSArray arrayWithObject:sortDescriptor];
+	if ( sortDescriptors ) {
+		return sortDescriptors;
+	} else {
+		NSSortDescriptor *sortDescriptor = [[[NSSortDescriptor alloc]
+			initWithKey:[workQueueController valueForKey:@"pendingItemsSortKey"] ascending:NO
+		] autorelease];
+		
+		return [NSArray arrayWithObject:sortDescriptor];
+	}
 }
 
 - (void)setSortDescriptors:(NSArray *)newDescriptors
