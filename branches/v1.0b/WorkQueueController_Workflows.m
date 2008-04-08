@@ -42,7 +42,7 @@
 			[NSDictionary dictionaryWithObject:@"-ovc"							forKey:@"value"],
 			[NSDictionary dictionaryWithObject:@"lavc"							forKey:@"value"],
 			[NSDictionary dictionaryWithObject:@"-lavcopts"						forKey:@"value"],
-			[NSDictionary dictionaryWithObject:@"keyint=15:aglobal=1:vglobal=1:coder=1:vcodec=mpeg4:acodec=aac:vbitrate=1800:abitrate=128" forKey:@"value"],
+			[NSDictionary dictionaryWithObject:@"keyint=15:aglobal=1:vglobal=1:coder=1:vcodec=mpeg4:acodec=libfaac:vbitrate=1800:abitrate=128" forKey:@"value"],
 			[NSDictionary dictionaryWithObject:@"-vf"							forKey:@"value"],
 			[NSDictionary dictionaryWithObject:@"pp=lb,scale=640:480,harddup"	forKey:@"value"],
 			[NSDictionary dictionaryWithObject:@"-o"							forKey:@"value"],
