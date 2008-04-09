@@ -19,7 +19,7 @@
 
 - (BOOL)canRemove
 {
-	if ( self.startedDate ) {
+	if ( [self.active boolValue] ) {
 		return NO;
 	} else {
 		return YES;

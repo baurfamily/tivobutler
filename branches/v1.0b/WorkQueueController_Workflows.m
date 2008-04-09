@@ -154,8 +154,8 @@
 	INFO( @"converting to: %@", convertPath );
 	
 	receivedBytes = 0;
-	expectedBytes = [currentItem.program.sourceSize intValue];
-	INFO( @"expecting %d bytes", expectedBytes );
+	expectedBytes = [currentItem.program.sourceSize longLongValue];
+	INFO( @"expecting %lld bytes", expectedBytes );
 	
 	programDownload = [[NSURLDownload alloc] initWithRequest:request delegate:self];
 	[self willChangeValueForKey:@"currentAction"];
@@ -218,6 +218,10 @@
 - (void)beginDecode
 {
 	ENTRY;
+
+	[self willChangeValueForKey:@"currentActionPercent"];
+	currentActionPercent = 0;
+	[self didChangeValueForKey:@"currentActionPercent"];
 
 	NSUserDefaultsController *defaults = [NSUserDefaultsController sharedUserDefaultsController];
 
@@ -342,7 +346,11 @@
 - (void)beginConversion
 {
 	ENTRY;
-
+	
+	[self willChangeValueForKey:@"currentActionPercent"];
+	currentActionPercent = 0;
+	[self didChangeValueForKey:@"currentActionPercent"];
+	
 	NSUserDefaultsController *defaults = [NSUserDefaultsController sharedUserDefaultsController];
 
 	[convertTask release];
@@ -425,18 +433,23 @@
 		NSScanner *scanner = [NSScanner scannerWithString:tempString];
 		
 		NSString *otherTempString = nil;
-		[scanner scanUpToString:@"(" intoString:NULL];
-		[scanner scanString:@"(" intoString:NULL];
-		[scanner scanUpToString:@"%)" intoString:&otherTempString];
-		int newActionPercent = [otherTempString intValue];
-		if (  newActionPercent != currentActionPercent ) {
-			[self willChangeValueForKey:@"currentActionPercent"];
-			currentActionPercent = newActionPercent;
-			if ( 0 == currentActionPercent % 10 ) {
-				INFO( @"currentActionPercent: %d\n%@", currentActionPercent, tempString );
+		if ( ![scanner scanString:@"Pos:" intoString:NULL] ) {
+			//- didn't find a line with a % output in it, so we'll log the output
+			INFO( tempString );
+		} else {
+			[scanner scanUpToString:@"f (" intoString:NULL];
+			[scanner scanString:@"f (" intoString:NULL];
+			[scanner scanUpToString:@"%)" intoString:&otherTempString];
+			int newActionPercent = [otherTempString intValue];
+			if (  newActionPercent != currentActionPercent ) {
+				[self willChangeValueForKey:@"currentActionPercent"];
+				currentActionPercent = newActionPercent;
+				if ( 0 == currentActionPercent % 10 ) {
+					INFO( @"currentActionPercent: %d\n%@", currentActionPercent, tempString );
+				}
+				[self didChangeValueForKey:@"currentActionPercent"];	
+				//- do I want to pull how much data has been processed?
 			}
-			[self didChangeValueForKey:@"currentActionPercent"];	
-			//- do I want to pull how much data has been processed?
 		}
 	}
 	[convertFileHandle waitForDataInBackgroundAndNotify];
@@ -499,12 +512,12 @@
 - (void)download:(NSURLDownload *)download didReceiveDataOfLength:(NSUInteger)length
 {
 	receivedBytes += length;
-	int newActionPercent = ( 100.0 * receivedBytes ) / expectedBytes;
+	int newActionPercent = ( 100 * receivedBytes ) / expectedBytes;
 	if ( newActionPercent != currentActionPercent ) {
 		[self willChangeValueForKey:@"currentActionPercent"];
 		currentActionPercent = newActionPercent;
 		if ( 0 == currentActionPercent % 10 ) {
-			INFO( @"currentActionPercent: %d for ( %d / %d )", currentActionPercent, receivedBytes, expectedBytes );
+			INFO( @"currentActionPercent: %d for ( %lld / %lld )", currentActionPercent, receivedBytes, expectedBytes );
 		}
 		[self didChangeValueForKey:@"currentActionPercent"];	
 	}

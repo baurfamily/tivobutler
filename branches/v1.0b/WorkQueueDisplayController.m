@@ -11,6 +11,19 @@
 
 @implementation WorkQueueDisplayController
 
+- (id)init
+{
+	self = [super init];
+	if ( self ) {
+		NSSortDescriptor *sortDescriptor = [[[NSSortDescriptor alloc]
+			initWithKey:[workQueueController valueForKey:@"pendingItemsSortKey"] ascending:NO
+		] autorelease];
+		
+		sortDescriptors = [[NSArray arrayWithObject:sortDescriptor] retain];
+	}
+	return self;
+}
+
 - (void)awakeFromNib
 {
 	//- assume the window is at its larger size and shrink it to start with
@@ -56,7 +69,7 @@
 	//- except that re-sizing is wonky, so we'll ignore this for now.
 	//[workQueueWindow setShowsResizeIndicator:!value];
 }
-
+/*
 - (NSArray *)sortDescriptors
 {
 	ENTRY;
@@ -78,5 +91,5 @@
 	sortDescriptors = [newDescriptors retain];
 	[self didChangeValueForKey:@"sortDescriptors"];
 }
-
+*/
 @end
