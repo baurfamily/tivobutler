@@ -1,0 +1,136 @@
+{\rtf1\ansi\ansicpg1252\cocoartf949\cocoasubrtf270
+{\fonttbl\f0\fswiss\fcharset0 Helvetica;\f1\fswiss\fcharset0 ArialMT;\f2\froman\fcharset0 Times-Roman;
+}
+{\colortbl;\red255\green255\blue255;}
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\ql\qnatural
+
+\f0\b\fs72 \cf0 TiVo Butler
+\b0\fs24 \
+\pard\pardeftab720\ql\qnatural
+
+\f1\i\fs26 \cf0 A program to track programs on multiple TiVos and schedule downloads.
+\f0\fs24 \
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\ql\qnatural
+\cf0 \
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\ql\qnatural
+
+\i0 \cf0 \'a9 
+\fs20 Copyright 2008 Eric Shore Baur\
+This application is licensed under the GPL.  Please see GPL.txt (distributed with this file) for more information on the license. If this distribution did not come with source, you can get it at\
+	http://code.google.com/p/tivobutler/\
+or contact the author at:\
+	baurfamily@gmail.com\
+	
+\fs24 \
+\
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\ql\qnatural
+
+\f2\b\fs28 \cf0 TiVo Butler
+\b0  is an application for tracking programs recorded by your TiVos on your home network.  It can automatically download shows that you want to save on your computer.
+\fs24 \
+\
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\ql\qnatural
+
+\b\fs28 \cf0 \ul \ulc0 Quick Start:
+\b0\fs24 \ulnone \
+	Before you can do anything useful with TiVo Butler, you need to setup a connection to at least one TiVo device.  This is the first tab of the preferences.  Due to a display bug, you may need to double-click the library view to update the name of your TiVo device after adding it.  If you have used a previous beta version, you may have to delete the data store before using this new version.  Go to your "Applications Support" folder and delete the "TiVo Butler" folder.\
+\
+
+\b\fs28 \ul Licensing:
+\b0\fs24 \ulnone \
+	This application is 
+\b freeware
+\b0  and licensed under the 
+\b GPL
+\b0 .\
+	I have no plans to ever charge for it, although I may setup a PayPal account for donations, if anyone wants to contribute to development.  I have learned and accomplished a lot because of Free and Open Source Software and would like to give something back to the community.\
+\
+
+\b\fs28 \ul Acknowledgments:
+\b0\fs24 \ulnone \
+	TiVo Butler uses two other open source components for decoding .tivo files and then converting them to MP4 files.\
+	\'95 For more information about tivodecode, please see http://tivodecode.sourceforge.net/\
+	\'95 For more informatoin about mencoder, please see http://www.mplayerhq.hu/design7/news.html\
+
+\b\fs28 \ul \
+Requirements:
+\b0\fs24 \ulnone \
+	\'95 Mac OS X 10.5 or greater\
+	\'95 A Series 2 or Series 3 (including HD) TiVo connected to your network\
+	\'95 The IP and MAK (not MAC) for your TiVo (you can get the IP and the media access key via the settings on your TiVo)\
+\
+
+\b\fs28 \ul Features:
+\b0\fs24 \ulnone \
+	\'95 Track programs on multiple TiVo boxes\
+	\'95 Keep a history of the programs that were deleted\
+	\'95 Sort shows by series or by channel\
+	\'95 Create smart groups for program sets that you want to track\
+	\'95 Automatically download & convert shows via smart groups\
+\
+
+\b\fs28 \ul To-Do List:
+\b0\fs24 \ulnone \
+	\'95 More visible updating of the listing (ie: let the uesr know when things are changing)\
+	\'95 Enable the ability to restrict downloads to a certain time\
+	\'95 Downloading of extended details about a program\
+	... and I'm open to suggestions!\
+\
+
+\b\fs28 \ul Known Issues:
+\b0\fs24 \ulnone \
+	\'95 The progress bar during a download only fills to about 80% (this may not ever be directly fixed)\
+	\'95 The predicate editor for the smart group preferences sometimes won't display\
+	\'95 The listing of TiVo devices and smart groups doesn't always update correctly, you can double-click anywhere in the the left pane to force an update for now.\
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\ql\qnatural
+
+\b \cf0 \ul \
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\ql\qnatural
+
+\fs28 \cf0 Version History:\
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\ql\qnatural
+
+\fs24 \cf0 \
+v1.0b3.1
+\b0 \ulnone \
+	Fixed - The mencoder was dynamically linked, which prevented it from working on systems that did not have libfaac installed.  It is now statically linked and should work on all systems.\
+
+\b \ul \
+v1.0b3
+\b0 \ulnone \
+	Fixed - increased the size of the variable holding the program size so it can display larger than 2.0 GB\
+	Fixed - crash on PPC if doing anything other than just downloading a tivo file\
+	Fixed - help tips are now different between text boxes in the preferences\
+	Fixed - work queue window now stays put when you show/hide the queue\
+	Fixed - changes to helper tool arguments now will save every time\
+	Fixed - large (over 2 GB) files should convert now\
+	Fixed - read handle would be stuck listening for data if the task failed to launch due to a bad path\
+	Fixed - correct download progress bar for large (over 2.0 GB) files\
+	Fixed - convert progress bar isn't as jumpy as it used to be\
+	Added - toolbar to the preferences box\
+	Added - quick access to preferences from the main window via a new toolbar\
+	Added - live searching in the main window\
+	Added - document icons for *.tivo files\
+	Changed - "Add to Selection" is now a tool bar item\
+	Changed - expanded the work queue window to show all history\
+\
+
+\b \ul v1.0b2
+\b0 \ulnone \
+	Fixed - crash if the View menu was access while the main window was closed\
+	Fixed - some major memory leaks (some minor ones remain)\
+	Fixed - multiple Work Queue / Preferences windows could be opened (which was a minor memory leak as well)\
+	Fixed - crash when canceling a run that was only downloading or decoding, but not converting\
+	Fixed - programs with the same program ID would not all display (moved to using an internal ID from TiVo, hopefully this will work better)\
+	Fixed - shows from a deleted player would still show up in the main library (the programs still exist, but they don't display)\
+	Added - preference to prepend a capture date at the beginning of the filename to help avoid conflicts\
+	Added - preferences for saving intermediate files used during the downloading / decoding and converting\
+	Added - formatting for program duration and size\
+	Added - status icons like what TiVo uses itself\
+	Changed - some aspects of the main list view (column headers, now has alternating row colors)\
+\
+
+\b \ul v1.0b
+\b0 \ulnone \
+	First public release.  Distributed with a logging application so people can send in bug reports with more data.\
+}
