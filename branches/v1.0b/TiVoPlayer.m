@@ -82,6 +82,7 @@
 @dynamic host;
 @dynamic dateLastChecked;
 @dynamic dateLastUpdated;
+@dynamic name;
 @dynamic programs;
 @dynamic checkInterval;
 

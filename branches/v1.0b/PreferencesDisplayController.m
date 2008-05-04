@@ -19,6 +19,9 @@
 	[self didChangeValueForKey:@"managedObjectContext"];
 	
 	[predicateEditor addRow:self];
+	
+	[tokenField setTokenizingCharacterSet:[NSCharacterSet characterSetWithCharactersInString:@""] ];
+	[tokenField setTokenStyle: NSPlainTextTokenStyle];
 }
 
 - (IBAction)showWindow:(id)sender
@@ -82,6 +85,11 @@
 	[self setPreferencesView:convertingView];
 }
 
+- (IBAction)showTokens:(id)sender
+{
+	[self setPreferencesView:tokensView];
+}
+
 #pragma mark -
 #pragma mark Sheet display methods
 
@@ -138,6 +146,17 @@
 		} else { INFO( @"loaded Preferences.nib" ); }
 	}
 	[self setPreferencesSheet:convertingView];
+}
+
+- (IBAction)showTokensSheet:(id)sender
+{
+	if ( ! tokensView ) {
+		if ( ![NSBundle loadNibNamed:@"Preferences" owner:self] ) {
+			ERROR( @"could not load Preferences.nib" );
+			return;
+		} else { INFO( @"loaded Preferences.nib" ); }
+	}
+	[self setPreferencesSheet:tokensView];
 }
 
 #pragma mark -
@@ -210,6 +229,42 @@
 {
 	[[NSApplication sharedApplication] endSheet:preferencesSheetWindow];
 	[preferencesSheetWindow orderOut:self];
+}
+
+#pragma mark -
+#pragma mark Token support methods
+
+- (IBAction)addToken:(id)sender
+{
+	ENTRY;
+	NSMutableArray* tempArray = [[tokenField objectValue] mutableCopy];
+	DEBUG (@"Current: %@", tempArray);
+	
+	EntityToken* token = [[EntityToken alloc] initWithTag:[[sender selectedItem] tag]];
+	
+	[tempArray addObject:token];
+	
+	[tokenField setObjectValue: tempArray];
+}
+
+#pragma mark -
+#pragma mark NSTokenField delegate methods
+
+- (NSString *)tokenField:(NSTokenField *)tokenField displayStringForRepresentedObject:(id)representedObject
+{
+	NSString* string;
+	if ([representedObject isKindOfClass: [EntityToken class]]) {
+		EntityToken* token = representedObject;
+		string = [token label];
+	}
+	else
+		string = representedObject;
+	return string;
+}
+
+- (NSTokenStyle)tokenField:(NSTokenField *)tokenField styleForRepresentedObject:(id)representedObject
+{
+	return ([representedObject isKindOfClass: [EntityToken class]]) ? NSRoundedTokenStyle :NSPlainTextTokenStyle;
 }
 
 @end

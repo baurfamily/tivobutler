@@ -44,6 +44,7 @@
 @dynamic contentURL;
 @dynamic inProgress;
 @dynamic series;
+@dynamic station;
 @dynamic player;
 @dynamic deletedFromPlayer;
 @dynamic internalID;

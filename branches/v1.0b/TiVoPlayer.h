@@ -38,6 +38,7 @@
 @property (retain) NSString * host;
 @property (retain) NSDate * dateLastChecked;
 @property (retain) NSDate * dateLastUpdated;
+@property (retain) NSString * name;
 @property (retain) NSSet * programs;
 @property (retain) NSNumber * checkInterval;
 

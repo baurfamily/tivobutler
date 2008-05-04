@@ -240,25 +240,41 @@ static BOOL loaded = NO;
 #pragma mark -
 #pragma mark Internal accessor type methods
 
+- (NSString *)fileName
+{
+	NSMutableString *tempString = [NSMutableString string];
+	
+	NSUserDefaultsController *defaults = [NSUserDefaultsController sharedUserDefaultsController];
+	NSString *fileNamePattern = [[defaults valueForKey:@"values"] valueForKey:@"fileNamePattern"];
+	EntityTokenFieldValueTransformer *transformer = [[[EntityTokenFieldValueTransformer alloc] init] autorelease];
+	NSArray *tokenArray = [transformer transformedValue:fileNamePattern];
+	
+	id token;
+	for ( token in tokenArray ) {
+		if ( [token isKindOfClass:[EntityToken class]] ) {
+			[tempString appendString:[token stringForProgram:currentItem.program] ];
+		} else if ( [token isKindOfClass:[NSString class]] ) {
+			[tempString appendString:token];
+		} else {
+			WARNING( @"unexpected clas when parsing fileNamePattern: %@", [token className] );
+		}
+	}
+	
+	RETURN( tempString );
+	return [tempString copy];
+}
+
 - (NSString *)endingFilePath
 {
 	NSUserDefaultsController *defaults = [NSUserDefaultsController sharedUserDefaultsController];
 	NSString *folder = [[defaults valueForKey:@"values"] valueForKey:@"downloadFolder"];
 	BOOL createSubFolders = [[[defaults valueForKey:@"values"] valueForKey:@"createSeriesSubFolders"] boolValue];
-	BOOL prependCaptureDate = [[[defaults valueForKey:@"values"] valueForKey:@"prependCaptureDate"] boolValue];
 	
 	NSString *pathString;
-	NSString *fileName;
 	NSString *beginningPath;
 	
-	if ( prependCaptureDate && currentItem.program.captureDate ) {
-		NSDateFormatter *dateFormatter = [[[NSDateFormatter alloc] initWithDateFormat:@"%Y-%m-%d" allowNaturalLanguage:NO] autorelease];
-		NSString *dateString = [dateFormatter stringFromDate:currentItem.program.captureDate];
-		fileName = [NSString stringWithFormat:@"%@ %@", dateString, currentItem.program.title];
-	} else {
-		fileName = currentItem.program.title;
-	}
-
+	NSString *fileName = [self fileName];
+	
 	//- check preference and make sure there is a series title to use
 	if ( createSubFolders && [currentItem valueForKeyPath:@"program.series.title"] ) {
 		beginningPath = [[NSString

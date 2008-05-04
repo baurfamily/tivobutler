@@ -8,6 +8,9 @@
 
 #import <CoreData/CoreData.h>
 
+#import "TiVoDurationValueTransformer.h"
+#import "TiVoSizeValueTransformer.h"
+
 @class TiVoPlayer;
 
 typedef enum {
@@ -17,6 +20,52 @@ typedef enum {
 	TiVoProgramExpiresSoonStatus,
 	TiVoProgramExpiredStatus,
 } TiVoProgramStatus;
+
+typedef enum {
+	TiVoProgramNoTag = -1,
+	TiVoProgramTitleTag = 0,
+	TiVoProgramSeriesTitleTag,
+	TiVoProgramCaptureDateTag,
+	TiVoProgramChannelTag,
+	TiVoProgramStationNameTag,
+	TiVoProgramDefTag,	// HD or SD
+	TiVoProgramEpisodeNumberTag,
+	TiVoProgramProgramIDTag,
+	TiVoProgramPlayerTag,
+	TiVoProgramInternalIDTag,
+	TiVoProgramDurationTag,
+	TiVoProgramSourceSizeTag
+} TiVoProgramPropertyTag;
+
+#define TiVoProgramNullToken			@"-"
+//check the AccessorAdditions for implementations of indirect properties
+#define TiVoProgramTitleToken			@"title"
+#define TiVoProgramSeriesTitleToken		@"seriesTitle"
+#define TiVoProgramCaptureDateToken		@"captureDate"
+#define TiVoProgramChannelToken			@"channel"
+#define TiVoProgramStationToken			@"stationName"
+#define TiVoProgramDefToken				@"def"
+#define TiVoProgramEpisodeNumberToken	@"episodeNumber"
+#define TiVoProgramProgramIDToken		@"programID"
+#define TiVoProgramPlayerToken			@"playerName"
+#define TiVoProgramInternalIDToken		@"internalIDString"
+#define TiVoProgramDurationToken		@"durationString"
+#define TiVoProgramSourceSizeToken		@"sourceSizeString"
+
+#define TiVoProgramNullString			@"-"
+
+#define TiVoProgramTitleString			@"Title"
+#define TiVoProgramSeriesTitleString	@"Series Title"
+#define TiVoProgramCaptureDateString	@"Capture Date"
+#define TiVoProgramChannelString		@"Channel"
+#define TiVoProgramStationString		@"Station"
+#define TiVoProgramDefString			@"Def."
+#define TiVoProgramEpisodeString		@"Episode"
+#define TiVoProgramProgramIDString		@"Program ID"
+#define TiVoProgramPlayerString			@"Player Name"
+#define TiVoProgramInternalIDString		@"Internal ID"
+#define TiVoProgramDurationString		@"Duration"
+#define TiVoProgramSourceSizeString		@"Source Size"
 
 @interface TiVoProgram :  NSManagedObject  
 {	
@@ -38,6 +87,7 @@ typedef enum {
 @property (retain) NSString * contentURL;
 @property (retain) NSNumber * inProgress;
 @property (retain) NSManagedObject * series;
+@property (retain) NSManagedObject * station;
 @property (retain) TiVoPlayer * player;
 @property (retain) NSNumber * deletedFromPlayer;
 @property (retain) NSNumber * internalID;
@@ -48,5 +98,3 @@ typedef enum {
 @property (readonly) NSImage * statusImage;
 
 @end
-
-

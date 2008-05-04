@@ -16,6 +16,9 @@
 
 #import "WorkQueueDisplayController.h"
 
+#import "EntityToken.h"
+#import "EntityTokenFieldValueTransformer.h"
+
 typedef enum {
 	WQConvertAction = 0,
 	WQDecodeAction,
