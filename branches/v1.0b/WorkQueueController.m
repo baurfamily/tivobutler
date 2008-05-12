@@ -16,27 +16,25 @@ static BOOL loaded = NO;
 {
 	ENTRY;
 	NSUserDefaultsController *defaults = [NSUserDefaultsController sharedUserDefaultsController];
-	NSMutableDictionary *tempDefaults = [[[self workflowDefaults] mutableCopy] autorelease];
+	NSDictionary *tempDefaults;
 
-	[tempDefaults addEntriesFromDictionary:
-		[NSDictionary dictionaryWithObjectsAndKeys:
-			@"~/Downloads/",										@"downloadFolder",
-			[NSNumber numberWithBool:YES],							@"createSeriesSubFolders",
-			[NSNumber numberWithInt:WQConvertAction],				@"downloadAction",
-			[NSNumber numberWithInt:WQAddedDateOrder],				@"downloadOrder",
-			[NSNumber numberWithBool:YES],							@"restartDownloads",
-			[NSNumber numberWithBool:NO],							@"cancelDownloadsOnStartup",
-			[NSNumber numberWithBool:NO],							@"restrictDownloadTimes",
-			[NSNumber numberWithInt:WQFileExistsChangeNameAction],	@"fileExistsAction",
-			[NSNumber numberWithInt:60],							@"downloadCheckInterval",
-			[NSNumber numberWithBool:NO],							@"prependCaptureDate",
-			[NSNumber numberWithBool:NO],							@"useIntermediateFolder",
-			@"~/Downloads/",										@"intermediateFolder",
-			[NSNumber numberWithBool:NO],							@"keepIntermediateFiles",
-			[NSNumber numberWithBool:NO],							@"decodeWithExternalApp",
-			[NSNumber numberWithBool:NO],							@"convertWithExternalApp",
-			nil
-		]
+	tempDefaults = [NSDictionary dictionaryWithObjectsAndKeys:
+		@"~/Downloads/",										@"downloadFolder",
+		[NSNumber numberWithBool:YES],							@"createSeriesSubFolders",
+		[NSNumber numberWithInt:WQConvertAction],				@"downloadAction",
+		[NSNumber numberWithInt:WQAddedDateOrder],				@"downloadOrder",
+		[NSNumber numberWithBool:YES],							@"restartDownloads",
+		[NSNumber numberWithBool:NO],							@"cancelDownloadsOnStartup",
+		[NSNumber numberWithBool:NO],							@"restrictDownloadTimes",
+		[NSNumber numberWithInt:WQFileExistsChangeNameAction],	@"fileExistsAction",
+		[NSNumber numberWithInt:60],							@"downloadCheckInterval",
+		[NSNumber numberWithBool:NO],							@"prependCaptureDate",
+		[NSNumber numberWithBool:NO],							@"useIntermediateFolder",
+		@"~/Downloads/",										@"intermediateFolder",
+		[NSNumber numberWithBool:NO],							@"keepIntermediateFiles",
+		[NSNumber numberWithBool:NO],							@"decodeWithExternalApp",
+		[NSNumber numberWithBool:NO],							@"convertWithExternalApp",
+		nil
 	];
 	
 	[defaults setInitialValues:tempDefaults];
@@ -240,14 +238,15 @@ static BOOL loaded = NO;
 #pragma mark -
 #pragma mark Internal accessor type methods
 
-- (NSString *)fileName
+/*
+- (NSString *)filename
 {
 	NSMutableString *tempString = [NSMutableString string];
 	
 	NSUserDefaultsController *defaults = [NSUserDefaultsController sharedUserDefaultsController];
-	NSString *fileNamePattern = [[defaults valueForKey:@"values"] valueForKey:@"fileNamePattern"];
+	NSString *filenamePattern = [[defaults valueForKey:@"values"] valueForKey:@"filenamePattern"];
 	EntityTokenFieldValueTransformer *transformer = [[[EntityTokenFieldValueTransformer alloc] init] autorelease];
-	NSArray *tokenArray = [transformer transformedValue:fileNamePattern];
+	NSArray *tokenArray = [transformer transformedValue:filenamePattern];
 	
 	id token;
 	for ( token in tokenArray ) {
@@ -256,14 +255,15 @@ static BOOL loaded = NO;
 		} else if ( [token isKindOfClass:[NSString class]] ) {
 			[tempString appendString:token];
 		} else {
-			WARNING( @"unexpected clas when parsing fileNamePattern: %@", [token className] );
+			WARNING( @"unexpected clas when parsing filenamePattern: %@", [token className] );
 		}
 	}
 	
 	RETURN( tempString );
 	return [tempString copy];
 }
-
+*/
+/*
 - (NSString *)endingFilePath
 {
 	NSUserDefaultsController *defaults = [NSUserDefaultsController sharedUserDefaultsController];
@@ -273,7 +273,7 @@ static BOOL loaded = NO;
 	NSString *pathString;
 	NSString *beginningPath;
 	
-	NSString *fileName = [self fileName];
+	NSString *filename = [self filename];
 	
 	//- check preference and make sure there is a series title to use
 	if ( createSubFolders && [currentItem valueForKeyPath:@"program.series.title"] ) {
@@ -305,16 +305,16 @@ static BOOL loaded = NO;
 		//- if we still couldn't create the path, fall back to just the name
 		if ( hitError ) {
 			pathString = [
-				[NSString stringWithFormat:@"%@/%@", folder, fileName] stringByExpandingTildeInPath
+				[NSString stringWithFormat:@"%@/%@", folder, filename] stringByExpandingTildeInPath
 			];
 		} else {
 			pathString = [
-				[NSString stringWithFormat:@"%@/%@", beginningPath, fileName] stringByExpandingTildeInPath
+				[NSString stringWithFormat:@"%@/%@", beginningPath, filename] stringByExpandingTildeInPath
 			];
 		}
 	} else {
 		pathString = [
-			[NSString stringWithFormat:@"%@/%@", folder, fileName] stringByExpandingTildeInPath
+			[NSString stringWithFormat:@"%@/%@", folder, filename] stringByExpandingTildeInPath
 		];
 	}
 	
@@ -350,7 +350,7 @@ static BOOL loaded = NO;
 	}
 	return pathString;
 }
-
+*/
 - (BOOL)okayToDownload
 {
 	ENTRY;
@@ -402,14 +402,14 @@ static BOOL loaded = NO;
 	switch( currentAction ) {
 		case WQConvertAction:		return WQConvertActionString;	break;
 		case WQDecodeAction:		return WQDecodeActionString;	break;
-		case WQDownloadOnlyAction:	return WQDownloadOnlyString;	break;
+		case WQDownloadAction:		return WQDownloadActionString;	break;
 		default:					return nil;						break;
 	}
 }
 
 - (BOOL)showActionProgress
 {
-	if ( WQDownloadOnlyAction == finalAction || WQNoAction == finalAction ) {
+	if ( WQDownloadAction == finalAction || WQNoAction == finalAction ) {
 		RETURN( @"NO" );
 		return NO;
 	} else {
@@ -424,7 +424,7 @@ static BOOL loaded = NO;
 	switch ( currentAction ) {
 		case WQConvertAction:		RETURN( @"YES" );	return YES;		break;
 		case WQDecodeAction:		RETURN( @"NO" );	return NO;		break;
-		case WQDownloadOnlyAction:	RETURN( @"YES" );	return YES;		break;
+		case WQDownloadAction:		RETURN( @"YES" );	return YES;		break;
 		default:					RETURN( @"NO" );	return NO;		break;
 	}
 }

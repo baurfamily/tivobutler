@@ -18,7 +18,6 @@
 {
 	self = [super init];
 	if (self) {
-		DEBUG( @"set propertyTag: %d", initTag );
 		propertyTag = initTag;
 	}
 	return self;
@@ -90,7 +89,7 @@
 		case TiVoProgramInternalIDTag:		return TiVoProgramInternalIDString;		break;
 		case TiVoProgramDurationTag:		return TiVoProgramDurationString;		break;
 		case TiVoProgramSourceSizeTag:		return TiVoProgramSourceSizeString;		break;
-		default:							return @"-";							break;
+		default:							return @"...";							break;
 	}
 }
 

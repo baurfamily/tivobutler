@@ -8,6 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		3F0FD9220D8B847A00F9C7E2 /* SmartGroup.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F0FD9210D8B847A00F9C7E2 /* SmartGroup.m */; };
+		3F41D63B0DCADD1000CB0659 /* EntityToken.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F41D63A0DCADD1000CB0659 /* EntityToken.m */; };
+		3F41D7110DCCA40E00CB0659 /* EntityTokenFieldValueTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F41D7100DCCA40E00CB0659 /* EntityTokenFieldValueTransformer.m */; };
+		3F41D95A0DCD7A8000CB0659 /* TiVoProgram_AccessorAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F41D9590DCD7A8000CB0659 /* TiVoProgram_AccessorAdditions.m */; };
 		3F44C4A30D4453F800F0F6F4 /* Folder.tif in Resources */ = {isa = PBXBuildFile; fileRef = 3F44C4970D4453F800F0F6F4 /* Folder.tif */; };
 		3F44C4A40D4453F800F0F6F4 /* highlight_blue.tiff in Resources */ = {isa = PBXBuildFile; fileRef = 3F44C4980D4453F800F0F6F4 /* highlight_blue.tiff */; };
 		3F44C4A50D4453F800F0F6F4 /* highlight_grey.tiff in Resources */ = {isa = PBXBuildFile; fileRef = 3F44C4990D4453F800F0F6F4 /* highlight_grey.tiff */; };
@@ -22,6 +25,8 @@
 		3F5E9B220DA92462004D2EE8 /* add_to_queue.png in Resources */ = {isa = PBXBuildFile; fileRef = 3F5E9B210DA92462004D2EE8 /* add_to_queue.png */; };
 		3F6A88FB0D53472300212FBA /* TiVoProgram.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F6A88F90D53472300212FBA /* TiVoProgram.m */; };
 		3F8E37E60D4D52AA009B89B3 /* LibraryController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F8E37E40D4D52AA009B89B3 /* LibraryController.m */; };
+		3F90ADF70DD325000088F103 /* WorkQueueFile.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F90ADF60DD325000088F103 /* WorkQueueFile.m */; };
+		3F90AFA10DD669C80088F103 /* WorkQueueItem_Workflows.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F90AFA00DD669C80088F103 /* WorkQueueItem_Workflows.m */; };
 		3FB3C6170D9E8DD5001CEE9D /* download.png in Resources */ = {isa = PBXBuildFile; fileRef = 3FB3C6140D9E8DD5001CEE9D /* download.png */; };
 		3FB3C6180D9E8DD5001CEE9D /* processing.png in Resources */ = {isa = PBXBuildFile; fileRef = 3FB3C6150D9E8DD5001CEE9D /* processing.png */; };
 		3FB3C6190D9E8DD5001CEE9D /* smart_folders.png in Resources */ = {isa = PBXBuildFile; fileRef = 3FB3C6160D9E8DD5001CEE9D /* smart_folders.png */; };
@@ -38,7 +43,6 @@
 		3FB7FF4E0D9A04BC00D97046 /* expires-soon-recording.png in Resources */ = {isa = PBXBuildFile; fileRef = 3FB7FF4A0D9A04BC00D97046 /* expires-soon-recording.png */; };
 		3FB7FF4F0D9A04BC00D97046 /* in-progress-recording.png in Resources */ = {isa = PBXBuildFile; fileRef = 3FB7FF4B0D9A04BC00D97046 /* in-progress-recording.png */; };
 		3FB7FF500D9A04BC00D97046 /* save-until-i-delete-recording.png in Resources */ = {isa = PBXBuildFile; fileRef = 3FB7FF4C0D9A04BC00D97046 /* save-until-i-delete-recording.png */; };
-		3FB8E11E0D900577008BD58C /* WorkQueueController_Workflows.m in Sources */ = {isa = PBXBuildFile; fileRef = 3FB8E11D0D900577008BD58C /* WorkQueueController_Workflows.m */; };
 		3FCB2D190D8265BD00C2B5BD /* mencoder in Copy Executables */ = {isa = PBXBuildFile; fileRef = 3FCB2D170D8265BD00C2B5BD /* mencoder */; };
 		3FCB2D1A0D8265BD00C2B5BD /* tivodecode in Copy Executables */ = {isa = PBXBuildFile; fileRef = 3FCB2D180D8265BD00C2B5BD /* tivodecode */; };
 		3FCB2ED90D845C9400C2B5BD /* TiVoButler.icns in Resources */ = {isa = PBXBuildFile; fileRef = 3FCB2ED80D845C9400C2B5BD /* TiVoButler.icns */; };
@@ -97,6 +101,11 @@
 		32CA4F630368D1EE00C91783 /* TiVo_Butler_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TiVo_Butler_Prefix.pch; sourceTree = "<group>"; };
 		3F0FD9200D8B847A00F9C7E2 /* SmartGroup.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SmartGroup.h; sourceTree = "<group>"; };
 		3F0FD9210D8B847A00F9C7E2 /* SmartGroup.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SmartGroup.m; sourceTree = "<group>"; };
+		3F41D6390DCADD1000CB0659 /* EntityToken.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EntityToken.h; sourceTree = "<group>"; };
+		3F41D63A0DCADD1000CB0659 /* EntityToken.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EntityToken.m; sourceTree = "<group>"; };
+		3F41D70F0DCCA40E00CB0659 /* EntityTokenFieldValueTransformer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EntityTokenFieldValueTransformer.h; sourceTree = "<group>"; };
+		3F41D7100DCCA40E00CB0659 /* EntityTokenFieldValueTransformer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EntityTokenFieldValueTransformer.m; sourceTree = "<group>"; };
+		3F41D9590DCD7A8000CB0659 /* TiVoProgram_AccessorAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TiVoProgram_AccessorAdditions.m; sourceTree = "<group>"; };
 		3F44C4970D4453F800F0F6F4 /* Folder.tif */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = Folder.tif; sourceTree = "<group>"; };
 		3F44C4980D4453F800F0F6F4 /* highlight_blue.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = highlight_blue.tiff; sourceTree = "<group>"; };
 		3F44C4990D4453F800F0F6F4 /* highlight_grey.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = highlight_grey.tiff; sourceTree = "<group>"; };
@@ -119,6 +128,9 @@
 		3F6A88FA0D53472300212FBA /* TiVoProgram.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TiVoProgram.h; sourceTree = "<group>"; };
 		3F8E37E40D4D52AA009B89B3 /* LibraryController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LibraryController.m; sourceTree = "<group>"; };
 		3F8E37E50D4D52AA009B89B3 /* LibraryController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LibraryController.h; sourceTree = "<group>"; };
+		3F90ADF50DD325000088F103 /* WorkQueueFile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WorkQueueFile.h; sourceTree = "<group>"; };
+		3F90ADF60DD325000088F103 /* WorkQueueFile.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WorkQueueFile.m; sourceTree = "<group>"; };
+		3F90AFA00DD669C80088F103 /* WorkQueueItem_Workflows.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WorkQueueItem_Workflows.m; sourceTree = "<group>"; };
 		3FB3C6140D9E8DD5001CEE9D /* download.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = download.png; sourceTree = "<group>"; };
 		3FB3C6150D9E8DD5001CEE9D /* processing.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = processing.png; sourceTree = "<group>"; };
 		3FB3C6160D9E8DD5001CEE9D /* smart_folders.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = smart_folders.png; sourceTree = "<group>"; };
@@ -354,6 +366,7 @@
 			isa = PBXGroup;
 			children = (
 				3FB7FE3A0D99A0C500D97046 /* Headers */,
+				3F41D7100DCCA40E00CB0659 /* EntityTokenFieldValueTransformer.m */,
 				3FB7FE370D99A0A000D97046 /* TiVoDurationValueTransformer.m */,
 				3FB7FE340D99A06C00D97046 /* TiVoSizeValueTransformer.m */,
 			);
@@ -363,6 +376,7 @@
 		3FB7FE3A0D99A0C500D97046 /* Headers */ = {
 			isa = PBXGroup;
 			children = (
+				3F41D70F0DCCA40E00CB0659 /* EntityTokenFieldValueTransformer.h */,
 				3FB7FE360D99A0A000D97046 /* TiVoDurationValueTransformer.h */,
 				3FB7FE330D99A06C00D97046 /* TiVoSizeValueTransformer.h */,
 			);
@@ -374,10 +388,14 @@
 			children = (
 				3FCB2D140D817D6200C2B5BD /* Headers */,
 				3FF63FDF0D5663DF00F2EAD9 /* EntityHelper.m */,
+				3F41D63A0DCADD1000CB0659 /* EntityToken.m */,
 				3F0FD9210D8B847A00F9C7E2 /* SmartGroup.m */,
 				3FE3C8F40D3DD46C00D5105A /* TiVoPlayer.m */,
 				3F6A88F90D53472300212FBA /* TiVoProgram.m */,
+				3F41D9590DCD7A8000CB0659 /* TiVoProgram_AccessorAdditions.m */,
+				3F90ADF60DD325000088F103 /* WorkQueueFile.m */,
 				3FF645250D5B09D000F2EAD9 /* WorkQueueItem.m */,
+				3F90AFA00DD669C80088F103 /* WorkQueueItem_Workflows.m */,
 			);
 			name = Entities;
 			sourceTree = "<group>";
@@ -386,9 +404,11 @@
 			isa = PBXGroup;
 			children = (
 				3FF63FDE0D5663DF00F2EAD9 /* EntityHelper.h */,
+				3F41D6390DCADD1000CB0659 /* EntityToken.h */,
 				3F0FD9200D8B847A00F9C7E2 /* SmartGroup.h */,
 				3FE3C8F30D3DD46C00D5105A /* TiVoPlayer.h */,
 				3F6A88FA0D53472300212FBA /* TiVoProgram.h */,
+				3F90ADF50DD325000088F103 /* WorkQueueFile.h */,
 				3FF645240D5B09D000F2EAD9 /* WorkQueueItem.h */,
 			);
 			name = Headers;
@@ -523,9 +543,13 @@
 				3FF708640D89F0650041CEAE /* WorkQueueDisplayController.m in Sources */,
 				3FF70A170D8B4E240041CEAE /* PreferencesDisplayController.m in Sources */,
 				3F0FD9220D8B847A00F9C7E2 /* SmartGroup.m in Sources */,
-				3FB8E11E0D900577008BD58C /* WorkQueueController_Workflows.m in Sources */,
 				3FB7FE350D99A06C00D97046 /* TiVoSizeValueTransformer.m in Sources */,
 				3FB7FE380D99A0A000D97046 /* TiVoDurationValueTransformer.m in Sources */,
+				3F41D63B0DCADD1000CB0659 /* EntityToken.m in Sources */,
+				3F41D7110DCCA40E00CB0659 /* EntityTokenFieldValueTransformer.m in Sources */,
+				3F41D95A0DCD7A8000CB0659 /* TiVoProgram_AccessorAdditions.m in Sources */,
+				3F90ADF70DD325000088F103 /* WorkQueueFile.m in Sources */,
+				3F90AFA10DD669C80088F103 /* WorkQueueItem_Workflows.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -621,6 +645,7 @@
 			buildSettings = {
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				OTHER_CFLAGS = "-D__DEBUG__=1";
 				PREBINDING = NO;
 				SDKROOT = "$(DEVELOPER_SDK_DIR)/MacOSX10.5.sdk";
 			};

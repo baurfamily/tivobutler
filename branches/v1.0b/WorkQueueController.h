@@ -18,38 +18,24 @@
 
 #import "EntityToken.h"
 #import "EntityTokenFieldValueTransformer.h"
-
-typedef enum {
-	WQConvertAction = 0,
-	WQDecodeAction,
-	WQDownloadOnlyAction,
-	WQNoAction
-} WQDownloadAction;
-
+/*
 typedef enum {
 	WQFileExistsChangeNameAction = 0,
 	WQFileExistsFailAction,
 	WQFileExistsOverwriteAction
 } WQFileExistsAction;
-
+*/
 typedef enum {
 	WQAddedDateOrder = 0,
 	WQRecordedDateOrder
 } WQDateOrder;
-
-typedef enum {
-	WQArgumentNone = 0,
-	WQArgumentMAK,
-	WQArgumentInputFile,
-	WQArgumentOutputFile
-} WQArgumentSubstitutionValue;
 
 #define WQAddedDateString		@"addedDate"
 #define WQRecordedDateString	@"program.captureDate"
 
 #define WQConvertActionString	@"Converting..."
 #define WQDecodeActionString	@"Decoding..."
-#define WQDownloadOnlyString	@"Downloading..."
+#define WQDownloadActionString	@"Downloading..."
 
 @interface WorkQueueController : NSObject {
 
@@ -59,17 +45,17 @@ typedef enum {
 	
 	IBOutlet NSArrayController *programArrayController;
 	IBOutlet NSArrayController *workQueueItemArrayController;
-	
+
 	NSURLDownload *programDownload;
 	
 	WorkQueueItem *currentItem;
-	WQDownloadAction finalAction;
-	WQDownloadAction currentAction;
+	WQAction finalAction;
+	WQAction currentAction;
 
 	int currentActionPercent;
 	unsigned long long receivedBytes;
 	unsigned long long expectedBytes;
-
+/*
 	bool keepIntermediateFiles;
 	NSString *downloadPath;
 	NSString *decodePath;
@@ -80,7 +66,7 @@ typedef enum {
 	
 	NSTask *convertTask;
 	NSFileHandle *convertFileHandle;
-
+*/
 	IBOutlet WorkQueueDisplayController *workQueueDisplayController;
 }
 
@@ -92,7 +78,7 @@ typedef enum {
 - (void)checkForPendingItems;
 - (void)checkForAutoDownloads;
 
-- (NSString *)endingFilePath;
+//- (NSString *)endingFilePath;
 - (BOOL)okayToDownload;
 - (NSString *)pendingItemsSortKey;
 
@@ -103,12 +89,8 @@ typedef enum {
 - (BOOL)showProgress;
 
 @end
-
+/*
 @interface WorkQueueController (Workflows)
-
-+ (NSDictionary *)workflowDefaults;
-
-- (NSString *)stringForSubstitutionValue:(WQArgumentSubstitutionValue)substitutionValue atStage:(WQDownloadAction)actionStage;
 
 - (void)beginDownload;
 - (void)setupDownloadPath;
@@ -124,3 +106,4 @@ typedef enum {
 - (void)convertDidTerminate:(NSNotification *)notification;
 
 @end
+*/

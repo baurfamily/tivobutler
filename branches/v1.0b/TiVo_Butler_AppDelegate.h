@@ -11,6 +11,14 @@
 #import "TiVoDurationValueTransformer.h"
 #import "TiVoSizeValueTransformer.h"
 
+#if __DEBUG__ 
+#	define TiVoButlerDataFilename		@"TiVo Butler (debug).xml"
+#	define TiVoButlerDataFileType		NSXMLStoreType
+#else
+#	define TiVoButlerDataFilename		@"TiVo Butler.sqlite"
+#	define TiVoButlerDataFileType		NSSQLiteStoreType
+#endif
+
 @interface TiVo_Butler_AppDelegate : NSObject 
 {
     IBOutlet NSWindow *window;

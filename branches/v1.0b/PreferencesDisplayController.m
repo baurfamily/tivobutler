@@ -11,6 +11,9 @@
 
 @implementation PreferencesDisplayController
 
+#pragma mark -
+#pragma mark Setup methods
+
 - (void)awakeFromNib
 {
 	ENTRY;
@@ -22,6 +25,23 @@
 	
 	[tokenField setTokenizingCharacterSet:[NSCharacterSet characterSetWithCharactersInString:@""] ];
 	[tokenField setTokenStyle: NSPlainTextTokenStyle];
+	
+	//- populate the add token popup button and the array controller
+	NSMenu *menu = [addTokenPopup menu];
+	NSMenuItem *tempMenuItem;
+	for ( tempMenuItem in [tokenMenu itemArray] ) {
+		DEBUG( @"adding: %@", [tempMenuItem description] );
+		[menu addItem:[tempMenuItem copy]];
+		/*
+		[self addSampleTokenWithTag:[tempMenuItem tag]];
+		[tokenArrayController addObject:[NSDictionary dictionaryWithObjectsAndKeys:
+				[[[[EntityToken alloc] initWithTag:[tempMenuItem tag]] autorelease] label], @"entityToken",
+				@"sample goes here",														@"sample",
+				nil
+			]
+		];
+		*/
+	}
 }
 
 - (IBAction)showWindow:(id)sender
@@ -240,13 +260,21 @@
 	NSMutableArray* tempArray = [[tokenField objectValue] mutableCopy];
 	DEBUG (@"Current: %@", tempArray);
 	
-	EntityToken* token = [[EntityToken alloc] initWithTag:[[sender selectedItem] tag]];
-	
+	EntityToken* token = [[[EntityToken alloc] initWithTag:[[sender selectedItem] tag]] autorelease];
 	[tempArray addObject:token];
-	
-	[tokenField setObjectValue: tempArray];
+	[tokenField setObjectValue:tempArray];
 }
+/*
+- (void)addSampleTokenWithTag:(TiVoProgramPropertyTag)sampleTag
+{
+	ENTRY;
+	NSMutableArray* tempArray = [[sampleTokenField objectValue] mutableCopy];
 
+	EntityToken* token = [[[EntityToken alloc] initWithTag:sampleTag] autorelease];
+	[tempArray addObject:token];
+	[sampleTokenField setObjectValue:tempArray];
+}
+*/
 #pragma mark -
 #pragma mark NSTokenField delegate methods
 

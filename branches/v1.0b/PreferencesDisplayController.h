@@ -27,7 +27,11 @@
 	IBOutlet NSView *convertingView;
 	IBOutlet NSView *tokensView;
 	
+	IBOutlet NSMenu *tokenMenu;
+	IBOutlet NSPopUpButton *addTokenPopup;
 	IBOutlet NSTokenField *tokenField;
+	//IBOutlet NSTokenField *sampleTokenField;
+	//IBOutlet NSArrayController *tokenArrayController;
 	
 	NSManagedObjectContext *managedObjectContext;
 }
@@ -60,5 +64,6 @@
 
 //to support the token prefs.
 - (IBAction)addToken:(id)sender;
+//- (void)addSampleTokenWithTag:(TiVoProgramPropertyTag)sampleTag;
 
 @end

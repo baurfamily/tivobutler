@@ -55,7 +55,7 @@
 #pragma mark -
 #pragma mark Generic methods
 
-- (NSString *)stringForSubstitutionValue:(WQArgumentSubstitutionValue)substitutionValue atStage:(WQDownloadAction)actionStage
+- (NSString *)stringForSubstitutionValue:(WQArgumentSubstitutionValue)substitutionValue atStage:(WQAction)actionStage
 {
 	switch ( substitutionValue ) {
 		case WQArgumentNone:
@@ -118,26 +118,26 @@
 		[self completeWithMessage:@"File exists"];
 		return;
 	}
-	NSString *fileName = [[endingPath pathComponents] lastObject];
+	NSString *filename = [[endingPath pathComponents] lastObject];
 	
 	switch ( finalAction ) {
 		case WQConvertAction:
 			downloadPath = [[NSString pathWithComponents:
-				[NSArray arrayWithObjects:tempDirectory, [NSString stringWithFormat:@"%@.tivo", fileName], nil ]
+				[NSArray arrayWithObjects:tempDirectory, [NSString stringWithFormat:@"%@.tivo", filename], nil ]
 			] retain];
 			decodePath = [[NSString pathWithComponents:
-				[NSArray arrayWithObjects:tempDirectory, [NSString stringWithFormat:@"%@.mpg", fileName], nil ]
+				[NSArray arrayWithObjects:tempDirectory, [NSString stringWithFormat:@"%@.mpg", filename], nil ]
 			] retain];
 			convertPath = [[NSString stringWithFormat:@"%@.mp4", endingPath] retain];
 			break;
 		case WQDecodeAction:
 			downloadPath = [[NSString pathWithComponents:
-				[NSArray arrayWithObjects:tempDirectory, [NSString stringWithFormat:@"%@.tivo", fileName], nil ]
+				[NSArray arrayWithObjects:tempDirectory, [NSString stringWithFormat:@"%@.tivo", filename], nil ]
 			] retain];
 			decodePath = [[NSString stringWithFormat:@"%@.mpg", endingPath] retain];
 			convertPath = nil;
 			break;
-		case WQDownloadOnlyAction:
+		case WQDownloadAction:
 			downloadPath = [[NSString stringWithFormat:@"%@.tivo", endingPath] retain];
 			decodePath = nil;
 			convertPath = nil;
@@ -159,7 +159,7 @@
 	
 	programDownload = [[NSURLDownload alloc] initWithRequest:request delegate:self];
 	[self willChangeValueForKey:@"currentAction"];
-	currentAction = WQDownloadOnlyAction;
+	currentAction = WQDownloadAction;
 	[self didChangeValueForKey:@"currentAction"];
 	
 	[self setupDownloadPath];
