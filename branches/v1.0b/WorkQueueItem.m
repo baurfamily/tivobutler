@@ -10,27 +10,6 @@
 
 @implementation WorkQueueItem
 
-
-+ (void)initialize
-{
-	ENTRY;
-	NSUserDefaultsController *defaults = [NSUserDefaultsController sharedUserDefaultsController];
-
-	NSDictionary *tempDefaults;
-	tempDefaults = [self workflowDefaults];
-	
-	[defaults setInitialValues:tempDefaults];
-}
-
-- (void)awakeFromInsert
-{
-	ENTRY;
-	self.addedDate = [NSDate date];
-	
-	NSUserDefaultsController *defaults = [NSUserDefaultsController sharedUserDefaultsController];
-	self.shouldKeepInput = [[defaults valueForKey:@"values"] valueForKey:@"keepIntermediateFiles"];
-}
-
 - (BOOL)canRemove
 {
 	if ( [self.active boolValue] ) {
@@ -43,60 +22,18 @@
 #pragma mark -
 #pragma mark Accessor methods
 
-@dynamic actionType;
 @dynamic active;
 @dynamic addedDate;
 @dynamic completedDate;
-@dynamic shouldKeepInput;
 @dynamic message;
+@dynamic sourceName;
 @dynamic sourceType;
 @dynamic startedDate;
 @dynamic savedPath;
 
 @dynamic program;
-@dynamic readFile;
-@dynamic writeFile;
-
-- (void)setActionType:(NSNumber *)value 
-{
-	ENTRY;
-	if ( [self.actionType intValue] ) {
-		WARNING( @"attempt to re-set actionType (blocking)" );
-		return;
-	}
-	int action = [value intValue];
-	if ( action > WQAction_MIN && action <= WQAction_MAX ) {
-		[self willChangeValueForKey:@"actionType"];
-		[self setPrimitiveActionType:value];
-		[self didChangeValueForKey:@"actionType"];
-		
-		if ( self.program ) {
-			[self setupWriteFile];
-		}
-	} else {
-		WARNING( @"attempt to set actionType to invalid value: %@", [value description] );
-	}
-}
-
-- (BOOL)validateActionType:(id *)valueRef error:(NSError **)outError 
-{
-	ENTRY;
-	int type = [*valueRef intValue];
-	if ( type < WQAction_MIN ) {
-		NSDictionary *userInfoDict = [NSDictionary dictionaryWithObject:@"Action type too small." forKey:NSLocalizedDescriptionKey];
-		*outError = [NSError errorWithDomain:NSCocoaErrorDomain code:-1 userInfo:userInfoDict];
-		WARNING( [*outError localizedDescription] );
-		return NO;
-	}
-	if ( type > WQAction_MAX ) {
-		NSDictionary *userInfoDict = [NSDictionary dictionaryWithObject:@"Action type too large." forKey:NSLocalizedDescriptionKey];
-		*outError = [NSError errorWithDomain:NSCocoaErrorDomain code:-1 userInfo:userInfoDict];
-		WARNING( [*outError localizedDescription] );
-		return NO;
-	}
-    return YES;
-}
-
+@dynamic smartGroup;
+@dynamic steps;
 
 - (NSNumber *)active
 {
@@ -112,21 +49,6 @@
 		return self.program.title;
 	} else {
 		return @"";
-	}
-}
-
-- (void)setProgram:(TiVoProgram *)value 
-{
-	if ( self.program ) {
-		WARNING( @"attempt to re-set program value (blocking)" );
-		return;
-	}
-    [self willChangeValueForKey:@"program"];
-    [self setPrimitiveProgram:value];
-    [self didChangeValueForKey:@"program"];
-	
-	if ( [self.actionType intValue] ) {
-		[self setupWriteFile];
 	}
 }
 
@@ -155,18 +77,6 @@
 	}
 }
 
-#pragma mark -
-#pragma mark Action methods
-
-- (void)setupWriteFile
-{
-	self.writeFile =
-		[NSEntityDescription
-			insertNewObjectForEntityForName:TiVoWorkQueueFileEntityName
-			inManagedObjectContext:self.managedObjectContext
-		];
-	[self setValue:self forKeyPath:@"writeFile.writerItem"];
-}
 
 
 @end

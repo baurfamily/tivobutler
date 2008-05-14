@@ -14,8 +14,8 @@
 @dynamic extension;
 @dynamic filename;
 @dynamic path;
-@dynamic readerItem;
-@dynamic writerItem;
+@dynamic readerStep;
+@dynamic writerStep;
 
 - (NSString *)filename
 {
@@ -54,7 +54,7 @@
 
 - (NSString *)extension
 {
-	int action = [self.writerItem.actionType intValue];
+	int action = [self.writerStep.actionType intValue];
 	switch (action) {
 		case WQDownloadAction:		return WQDownloadActionExtension;	break;
 		case WQDecodeAction:		return WQDecodeActionExtension;		break;
@@ -79,7 +79,7 @@
 		BOOL useIntermediateFolder = [[[defaults valueForKey:@"values"] valueForKey:@"useIntermediateFolder"] boolValue];
 		
 		NSString *tempDirectory;
-		if ( self.writerItem ) {
+		if ( self.writerStep ) {
 			if ( useIntermediateFolder ) {
 				tempDirectory = [[[defaults valueForKey:@"values"] valueForKey:@"intermediateFolder"] stringByExpandingTildeInPath];
 			} else {

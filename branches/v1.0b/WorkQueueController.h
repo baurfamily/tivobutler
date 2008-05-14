@@ -13,6 +13,7 @@
 #import "TiVoProgram.h"
 #import "SmartGroup.h"
 #import "WorkQueueItem.h"
+#import "WorkQueueStep.h"
 
 #import "WorkQueueDisplayController.h"
 

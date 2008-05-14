@@ -10,10 +10,12 @@
 
 #import "EntityToken.h"
 #import "TiVoProgram.h"
+#import "WorkQueueStep.h"
 
 #import "EntityTokenFieldValueTransformer.h"
 
 @class WorkQueueItem;
+@class WorkQueueStep;
 
 typedef enum {
 	WQFileExistsAction_MIN = 0,
@@ -32,8 +34,8 @@ typedef enum {
 @property (readonly) NSString * filename;
 @property (retain) NSString * path;
 
-@property (retain) WorkQueueItem * readerItem;
-@property (retain) WorkQueueItem * writerItem;
+@property (retain) WorkQueueStep * readerStep;
+@property (retain) WorkQueueStep * writerStep;
 
 - (BOOL)checkAndCreateDirectories;
 - (void)removeFile;
@@ -48,3 +50,4 @@ typedef enum {
 @end
 
 #import "WorkQueueItem.h"
+#import "WorkQueueStep.h"

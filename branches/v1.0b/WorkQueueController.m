@@ -141,8 +141,7 @@ static BOOL loaded = NO;
 
 - (IBAction)cancelDownload:(id)sender
 {
-	[self removeFiles];
-	[self completeWithMessage:@"Canceled"];
+	[currentItem completeWithMessage:@"Canceled"];
 }
 
 
@@ -202,7 +201,7 @@ static BOOL loaded = NO;
 		[self willChangeValueForKey:@"currentItem"];
 		currentItem = [pendingItems objectAtIndex:0];
 		[self didChangeValueForKey:@"currentItem"];
-		[self beginDownload];
+		[currentItem beginDownload];
 	}
 }
 
