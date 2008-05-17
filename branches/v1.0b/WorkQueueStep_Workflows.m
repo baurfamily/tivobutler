@@ -59,10 +59,10 @@
 - (NSString *)stringForSubstitutionValue:(WQArgumentSubstitutionValue)substitutionValue
 {
 	switch ( substitutionValue ) {
-		case WQArgumentNone:		return nil;														break;
-		case WQArgumentMAK:			return [self valueForKeyPath:@"program.player.mediaAccessKey"];	break;
-		case WQArgumentInputFile:	return self.readFile.path;										break;
-		case WQArgumentOutputFile:	return self.writeFile.path;										break;
+		case WQArgumentNone:		return nil;																break;
+		case WQArgumentMAK:			return [self valueForKeyPath:@"item.program.player.mediaAccessKey"];	break;
+		case WQArgumentInputFile:	return self.readFile.path;												break;
+		case WQArgumentOutputFile:	return self.writeFile.path;												break;
 	}
 	return nil;
 }
@@ -123,6 +123,7 @@
 	if ( message )
 		self.message = message;
 	self.completedDate = [NSDate date];
+	[self.item completedStep:self];
 }
 
 #pragma mark -
@@ -196,7 +197,7 @@
 			WARNING( @"encountered empty argument for decode task, skipping..." );
 		}
 	}
-	//INFO( @"decode task arguments:\n%@", [arguments description] );	//- don't want to log the MAK
+	INFO( @"decode task arguments:\n%@", [arguments description] );	//- don't want to log the MAK
 	[queueTask setArguments:arguments];
 	
 	[[NSNotificationCenter defaultCenter]

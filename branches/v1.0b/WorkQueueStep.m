@@ -107,6 +107,15 @@
 	}
 }
 
+- (void)setPreviousStep:(WorkQueueStep *)value
+{
+	[self willChangeValueForKey:@"previousStep"];
+	[self setPrimitivePreviousStep:value];
+	[self didChangeValueForKey:@"previousStep"];
+	
+	self.readFile = self.previousStep.writeFile;
+}
+
 #pragma mark -
 #pragma mark Action methods
 

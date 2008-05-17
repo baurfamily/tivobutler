@@ -75,6 +75,9 @@ typedef enum {
 - (WorkQueueItem *)primitiveItem;
 - (void)setPrimitiveItem:(WorkQueueItem *)value;
 
+- (WorkQueueStep *)primitivePreviousStep;
+- (void)setPrimitivePreviousStep:(WorkQueueStep *)value;
+
 @end
 
 @interface WorkQueueStep (Workflows)

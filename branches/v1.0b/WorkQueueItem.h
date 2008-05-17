@@ -67,6 +67,8 @@ typedef enum {
 
 - (WorkQueueStep *)addStepOfType:(WQAction)action afterStep:(WorkQueueStep *)prevStep;
 
+- (void)completedStep:(WorkQueueStep *)completedStep;
+
 @end
 
 #import "WorkQueueFile.h"
