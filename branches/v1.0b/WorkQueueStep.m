@@ -41,6 +41,7 @@
 @dynamic active;
 @dynamic addedDate;
 @dynamic completedDate;
+@dynamic currentActionPercent;
 @dynamic message;
 @dynamic shouldKeepInput;
 @dynamic startedDate;
@@ -111,12 +112,13 @@
 
 - (void)setupWriteFile
 {
+	ENTRY;
 	self.writeFile =
 	[NSEntityDescription
 	 insertNewObjectForEntityForName:TiVoWorkQueueFileEntityName
 	 inManagedObjectContext:self.managedObjectContext
 	 ];
-	[self setValue:self forKeyPath:@"writeFile.writerItem"];
+	[self setValue:self forKeyPath:@"writeFile.writerStep"];
 }
 
 @end

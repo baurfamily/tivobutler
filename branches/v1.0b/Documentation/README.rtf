@@ -80,8 +80,9 @@ Requirements:
 \b\fs28 \ul Known Issues:
 \b0\fs24 \ulnone \
 	\'95 The progress bar during a download only fills to about 80% (this may not ever be directly fixed)\
-	\'95 The predicate editor for the smart group preferences sometimes won't display\
+	\'95 The predicate editor for the smart group preferences sometimes won't display (you may have to restart the app to fix it).\
 	\'95 The listing of TiVo devices and smart groups doesn't always update correctly, you can double-click anywhere in the the left pane to force an update for now.\
+	\'95 The token editor seems to eat spaces in the template filename.\
 \pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\ql\qnatural
 
 \b \cf0 \ul \
@@ -94,8 +95,9 @@ Requirements:
 v1.0b4
 \b0 \ulnone \
 	Added - Custom filenames and a token field for editing them.\
-	Changed - Backing datastore file is now SQLite instead of XML in an effort to reduce data store corruption.
-\b \ul \ulc0 \
+	Changed - Backing datastore file is now SQLite instead of XML in an effort to reduce data store corruption.\
+	Changed - Refactored the way the work queue operates.
+\b \ul \
 \
 v1.0b3.1
 \b0 \ulnone \

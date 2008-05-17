@@ -14,7 +14,7 @@
 @class WorkQueueFile;
 
 typedef enum {
-	WQAction_MIN = 0,
+	WQAction_MIN = -1,
 	WQNoAction = WQAction_MIN,
 	WQDownloadAction,
 	WQDecodeAction,
@@ -41,7 +41,6 @@ typedef enum {
 @interface WorkQueueStep : NSManagedObject {
 	NSURLDownload *programDownload;
 	
-	int currentActionPercent;
 	unsigned long long receivedBytes;
 	unsigned long long expectedBytes;
 	
@@ -53,6 +52,7 @@ typedef enum {
 @property (retain) NSNumber * active;
 @property (retain) NSDate * addedDate;
 @property (retain) NSDate * completedDate;
+@property (retain) NSNumber * currentActionPercent;
 @property (retain) NSString * message;
 @property (retain) NSNumber * shouldKeepInput;
 @property (retain) NSDate * startedDate;

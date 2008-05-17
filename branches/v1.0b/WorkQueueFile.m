@@ -25,7 +25,7 @@
     tmpValue = [self primitivePath];
     [self didAccessValueForKey:@"path"];
 	
-	if (!tmpValue) {
+	if (tmpValue) {
 		return [[tmpValue pathComponents] lastObject];
 	} else {
 		NSMutableString *tempString = [NSMutableString string];
@@ -38,7 +38,7 @@
 		id token;
 		for ( token in tokenArray ) {
 			if ( [token isKindOfClass:[EntityToken class]] ) {
-				[tempString appendString:[token stringForProgram:[self valueForKeyPath:@"writerItem.program"]] ];
+				[tempString appendString:[token stringForProgram:[self valueForKeyPath:@"writerStep.item.program"]] ];
 			} else if ( [token isKindOfClass:[NSString class]] ) {
 				[tempString appendString:token];
 			} else {
@@ -72,7 +72,7 @@
     tmpValue = [self primitivePath];
     [self didAccessValueForKey:@"path"];
 	
-	if (!tmpValue) {
+	if (tmpValue) {
 		return tmpValue;
 	} else {
 		NSUserDefaultsController *defaults = [NSUserDefaultsController sharedUserDefaultsController];
@@ -96,8 +96,13 @@
 	}
 	
 	if ( [self checkAndCreateDirectories] ) {
+		//- check it again, just in case it changed
+		[self willAccessValueForKey:@"path"];
+		tmpValue = [self primitivePath];
+		[self didAccessValueForKey:@"path"];
+		
 		RETURN( tmpValue );
-		return tmpValue;	
+		return tmpValue;
 	} else {
 		ERROR( @"Could not create intermediate paths to: %@", tmpValue );
 		return nil;
@@ -107,61 +112,65 @@
 - (BOOL)checkAndCreateDirectories
 {
 	NSUserDefaultsController *defaults = [NSUserDefaultsController sharedUserDefaultsController];
-	NSString *fullPath = self.path;
+	WQFileExistsAction fileExistsAction = [[[defaults valueForKey:@"values"] valueForKey:@"fileExistsAction"] intValue];
+	
+    [self willAccessValueForKey:@"path"];
+	NSString *fullPath = [self primitivePath];
+    [self didAccessValueForKey:@"path"];
+
+	NSString *directoryPath = [fullPath stringByDeletingLastPathComponent];
 	
 	BOOL hitError = NO;
 	BOOL isDirectory;
 	
-	BOOL exists = [[NSFileManager defaultManager] fileExistsAtPath:fullPath isDirectory:&isDirectory];
+	BOOL exists = [[NSFileManager defaultManager] fileExistsAtPath:directoryPath isDirectory:&isDirectory];
 	if ( !exists ) {		
 		NSError *error;
-		BOOL succeeded = [[NSFileManager defaultManager]
-						  createDirectoryAtPath:fullPath
-						  withIntermediateDirectories:YES
-						  attributes:nil
-						  error:&error
-						  ];
+		BOOL succeeded =
+			[[NSFileManager defaultManager]
+				createDirectoryAtPath:directoryPath
+				withIntermediateDirectories:YES
+				attributes:nil
+				error:&error
+			 ];
 		if ( !succeeded ) {
-			ERROR( @"could not create directory: %@ (%@)", fullPath, [error localizedDescription] );
+			ERROR( @"could not create directory: %@ (%@)", directoryPath, [error localizedDescription] );
 			hitError = YES;
 		}
 	} else if ( !isDirectory ) {
-		ERROR( @"can't save to '%@', not a directory (will try to use base path)", fullPath );
+		ERROR( @"can't save to '%@', not a directory (will try to use base path)", directoryPath );
 		hitError = YES;
 	}
 
 	NSFileManager *fileManager = [NSFileManager defaultManager];
 	
-	if ( [fileManager fileExistsAtPath:[fullPath stringByAppendingString:@".tivo"] ]
-		|| [fileManager fileExistsAtPath:[fullPath stringByAppendingString:@".mpg"] ]
-		|| [fileManager fileExistsAtPath:[fullPath stringByAppendingString:@".mp4"] ]
-		) {
-		WQFileExistsAction fileExistsAction = [[[defaults valueForKey:@"values"] valueForKey:@"fileExistsAction"] intValue];
-		
+	if ( [fileManager fileExistsAtPath:fullPath] ) {
 		int i = 0;
 		NSString *testPath = [fullPath copy];
 		
 		switch ( fileExistsAction ) {
 			case WQFileExistsFailAction:
-				fullPath = nil;
+				self.path = nil;	// this may cause problems...
+				hitError = YES;
 				break;
 			case WQFileExistsOverwriteAction:
 				//- existing path string is fine
 				break;
 			case WQFileExistsChangeNameAction:
-				//default:
-				while ( [fileManager fileExistsAtPath:[fullPath stringByAppendingString:@".tivo"] ]
-					   || [fileManager fileExistsAtPath:[fullPath stringByAppendingString:@".mpg"] ]
-					   || [fileManager fileExistsAtPath:[fullPath stringByAppendingString:@".mp4"] ]
-					   ) {
-					i++;
-					fullPath = [testPath stringByAppendingFormat:@"-%d", i];
+				while ( [fileManager fileExistsAtPath:testPath]) {
+					testPath =
+						[NSString stringWithFormat:@"%@ %d.%@",
+							[fullPath stringByDeletingPathExtension],
+							++i,
+							[fullPath pathExtension],
+							nil
+						 ];
 				}
+				self.path = testPath;
 				break;
 		}
 	}
-	// this doesn't actually work, but we'll return YES anyway
-	return YES;	
+	return !hitError;	
 }
 
 - (void)removeFile

@@ -201,7 +201,7 @@ static BOOL loaded = NO;
 		[self willChangeValueForKey:@"currentItem"];
 		currentItem = [pendingItems objectAtIndex:0];
 		[self didChangeValueForKey:@"currentItem"];
-		[currentItem beginDownload];
+		[currentItem beginProcessing];
 	}
 }
 

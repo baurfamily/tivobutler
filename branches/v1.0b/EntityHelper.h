@@ -14,6 +14,7 @@
 #define TiVoPlayerEntityName		@"TiVoPlayer"
 #define TiVoProgramEntityName		@"TiVoProgram"
 #define TiVoWorkQueueFileEntityName	@"WorkQueueFile"
+#define TiVoWorkQueueStepEntityName	@"WorkQueueStep"
 #define TiVoWorkQueueItemEntityName	@"WorkQueueItem"
 
 @interface EntityHelper : NSObject {

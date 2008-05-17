@@ -25,10 +25,6 @@
 				<string key="NSClassName">NSApplication</string>
 			</object>
 			<object class="NSUserDefaultsController" id="862426258">
-				<object class="NSMutableArray" key="NSDeclaredKeys">
-					<bool key="EncodedWithXMLCoder">YES</bool>
-					<string>filenamePattern</string>
-				</object>
 				<bool key="NSSharedInstance">YES</bool>
 			</object>
 			<object class="NSArrayController" id="227274645">
@@ -2062,7 +2058,7 @@
 																						<reference ref="197412425"/>
 																					</object>
 																				</object>
-																				<object class="NSMutableDictionary" id="809458712">
+																				<object class="NSMutableDictionary" id="566957402">
 																					<bool key="EncodedWithXMLCoder">YES</bool>
 																					<object class="NSMutableArray" key="dict.sortedKeys">
 																						<bool key="EncodedWithXMLCoder">YES</bool>
@@ -2336,7 +2332,7 @@
 																						<reference ref="1024743542"/>
 																					</object>
 																				</object>
-																				<object class="NSMutableDictionary" id="462329316">
+																				<object class="NSMutableDictionary" id="435189233">
 																					<bool key="EncodedWithXMLCoder">YES</bool>
 																					<object class="NSMutableArray" key="dict.sortedKeys">
 																						<bool key="EncodedWithXMLCoder">YES</bool>
@@ -2462,7 +2458,7 @@
 																							<bool key="EncodedWithXMLCoder">YES</bool>
 																							<reference ref="384619382"/>
 																							<reference ref="401443752"/>
-																							<reference ref="809458712"/>
+																							<reference ref="566957402"/>
 																						</object>
 																						<object class="NSMutableArray">
 																							<bool key="EncodedWithXMLCoder">YES</bool>
@@ -2491,7 +2487,7 @@
 																							<bool key="EncodedWithXMLCoder">YES</bool>
 																							<reference ref="782553069"/>
 																							<reference ref="514186168"/>
-																							<reference ref="462329316"/>
+																							<reference ref="435189233"/>
 																						</object>
 																						<object class="NSMutableArray">
 																							<bool key="EncodedWithXMLCoder">YES</bool>
@@ -3278,13 +3274,12 @@ AAMAAAABAAEAAAFTAAMAAAAEAAAFwgAAAAAACAAIAAgACAABAAEAAQABA</bytes>
 								<string key="NSKeyEquivalent"/>
 								<int key="NSPeriodicDelay">400</int>
 								<int key="NSPeriodicInterval">75</int>
-								<object class="NSMenuItem" key="NSMenuItem" id="818800426">
+								<object class="NSMenuItem" key="NSMenuItem" id="748626041">
 									<reference key="NSMenu" ref="570407992"/>
-									<string key="NSTitle">Download, Decode and Convert</string>
+									<string key="NSTitle">Download only</string>
 									<string key="NSKeyEquiv"/>
 									<int key="NSKeyEquivModMask">1048576</int>
 									<int key="NSMnemonicLoc">2147483647</int>
-									<int key="NSState">1</int>
 									<reference key="NSOnImage" ref="646399216"/>
 									<reference key="NSMixedImage" ref="30529055"/>
 									<string key="NSAction">_popUpItemAction:</string>
@@ -3295,7 +3290,7 @@ AAMAAAABAAEAAAFTAAMAAAAEAAAFwgAAAAAACAAIAAgACAABAAEAAQABA</bytes>
 									<string key="NSTitle">OtherViews</string>
 									<object class="NSMutableArray" key="NSMenuItems">
 										<bool key="EncodedWithXMLCoder">YES</bool>
-										<reference ref="818800426"/>
+										<reference ref="748626041"/>
 										<object class="NSMenuItem" id="144703683">
 											<reference key="NSMenu" ref="570407992"/>
 											<string key="NSTitle">Download and Decode</string>
@@ -3307,9 +3302,9 @@ AAMAAAABAAEAAAFTAAMAAAAEAAAFwgAAAAAACAAIAAgACAABAAEAAQABA</bytes>
 											<string key="NSAction">_popUpItemAction:</string>
 											<reference key="NSTarget" ref="182519259"/>
 										</object>
-										<object class="NSMenuItem" id="748626041">
+										<object class="NSMenuItem" id="818800426">
 											<reference key="NSMenu" ref="570407992"/>
-											<string key="NSTitle">Download only</string>
+											<string key="NSTitle">Download, Decode and Convert</string>
 											<string key="NSKeyEquiv"/>
 											<int key="NSKeyEquivModMask">1048576</int>
 											<int key="NSMnemonicLoc">2147483647</int>
@@ -4848,7 +4843,7 @@ AAMAAAABAAEAAAFTAAMAAAAEAAAFwgAAAAAACAAIAAgACAABAAEAAQABA</bytes>
 				<string key="NSWindowClass">NSWindow</string>
 				<nil key="NSViewClass"/>
 				<object class="NSView" key="NSWindowView" id="657199277">
-					<reference key="NSNextResponder"/>
+					<nil key="NSNextResponder"/>
 					<int key="NSvFlags">256</int>
 					<object class="NSMutableArray" key="NSSubviews">
 						<bool key="EncodedWithXMLCoder">YES</bool>
@@ -4864,7 +4859,6 @@ AAMAAAABAAEAAAFTAAMAAAAEAAAFwgAAAAAACAAIAAgACAABAAEAAQABA</bytes>
 							</object>
 							<string key="NSFrame">{{14, 119}, {579, 22}}</string>
 							<reference key="NSSuperview" ref="657199277"/>
-							<reference key="NSWindow"/>
 							<bool key="NSEnabled">YES</bool>
 							<object class="NSTokenFieldCell" key="NSCell" id="454713400">
 								<int key="NSCellFlags">341966336</int>
@@ -4889,7 +4883,6 @@ AAMAAAABAAEAAAFTAAMAAAAEAAAFwgAAAAAACAAIAAgACAABAAEAAQABA</bytes>
 							<int key="NSvFlags">268</int>
 							<string key="NSFrame">{{11, 144}, {119, 17}}</string>
 							<reference key="NSSuperview" ref="657199277"/>
-							<reference key="NSWindow"/>
 							<bool key="NSEnabled">YES</bool>
 							<object class="NSTextFieldCell" key="NSCell" id="693707826">
 								<int key="NSCellFlags">68288064</int>
@@ -4906,7 +4899,6 @@ AAMAAAABAAEAAAFTAAMAAAAEAAAFwgAAAAAACAAIAAgACAABAAEAAQABA</bytes>
 							<int key="NSvFlags">268</int>
 							<string key="NSFrame">{{598, 116}, {67, 26}}</string>
 							<reference key="NSSuperview" ref="657199277"/>
-							<reference key="NSWindow"/>
 							<bool key="NSEnabled">YES</bool>
 							<object class="NSPopUpButtonCell" key="NSCell" id="265034447">
 								<int key="NSCellFlags">-2076049856</int>
@@ -4951,7 +4943,6 @@ AAMAAAABAAEAAAFTAAMAAAAEAAAFwgAAAAAACAAIAAgACAABAAEAAQABA</bytes>
 							<int key="NSvFlags">268</int>
 							<string key="NSFrame">{{17, 90}, {524, 14}}</string>
 							<reference key="NSSuperview" ref="657199277"/>
-							<reference key="NSWindow"/>
 							<bool key="NSEnabled">YES</bool>
 							<object class="NSTextFieldCell" key="NSCell" id="497593250">
 								<int key="NSCellFlags">68288064</int>
@@ -4968,7 +4959,6 @@ AAMAAAABAAEAAAFTAAMAAAAEAAAFwgAAAAAACAAIAAgACAABAAEAAQABA</bytes>
 							<int key="NSvFlags">268</int>
 							<string key="NSFrame">{{17, 58}, {358, 26}}</string>
 							<reference key="NSSuperview" ref="657199277"/>
-							<reference key="NSWindow"/>
 							<bool key="NSEnabled">YES</bool>
 							<object class="NSPopUpButtonCell" key="NSCell" id="747256914">
 								<int key="NSCellFlags">-2076049856</int>
@@ -5033,8 +5023,6 @@ AAMAAAABAAEAAAFTAAMAAAAEAAAFwgAAAAAACAAIAAgACAABAAEAAQABA</bytes>
 						</object>
 					</object>
 					<string key="NSFrameSize">{682, 181}</string>
-					<reference key="NSSuperview"/>
-					<reference key="NSWindow"/>
 				</object>
 				<string key="NSScreenRect">{{0, 0}, {1920, 1178}}</string>
 				<string key="NSMaxSize">{3.40282e+38, 3.40282e+38}</string>
@@ -9245,6 +9233,7 @@ AAMAAAABAAEAAAFTAAMAAAAEAAAFwgAAAAAACAAIAAgACAABAAEAAQABA</bytes>
 					<string>2776.IBAttributePlaceholdersKey</string>
 					<string>2776.IBPluginDependency</string>
 					<string>2776.ImportedFromIB2</string>
+					<string>2779.IBEditorWindowLastContentRect</string>
 					<string>2779.IBPluginDependency</string>
 					<string>2779.ImportedFromIB2</string>
 					<string>2780.IBAttributePlaceholdersKey</string>
@@ -9934,6 +9923,7 @@ biB0aGUgZmlsZS4</string>
 					</object>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<reference ref="9"/>
+					<string>{{489, 754}, {284, 63}}</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<reference ref="9"/>
 					<object class="NSMutableDictionary">

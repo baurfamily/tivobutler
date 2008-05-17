@@ -12,6 +12,7 @@
 
 #import "SmartGroup.h"
 #import "TiVoProgram.h"
+#import "WorkQueueStep.h"
 
 @class WorkQueueFile;
 
@@ -28,7 +29,7 @@ typedef enum {
 #define WQScheduledSourceString		@"Scheduled"
 
 @interface WorkQueueItem : NSManagedObject {
-
+	WorkQueueStep *firstStep;
 }
 
 - (BOOL)canRemove;
@@ -42,6 +43,7 @@ typedef enum {
 @property (retain) NSDate * startedDate;
 @property (retain) NSString * savedPath;
 
+@property (retain) WorkQueueStep * currentStep;
 @property (retain) TiVoProgram * program;
 @property (retain) SmartGroup * smartGroup;
 @property (retain) NSSet* steps;
@@ -58,5 +60,13 @@ typedef enum {
 
 @end
 
-#import "WorkQueueStep.h"
+@interface WorkQueueItem (Workflows)
+
+- (void)beginProcessing;
+- (void)completeWithMessage:(NSString *)message;
+
+- (WorkQueueStep *)addStepOfType:(WQAction)action afterStep:(WorkQueueStep *)prevStep;
+
+@end
+
 #import "WorkQueueFile.h"

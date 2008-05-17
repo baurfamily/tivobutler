@@ -29,9 +29,10 @@
 	
 	NSString *tempString = nil;
 	
-	while ( [scanner scanUpToString:@"%{" intoString:&tempString] ) {
-		[tempArray addObject:tempString];
-		
+	while ( ![scanner isAtEnd] ) {
+		if ( [scanner scanUpToString:@"%{" intoString:&tempString] ) {
+			[tempArray addObject:tempString];
+		}
 		//eat the %{ so we don't try and parse it
 		if ( [scanner scanString:@"%{" intoString:NULL] ) {
 			if ( [scanner scanUpToString:@"}@" intoString:&tempString] ) {

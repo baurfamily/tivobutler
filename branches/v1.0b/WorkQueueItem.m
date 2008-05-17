@@ -10,6 +10,15 @@
 
 @implementation WorkQueueItem
 
+#pragma mark -
+#pragma mark Setup methods
+
+- (void)awakeFromInsert
+{
+	ENTRY;
+	self.addedDate = [NSDate date];
+}
+
 - (BOOL)canRemove
 {
 	if ( [self.active boolValue] ) {
@@ -31,6 +40,7 @@
 @dynamic startedDate;
 @dynamic savedPath;
 
+@dynamic currentStep;
 @dynamic program;
 @dynamic smartGroup;
 @dynamic steps;
@@ -49,6 +59,35 @@
 		return self.program.title;
 	} else {
 		return @"";
+	}
+}
+
+- (void)setProgram:(TiVoProgram *)value 
+{
+    [self willChangeValueForKey:@"program"];
+    [self setPrimitiveProgram:value];
+    [self didChangeValueForKey:@"program"];
+	
+	//look at defaults to get what steps to add:
+	
+	NSUserDefaultsController *defaults = [NSUserDefaultsController sharedUserDefaultsController];
+	WQAction finalAction = [[[defaults valueForKey:@"values"] valueForKey:@"downloadAction"] intValue];
+		
+	WorkQueueStep *tempStep = nil;
+	if ( finalAction==WQNoAction ) {
+		WARNING( @"no work queue action set" );
+	}
+	if ( finalAction>=WQDownloadAction ) {
+		tempStep = [self addStepOfType:WQDownloadAction afterStep:tempStep];
+	}
+	if ( finalAction>=WQDecodeAction ) {
+		tempStep = [self addStepOfType:WQDecodeAction afterStep:tempStep];
+	}
+	if ( finalAction>=WQConvertAction ) {
+		tempStep = [self addStepOfType:WQConvertAction afterStep:tempStep];
+	}
+	if ( finalAction==WQPostProcessAction ) {
+		WARNING( @"post processing not working at this time" );
 	}
 }
 
@@ -76,7 +115,5 @@
 		default:						return nil;
 	}
 }
-
-
 
 @end

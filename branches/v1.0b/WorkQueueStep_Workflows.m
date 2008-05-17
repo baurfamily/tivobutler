@@ -71,6 +71,7 @@
 {
 	ENTRY;
 	
+	[self setValue:self forKeyPath:@"item.currentStep"];
 	int action = [self.actionType intValue];
 	switch (action) {
 		case WQDownloadAction:		[self beginDownload];		break;
@@ -131,9 +132,7 @@
 {
 	ENTRY;
 	
-	[self willChangeValueForKey:@"currentActionPercent"];
-	currentActionPercent = 0;
-	[self didChangeValueForKey:@"currentActionPercent"];
+	self.currentActionPercent = [NSNumber numberWithInt:0];
 	
 	NSUserDefaultsController *defaults = [NSUserDefaultsController sharedUserDefaultsController];
 	
@@ -247,9 +246,7 @@
 {
 	ENTRY;
 	
-	[self willChangeValueForKey:@"currentActionPercent"];
-	currentActionPercent = 0;
-	[self didChangeValueForKey:@"currentActionPercent"];
+	self.currentActionPercent = [NSNumber numberWithInt:0];
 	
 	NSUserDefaultsController *defaults = [NSUserDefaultsController sharedUserDefaultsController];
 	
@@ -341,13 +338,11 @@
 			[scanner scanString:@"f (" intoString:NULL];
 			[scanner scanUpToString:@"%)" intoString:&otherTempString];
 			int newActionPercent = [otherTempString intValue];
-			if (  newActionPercent != currentActionPercent ) {
-				[self willChangeValueForKey:@"currentActionPercent"];
-				currentActionPercent = newActionPercent;
-				if ( 0 == currentActionPercent % 10 ) {
-					INFO( @"currentActionPercent: %d\n%@", currentActionPercent, tempString );
+			if (  newActionPercent != [self.currentActionPercent intValue] ) {
+				self.currentActionPercent = [NSNumber numberWithInt:newActionPercent];
+				if ( 0 == newActionPercent % 10 ) {
+					INFO( @"currentActionPercent: %d\n%@", newActionPercent, tempString );
 				}
-				[self didChangeValueForKey:@"currentActionPercent"];	
 				//- do I want to pull how much data has been processed?
 			}
 		}
@@ -405,13 +400,11 @@
 {
 	receivedBytes += length;
 	int newActionPercent = ( 100 * receivedBytes ) / expectedBytes;
-	if ( newActionPercent != currentActionPercent ) {
-		[self willChangeValueForKey:@"currentActionPercent"];
-		currentActionPercent = newActionPercent;
-		if ( 0 == currentActionPercent % 10 ) {
-			INFO( @"currentActionPercent: %d for ( %lld / %lld )", currentActionPercent, receivedBytes, expectedBytes );
+	if ( newActionPercent != [self.currentActionPercent intValue] ) {
+		self.currentActionPercent = [NSNumber numberWithInt:newActionPercent];
+		if ( 0 == newActionPercent % 10 ) {
+			INFO( @"currentActionPercent: %d for ( %lld / %lld )", newActionPercent, receivedBytes, expectedBytes );
 		}
-		[self didChangeValueForKey:@"currentActionPercent"];	
 	}
 }
 
@@ -426,16 +419,16 @@
 - (void)download:(NSURLDownload *)download didReceiveAuthenticationChallenge:(NSURLAuthenticationChallenge *)challenge
 {
 	ENTRY;
-	NSString *mak = [self valueForKeyPath:@"program.player.mediaAccessKey"];
+	NSString *mak = [self valueForKeyPath:@"item.program.player.mediaAccessKey"];
 	
 	if ( [challenge previousFailureCount] == 0 ) {
-		NSURLCredential *newCredential = [
-										  [NSURLCredential
-										   credentialWithUser:@"tivo"
-										   password:mak
-										   persistence:NSURLCredentialPersistenceNone
-										   ] autorelease
-										  ];
+		NSURLCredential *newCredential =
+			[[NSURLCredential
+			 credentialWithUser:@"tivo"
+			 password:mak
+			 persistence:NSURLCredentialPersistenceNone
+			 ] autorelease
+			 ];
 		
 		[[challenge sender] useCredential:newCredential forAuthenticationChallenge:challenge];
 	} else {
