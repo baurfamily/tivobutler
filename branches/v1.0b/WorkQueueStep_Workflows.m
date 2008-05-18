@@ -197,7 +197,7 @@
 			WARNING( @"encountered empty argument for decode task, skipping..." );
 		}
 	}
-	INFO( @"decode task arguments:\n%@", [arguments description] );	//- don't want to log the MAK
+	//INFO( @"decode task arguments:\n%@", [arguments description] );	//- don't want to log the MAK
 	[queueTask setArguments:arguments];
 	
 	[[NSNotificationCenter defaultCenter]

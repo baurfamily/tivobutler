@@ -152,7 +152,6 @@
 		3FB7FF4B0D9A04BC00D97046 /* in-progress-recording.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "in-progress-recording.png"; sourceTree = "<group>"; };
 		3FB7FF4C0D9A04BC00D97046 /* save-until-i-delete-recording.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "save-until-i-delete-recording.png"; sourceTree = "<group>"; };
 		3FB8E0FE0D8EC3CD008BD58C /* BHLogger.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = BHLogger.framework; sourceTree = "<group>"; };
-		3FB8E11D0D900577008BD58C /* WorkQueueController_Workflows.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WorkQueueController_Workflows.m; sourceTree = "<group>"; };
 		3FCB2D170D8265BD00C2B5BD /* mencoder */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.executable"; path = mencoder; sourceTree = "<group>"; };
 		3FCB2D180D8265BD00C2B5BD /* tivodecode */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.executable"; path = tivodecode; sourceTree = "<group>"; };
 		3FCB2ED80D845C9400C2B5BD /* TiVoButler.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = TiVoButler.icns; sourceTree = "<group>"; };
@@ -206,7 +205,6 @@
 				77C8280C06725ACE000B614F /* TiVo_Butler_AppDelegate.m */,
 				3FF70A160D8B4E240041CEAE /* PreferencesDisplayController.m */,
 				3FF645220D5B05FA00F2EAD9 /* WorkQueueController.m */,
-				3FB8E11D0D900577008BD58C /* WorkQueueController_Workflows.m */,
 				3FF708630D89F0650041CEAE /* WorkQueueDisplayController.m */,
 			);
 			name = Classes;
