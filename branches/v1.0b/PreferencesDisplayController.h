@@ -9,6 +9,7 @@
 #import <Cocoa/Cocoa.h>
 
 #import "EntityToken.h"
+#import "EntityTokenFieldValueTransformer.h"
 
 @interface PreferencesDisplayController : NSObject {
 	IBOutlet NSWindow *preferencesWindow;
@@ -29,6 +30,7 @@
 	
 	IBOutlet NSMenu *tokenMenu;
 	IBOutlet NSPopUpButton *addTokenPopup;
+	IBOutlet NSPopUpButton *prebuiltTokenPopup;
 	IBOutlet NSTokenField *tokenField;
 	//IBOutlet NSTokenField *sampleTokenField;
 	//IBOutlet NSArrayController *tokenArrayController;
@@ -64,6 +66,8 @@
 
 //to support the token prefs.
 - (IBAction)addToken:(id)sender;
+- (IBAction)addPrebuiltToken:(id)sender;
 //- (void)addSampleTokenWithTag:(TiVoProgramPropertyTag)sampleTag;
+- (IBAction)saveFilenamePattern:(id)sender;
 
 @end

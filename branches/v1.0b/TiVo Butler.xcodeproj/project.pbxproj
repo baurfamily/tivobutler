@@ -29,6 +29,7 @@
 		3F90AFA10DD669C80088F103 /* WorkQueueItem_Workflows.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F90AFA00DD669C80088F103 /* WorkQueueItem_Workflows.m */; };
 		3F90B1ED0DD9DBC30088F103 /* WorkQueueStep.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F90B1EC0DD9DBC30088F103 /* WorkQueueStep.m */; };
 		3F90B2030DD9DE7A0088F103 /* WorkQueueStep_Workflows.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F90B2020DD9DE7A0088F103 /* WorkQueueStep_Workflows.m */; };
+		3F9CD0880DDFEA0100A6B574 /* FilenameTokenSamples.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3F9CD0870DDFEA0100A6B574 /* FilenameTokenSamples.plist */; };
 		3FB3C6170D9E8DD5001CEE9D /* download.png in Resources */ = {isa = PBXBuildFile; fileRef = 3FB3C6140D9E8DD5001CEE9D /* download.png */; };
 		3FB3C6180D9E8DD5001CEE9D /* processing.png in Resources */ = {isa = PBXBuildFile; fileRef = 3FB3C6150D9E8DD5001CEE9D /* processing.png */; };
 		3FB3C6190D9E8DD5001CEE9D /* smart_folders.png in Resources */ = {isa = PBXBuildFile; fileRef = 3FB3C6160D9E8DD5001CEE9D /* smart_folders.png */; };
@@ -136,6 +137,7 @@
 		3F90B1EB0DD9DBC30088F103 /* WorkQueueStep.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WorkQueueStep.h; sourceTree = "<group>"; };
 		3F90B1EC0DD9DBC30088F103 /* WorkQueueStep.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WorkQueueStep.m; sourceTree = "<group>"; };
 		3F90B2020DD9DE7A0088F103 /* WorkQueueStep_Workflows.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WorkQueueStep_Workflows.m; sourceTree = "<group>"; };
+		3F9CD0870DDFEA0100A6B574 /* FilenameTokenSamples.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = FilenameTokenSamples.plist; sourceTree = "<group>"; };
 		3FB3C6140D9E8DD5001CEE9D /* download.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = download.png; sourceTree = "<group>"; };
 		3FB3C6150D9E8DD5001CEE9D /* processing.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = processing.png; sourceTree = "<group>"; };
 		3FB3C6160D9E8DD5001CEE9D /* smart_folders.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = smart_folders.png; sourceTree = "<group>"; };
@@ -267,6 +269,7 @@
 		29B97317FDCFA39411CA2CEA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				3F9CD0870DDFEA0100A6B574 /* FilenameTokenSamples.plist */,
 				8D1107310486CEB800E47090 /* Info.plist */,
 				089C165CFE840E0CC02AAC07 /* InfoPlist.strings */,
 				3FFF424C0DA87503008CBE8D /* MainMenu.xib */,
@@ -521,6 +524,7 @@
 				3F5E9AEB0DA90DAE004D2EE8 /* TiVoDocument.icns in Resources */,
 				3F5E9B1F0DA922F4004D2EE8 /* NowPlaying.png in Resources */,
 				3F5E9B220DA92462004D2EE8 /* add_to_queue.png in Resources */,
+				3F9CD0880DDFEA0100A6B574 /* FilenameTokenSamples.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

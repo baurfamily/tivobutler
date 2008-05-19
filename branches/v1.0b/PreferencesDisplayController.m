@@ -42,6 +42,21 @@
 		];
 		*/
 	}
+	
+	//- populate the list of prebuit tokens
+	NSArray *prebuiltTokens = [NSArray arrayWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"FilenameTokenSamples" ofType:@"plist"] ];
+	NSDictionary *tempDict;
+	NSMenuItem *menuItem;
+	NSMenu *prebuiltTokensMenu = [prebuiltTokenPopup menu];
+	int i;
+	int count = [prebuiltTokens count];
+	for ( i=0; i<count; i++ ) {
+		menuItem = [[[NSMenuItem alloc] init] autorelease];
+		tempDict = [prebuiltTokens objectAtIndex:i];
+		[menuItem setTitle:[tempDict objectForKey:@"desc"]];
+		[menuItem setTag:i];
+		[prebuiltTokensMenu addItem:menuItem];
+	}
 }
 
 - (IBAction)showWindow:(id)sender
@@ -263,6 +278,18 @@
 	EntityToken* token = [[[EntityToken alloc] initWithTag:[[sender selectedItem] tag]] autorelease];
 	[tempArray addObject:token];
 	[tokenField setObjectValue:tempArray];
+	[self saveFilenamePattern:self];
+}
+
+- (IBAction)addPrebuiltToken:(id)sender
+{
+	NSArray *prebuiltTokens = [NSArray arrayWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"FilenameTokenSamples" ofType:@"plist"] ];
+
+	NSString *newTokenString = [[prebuiltTokens objectAtIndex:[sender selectedTag]] objectForKey:@"tokenString"];
+	DEBUG( @"setting new filenameToken to: %@", newTokenString );
+	EntityTokenFieldValueTransformer *transformer = [[[EntityTokenFieldValueTransformer alloc] init] autorelease];
+	[tokenField setObjectValue:[transformer transformedValue:newTokenString] ];
+	[self saveFilenamePattern:self];
 }
 /*
 - (void)addSampleTokenWithTag:(TiVoProgramPropertyTag)sampleTag
@@ -275,6 +302,14 @@
 	[sampleTokenField setObjectValue:tempArray];
 }
 */
+
+- (IBAction)saveFilenamePattern:(id)sender
+{
+	NSUserDefaults *defaults = [[NSUserDefaultsController sharedUserDefaultsController] defaults];	
+	EntityTokenFieldValueTransformer *transformer = [[[EntityTokenFieldValueTransformer alloc] init] autorelease];
+	[defaults setObject:[transformer reverseTransformedValue:[tokenField objectValue]] forKey:@"filenamePattern"];
+}
+
 #pragma mark -
 #pragma mark NSTokenField delegate methods
 
