@@ -1,5 +1,5 @@
+#summary This is how you can see the data going to/from your !TiVo
 #labels Featured
-#This is how you can see the data going to/from your !TiVo
 
 = Introduction =
 
