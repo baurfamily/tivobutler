@@ -1,0 +1,45 @@
+#labels Featured
+#This is how you can see the data going to/from your TiVo
+
+= Introduction =
+
+If you want to see the communication between !TiVo Butler (or any other client app) and your !TiVo, you can follow these instructions.
+
+= Details =
+
+== Install and configure stunnel ==
+
+If you have mac ports installed, you can do this very easily by doing `sudo port install stunnel` (I assume that fink has it as an available package as well).  If not, you'll have to download the code and compile it by hand.
+
+Create a file, called tivo_stunnel.conf and paste in this configuration (change 192.168.1.101 to the IP of your TiVo box):
+{{{
+; Here so you can see what is going on
+foreground = yes
+
+; Use it for client mode
+client = yes
+
+; Don't use a PID file
+pid = 
+
+; Service-level configuration
+[tivo]
+accept  = 8888
+connect = 192.168.1.101:443
+}}}
+
+== Run stunnel and a sniffer ==
+
+To run stunnel, type:
+`sudo stunnel tivo_stunnel.conf`
+
+You should see some messages printed to the console (if you are not running it in foreground mode, then the command will return immediately).  You can type Control-C to quit.
+
+Now, run a sniffer to capture traffic going to port 8888.  If you are running stunnel on your desktop machine (as opposed to a server), then you can type (replace en0 with en1 if you use airport):
+`sudo tcpdump -i en0 -s 0 -w tivo.cap port 8888`
+
+This will save all the data of the capture to a file called tivo.cap.
+
+== Connect with your client app ==
+
+You must connect to port 8888 for this to work.  This will only work as described in a web browser right now, I'll improve the config later to allow for connecting from other apps.
