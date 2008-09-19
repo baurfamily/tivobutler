@@ -52,6 +52,18 @@
 @dynamic readFile;
 @dynamic writeFile;
 
+- (NSString *)actionName
+{
+	switch ( [self.actionType intValue] ) {
+		case WQNoAction:			return @"No Action";	break;
+		case WQDownloadAction:		return @"Download";		break;
+		case WQDecodeAction:		return @"Decode";		break;
+		case WQConvertAction:		return @"Convert";		break;
+		case WQPostProcessAction:	return @"Post Process";	break;
+	}
+	return nil;
+}
+
 - (void)setActionType:(NSNumber *)value 
 {
 	ENTRY;

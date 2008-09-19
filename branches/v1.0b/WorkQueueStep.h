@@ -63,6 +63,8 @@ typedef enum {
 @property (retain) WorkQueueFile * readFile;
 @property (retain) WorkQueueFile * writeFile;
 
+@property (readonly) NSString * actionName;
+
 - (void)setupWriteFile;
 
 @end

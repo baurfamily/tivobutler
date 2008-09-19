@@ -36,7 +36,7 @@
 - (IBAction)showWindow:(id)sender
 {
 	ENTRY;
-	[workQueueWindow makeKeyAndOrderFront:self];
+	//[workQueueWindow makeKeyAndOrderFront:self];
 }
 
 - (void)setShowWorkQueue:(BOOL)newValue
@@ -69,27 +69,124 @@
 	//- except that re-sizing is wonky, so we'll ignore this for now.
 	//[workQueueWindow setShowsResizeIndicator:!value];
 }
-/*
-- (NSArray *)sortDescriptors
+
+#pragma mark -
+#pragma mark OutlineView Datasource methods
+
+- (NSInteger)outlineView:(NSOutlineView *)outlineView numberOfChildrenOfItem:(id)item
 {
-	ENTRY;
-	if ( sortDescriptors ) {
-		return sortDescriptors;
-	} else {
-		NSSortDescriptor *sortDescriptor = [[[NSSortDescriptor alloc]
-			initWithKey:[workQueueController valueForKey:@"pendingItemsSortKey"] ascending:NO
-		] autorelease];
+	if ( item && [item isKindOfClass:[WorkQueueItem class]] ) {
+		//- we don't have any children, using outline view to control row height instead
+		return [[item valueForKey:@"steps"] count];
 		
-		return [NSArray arrayWithObject:sortDescriptor];
+	} else if ( item==nil ) {
+		//- we're looking at the root item, so calculate the number of items
+		return [[EntityHelper
+			arrayOfEntityWithName:TiVoWorkQueueItemEntityName
+			usingPredicate:[NSPredicate predicateWithValue:TRUE]
+			withSortKeys:[NSArray arrayWithObject:@"addedDate"]
+		] count];
+		
+	}
+	//- if we got here, then it's an WorkQueueStep that we're looking at
+	return 0;
+}
+
+- (id)outlineView:(NSOutlineView *)outlineView child:(NSInteger)index ofItem:(id)item
+{
+	if ( outlineView != workQueueStepsOutlineView ) {
+		WARNING( @"call from an unknown outlineView" );
+		return 0;
+	}
+	//- this should always be the first object, should I check?
+	if ( item && [item isKindOfClass:[WorkQueueItem class]] ) {
+		NSArray *stepArray = [EntityHelper
+			arrayOfEntityWithName:TiVoWorkQueueStepEntityName
+			usingPredicate:[NSPredicate predicateWithFormat:@"item = %@", item]
+			withSortKeys:[NSArray arrayWithObject:@"addedDate"]
+		 ];
+		if ( [stepArray count] > index )
+			return [stepArray objectAtIndex:index];
+		else
+			return nil;
+		
+	} else if ( item==nil ) {
+		return [[EntityHelper
+			arrayOfEntityWithName:TiVoWorkQueueItemEntityName
+			usingPredicate:[NSPredicate predicateWithValue:TRUE]
+			withSortKeys:[NSArray arrayWithObject:@"addedDate"]
+		 ] objectAtIndex:index];
+	}
+	//- we shouldn't get here
+	return nil;
+}
+
+- (BOOL)outlineView:(NSOutlineView *)outlineView isItemExpandable:(id)item
+{
+	//- we don't have any children, using outline view to control row height instead
+	return YES;
+}
+
+- (BOOL)outlineView:(NSOutlineView *)outlineView shouldExpandItem:(id)item
+{
+	//- not sure I need to implement this one...
+	return YES;
+}
+
+- (void)outlineViewItemDidCollapse:(NSNotification *)notification
+{
+    id item = [[notification userInfo] objectForKey:@"NSObject"];
+    NSInteger row = [workQueueStepsOutlineView rowForItem:item];
+    [workQueueStepsOutlineView noteHeightOfRowsWithIndexesChanged:[NSIndexSet indexSetWithIndexesInRange:NSMakeRange(row,1)]];
+}
+
+- (void)outlineViewItemDidExpand:(NSNotification *)notification
+{
+    id item = [[notification userInfo] objectForKey:@"NSObject"];
+    NSInteger row = [workQueueStepsOutlineView rowForItem:item];
+    [workQueueStepsOutlineView noteHeightOfRowsWithIndexesChanged:[NSIndexSet indexSetWithIndexesInRange:NSMakeRange(row,1)]];
+}
+
+- (CGFloat)outlineView:(NSOutlineView *)outlineView heightOfRowByItem:(id)item
+{
+    if ([outlineView isItemExpanded:item] && [item isKindOfClass:[WorkQueueStep class]] ) {
+		return WQRowHeightFull;
+	} else {
+		return WQRowHeightTitle;
 	}
 }
 
-- (void)setSortDescriptors:(NSArray *)newDescriptors
+- (id)outlineView:(NSOutlineView *)outlineView objectValueForTableColumn:(NSTableColumn *)tableColumn byItem:(id)item
 {
-	[self willChangeValueForKey:@"sortDescriptors"];
-	[sortDescriptors release];
-	sortDescriptors = [newDescriptors retain];
-	[self didChangeValueForKey:@"sortDescriptors"];
+	if ( outlineView != workQueueStepsOutlineView ) {
+		WARNING( @"call from an unknown outlineView" );
+		return 0;
+	}
+
+	if ([[tableColumn identifier] isEqualToString:@"desc"]) {
+		if ( [item isKindOfClass:[WorkQueueItem class]] ) {
+			return [item valueForKeyPath:@"program.title"];
+		} else if ( [item isKindOfClass:[WorkQueueStep class]] ) {
+			return [item valueForKeyPath:@"actionName"];
+		}
+		
+	} else if ([[tableColumn identifier] isEqualToString:@"icon"]) {
+		return [NSImage imageNamed:@"in-progress-recording"];
+		
+	} else if ([[tableColumn identifier] isEqualToString:@"cancel"]) {
+		return [NSImage imageNamed:@"NSStopProgressTemplate"];
+	}
+	return nil;
 }
-*/
+
+
+- (void)outlineView:(NSOutlineView *)outlineView willDisplayOutlineCell:(id)cell forTableColumn:(NSTableColumn *)tableColumn item:(id)item
+{
+	if ([outlineView isItemExpanded:item]) {
+		[cell setImagePosition: NSImageAbove];
+	} else {
+		[cell setImagePosition: NSImageOnly];
+	}
+}
+
 @end

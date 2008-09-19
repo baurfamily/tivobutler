@@ -8,8 +8,15 @@
 
 #import <Cocoa/Cocoa.h>
 
+#import "EntityHelper.h"
+
+#import "WorkQueueStep.h"
+
 #define WQDefaultWindowHeight	285
 #define WQDefaultWindowWidth	454
+
+#define WQRowHeightTitle		17.0
+#define WQRowHeightFull			100.0
 
 @interface WorkQueueDisplayController : NSObject {
 	BOOL showCompletedItems;
@@ -20,6 +27,8 @@
 	IBOutlet NSScrollView *workQueueScrollView;
 	IBOutlet NSWindow *workQueueWindow;
 	IBOutlet NSButton *removeItemButton;
+	
+	IBOutlet NSOutlineView *workQueueStepsOutlineView;
 	
 	NSSize oldWindowSize;
 	
