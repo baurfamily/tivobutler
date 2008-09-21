@@ -29,6 +29,7 @@
 {
 	ENTRY;
 	self.addedDate = [NSDate date];
+	self.currentActionPercent = [NSNumber numberWithInt:0];
 	
 	NSUserDefaultsController *defaults = [NSUserDefaultsController sharedUserDefaultsController];
 	self.shouldKeepInput = [[defaults valueForKey:@"values"] valueForKey:@"keepIntermediateFiles"];
@@ -45,12 +46,21 @@
 @dynamic message;
 @dynamic shouldKeepInput;
 @dynamic startedDate;
+@dynamic successful;
 
 @dynamic item;
 @dynamic nextStep;
 @dynamic previousStep;
 @dynamic readFile;
 @dynamic writeFile;
+
+- (NSNumber *)active
+{
+	if ( self.completedDate == nil && self.startedDate != nil )
+		return [NSNumber numberWithBool:YES];
+	else
+		return [NSNumber numberWithBool:NO];
+}
 
 - (NSString *)actionName
 {
@@ -134,11 +144,10 @@
 - (void)setupWriteFile
 {
 	ENTRY;
-	self.writeFile =
-	[NSEntityDescription
-	 insertNewObjectForEntityForName:TiVoWorkQueueFileEntityName
-	 inManagedObjectContext:self.managedObjectContext
-	 ];
+	self.writeFile = [NSEntityDescription
+		insertNewObjectForEntityForName:TiVoWorkQueueFileEntityName
+		inManagedObjectContext:self.managedObjectContext
+	];
 	[self setValue:self forKeyPath:@"writeFile.writerStep"];
 }
 

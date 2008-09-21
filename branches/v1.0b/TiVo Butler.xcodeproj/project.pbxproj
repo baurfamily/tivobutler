@@ -34,10 +34,8 @@
 		3FB3C6180D9E8DD5001CEE9D /* processing.png in Resources */ = {isa = PBXBuildFile; fileRef = 3FB3C6150D9E8DD5001CEE9D /* processing.png */; };
 		3FB3C6190D9E8DD5001CEE9D /* smart_folders.png in Resources */ = {isa = PBXBuildFile; fileRef = 3FB3C6160D9E8DD5001CEE9D /* smart_folders.png */; };
 		3FB3C61D0D9E8F9A001CEE9D /* tivo_small.png in Resources */ = {isa = PBXBuildFile; fileRef = 3FB3C61C0D9E8F9A001CEE9D /* tivo_small.png */; };
-		3FB701680D9A1F0200D97046 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8D1107310486CEB800E47090 /* Info.plist */; };
 		3FB7F7F00D94D32100D97046 /* Beta Tester Notes.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 3FB7F7ED0D94D32100D97046 /* Beta Tester Notes.rtf */; };
 		3FB7F7F10D94D32100D97046 /* GPL.txt in Resources */ = {isa = PBXBuildFile; fileRef = 3FB7F7EE0D94D32100D97046 /* GPL.txt */; };
-		3FB7F7F20D94D32100D97046 /* README.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 3FB7F7EF0D94D32100D97046 /* README.rtf */; };
 		3FB7F8240D94D71600D97046 /* BHLogger.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3FB8E0FE0D8EC3CD008BD58C /* BHLogger.framework */; };
 		3FB7F8270D94D74100D97046 /* BHLogger.framework in Copy Frameworks */ = {isa = PBXBuildFile; fileRef = 3FB8E0FE0D8EC3CD008BD58C /* BHLogger.framework */; };
 		3FB7FE350D99A06C00D97046 /* TiVoSizeValueTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = 3FB7FE340D99A06C00D97046 /* TiVoSizeValueTransformer.m */; };
@@ -497,7 +495,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3FB701680D9A1F0200D97046 /* Info.plist in Resources */,
 				8D11072B0486CEB800E47090 /* InfoPlist.strings in Resources */,
 				3F44C4A30D4453F800F0F6F4 /* Folder.tif in Resources */,
 				3F44C4A40D4453F800F0F6F4 /* highlight_blue.tiff in Resources */,
@@ -506,7 +503,6 @@
 				3FCB2ED90D845C9400C2B5BD /* TiVoButler.icns in Resources */,
 				3FB7F7F00D94D32100D97046 /* Beta Tester Notes.rtf in Resources */,
 				3FB7F7F10D94D32100D97046 /* GPL.txt in Resources */,
-				3FB7F7F20D94D32100D97046 /* README.rtf in Resources */,
 				3FB7FF4D0D9A04BC00D97046 /* expired-recording.png in Resources */,
 				3FB7FF4E0D9A04BC00D97046 /* expires-soon-recording.png in Resources */,
 				3FB7FF4F0D9A04BC00D97046 /* in-progress-recording.png in Resources */,

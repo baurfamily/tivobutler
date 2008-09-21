@@ -36,11 +36,10 @@
 - (WorkQueueStep *)addStepOfType:(WQAction)action afterStep:(WorkQueueStep *)prevStep
 {
 	INFO( @"actionType: %d prevStep: %@", action, [prevStep description] );
-	WorkQueueStep *newStep =
-	[NSEntityDescription
-	 insertNewObjectForEntityForName:TiVoWorkQueueStepEntityName
-	 inManagedObjectContext:[self managedObjectContext]
-	 ];
+	WorkQueueStep *newStep = [NSEntityDescription
+		insertNewObjectForEntityForName:TiVoWorkQueueStepEntityName
+		inManagedObjectContext:[self managedObjectContext]
+	];
 	
 	newStep.item = self;
 	newStep.previousStep = prevStep;

@@ -56,6 +56,7 @@ typedef enum {
 @property (retain) NSString * message;
 @property (retain) NSNumber * shouldKeepInput;
 @property (retain) NSDate * startedDate;
+@property (retain) NSNumber * successful;
 
 @property (retain) WorkQueueItem * item;
 @property (retain) WorkQueueStep * nextStep;
@@ -93,7 +94,7 @@ typedef enum {
 - (void)beginDownload;
 //- (void)setupDownloadPath;
 - (void)removeFiles;
-- (void)completeWithMessage:(NSString *)message;
+- (void)completeWithMessage:(NSString *)message successful:(BOOL)successful;
 
 - (void)beginDecode;
 - (void)decodeReadAvailableData:(NSNotification *)notification;

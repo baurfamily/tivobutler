@@ -12,7 +12,7 @@
 #import "TiVoSizeValueTransformer.h"
 
 #if __DEBUG__ 
-#	define TiVoButlerDataFilename		@"TiVo Butler (debug).xml"
+#	define TiVoButlerDataFilename		@"tivobutler_debug.xml"
 #	define TiVoButlerDataFileType		NSXMLStoreType
 #else
 #	define TiVoButlerDataFilename		@"TiVo Butler.sqlite"

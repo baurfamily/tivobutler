@@ -42,6 +42,7 @@ typedef enum {
 @property (retain) NSNumber * sourceType;
 @property (retain) NSDate * startedDate;
 @property (retain) NSString * savedPath;
+@property (retain) NSNumber * successful;
 
 @property (retain) WorkQueueStep * currentStep;
 @property (retain) TiVoProgram * program;

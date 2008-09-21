@@ -39,6 +39,7 @@
 @dynamic sourceType;
 @dynamic startedDate;
 @dynamic savedPath;
+@dynamic successful;
 
 @dynamic currentStep;
 @dynamic program;

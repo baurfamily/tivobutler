@@ -10,7 +10,12 @@
 
 #import "EntityHelper.h"
 
+#import "WorkQueueItem.h"
 #import "WorkQueueStep.h"
+
+#define WQScopeControlActiveTag		0
+#define WQScopeControlPendingTag	1
+#define WQScopeControlCompletedTag	2
 
 #define WQDefaultWindowHeight	285
 #define WQDefaultWindowWidth	454
@@ -19,26 +24,23 @@
 #define WQRowHeightFull			100.0
 
 @interface WorkQueueDisplayController : NSObject {
-	BOOL showCompletedItems;
-	BOOL showWorkQueue;
-
 	IBOutlet id workQueueController;
 	
-	IBOutlet NSScrollView *workQueueScrollView;
 	IBOutlet NSWindow *workQueueWindow;
-	IBOutlet NSButton *removeItemButton;
 	
-	IBOutlet NSOutlineView *workQueueStepsOutlineView;
-	
-	NSSize oldWindowSize;
+	IBOutlet NSSegmentedControl *workQueueScopeControl;
+	IBOutlet NSOutlineView *workQueueOutlineView;
 	
 	NSArray *sortDescriptors;
+	NSArray *workQueueItems;
 }
 
 - (IBAction)showWindow:(id)sender;
 
-- (void)setShowWorkQueue:(BOOL)newValue;
+- (IBAction)refreshOutlineView:(id)sender;
 
-- (void)setItemsHidden:(BOOL)value;
+
+- (NSAttributedString *)attributedStringForItem:(WorkQueueItem *)item;
+- (NSAttributedString *)attributedStringForStep:(WorkQueueStep *)step;
 
 @end

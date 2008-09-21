@@ -103,7 +103,7 @@
 	programDownload = [[NSURLDownload alloc] initWithRequest:request delegate:self];
 	if ( !programDownload ) {
 		ERROR( @"can't download program, download connection not created" );
-		[self completeWithMessage:@"Failed to create download request."];
+		[self completeWithMessage:@"Failed to create download request." successful:NO];
 		return;
 	}
 	[programDownload setDestination:self.writeFile.path allowOverwrite:YES];
@@ -118,10 +118,11 @@
 	}
 }
 
-- (void)completeWithMessage:(NSString *)message
+- (void)completeWithMessage:(NSString *)message successful:(BOOL)successful
 {
 	if ( message )
 		self.message = message;
+	self.successful = [NSNumber numberWithBool:successful];
 	self.completedDate = [NSDate date];
 	[self.item completedStep:self];
 }
@@ -147,11 +148,11 @@
 	queueFileHandle = [[pipe fileHandleForReading] retain];
 	
 	[[NSNotificationCenter defaultCenter]
-	 addObserver:self 
-	 selector:@selector(decodeReadAvailableData:) 
-	 name:NSFileHandleDataAvailableNotification 
-	 object:queueFileHandle
-	 ];
+		addObserver:self 
+		selector:@selector(decodeReadAvailableData:) 
+		name:NSFileHandleDataAvailableNotification 
+		object:queueFileHandle
+	];
 	[queueFileHandle waitForDataInBackgroundAndNotify];
 	
 	BOOL useExternalApp = [[[defaults valueForKey:@"values"] valueForKey:@"decodeWithExternalApp"] boolValue];
@@ -165,7 +166,7 @@
 	if ( !launchPath ) {
 		ERROR( @"launch path not set for decode task, can't continue" );
 		[self removeFiles];
-		[self completeWithMessage:@"Failed"];
+		[self completeWithMessage:@"Failed" successful:NO];
 		
 		[queueTask release], queueTask = nil;
 		[queueFileHandle release], queueFileHandle = nil;
@@ -201,11 +202,11 @@
 	[queueTask setArguments:arguments];
 	
 	[[NSNotificationCenter defaultCenter]
-	 addObserver:self
-	 selector:@selector(decoderDidTerminate:)
-	 name:NSTaskDidTerminateNotification
-	 object:queueTask
-	 ];
+		addObserver:self
+		selector:@selector(decoderDidTerminate:)
+		name:NSTaskDidTerminateNotification
+		object:queueTask
+	];
 	[queueTask launch];
 }
 
@@ -229,11 +230,11 @@
 		if ( ! [self.shouldKeepInput boolValue] ) {
 			[self.writeFile removeFile];
 		}
+		[self completeWithMessage:@"Decode complete." successful:YES];
 	} else {
 		ERROR(@"Decode failed.");
+		[self completeWithMessage:@"Decode failed." successful:NO];
 	}
-	
-	[self completeWithMessage:nil];
 	
 	[queueTask release], queueTask = nil;
 	[queueFileHandle release], queueFileHandle = nil;
@@ -261,11 +262,11 @@
 	queueFileHandle = [[pipe fileHandleForReading] retain];
 	
 	[[NSNotificationCenter defaultCenter]
-	 addObserver:self 
-	 selector:@selector(convertReadAvailableData:) 
-	 name:NSFileHandleDataAvailableNotification 
-	 object:queueFileHandle
-	 ];
+		addObserver:self 
+		selector:@selector(convertReadAvailableData:) 
+		name:NSFileHandleDataAvailableNotification 
+		object:queueFileHandle
+	];
 	[queueFileHandle waitForDataInBackgroundAndNotify];
 	
 	BOOL useExternalApp = [[[defaults valueForKey:@"values"] valueForKey:@"convertWithExternalApp"] boolValue];
@@ -279,7 +280,7 @@
 	if ( !launchPath ) {
 		ERROR( @"launch path not set for conversion task, can't continue" );
 		[self removeFiles];
-		[self completeWithMessage:@"Failed"];
+		[self completeWithMessage:@"Failed" successful:NO];
 		
 		[queueTask release], queueTask = nil;
 		[queueFileHandle release], queueFileHandle = nil;
@@ -315,11 +316,11 @@
 	[queueTask setArguments:arguments];
 	
 	[[NSNotificationCenter defaultCenter]
-	 addObserver:self
-	 selector:@selector(convertDidTerminate:)
-	 name:NSTaskDidTerminateNotification
-	 object:queueTask
-	 ];
+		addObserver:self
+		selector:@selector(convertDidTerminate:)
+		name:NSTaskDidTerminateNotification
+		object:queueTask
+	];
 	[queueTask launch];
 }
 
@@ -362,11 +363,11 @@
 		if ( ! [self.shouldKeepInput boolValue] ) {
 			[self.writeFile removeFile];
 		}
+		[self completeWithMessage:@"Conversion completed." successful:YES];
 	} else {
 		ERROR(@"Convert failed.");
+		[self completeWithMessage:@"Conversion failed." successful:NO];
 	}
-	
-	[self completeWithMessage:nil];
 	
 	[queueTask release], queueTask = nil;
 	[queueFileHandle release], queueFileHandle = nil;
@@ -379,14 +380,14 @@
 - (void)download:(NSURLDownload *)download didFailWithError:(NSError *)error
 {
 	ERROR( @"download failed: %@\nfor URL: %@",
-		  [error localizedDescription],
-		  [[error userInfo] objectForKey:NSErrorFailingURLStringKey]
-		  );
+		[error localizedDescription],
+		[[error userInfo] objectForKey:NSErrorFailingURLStringKey]
+	);
 	[programDownload release];
 	programDownload = nil;
 	
 	[self removeFiles];
-	[self completeWithMessage:@"Failed"];
+	[self completeWithMessage:[error localizedDescription] successful:NO];
 }
 
 - (void)download:(NSURLDownload *)download didCreateDestination:(NSString *)path
@@ -414,7 +415,7 @@
 	INFO( @"download finished: %@", [programDownload description] );
 	[programDownload release], programDownload = nil;
 	
-	[self completeWithMessage:nil];
+	[self completeWithMessage:@"Download completed." successful:YES];
 }
 
 - (void)download:(NSURLDownload *)download didReceiveAuthenticationChallenge:(NSURLAuthenticationChallenge *)challenge
@@ -425,16 +426,17 @@
 	if ( [challenge previousFailureCount] == 0 ) {
 		NSURLCredential *newCredential =
 			[[NSURLCredential
-			 credentialWithUser:@"tivo"
-			 password:mak
-			 persistence:NSURLCredentialPersistenceNone
-			 ] autorelease
-			 ];
+				credentialWithUser:@"tivo"
+				password:mak
+				persistence:NSURLCredentialPersistenceNone
+			] autorelease
+		];
 		
 		[[challenge sender] useCredential:newCredential forAuthenticationChallenge:challenge];
 	} else {
-		ERROR( @"the supplied MAK was incorrect for the given IP address" );
+		ERROR( @"The supplied MAK was incorrect for the given IP address" );
 		[[challenge sender] cancelAuthenticationChallenge:challenge];
+		[self completeWithMessage:@"The supplied MAK was incorrect for the given IP address." successful:NO];
 	}
 }
 
