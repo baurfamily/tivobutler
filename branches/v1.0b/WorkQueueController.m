@@ -14,8 +14,12 @@ static BOOL loaded = NO;
 
 + (void)initialize 
 {
+	if ( self != [WorkQueueController class] ) {
+		WARNING( @"return early, not my class" );
+		return;
+	}
 	ENTRY;
-	NSUserDefaultsController *defaults = [NSUserDefaultsController sharedUserDefaultsController];
+	NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
 	NSDictionary *tempDefaults;
 
 	tempDefaults = [NSDictionary dictionaryWithObjectsAndKeys:
@@ -37,7 +41,7 @@ static BOOL loaded = NO;
 		nil
 	];
 	
-	[defaults setInitialValues:tempDefaults];
+	[defaults registerDefaults:tempDefaults];
 }
 
 + (NSSet *)keyPathsForValuesAffectingValueForKey:(NSString *)key
@@ -82,8 +86,8 @@ static BOOL loaded = NO;
 	currentAction = WQNoAction;
 	[self didChangeValueForKey:@"currentAction"];
 	
-	NSUserDefaultsController *defaults = [NSUserDefaultsController sharedUserDefaultsController];
-	BOOL cancelDownloads = [[[defaults valueForKey:@"values"] valueForKey:@"cancelDownloadsOnStartup"] boolValue];
+	NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+	BOOL cancelDownloads = [[defaults valueForKey:@"cancelDownloadsOnStartup"] boolValue];
 
 	if ( !cancelDownloads ) {
 		//- we're assuming that anything without a completedDate should go away (since we just started)
@@ -91,12 +95,15 @@ static BOOL loaded = NO;
 			arrayOfEntityWithName:TiVoWorkQueueItemEntityName
 			usingPredicateString:@"completedDate = nil and startedDate = nil"
 		];
-		[abandonedDownloads makeObjectsPerformSelector:@selector(setMessage:) withObject:@"Abandoned"];
-		[abandonedDownloads makeObjectsPerformSelector:@selector(setCompletedDate:) withObject:[NSDate date] ];
+		[abandonedDownloads makeObjectsPerformSelector:@selector(completeWithMessage:) withObject:@"Abandoned"];
+		//[abandonedDownloads makeObjectsPerformSelector:@selector(setSuccessful:) withObject:[NSNumber numberWithBool:NO] ];
+		//[abandonedDownloads makeObjectsPerformSelector:@selector(setMessage:) withObject:@"Abandoned"];
+		//[abandonedDownloads makeObjectsPerformSelector:@selector(setCompletedDate:) withObject:[NSDate date] ];
 		INFO( @"abandoned %d downloads", [abandonedDownloads count] );
 	}
 	
-	int downloadCheckInterval = [[[defaults valueForKey:@"values"] valueForKey:@"downloadCheckInterval"] intValue];
+	int downloadCheckInterval = [[defaults valueForKey:@"downloadCheckInterval"] intValue];
+	INFO( @"setting download timer to check every %d minutes", downloadCheckInterval );
 	downloadCheckTimer = [[NSTimer scheduledTimerWithTimeInterval:( 60 * downloadCheckInterval )
 		target:self
 		selector:@selector(checkForAutoDownloads)
@@ -175,8 +182,8 @@ static BOOL loaded = NO;
 		INFO( @"won't download right now, it's not in the right window" );
 	}
 	
-	NSUserDefaultsController *defaults = [NSUserDefaultsController sharedUserDefaultsController];
-	BOOL restartDownloads = [[[defaults valueForKey:@"values"] valueForKey:@"restartDownloads"] boolValue];
+	NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+	BOOL restartDownloads = [[defaults valueForKey:@"restartDownloads"] boolValue];
 
 	if ( !restartDownloads ) {
 		//- we're assuming that anything with a start date was abandoned
@@ -185,6 +192,7 @@ static BOOL loaded = NO;
 			arrayOfEntityWithName:TiVoWorkQueueItemEntityName
 			usingPredicateString:@"completedDate = nil AND startedDate != nil"
 		];
+		[abandonedDownloads makeObjectsPerformSelector:@selector(setSuccessful:) withObject:[NSNumber numberWithBool:NO] ];
 		[abandonedDownloads makeObjectsPerformSelector:@selector(setMessage:) withObject:@"Interrupted"];
 		[abandonedDownloads makeObjectsPerformSelector:@selector(setCompletedDate:) withObject:[NSDate date] ];
 		INFO( @"canceled %d interrupted downloads", [abandonedDownloads count] );
@@ -240,15 +248,15 @@ static BOOL loaded = NO;
 - (BOOL)okayToDownload
 {
 	ENTRY;
-	NSUserDefaultsController *defaults = [NSUserDefaultsController sharedUserDefaultsController];
+	NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
 
-	BOOL restrictTimes = [[[defaults valueForKey:@"values"] valueForKey:@"restrictDownloadTimes"] boolValue];
+	BOOL restrictTimes = [[defaults valueForKey:@"restrictDownloadTimes"] boolValue];
 	if( !restrictTimes ) {
 		return YES;
 	}
 
-	NSDate *startDate = [[defaults valueForKey:@"values"] valueForKey:@"downloadStartTime"];
-	NSDate *endDate = [[defaults valueForKey:@"values"] valueForKey:@"downloadEndTime"];
+	NSDate *startDate = [defaults valueForKey:@"downloadStartTime"];
+	NSDate *endDate = [defaults valueForKey:@"downloadEndTime"];
 	
 	if ( nil==startDate || nil==endDate ) {
 		WARNING( @"can't do date calculations, either the start or end date is nil" );
@@ -258,8 +266,8 @@ static BOOL loaded = NO;
 
 - (NSString *)pendingItemsSortKey
 {
-	NSUserDefaultsController *defaults = [NSUserDefaultsController sharedUserDefaultsController];
-	WQDateOrder downloadOrder = [[[defaults valueForKey:@"values"] valueForKey:@"downloadOrder"] intValue];
+	NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+	WQDateOrder downloadOrder = [[defaults valueForKey:@"downloadOrder"] intValue];
 	
 	switch ( downloadOrder ) {
 		case WQAddedDateOrder:		RETURN( WQAddedDateString );	return WQAddedDateString;		break;

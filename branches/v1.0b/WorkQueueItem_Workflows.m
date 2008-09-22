@@ -23,15 +23,33 @@
 	[[pendingSteps objectAtIndex:0] beginProcessing];
 }
 
-
 - (void)completeWithMessage:(NSString *)message
 {
-	//TODO: need to cascade down to the current step
+	if ( self.completedDate ) {
+		return;
+	}
+	ENTRY;
 	if ( message )
 		self.message = message;
 	self.completedDate = [NSDate date];
+	
+	NSArray *steps = [EntityHelper
+		arrayOfEntityWithName:TiVoWorkQueueStepEntityName
+		usingPredicate:[NSPredicate predicateWithFormat:@"item = %@", self]
+		withSortKeys:[NSArray arrayWithObject:@"actionType"]
+	];
+	WorkQueueStep *step;
+	//- we assume we're successful until we see a step that isn't
+	self.successful = [NSNumber numberWithBool:YES];
+	for ( step in steps ) {
+		if ( ![step.successful boolValue] ) {
+			self.successful = [NSNumber numberWithBool:NO];
+		}
+		if ( ![self.successful boolValue] ) {
+			[step completeWithMessage:self.message successful:NO];
+		}
+	}
 }
-
 
 - (WorkQueueStep *)addStepOfType:(WQAction)action afterStep:(WorkQueueStep *)prevStep
 {
@@ -51,11 +69,19 @@
 #pragma mark -
 #pragma mark Callback methods
 
-- (void)completedStep:(WorkQueueStep *)completedStep
+- (void)completedStep:(WorkQueueStep *)completedStep successful:(BOOL)successful
 {
 	ENTRY;
 	WorkQueueStep *nextStep = completedStep.nextStep;
-	[nextStep beginProcessing];
+	if ( successful ) {
+		if ( nextStep ) {
+			[nextStep beginProcessing];
+		} else {
+			[self completeWithMessage:nil];
+		}
+	} else {
+		[self completeWithMessage:[NSString stringWithFormat:@"Failed step: %@", completedStep.actionName] ];
+	}
 }
 
 @end

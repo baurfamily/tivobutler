@@ -15,42 +15,42 @@
 {
 	ENTRY;
 	return [NSDictionary dictionaryWithObjectsAndKeys:
-			//decode arguments
-			[NSArray arrayWithObjects:
-			 [NSDictionary dictionaryWithObject:@"--no-verify"									forKey:@"value"],
-			 //[NSDictionary dictionaryWithObject:@"--verbose"									forKey:@"value"],
-			 [NSDictionary dictionaryWithObject:@"--mak"											forKey:@"value"],
-			 [NSDictionary dictionaryWithObject:[NSNumber numberWithInt:WQArgumentMAK]			forKey:@"variable"],
-			 [NSDictionary dictionaryWithObject:@"--out"											forKey:@"value"],
-			 [NSDictionary dictionaryWithObject:[NSNumber numberWithInt:WQArgumentOutputFile]	forKey:@"variable"],
-			 [NSDictionary dictionaryWithObject:[NSNumber numberWithInt:WQArgumentInputFile]		forKey:@"variable"],
-			 nil
-			 ], @"decodeAppArguments",
-			//convert arguments
-			[NSArray arrayWithObjects:
-			 [NSDictionary dictionaryWithObject:@"-af"							forKey:@"value"],
-			 [NSDictionary dictionaryWithObject:@"volume=13:1"					forKey:@"value"],
-			 [NSDictionary dictionaryWithObject:@"-of"							forKey:@"value"],
-			 [NSDictionary dictionaryWithObject:@"lavf"							forKey:@"value"],
-			 [NSDictionary dictionaryWithObject:@"-demuxer"						forKey:@"value"],
-			 [NSDictionary dictionaryWithObject:@"lavf"							forKey:@"value"],
-			 [NSDictionary dictionaryWithObject:@"-lavfdopts"					forKey:@"value"],
-			 [NSDictionary dictionaryWithObject:@"probesize=128"					forKey:@"value"],
-			 [NSDictionary dictionaryWithObject:@"-oac"							forKey:@"value"],
-			 [NSDictionary dictionaryWithObject:@"lavc"							forKey:@"value"],
-			 [NSDictionary dictionaryWithObject:@"-ovc"							forKey:@"value"],
-			 [NSDictionary dictionaryWithObject:@"lavc"							forKey:@"value"],
-			 [NSDictionary dictionaryWithObject:@"-lavcopts"						forKey:@"value"],
-			 [NSDictionary dictionaryWithObject:@"keyint=15:aglobal=1:vglobal=1:coder=1:vcodec=mpeg4:acodec=libfaac:vbitrate=1800:abitrate=128" forKey:@"value"],
-			 [NSDictionary dictionaryWithObject:@"-vf"							forKey:@"value"],
-			 [NSDictionary dictionaryWithObject:@"pp=lb,scale=640:480,harddup"	forKey:@"value"],
-			 [NSDictionary dictionaryWithObject:@"-o"							forKey:@"value"],
-			 [NSDictionary dictionaryWithObject:[NSNumber numberWithInt:WQArgumentOutputFile]	forKey:@"variable"],
-			 [NSDictionary dictionaryWithObject:[NSNumber numberWithInt:WQArgumentInputFile]		forKey:@"variable"],
-			 nil
-			 ], @"convertAppArguments",
+		//decode arguments
+		[NSArray arrayWithObjects:
+			[NSDictionary dictionaryWithObject:@"--no-verify"									forKey:@"value"],
+			//[NSDictionary dictionaryWithObject:@"--verbose"									forKey:@"value"],
+			[NSDictionary dictionaryWithObject:@"--mak"											forKey:@"value"],
+			[NSDictionary dictionaryWithObject:[NSNumber numberWithInt:WQArgumentMAK]			forKey:@"variable"],
+			[NSDictionary dictionaryWithObject:@"--out"											forKey:@"value"],
+			[NSDictionary dictionaryWithObject:[NSNumber numberWithInt:WQArgumentOutputFile]	forKey:@"variable"],
+			[NSDictionary dictionaryWithObject:[NSNumber numberWithInt:WQArgumentInputFile]		forKey:@"variable"],
 			nil
-			];
+		], @"decodeAppArguments",
+		//convert arguments
+		[NSArray arrayWithObjects:
+			[NSDictionary dictionaryWithObject:@"-af"							forKey:@"value"],
+			[NSDictionary dictionaryWithObject:@"volume=13:1"					forKey:@"value"],
+			[NSDictionary dictionaryWithObject:@"-of"							forKey:@"value"],
+			[NSDictionary dictionaryWithObject:@"lavf"							forKey:@"value"],
+			[NSDictionary dictionaryWithObject:@"-demuxer"						forKey:@"value"],
+			[NSDictionary dictionaryWithObject:@"lavf"							forKey:@"value"],
+			[NSDictionary dictionaryWithObject:@"-lavfdopts"					forKey:@"value"],
+			[NSDictionary dictionaryWithObject:@"probesize=128"					forKey:@"value"],
+			[NSDictionary dictionaryWithObject:@"-oac"							forKey:@"value"],
+			[NSDictionary dictionaryWithObject:@"lavc"							forKey:@"value"],
+			[NSDictionary dictionaryWithObject:@"-ovc"							forKey:@"value"],
+			[NSDictionary dictionaryWithObject:@"lavc"							forKey:@"value"],
+			[NSDictionary dictionaryWithObject:@"-lavcopts"						forKey:@"value"],
+			[NSDictionary dictionaryWithObject:@"keyint=15:aglobal=1:vglobal=1:coder=1:vcodec=mpeg4:acodec=libfaac:vbitrate=1800:abitrate=128" forKey:@"value"],
+			[NSDictionary dictionaryWithObject:@"-vf"							forKey:@"value"],
+			[NSDictionary dictionaryWithObject:@"pp=lb,scale=640:480,harddup"	forKey:@"value"],
+			[NSDictionary dictionaryWithObject:@"-o"							forKey:@"value"],
+			[NSDictionary dictionaryWithObject:[NSNumber numberWithInt:WQArgumentOutputFile]	forKey:@"variable"],
+			[NSDictionary dictionaryWithObject:[NSNumber numberWithInt:WQArgumentInputFile]		forKey:@"variable"],
+			nil
+		], @"convertAppArguments",
+		nil
+	];
 }
 
 #pragma mark -
@@ -77,7 +77,7 @@
 		case WQDownloadAction:		[self beginDownload];		break;
 		case WQDecodeAction:		[self beginDecode];			break;
 		case WQConvertAction:		[self beginConversion];		break;
-			//case WQPostProcessAction:	[self beginPostProcessing];	break;
+		//case WQPostProcessAction:	[self beginPostProcessing];	break;
 		default:	WARNING( @"no action to take for actionType: %d", action );
 	}
 }
@@ -124,7 +124,7 @@
 		self.message = message;
 	self.successful = [NSNumber numberWithBool:successful];
 	self.completedDate = [NSDate date];
-	[self.item completedStep:self];
+	[self.item completedStep:self successful:successful];
 }
 
 #pragma mark -
@@ -136,7 +136,7 @@
 	
 	self.currentActionPercent = [NSNumber numberWithInt:0];
 	
-	NSUserDefaultsController *defaults = [NSUserDefaultsController sharedUserDefaultsController];
+	NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
 	
 	[queueTask release];
 	queueTask = [[NSTask alloc] init];
@@ -155,11 +155,11 @@
 	];
 	[queueFileHandle waitForDataInBackgroundAndNotify];
 	
-	BOOL useExternalApp = [[[defaults valueForKey:@"values"] valueForKey:@"decodeWithExternalApp"] boolValue];
+	BOOL useExternalApp = [[defaults valueForKey:@"decodeWithExternalApp"] boolValue];
 	
 	NSString *launchPath;
 	if ( useExternalApp ) {
-		launchPath =  [[defaults valueForKey:@"values"] valueForKey:@"decodeAppPath"];
+		launchPath =  [defaults valueForKey:@"decodeAppPath"];
 	} else {
 		launchPath = [[NSBundle mainBundle] pathForAuxiliaryExecutable:@"tivodecode"];
 	}
@@ -177,7 +177,7 @@
 	[queueTask setLaunchPath:launchPath ];
 	
 	NSMutableArray *arguments = [NSMutableArray array];
-	NSArray *defaultsArgumentArray = [[defaults valueForKey:@"values"] valueForKey:@"decodeAppArguments"];
+	NSArray *defaultsArgumentArray = [defaults valueForKey:@"decodeAppArguments"];
 	NSDictionary *tempDict;
 	for ( tempDict in defaultsArgumentArray ) {
 		NSString *tempString = [tempDict valueForKey:@"value"];
@@ -198,7 +198,7 @@
 			WARNING( @"encountered empty argument for decode task, skipping..." );
 		}
 	}
-	//INFO( @"decode task arguments:\n%@", [arguments description] );	//- don't want to log the MAK
+	INFO( @"decode task arguments:\n%@", [arguments description] );	//- don't want to log the MAK
 	[queueTask setArguments:arguments];
 	
 	[[NSNotificationCenter defaultCenter]
@@ -250,7 +250,7 @@
 	
 	self.currentActionPercent = [NSNumber numberWithInt:0];
 	
-	NSUserDefaultsController *defaults = [NSUserDefaultsController sharedUserDefaultsController];
+	NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
 	
 	[queueTask release];
 	queueTask = [[NSTask alloc] init];
@@ -269,11 +269,11 @@
 	];
 	[queueFileHandle waitForDataInBackgroundAndNotify];
 	
-	BOOL useExternalApp = [[[defaults valueForKey:@"values"] valueForKey:@"convertWithExternalApp"] boolValue];
+	BOOL useExternalApp = [[defaults valueForKey:@"convertWithExternalApp"] boolValue];
 	
 	NSString *launchPath;
 	if ( useExternalApp ) {
-		launchPath = [[defaults valueForKey:@"values"] valueForKey:@"convertAppPath"];
+		launchPath = [defaults valueForKey:@"convertAppPath"];
 	} else {
 		launchPath = [[NSBundle mainBundle] pathForAuxiliaryExecutable:@"mencoder"];
 	}
@@ -288,7 +288,7 @@
 	}
 	
 	NSMutableArray *arguments = [NSMutableArray array];
-	NSArray *defaultsArgumentArray = [[defaults valueForKey:@"values"] valueForKey:@"convertAppArguments"];
+	NSArray *defaultsArgumentArray = [defaults valueForKey:@"convertAppArguments"];
 	NSDictionary *tempDict;
 	for ( tempDict in defaultsArgumentArray ) {
 		NSString *tempString = [tempDict valueForKey:@"value"];

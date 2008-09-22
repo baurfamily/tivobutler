@@ -30,8 +30,8 @@
 	} else {
 		NSMutableString *tempString = [NSMutableString string];
 		
-		NSUserDefaultsController *defaults = [NSUserDefaultsController sharedUserDefaultsController];
-		NSString *filenamePattern = [[defaults valueForKey:@"values"] valueForKey:@"filenamePattern"];
+		NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+		NSString *filenamePattern = [defaults valueForKey:@"filenamePattern"];
 		EntityTokenFieldValueTransformer *transformer = [[[EntityTokenFieldValueTransformer alloc] init] autorelease];
 		NSArray *tokenArray = [transformer transformedValue:filenamePattern];
 		
@@ -75,18 +75,18 @@
 	if (tmpValue) {
 		return tmpValue;
 	} else {
-		NSUserDefaultsController *defaults = [NSUserDefaultsController sharedUserDefaultsController];
-		BOOL useIntermediateFolder = [[[defaults valueForKey:@"values"] valueForKey:@"useIntermediateFolder"] boolValue];
+		NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+		BOOL useIntermediateFolder = [[defaults valueForKey:@"useIntermediateFolder"] boolValue];
 		
 		NSString *tempDirectory;
 		if ( self.writerStep ) {
 			if ( useIntermediateFolder ) {
-				tempDirectory = [[[defaults valueForKey:@"values"] valueForKey:@"intermediateFolder"] stringByExpandingTildeInPath];
+				tempDirectory = [[defaults valueForKey:@"intermediateFolder"] stringByExpandingTildeInPath];
 			} else {
 				tempDirectory = NSTemporaryDirectory();
 			}
 		} else {
-			tempDirectory = [[defaults valueForKey:@"values"] valueForKey:@"downloadFolder"]; 
+			tempDirectory = [defaults valueForKey:@"downloadFolder"]; 
 		}
 		tmpValue = [NSString pathWithComponents:[NSArray arrayWithObjects:tempDirectory, self.filename, nil] ];
 		
@@ -111,8 +111,8 @@
 
 - (BOOL)checkAndCreateDirectories
 {
-	NSUserDefaultsController *defaults = [NSUserDefaultsController sharedUserDefaultsController];
-	WQFileExistsAction fileExistsAction = [[[defaults valueForKey:@"values"] valueForKey:@"fileExistsAction"] intValue];
+	NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+	WQFileExistsAction fileExistsAction = [[defaults valueForKey:@"fileExistsAction"] intValue];
 	
     [self willAccessValueForKey:@"path"];
 	NSString *fullPath = [self primitivePath];

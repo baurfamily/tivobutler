@@ -69,10 +69,9 @@
     [self setPrimitiveProgram:value];
     [self didChangeValueForKey:@"program"];
 	
-	//look at defaults to get what steps to add:
-	
-	NSUserDefaultsController *defaults = [NSUserDefaultsController sharedUserDefaultsController];
-	WQAction finalAction = [[[defaults valueForKey:@"values"] valueForKey:@"downloadAction"] intValue];
+	//- look at defaults to get what steps to add:
+	NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+	WQAction finalAction = [[defaults valueForKey:@"downloadAction"] intValue];
 		
 	WorkQueueStep *tempStep = nil;
 	if ( finalAction==WQNoAction ) {

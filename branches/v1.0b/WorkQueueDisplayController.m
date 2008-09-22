@@ -244,23 +244,22 @@
 	//- figure out the status
 	NSColor *tempColor;
 	NSString *tempString;
-	if ( step.completedDate && step.successful ) {
+	if ( step.completedDate && step.successful.boolValue ) {
 		//- if completed and successful...
 		tempColor = [NSColor blackColor];
-		tempString = @" (COMPLETED)";
-	} else if ( step.completedDate && step.successful ) {
+		tempString = @" completed";
+	} else if ( step.completedDate && !step.successful.boolValue ) {
 		//- if completed, but not successful...
 		tempColor = [NSColor redColor];
-		tempString = @" (FAILED)";
-	} else if ( [[step valueForKey:@"active"] boolValue] && [step valueForKey:@"startedDate"] ) {
+		tempString = [NSString stringWithFormat:@" failed: %@", step.message];
+	} else if ( [step.active boolValue] ) {
 		//- if active and started...
 		tempColor = [NSColor greenColor];
-		//tempString = @" (PROCESSING)";
-		tempString = [NSString stringWithFormat:@" (%@%% done)", step.currentActionPercent];
-	} else if ( ![step valueForKey:@"startedDate"] ) {
+		tempString = [NSString stringWithFormat:@" %@%% done", step.currentActionPercent];
+	} else if ( !step.startedDate ) {
 		//- if not started...
 		tempColor = [NSColor orangeColor];
-		tempString = @" (PROCESSING)";
+		tempString = @" processing";
 	}
 	NSDictionary *attributeDictionary = [NSDictionary dictionaryWithObjectsAndKeys:
 		[NSFont systemFontOfSize:10.0],	NSFontAttributeName,

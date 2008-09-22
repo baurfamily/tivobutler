@@ -17,12 +17,16 @@
 + (void)initialize
 {
 	ENTRY;
-	NSUserDefaultsController *defaults = [NSUserDefaultsController sharedUserDefaultsController];
+	if ( self != [WorkQueueStep class] ) {
+		RETURN( @"return early, not my class (%@ instead of %@)", self, [WorkQueueStep class] );
+		return;
+	}
+	NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
 	
 	NSDictionary *tempDefaults;
 	tempDefaults = [self workflowDefaults];
 	
-	[defaults setInitialValues:tempDefaults];
+	[defaults registerDefaults:tempDefaults];
 }
 
 - (void)awakeFromInsert
@@ -31,8 +35,8 @@
 	self.addedDate = [NSDate date];
 	self.currentActionPercent = [NSNumber numberWithInt:0];
 	
-	NSUserDefaultsController *defaults = [NSUserDefaultsController sharedUserDefaultsController];
-	self.shouldKeepInput = [[defaults valueForKey:@"values"] valueForKey:@"keepIntermediateFiles"];
+	NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+	self.shouldKeepInput = [defaults valueForKey:@"keepIntermediateFiles"];
 }
 
 #pragma mark -

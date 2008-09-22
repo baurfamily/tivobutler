@@ -64,11 +64,12 @@ typedef enum {
 @interface WorkQueueItem (Workflows)
 
 - (void)beginProcessing;
+
 - (void)completeWithMessage:(NSString *)message;
 
 - (WorkQueueStep *)addStepOfType:(WQAction)action afterStep:(WorkQueueStep *)prevStep;
 
-- (void)completedStep:(WorkQueueStep *)completedStep;
+- (void)completedStep:(WorkQueueStep *)completedStep successful:(BOOL)successful;
 
 @end
 

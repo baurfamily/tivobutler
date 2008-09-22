@@ -12,6 +12,7 @@
 
 + (void)initialize
 {
+	ENTRY;
 	[NSValueTransformer
 		setValueTransformer:[[[TiVoDurationValueTransformer alloc] init] autorelease]
 		forName:@"TiVoDuration"
