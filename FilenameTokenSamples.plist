@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<array>
+	<dict>
+		<key>desc</key>
+		<string>Program Title only</string>
+		<key>tokenString</key>
+		<string>%{title}@</string>
+	</dict>
+	<dict>
+		<key>desc</key>
+		<string>Program Title in Series sub-folder</string>
+		<key>tokenString</key>
+		<string>%{seriesTitle}@/%{title}@</string>
+	</dict>
+	<dict>
+		<key>desc</key>
+		<string>Program Title w/duration</string>
+		<key>tokenString</key>
+		<string>%{title}@ (%{durationString}@)</string>
+	</dict>
+	<dict>
+		<key>desc</key>
+		<string>Station &amp; Program sub-folders</string>
+		<key>tokenString</key>
+		<string>%{stationName}@/%{seriesTitle}@/%{title}@</string>
+	</dict>
+	<dict>
+		<key>desc</key>
+		<string>a more complicated example</string>
+		<key>tokenString</key>
+		<string>%{seriesTitle}@/%{title}@-%{stationName}@(%{durationString}@)</string>
+	</dict>
+</array>
+</plist>
