@@ -26,23 +26,21 @@
 	[tokenField setTokenizingCharacterSet:[NSCharacterSet characterSetWithCharactersInString:@""] ];
 	[tokenField setTokenStyle: NSPlainTextTokenStyle];
 	
+	[self populatePrebuiltTokens];
+	
+	[self populateConversionPresets];
+}
+
+- (void)populatePrebuiltTokens
+{
 	//- populate the add token popup button and the array controller
 	NSMenu *menu = [addTokenPopup menu];
 	NSMenuItem *tempMenuItem;
 	for ( tempMenuItem in [tokenMenu itemArray] ) {
 		DEBUG( @"adding: %@", [tempMenuItem description] );
 		[menu addItem:[tempMenuItem copy]];
-		/*
-		[self addSampleTokenWithTag:[tempMenuItem tag]];
-		[tokenArrayController addObject:[NSDictionary dictionaryWithObjectsAndKeys:
-				[[[[EntityToken alloc] initWithTag:[tempMenuItem tag]] autorelease] label], @"entityToken",
-				@"sample goes here",														@"sample",
-				nil
-			]
-		];
-		*/
 	}
-	
+		
 	//- populate the list of prebuit tokens
 	NSArray *prebuiltTokens = [NSArray arrayWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"FilenameTokenSamples" ofType:@"plist"] ];
 	NSDictionary *tempDict;
@@ -58,6 +56,50 @@
 		[prebuiltTokensMenu addItem:menuItem];
 	}
 }
+
+- (void)populateConversionPresets
+{
+
+    NSFileManager *fileManager = [NSFileManager defaultManager];
+	NSString *applicationSupportFolder = [[NSApp delegate] performSelector:@selector(applicationSupportFolder)];
+
+    NSError *error;
+    
+	//- check and see if user presets exist, create if not
+	NSString *userPresetsPath = [applicationSupportFolder stringByAppendingPathComponent:@"UserConversionPresets.plist"];
+	if ( ![fileManager fileExistsAtPath:userPresetsPath] ) {
+		NSString *defaultPresetsPath = [[NSBundle mainBundle] pathForResource:@"ConversionPresets" ofType:@"plist"];
+		if ( ![fileManager fileExistsAtPath:applicationSupportFolder isDirectory:NULL] ) {
+			[fileManager createDirectoryAtPath:applicationSupportFolder attributes:nil];
+		}
+		if ( ![fileManager copyItemAtPath:defaultPresetsPath toPath:userPresetsPath error:&error] ) {
+			[[NSApplication sharedApplication] presentError:error];
+		}
+	}
+	
+	//- collect the presets from the user file
+	conversionPresetsArray = [[NSArray arrayWithContentsOfFile:userPresetsPath] retain];
+	
+	//- remove any items in the current convert popup
+	[convertPresetsPopup removeAllItems];
+
+	//- populate the list of presets
+	NSMenu *presetsMenu = [convertPresetsPopup menu];
+	NSMenuItem *menuItem;
+	NSDictionary *tempDict;
+	int i;
+	int count = [conversionPresetsArray count];
+	for ( i=0; i<count; i++ ) {
+		menuItem = [[[NSMenuItem alloc] init] autorelease];
+		tempDict = [conversionPresetsArray objectAtIndex:i];
+		[menuItem setTitle:[tempDict objectForKey:@"name"] ];
+		[menuItem setTag:i];
+		[presetsMenu addItem:menuItem];
+	}	
+}
+
+#pragma mark -
+#pragma mark Action methods
 
 - (IBAction)showWindow:(id)sender
 {
@@ -89,6 +131,16 @@
 		DEBUG( @"adding a row to the predicate editor" );
 		[predicateEditor addRow:self];
 	}
+}
+
+- (IBAction)selectConversionPreset:(id)sender
+{
+	//- remove all the current objects in the controller
+	[conversionPreestsArrayController removeObjectsAtArrangedObjectIndexes:
+		[NSIndexSet indexSetWithIndexesInRange:NSMakeRange(0, [[conversionPreestsArrayController arrangedObjects] count] )]
+	];
+	
+	[conversionPreestsArrayController addObjects:[[conversionPresetsArray objectAtIndex:[sender tag]] objectForKey:@"arguments"] ];
 }
 
 

@@ -48,6 +48,8 @@
 	NSManagedObjectContext *managedObjectContext;
 	NSXMLParser *xmlParser;
 
+	int itemsParsed;
+
 	TiVoPlayer *player;
 	
 	TiVoProgram *currentProgram;
@@ -63,7 +65,7 @@
 	NSMutableDictionary *tempDict;
 }
 
-- (void)parseData:(NSData *)xmlData fromPlayer:(TiVoPlayer *)sourcePlayer;
+- (int)parseData:(NSData *)xmlData fromPlayer:(TiVoPlayer *)sourcePlayer;
 - (void)disableCurrentPrograms;
 - (void)addNewProgram;
 

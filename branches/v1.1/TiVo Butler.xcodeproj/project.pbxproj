@@ -24,6 +24,7 @@
 		3F5E9B1F0DA922F4004D2EE8 /* NowPlaying.png in Resources */ = {isa = PBXBuildFile; fileRef = 3F5E9B1E0DA922F4004D2EE8 /* NowPlaying.png */; };
 		3F5E9B220DA92462004D2EE8 /* add_to_queue.png in Resources */ = {isa = PBXBuildFile; fileRef = 3F5E9B210DA92462004D2EE8 /* add_to_queue.png */; };
 		3F6A88FB0D53472300212FBA /* TiVoProgram.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F6A88F90D53472300212FBA /* TiVoProgram.m */; };
+		3F7873B00E97550600D550E0 /* ConversionPresets.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3F7873AF0E97550600D550E0 /* ConversionPresets.plist */; };
 		3F8E37E60D4D52AA009B89B3 /* LibraryController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F8E37E40D4D52AA009B89B3 /* LibraryController.m */; };
 		3F90ADF70DD325000088F103 /* WorkQueueFile.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F90ADF60DD325000088F103 /* WorkQueueFile.m */; };
 		3F90AFA10DD669C80088F103 /* WorkQueueItem_Workflows.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F90AFA00DD669C80088F103 /* WorkQueueItem_Workflows.m */; };
@@ -127,6 +128,7 @@
 		3F6638320DA0A44500803251 /* English */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = English; path = English.lproj/Preferences.xib; sourceTree = "<group>"; };
 		3F6A88F90D53472300212FBA /* TiVoProgram.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TiVoProgram.m; sourceTree = "<group>"; };
 		3F6A88FA0D53472300212FBA /* TiVoProgram.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TiVoProgram.h; sourceTree = "<group>"; };
+		3F7873AF0E97550600D550E0 /* ConversionPresets.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = ConversionPresets.plist; sourceTree = "<group>"; };
 		3F8E37E40D4D52AA009B89B3 /* LibraryController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LibraryController.m; sourceTree = "<group>"; };
 		3F8E37E50D4D52AA009B89B3 /* LibraryController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LibraryController.h; sourceTree = "<group>"; };
 		3F90ADF50DD325000088F103 /* WorkQueueFile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WorkQueueFile.h; sourceTree = "<group>"; };
@@ -267,6 +269,7 @@
 		29B97317FDCFA39411CA2CEA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				3F7873AF0E97550600D550E0 /* ConversionPresets.plist */,
 				3F9CD0870DDFEA0100A6B574 /* FilenameTokenSamples.plist */,
 				8D1107310486CEB800E47090 /* Info.plist */,
 				089C165CFE840E0CC02AAC07 /* InfoPlist.strings */,
@@ -521,6 +524,7 @@
 				3F5E9B1F0DA922F4004D2EE8 /* NowPlaying.png in Resources */,
 				3F5E9B220DA92462004D2EE8 /* add_to_queue.png in Resources */,
 				3F9CD0880DDFEA0100A6B574 /* FilenameTokenSamples.plist in Resources */,
+				3F7873B00E97550600D550E0 /* ConversionPresets.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

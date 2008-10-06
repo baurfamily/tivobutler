@@ -19,6 +19,7 @@
 	IBOutlet NSBox *preferencesSheetBox;
 	
 	IBOutlet NSArrayController *smartGroupArrayController;
+	IBOutlet NSArrayController *conversionPreestsArrayController;
 	IBOutlet NSPredicateEditor *predicateEditor;
 
 	IBOutlet NSView *devicesView;
@@ -32,15 +33,22 @@
 	IBOutlet NSPopUpButton *addTokenPopup;
 	IBOutlet NSPopUpButton *prebuiltTokenPopup;
 	IBOutlet NSTokenField *tokenField;
-	//IBOutlet NSTokenField *sampleTokenField;
-	//IBOutlet NSArrayController *tokenArrayController;
+	
+	IBOutlet NSPopUpButton *convertPresetsPopup;
+	
+	NSMutableArray *conversionPresetsArray;
 	
 	NSManagedObjectContext *managedObjectContext;
 }
 
+- (void)populatePrebuiltTokens;
+- (void)populateConversionPresets;
+
 - (IBAction)showWindow:(id)sender;
 - (IBAction)addSmartGroup:(id)sender;
 - (IBAction)predicateEditorChanged:(id)sender;
+
+- (IBAction)selectConversionPreset:(id)sender;
 
 //- used by the preferences dialog
 - (IBAction)showDevices:(id)sender;

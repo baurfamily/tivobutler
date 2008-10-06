@@ -135,6 +135,33 @@ static BOOL loaded = NO;
 	}
 }
 
+- (IBAction)addSelectionWithOptions:(id)sender
+{
+	WARNING( @"not implemented!" )
+	return;	//only a stub, really...
+	
+	ENTRY;
+	NSArray *selectedPrograms = [programArrayController selectedObjects];
+
+	//open up a dialog for the settings...
+	
+	TiVoProgram *selectedProgram;
+	for ( selectedProgram in selectedPrograms ) {
+		[self addPendingItemWithProgram:selectedProgram];
+	}
+}
+
+- (IBAction)showAddItemSheet:(id)sender
+{
+	if ( !workQueueDisplayController ) {
+		if ( ![NSBundle loadNibNamed:@"WorkQueue" owner:self] ) {
+			ERROR( @"could not load WorkQueue.nib" );
+			return;
+		} else { INFO( @"loaded WorkQueue.nib" ); }
+	}
+	[workQueueDisplayController showAddItemWindow:self];
+}
+
 - (IBAction)showWorkQueueWindow:(id)sender
 {
 	if ( !workQueueDisplayController ) {
@@ -168,6 +195,12 @@ static BOOL loaded = NO;
 	
 	//- this allows other items to complete before starting this one
 	[self checkForPendingItems];
+}
+
+- (void)addPendingItemWithOptions:(NSDictionary *)options
+{
+	ENTRY;
+	INFO( @"adding item with options:\n%@", options );
 }
 
 - (void)checkForPendingItems

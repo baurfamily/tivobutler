@@ -37,16 +37,76 @@
 	[workQueueWindow makeKeyAndOrderFront:self];
 }
 
+- (IBAction)showAddItemWindow:(id)sender
+{
+	ENTRY;
+	NSOpenPanel *panel = [NSOpenPanel openPanel];
+
+	[panel setCanChooseFiles:YES];
+	[panel setResolvesAliases:YES];
+	[panel setAllowsMultipleSelection:NO];
+
+	[panel
+		beginSheetForDirectory:nil
+		file:nil
+		types:[NSArray arrayWithObjects:@"tivo", @"mpg", nil]
+		modalForWindow:workQueueWindow
+		modalDelegate:self
+		didEndSelector:@selector(chooseItemPanelDidEnd:returnCode:contextInfo:)
+		contextInfo:NULL
+	];
+}
+
+- (void)chooseItemPanelDidEnd:(NSOpenPanel *)panel returnCode:(int)returnCode contextInfo:(void  *)contextInfo
+{
+	if ( NSCancelButton==returnCode ) {
+		RETURN( @"user canceled open panel" );
+		return;
+	}
+	ENTRY;
+
+	INFO( @"user selected file(s)...\n%@", [panel filenames] );
+	[addItemPathControl setURL:[panel URL] ];
+	
+	[panel close];
+
+	[NSApp
+		beginSheet:addItemWindow
+		modalForWindow:workQueueWindow
+		modalDelegate:self
+		didEndSelector:@selector(addItemSheetDidEnd:returnCode:contextInfo:)
+		contextInfo:NULL
+	];
+}
+
+- (IBAction)endAddItemSheet:(id)sender
+{
+	ENTRY;
+	[NSApp endSheet:addItemWindow];
+}
+
+- (void)addItemSheetDidEnd:(NSWindow *)window returnCode:(int)returnCode contextInfo:(void  *)contextInfo
+{
+	ENTRY;
+	[window orderOut:self];
+	
+	NSDictionary *optionsDict = [NSDictionary dictionaryWithObjectsAndKeys:
+		[addItemPathControl URL],	@"URL",
+		nil
+	];
+	
+	[workQueueController performSelector:@selector(addPendingItemWithOptions:) withObject:optionsDict];
+}
+
 - (IBAction)refreshOutlineView:(id)sender
 {
 	ENTRY;
 	//- collect new data
-	[workQueueItems release];\
+	[workQueueItems release];
 	switch ( [workQueueScopeControl selectedSegment] ) {
 		case WQScopeControlActiveTag:
 			workQueueItems = [[EntityHelper
 				arrayOfEntityWithName:TiVoWorkQueueStepEntityName
-				//usingPredicateString:@"startedDate != nil"
 				usingPredicateString:@"active = 1"
 				withSortKeys:[NSArray arrayWithObject:@"addedDate"]
 			] retain];
