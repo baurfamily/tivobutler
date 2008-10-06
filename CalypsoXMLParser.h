@@ -65,7 +65,7 @@
 	NSMutableDictionary *tempDict;
 }
 
-- (int)parseData:(NSData *)xmlData fromPlayer:(TiVoPlayer *)sourcePlayer;
+- (int)parseData:(NSData *)xmlData fromPlayer:(TiVoPlayer *)sourcePlayer resetPrograms:(BOOL)reset;
 - (void)disableCurrentPrograms;
 - (void)addNewProgram;
 

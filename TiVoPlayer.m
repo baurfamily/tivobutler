@@ -179,8 +179,14 @@
 	INFO( @"Succeeded! Received %d bytes of data", [receivedData length] );
 	CalypsoXMLParser *parser = [[[CalypsoXMLParser alloc] init] autorelease];
 	
+	BOOL reset = NO;
+	//- if anchor is zero, just started, so reset the program list
+	if (anchor==0) {
+		reset = YES;
+	}
+	
 	DEBUG( @"beginning parse" );
-	int programsParsed = [parser parseData:receivedData fromPlayer:self];
+	int programsParsed = [parser parseData:receivedData fromPlayer:self resetPrograms:reset];
 	DEBUG( @"ended parse of %d programs", programsParsed );
 	
 	[urlConnection release], urlConnection = nil;
