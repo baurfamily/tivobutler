@@ -37,13 +37,14 @@
 	[xmlParser setDelegate:self];
 	[xmlParser setShouldResolveExternalEntities:NO];
 
-	[self disableCurrentPrograms];
+	//- if anchor has a value, then we're in the middle of a connection run
+	if (anchor==0) {
+		[self disableCurrentPrograms];
+	}
 	
 	itemsParsed = 0;
 	[xmlParser parse];
 
-//	DEBUG( @"releasing XML Parser" );
-//	[xmlParser release], xmlParser = nil;
 	return itemsParsed;
 }
 
