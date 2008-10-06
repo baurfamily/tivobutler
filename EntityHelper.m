@@ -41,7 +41,7 @@ static NSManagedObjectContext *managedObjectContext;
 
 + (NSArray *)arrayOfEntityWithName:(NSString *)entityString usingPredicate:(NSPredicate *)predicate withSortKeys:(NSArray *)sortKeys
 {
-	NSError *error;// = [[[NSError alloc] init] autorelease];
+	NSError *error;
 
 	//- check to see if we have a context to work with
 	if (!managedObjectContext) {

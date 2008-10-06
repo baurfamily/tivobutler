@@ -11,6 +11,8 @@
 #define TiVoPlayerItemTag			@"Item"
 #define TiVoPlayerLastChangeDateTag	@"LastChangeDate"
 
+#define TiVoPlayerMaxPrograms		128
+
 #import "EntityHelper.h"
 #import "CalypsoXMLParser.h"
 

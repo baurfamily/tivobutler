@@ -180,13 +180,20 @@
 	CalypsoXMLParser *parser = [[[CalypsoXMLParser alloc] init] autorelease];
 	
 	DEBUG( @"beginning parse" );
-
-	[parser parseData:receivedData fromPlayer:self];
-	DEBUG( @"ended parse" );
-	
-	//[parser release], parser = nil;
+	int programsParsed = [parser parseData:receivedData fromPlayer:self];
+	DEBUG( @"ended parse of %d programs", programsParsed );
 	
 	[urlConnection release], urlConnection = nil;
+	
+	//- if we saw exactly 128 programs, connect again, or reset
+	if ( programsParsed == TiVoPlayerMaxPrograms ) {
+		anchor += TiVoPlayerMaxPrograms;
+		[self connect];
+	} else {
+		anchor = 0;
+	}
+	
+	EXIT;
 }
 
 - (NSURLRequest *)connection:(NSURLConnection *)connection willSendRequest:(NSURLRequest *)request redirectResponse:(NSURLResponse *)redirectResponse

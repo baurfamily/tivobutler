@@ -22,7 +22,7 @@
 	[pool release];
 }
 
-- (void)parseData:(NSData *)xmlData fromPlayer:(TiVoPlayer *)sourcePlayer
+- (int)parseData:(NSData *)xmlData fromPlayer:(TiVoPlayer *)sourcePlayer
 {
 	player = [sourcePlayer retain];
 	managedObjectContext = [[player managedObjectContext] retain];
@@ -39,10 +39,12 @@
 
 	[self disableCurrentPrograms];
 	
+	itemsParsed = 0;
 	[xmlParser parse];
 
 //	DEBUG( @"releasing XML Parser" );
 //	[xmlParser release], xmlParser = nil;
+	return itemsParsed;
 }
 
 - (void)disableCurrentPrograms
@@ -62,6 +64,7 @@
 		return;
 	}
 	
+	itemsParsed++;
 	if ( !currentProgram ) {
 		DEBUG( @"adding new program" );
 		//- create a new program to insert
@@ -375,7 +378,7 @@
 - (NSManagedObject *)stationWithName:(NSString *)name andChannel:(NSNumber *)channel
 {
 	if ( nil==name || nil==channel ) NSLog ( @"bad!" );
-	NSError *error;// = [[NSError alloc] init];
+	NSError *error;
 	
 	NSEntityDescription *entityDesc = [NSEntityDescription
 		entityForName:TiVoStationEntityName
@@ -426,7 +429,7 @@
 
 - (NSManagedObject *)seriesWithIdentifier:(NSString *)ident title:(NSString *)title
 {
-	NSError *error;// = [[NSError alloc] init];
+	NSError *error;
 	
 	NSEntityDescription *entityDesc = [NSEntityDescription
 		entityForName:TiVoSeriesEntityName

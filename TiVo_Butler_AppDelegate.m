@@ -25,7 +25,7 @@
 
 /**
     Returns the support folder for the application, used to store the Core Data
-    store file.  This code uses a folder named "TiVo_Butler" for
+    store file.  This code uses a folder named "TiVo Butler" for
     the content, either in the NSApplicationSupportDirectory location or (if the
     former cannot be found), the system's temporary directory.
  */

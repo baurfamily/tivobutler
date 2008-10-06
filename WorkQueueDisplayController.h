@@ -27,15 +27,22 @@
 	IBOutlet id workQueueController;
 	
 	IBOutlet NSWindow *workQueueWindow;
-	
 	IBOutlet NSSegmentedControl *workQueueScopeControl;
 	IBOutlet NSOutlineView *workQueueOutlineView;
+	
+	IBOutlet NSWindow *addItemWindow;
+	IBOutlet NSPathControl *addItemPathControl;
 	
 	NSArray *sortDescriptors;
 	NSArray *workQueueItems;
 }
 
 - (IBAction)showWindow:(id)sender;
+
+- (IBAction)showAddItemWindow:(id)sender;
+- (void)chooseItemPanelDidEnd:(NSOpenPanel *)panel returnCode:(int)returnCode contextInfo:(void  *)contextInfo;
+- (IBAction)endAddItemSheet:(id)sender;
+- (void)addItemSheetDidEnd:(NSWindow *)panel returnCode:(int)returnCode contextInfo:(void  *)contextInfo;
 
 - (IBAction)refreshOutlineView:(id)sender;
 

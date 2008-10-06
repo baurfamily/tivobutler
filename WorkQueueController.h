@@ -72,10 +72,15 @@ typedef enum {
 }
 
 - (IBAction)addSelection:(id)sender;
+- (IBAction)addSelectionWithOptions:(id)sender;
+- (IBAction)showAddItemSheet:(id)sender;
+
 - (IBAction)showWorkQueueWindow:(id)sender;
 - (IBAction)cancelDownload:(id)sender;
 
 - (void)addPendingItemWithProgram:(TiVoProgram *)program;
+- (void)addPendingItemWithOptions:(NSDictionary *)options;
+
 - (void)checkForPendingItems;
 - (void)checkForAutoDownloads;
 
