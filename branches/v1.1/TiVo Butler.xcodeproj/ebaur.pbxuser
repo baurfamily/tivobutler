@@ -968,6 +968,7 @@
 			3F78748E0E99EA0400D550E0 /* PBXTextBookmark */ = 3F78748E0E99EA0400D550E0 /* PBXTextBookmark */;
 			3F78748F0E99EA0400D550E0 /* PBXTextBookmark */ = 3F78748F0E99EA0400D550E0 /* PBXTextBookmark */;
 			3F7874920E99EA0E00D550E0 /* PBXTextBookmark */ = 3F7874920E99EA0E00D550E0 /* PBXTextBookmark */;
+			3F7874930E9A572900D550E0 /* PBXTextBookmark */ = 3F7874930E9A572900D550E0 /* PBXTextBookmark */;
 			3F8A24350E82039A00E652FF = 3F8A24350E82039A00E652FF /* PBXTextBookmark */;
 			3F8A25930E821FEA00E652FF = 3F8A25930E821FEA00E652FF /* PBXTextBookmark */;
 			3F8E38500D4DA080009B89B3 = 3F8E38500D4DA080009B89B3 /* PBXTextBookmark */;
@@ -1877,9 +1878,9 @@
 	};
 	3F44D8450D53042F00DA286E /* CalypsoXMLParser.m */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {815, 7098}}";
-			sepNavSelRange = "{625, 0}";
-			sepNavVisRange = "{173, 1396}";
+			sepNavIntBoundsRect = "{{0, 0}, {815, 7126}}";
+			sepNavSelRange = "{1158, 0}";
+			sepNavVisRange = "{274, 1433}";
 			sepNavWindowFrame = "{{107, 228}, {1222, 861}}";
 		};
 	};
@@ -8345,7 +8346,7 @@
 		fRef = 3F44D8450D53042F00DA286E /* CalypsoXMLParser.m */;
 		name = "CalypsoXMLParser.m: 429";
 		rLen = 0;
-		rLoc = 15638;
+		rLoc = 15655;
 		rType = 0;
 		vrLen = 1333;
 		vrLoc = 14844;
@@ -8372,7 +8373,7 @@
 		fRef = 3F44D8450D53042F00DA286E /* CalypsoXMLParser.m */;
 		name = "CalypsoXMLParser.m: 429";
 		rLen = 0;
-		rLoc = 15638;
+		rLoc = 15655;
 		rType = 0;
 		vrLen = 1333;
 		vrLoc = 14844;
@@ -9568,7 +9569,7 @@
 		isa = PBXTextBookmark;
 		fRef = 3F44D8450D53042F00DA286E /* CalypsoXMLParser.m */;
 		rLen = 14;
-		rLoc = 1715;
+		rLoc = 1732;
 		rType = 0;
 	};
 	3F7874640E99E77400D550E0 /* PBXTextBookmark */ = {
@@ -9586,7 +9587,7 @@
 		fRef = 3F44D8450D53042F00DA286E /* CalypsoXMLParser.m */;
 		name = "CalypsoXMLParser.m: 65";
 		rLen = 0;
-		rLoc = 1707;
+		rLoc = 1724;
 		rType = 0;
 		vrLen = 1125;
 		vrLoc = 1025;
@@ -9606,7 +9607,7 @@
 		fRef = 3F44D8450D53042F00DA286E /* CalypsoXMLParser.m */;
 		name = "CalypsoXMLParser.m: 67";
 		rLen = 0;
-		rLoc = 1707;
+		rLoc = 1724;
 		rType = 0;
 		vrLen = 1030;
 		vrLoc = 989;
@@ -9626,7 +9627,7 @@
 		fRef = 3F44D8450D53042F00DA286E /* CalypsoXMLParser.m */;
 		name = "CalypsoXMLParser.m: 67";
 		rLen = 0;
-		rLoc = 1707;
+		rLoc = 1724;
 		rType = 0;
 		vrLen = 1030;
 		vrLoc = 989;
@@ -9646,7 +9647,7 @@
 		fRef = 3F44D8450D53042F00DA286E /* CalypsoXMLParser.m */;
 		name = "CalypsoXMLParser.m: 67";
 		rLen = 0;
-		rLoc = 1707;
+		rLoc = 1724;
 		rType = 0;
 		vrLen = 1030;
 		vrLoc = 989;
@@ -9730,7 +9731,7 @@
 		fRef = 3F44D8450D53042F00DA286E /* CalypsoXMLParser.m */;
 		name = "CalypsoXMLParser.m: 43";
 		rLen = 0;
-		rLoc = 1061;
+		rLoc = 1156;
 		rType = 0;
 		vrLen = 1452;
 		vrLoc = 173;
@@ -9800,7 +9801,7 @@
 		fRef = 3F44D8450D53042F00DA286E /* CalypsoXMLParser.m */;
 		name = "CalypsoXMLParser.m: 81";
 		rLen = 17;
-		rLoc = 2239;
+		rLoc = 2256;
 		rType = 0;
 		vrLen = 1649;
 		vrLoc = 1324;
@@ -9830,7 +9831,7 @@
 		fRef = 3F44D8450D53042F00DA286E /* CalypsoXMLParser.m */;
 		name = "CalypsoXMLParser.m: 43";
 		rLen = 0;
-		rLoc = 1061;
+		rLoc = 1156;
 		rType = 0;
 		vrLen = 1452;
 		vrLoc = 173;
@@ -9880,7 +9881,7 @@
 		fRef = 3F44D8450D53042F00DA286E /* CalypsoXMLParser.m */;
 		name = "CalypsoXMLParser.m: 67";
 		rLen = 0;
-		rLoc = 1707;
+		rLoc = 1724;
 		rType = 0;
 		vrLen = 1030;
 		vrLoc = 989;
@@ -9910,7 +9911,7 @@
 		fRef = 3F44D8450D53042F00DA286E /* CalypsoXMLParser.m */;
 		name = "CalypsoXMLParser.m: 67";
 		rLen = 0;
-		rLoc = 1707;
+		rLoc = 1724;
 		rType = 0;
 		vrLen = 1030;
 		vrLoc = 989;
@@ -9930,7 +9931,7 @@
 		fRef = 3F44D8450D53042F00DA286E /* CalypsoXMLParser.m */;
 		name = "CalypsoXMLParser.m: 67";
 		rLen = 0;
-		rLoc = 1707;
+		rLoc = 1724;
 		rType = 0;
 		vrLen = 1030;
 		vrLoc = 989;
@@ -9950,7 +9951,7 @@
 		fRef = 3F44D8450D53042F00DA286E /* CalypsoXMLParser.m */;
 		name = "CalypsoXMLParser.m: 67";
 		rLen = 0;
-		rLoc = 1707;
+		rLoc = 1724;
 		rType = 0;
 		vrLen = 1030;
 		vrLoc = 989;
@@ -9964,6 +9965,16 @@
 		rType = 0;
 		vrLen = 1396;
 		vrLoc = 173;
+	};
+	3F7874930E9A572900D550E0 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 3F44D8450D53042F00DA286E /* CalypsoXMLParser.m */;
+		name = "CalypsoXMLParser.m: 48";
+		rLen = 0;
+		rLoc = 1158;
+		rType = 0;
+		vrLen = 1433;
+		vrLoc = 274;
 	};
 	3F8A24350E82039A00E652FF /* PBXTextBookmark */ = {
 		isa = PBXTextBookmark;
