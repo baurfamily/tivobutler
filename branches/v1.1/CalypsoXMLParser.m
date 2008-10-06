@@ -22,7 +22,7 @@
 	[pool release];
 }
 
-- (int)parseData:(NSData *)xmlData fromPlayer:(TiVoPlayer *)sourcePlayer
+- (int)parseData:(NSData *)xmlData fromPlayer:(TiVoPlayer *)sourcePlayer resetPrograms:(BOOL)reset
 {
 	player = [sourcePlayer retain];
 	managedObjectContext = [[player managedObjectContext] retain];
@@ -37,8 +37,7 @@
 	[xmlParser setDelegate:self];
 	[xmlParser setShouldResolveExternalEntities:NO];
 
-	//- if anchor has a value, then we're in the middle of a connection run
-	if (anchor==0) {
+	if (reset) {
 		[self disableCurrentPrograms];
 	}
 	
