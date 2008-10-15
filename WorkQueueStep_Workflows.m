@@ -26,21 +26,7 @@
 			[NSDictionary dictionaryWithObject:[NSNumber numberWithInt:WQArgumentInputFile]		forKey:@"variable"],
 			nil
 		], @"decodeAppArguments",
-		//convert arguments
-		[NSArray arrayWithObjects:
-			[NSDictionary dictionaryWithObject:@"-af volume=13:1"							forKey:@"value"],
-			[NSDictionary dictionaryWithObject:@"-of lavf"						forKey:@"value"],
-			[NSDictionary dictionaryWithObject:@"-demuxer lavf"					forKey:@"value"],
-			[NSDictionary dictionaryWithObject:@"-lavfdopts probesize=128"					forKey:@"value"],
-			[NSDictionary dictionaryWithObject:@"-oac lavc"						forKey:@"value"],
-			[NSDictionary dictionaryWithObject:@"-ovc lavc"						forKey:@"value"],
-			[NSDictionary dictionaryWithObject:@"-lavcopts keyint=15:aglobal=1:vglobal=1:coder=1:vcodec=mpeg4:acodec=libfaac:vbitrate=1800:abitrate=128" forKey:@"value"],
-			[NSDictionary dictionaryWithObject:@"-vf pp=lb,scale=640:480,harddup" forKey:@"value"],
-			[NSDictionary dictionaryWithObject:@"-o"							forKey:@"value"],
-			[NSDictionary dictionaryWithObject:[NSNumber numberWithInt:WQArgumentOutputFile]	forKey:@"variable"],
-			[NSDictionary dictionaryWithObject:[NSNumber numberWithInt:WQArgumentInputFile]		forKey:@"variable"],
-			nil
-		], @"convertAppArguments",
+		[NSNumber numberWithInt:0],		@"defaultConversionArgumentsIndex",	// this is a bit of an assumption
 		nil
 	];
 }
@@ -278,29 +264,41 @@
 		[queueFileHandle release], queueFileHandle = nil;
 		return;
 	}
-	
+
 	NSMutableArray *arguments = [NSMutableArray array];
-	NSArray *defaultsArgumentArray = [defaults valueForKey:@"convertAppArguments"];
+	int argumentIndex = [[defaults valueForKey:@"defaultConversionArgumentsIndex"] intValue];
+	
+	NSArray *argumentsArray = [[[[NSApp delegate]
+		valueForKey:@"conversionPresetsArray"]
+			objectAtIndex:argumentIndex]
+				objectForKey:@"arguments"
+	];
+	
 	NSDictionary *tempDict;
-	for ( tempDict in defaultsArgumentArray ) {
-		NSString *tempString = [tempDict valueForKey:@"value"];
-		WQArgumentSubstitutionValue tempSub = [[tempDict valueForKey:@"variable"] intValue];
-		
-		if ( tempString && WQArgumentNone != tempSub && ![tempString isEqualToString:@""]) {
-			[arguments addObject:
-			 [NSString stringWithFormat:@"%@ %@",
-			  tempString,
-			  [self stringForSubstitutionValue:tempSub]
-			  ]
-			 ];
-		} else if ( WQArgumentNone != tempSub ) {
+	NSString *tempArgument;
+	NSString *tempValue;
+	WQArgumentSubstitutionValue tempSub;
+	
+	for ( tempDict in argumentsArray ) {
+		tempArgument = [tempDict valueForKey:@"argument"];
+		tempValue = [tempDict valueForKey:@"value"];
+		tempSub = [[tempDict valueForKey:@"variable"] intValue];
+	
+		if ( tempArgument ) {
+			[arguments addObject:[NSString stringWithFormat:@"-%@", tempArgument] ];
+		}
+		if ( tempValue ) {
+			[arguments addObject:tempValue];
+		}
+		if ( WQArgumentNone != tempSub ) {
 			[arguments addObject:[self stringForSubstitutionValue:tempSub] ];
-		} else if ( tempString && ![tempString isEqualToString:@""] ) {
-			[arguments addObject:tempString];
-		} else {
+		}
+		//- this is just to make sure we have *something*
+		if ( ! ( tempArgument || tempValue || WQArgumentNone != tempSub ) ) {
 			WARNING( @"argument with empty value encountered for convert task, skipping" );
 		}
 	}
+	
 	DEBUG( @"using launchPath: %@", launchPath );
 	[queueTask setLaunchPath:launchPath];
 	

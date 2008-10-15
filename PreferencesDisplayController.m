@@ -59,26 +59,8 @@
 
 - (void)populateConversionPresets
 {
-
-    NSFileManager *fileManager = [NSFileManager defaultManager];
-	NSString *applicationSupportFolder = [[NSApp delegate] performSelector:@selector(applicationSupportFolder)];
-
-    NSError *error;
-    
-	//- check and see if user presets exist, create if not
-	NSString *userPresetsPath = [applicationSupportFolder stringByAppendingPathComponent:@"UserConversionPresets.plist"];
-	if ( ![fileManager fileExistsAtPath:userPresetsPath] ) {
-		NSString *defaultPresetsPath = [[NSBundle mainBundle] pathForResource:@"ConversionPresets" ofType:@"plist"];
-		if ( ![fileManager fileExistsAtPath:applicationSupportFolder isDirectory:NULL] ) {
-			[fileManager createDirectoryAtPath:applicationSupportFolder attributes:nil];
-		}
-		if ( ![fileManager copyItemAtPath:defaultPresetsPath toPath:userPresetsPath error:&error] ) {
-			[[NSApplication sharedApplication] presentError:error];
-		}
-	}
-	
-	//- collect the presets from the user file
-	conversionPresetsArray = [[NSArray arrayWithContentsOfFile:userPresetsPath] retain];
+	ENTRY;
+	conversionPresetsArray = [[NSApp delegate] valueForKey:@"conversionPresetsArray"];
 	
 	//- remove any items in the current convert popup
 	[convertPresetsPopup removeAllItems];

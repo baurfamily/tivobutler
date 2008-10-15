@@ -26,6 +26,8 @@
     NSPersistentStoreCoordinator *persistentStoreCoordinator;
     NSManagedObjectModel *managedObjectModel;
     NSManagedObjectContext *managedObjectContext;
+	
+	NSMutableArray *conversionPresetsArray;
 }
 
 - (NSPersistentStoreCoordinator *)persistentStoreCoordinator;
@@ -33,5 +35,7 @@
 - (NSManagedObjectContext *)managedObjectContext;
 
 - (IBAction)saveAction:sender;
+
+- (void)loadConversionPresets;
 
 @end
