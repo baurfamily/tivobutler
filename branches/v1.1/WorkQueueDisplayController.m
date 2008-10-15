@@ -319,7 +319,7 @@
 	} else if ( !step.startedDate ) {
 		//- if not started...
 		tempColor = [NSColor orangeColor];
-		tempString = @" processing";
+		tempString = @" pending";
 	}
 	NSDictionary *attributeDictionary = [NSDictionary dictionaryWithObjectsAndKeys:
 		[NSFont systemFontOfSize:10.0],	NSFontAttributeName,

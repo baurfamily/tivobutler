@@ -11,7 +11,7 @@
 				<key>argument</key>
 				<string>af</string>
 				<key>value</key>
-				<string>volumne=13:1</string>
+				<string>volume=13:1</string>
 			</dict>
 			<dict>
 				<key>argument</key>
@@ -76,7 +76,7 @@
 				<key>argument</key>
 				<string>af</string>
 				<key>value</key>
-				<string>volumne=13:1</string>
+				<string>volume=13:1</string>
 			</dict>
 			<dict>
 				<key>argument</key>
@@ -145,7 +145,7 @@
 				<key>argument</key>
 				<string>af</string>
 				<key>value</key>
-				<string>volumne=13:1</string>
+				<string>volume=13:1</string>
 			</dict>
 			<dict>
 				<key>argument</key>

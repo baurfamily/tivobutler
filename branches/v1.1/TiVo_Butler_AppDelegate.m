@@ -21,6 +21,19 @@
 		setValueTransformer:[[[TiVoSizeValueTransformer alloc] init] autorelease]
 		forName:@"TiVoSize"
 	];
+	
+	NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+	
+	[defaults registerDefaults:[NSDictionary dictionaryWithObjectsAndKeys:
+		@"%{seriesTitle}@/%{title}@",	@"filenamePattern",
+		nil ]
+	];
+}
+
+- (void)awakeFromNib
+{
+	ENTRY;
+	[self loadConversionPresets];
 }
 
 /**
@@ -193,6 +206,33 @@
     [persistentStoreCoordinator release], persistentStoreCoordinator = nil;
     [managedObjectModel release], managedObjectModel = nil;
     [super dealloc];
+}
+
+#pragma mark -
+#pragma mark Preferences methods
+
+- (void)loadConversionPresets
+{
+	ENTRY;
+    NSFileManager *fileManager = [NSFileManager defaultManager];
+	NSString *applicationSupportFolder = [[NSApp delegate] performSelector:@selector(applicationSupportFolder)];
+
+    NSError *error;
+    
+	//- check and see if user presets exist, create if not
+	NSString *userPresetsPath = [applicationSupportFolder stringByAppendingPathComponent:@"UserConversionPresets.plist"];
+	if ( ![fileManager fileExistsAtPath:userPresetsPath] ) {
+		NSString *defaultPresetsPath = [[NSBundle mainBundle] pathForResource:@"ConversionPresets" ofType:@"plist"];
+		if ( ![fileManager fileExistsAtPath:applicationSupportFolder isDirectory:NULL] ) {
+			[fileManager createDirectoryAtPath:applicationSupportFolder attributes:nil];
+		}
+		if ( ![fileManager copyItemAtPath:defaultPresetsPath toPath:userPresetsPath error:&error] ) {
+			[[NSApplication sharedApplication] presentError:error];
+		}
+	}
+	
+	//- collect the presets from the user file
+	conversionPresetsArray = [[NSMutableArray arrayWithContentsOfFile:userPresetsPath] retain];
 }
 
 @end
