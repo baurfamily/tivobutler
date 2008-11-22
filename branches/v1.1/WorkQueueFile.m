@@ -48,7 +48,7 @@
 		[tempString appendString:self.extension];
 		
 		RETURN( tempString );
-		return [tempString copy];
+		return [[tempString copy] autorelease];
 	}	
 }
 
@@ -146,7 +146,7 @@
 	
 	if ( [fileManager fileExistsAtPath:fullPath] ) {
 		int i = 0;
-		NSString *testPath = [fullPath copy];
+		NSString *testPath = [[fullPath copy] autorelease];
 		
 		switch ( fileExistsAction ) {
 			case WQFileExistsFailAction:

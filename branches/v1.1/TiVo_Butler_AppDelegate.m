@@ -33,6 +33,7 @@
 - (void)awakeFromNib
 {
 	ENTRY;
+	//- awakeFromNib is too late for this method
 	[self loadConversionPresets];
 }
 
@@ -213,26 +214,59 @@
 
 - (void)loadConversionPresets
 {
+	if (conversionPresetsArray) {
+		EXIT;
+		return;
+	}
 	ENTRY;
     NSFileManager *fileManager = [NSFileManager defaultManager];
-	NSString *applicationSupportFolder = [[NSApp delegate] performSelector:@selector(applicationSupportFolder)];
+	NSString *applicationSupportFolder = [self applicationSupportFolder];
 
     NSError *error;
     
 	//- check and see if user presets exist, create if not
 	NSString *userPresetsPath = [applicationSupportFolder stringByAppendingPathComponent:@"UserConversionPresets.plist"];
 	if ( ![fileManager fileExistsAtPath:userPresetsPath] ) {
+		DEBUG( @"didn't find a pre-existing user conversion presets file." );
 		NSString *defaultPresetsPath = [[NSBundle mainBundle] pathForResource:@"ConversionPresets" ofType:@"plist"];
 		if ( ![fileManager fileExistsAtPath:applicationSupportFolder isDirectory:NULL] ) {
+			DEBUG( @"creating the application support folder: %@", applicationSupportFolder );
 			[fileManager createDirectoryAtPath:applicationSupportFolder attributes:nil];
 		}
 		if ( ![fileManager copyItemAtPath:defaultPresetsPath toPath:userPresetsPath error:&error] ) {
+			DEBUG( @"failed to copy the default user conversion presets file. (%@)", [error localizedDescription] );
 			[[NSApplication sharedApplication] presentError:error];
 		}
 	}
 	
 	//- collect the presets from the user file
-	conversionPresetsArray = [[NSMutableArray arrayWithContentsOfFile:userPresetsPath] retain];
+	//conversionPresetsArray = [[NSMutableArray arrayWithContentsOfFile:userPresetsPath] retain];
+	
+	NSData *data = [NSData dataWithContentsOfFile:userPresetsPath];
+	CFStringRef errStr = NULL;
+	if (!data) {
+		ERROR( @"Failed to open user conversion presets." );
+	} else {
+		conversionPresetsArray = (NSMutableArray *)CFPropertyListCreateFromXMLData(
+			kCFAllocatorDefault,
+			(CFDataRef) data,
+			kCFPropertyListMutableContainersAndLeaves,
+			&errStr
+		);
+		if (errStr!=NULL) {
+			ERROR( @"Couldn't create internal representation of user conversion presets. (%@)", (NSString *)errStr );
+			CFRelease(errStr);
+		}
+	}
+}
+
+- (IBAction)saveConversionPresets:(id)sender
+{
+	ENTRY;
+	[conversionPresetsArray
+		writeToFile:[[self applicationSupportFolder] stringByAppendingPathComponent:@"UserConversionPresets.plist"]
+		atomically:YES
+	];
 }
 
 @end

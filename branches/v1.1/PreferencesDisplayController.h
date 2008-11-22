@@ -19,7 +19,7 @@
 	IBOutlet NSBox *preferencesSheetBox;
 	
 	IBOutlet NSArrayController *smartGroupArrayController;
-	IBOutlet NSArrayController *conversionPreestsArrayController;
+	IBOutlet NSArrayController *conversionPresetsArrayController;
 	IBOutlet NSPredicateEditor *predicateEditor;
 
 	IBOutlet NSView *devicesView;
@@ -39,6 +39,7 @@
 	NSMutableArray *conversionPresetsArray;
 	
 	NSManagedObjectContext *managedObjectContext;
+	NSUInteger lastSelectedConversionPreset;
 }
 
 - (void)populatePrebuiltTokens;

@@ -257,7 +257,7 @@
 		] autorelease ]
 	];
 
-	return [returnString copy];
+	return [[returnString copy] autorelease];
 }
 
 - (NSAttributedString *)attributedStringForStep:(WorkQueueStep *)step
@@ -334,7 +334,7 @@
 	];
 
 
-	return [returnString copy];
+	return [[returnString copy] autorelease];
 }
 
 @end

@@ -29,6 +29,7 @@
 	[self populatePrebuiltTokens];
 	
 	[self populateConversionPresets];
+	[self selectConversionPreset:self];
 }
 
 - (void)populatePrebuiltTokens
@@ -38,7 +39,7 @@
 	NSMenuItem *tempMenuItem;
 	for ( tempMenuItem in [tokenMenu itemArray] ) {
 		DEBUG( @"adding: %@", [tempMenuItem description] );
-		[menu addItem:[tempMenuItem copy]];
+		[menu addItem:[[tempMenuItem copy] autorelease] ];
 	}
 		
 	//- populate the list of prebuit tokens
@@ -60,7 +61,11 @@
 - (void)populateConversionPresets
 {
 	ENTRY;
-	conversionPresetsArray = [[NSApp delegate] valueForKey:@"conversionPresetsArray"];
+	conversionPresetsArray = [[[NSApp delegate] valueForKey:@"conversionPresetsArray"] retain];
+	if (!conversionPresetsArray) {
+		[[NSApp delegate] performSelector:@selector(loadConversionPresets)];
+		conversionPresetsArray = [[[NSApp delegate] valueForKey:@"conversionPresetsArray"] retain];
+	}
 	
 	//- remove any items in the current convert popup
 	[convertPresetsPopup removeAllItems];
@@ -77,7 +82,8 @@
 		[menuItem setTitle:[tempDict objectForKey:@"name"] ];
 		[menuItem setTag:i];
 		[presetsMenu addItem:menuItem];
-	}	
+	}
+	lastSelectedConversionPreset = 0;
 }
 
 #pragma mark -
@@ -117,12 +123,26 @@
 
 - (IBAction)selectConversionPreset:(id)sender
 {
+	ENTRY;
+	if (sender != self) {
+		//- tell the app delegate to save the presets we have so far
+		[conversionPresetsArray removeObjectAtIndex:lastSelectedConversionPreset];
+		[conversionPresetsArray insertObject:[conversionPresetsArrayController arrangedObjects] atIndex:lastSelectedConversionPreset];
+		[[NSApp delegate] performSelector:@selector(saveConversionPresets:) withObject:self];
+		lastSelectedConversionPreset = [[sender selectedItem] tag];
+	} else {
+		DEBUG( @"default conversion set" );
+		lastSelectedConversionPreset = 0;
+	}
+	
 	//- remove all the current objects in the controller
-	[conversionPreestsArrayController removeObjectsAtArrangedObjectIndexes:
-		[NSIndexSet indexSetWithIndexesInRange:NSMakeRange(0, [[conversionPreestsArrayController arrangedObjects] count] )]
+	[conversionPresetsArrayController removeObjectsAtArrangedObjectIndexes:
+		[NSIndexSet indexSetWithIndexesInRange:NSMakeRange(0, [[conversionPresetsArrayController arrangedObjects] count] )]
 	];
 	
-	[conversionPreestsArrayController addObjects:[[conversionPresetsArray objectAtIndex:[sender tag]] objectForKey:@"arguments"] ];
+	//- repopulate the array controller with the new data
+	NSArray *argumentsArray = [[conversionPresetsArray objectAtIndex:lastSelectedConversionPreset] objectForKey:@"arguments"];
+	[conversionPresetsArrayController addObjects:argumentsArray];
 }
 
 
