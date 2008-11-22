@@ -37,5 +37,6 @@
 - (IBAction)saveAction:sender;
 
 - (void)loadConversionPresets;
+- (IBAction)saveConversionPresets:(id)sender;
 
 @end

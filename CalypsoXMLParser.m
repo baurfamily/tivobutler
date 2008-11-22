@@ -418,8 +418,8 @@
 				insertNewObjectForEntityForName:TiVoStationEntityName
 				inManagedObjectContext:managedObjectContext
 			];
-			[tempStation setValue:[name copy] forKey:@"name"];
-			[tempStation setValue:[channel copy] forKey:@"channel"];
+			[tempStation setValue:[[name copy] autorelease] forKey:@"name"];
+			[tempStation setValue:[[channel copy] autorelease] forKey:@"channel"];
 			return tempStation;
 		}
 	}
@@ -463,8 +463,8 @@
 				insertNewObjectForEntityForName:TiVoSeriesEntityName
 				inManagedObjectContext:managedObjectContext
 			];
-			[tempSeries setValue:[ident copy] forKey:@"ident"];
-			[tempSeries setValue:[title copy] forKey:@"title"];
+			[tempSeries setValue:[[ident copy] autorelease] forKey:@"ident"];
+			[tempSeries setValue:[[title copy] autorelease] forKey:@"title"];
 			DEBUG( @"created series with ident: %@ and title: %@", ident, title );
 			return tempSeries;
 		}

@@ -73,7 +73,7 @@
 		}
 	}
 	RETURN( tempString );
-	return [tempString copy];
+	return [[tempString copy] autorelease];
 }
 
 @end
