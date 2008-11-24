@@ -63,6 +63,7 @@ typedef enum {
 @property (retain) WorkQueueStep * previousStep;
 @property (retain) WorkQueueFile * readFile;
 @property (retain) WorkQueueFile * writeFile;
+@property (retain) NSManagedObject * externalAction;
 
 @property (readonly) NSString * actionName;
 
@@ -80,6 +81,9 @@ typedef enum {
 
 - (WorkQueueStep *)primitivePreviousStep;
 - (void)setPrimitivePreviousStep:(WorkQueueStep *)value;
+
+- (NSManagedObject *)primitiveExternalAction;
+- (void)setPrimitiveExternalAction:(NSManagedObject *)value;
 
 @end
 

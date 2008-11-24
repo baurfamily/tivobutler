@@ -36,7 +36,7 @@
 	
 	IBOutlet NSPopUpButton *convertPresetsPopup;
 	
-	NSMutableArray *conversionPresetsArray;
+	//NSMutableArray *conversionPresetsArray;
 	
 	NSManagedObjectContext *managedObjectContext;
 	NSUInteger lastSelectedConversionPreset;
@@ -49,7 +49,7 @@
 - (IBAction)addSmartGroup:(id)sender;
 - (IBAction)predicateEditorChanged:(id)sender;
 
-//- (IBAction)selectConversionPreset:(id)sender;
+- (IBAction)setDefaultConversionPreset:(id)sender;
 
 //- used by the preferences dialog
 - (IBAction)showDevices:(id)sender;

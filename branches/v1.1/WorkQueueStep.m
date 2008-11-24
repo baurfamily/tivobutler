@@ -57,6 +57,7 @@
 @dynamic previousStep;
 @dynamic readFile;
 @dynamic writeFile;
+@dynamic externalAction;
 
 - (NSNumber *)active
 {
@@ -116,6 +117,35 @@
 		return NO;
 	}
     return YES;
+}
+
+- (NSManagedObject *)externalAction 
+{
+    id tmpObject;
+    
+    [self willAccessValueForKey:@"externalAction"];
+    tmpObject = [self primitiveExternalAction];
+    [self didAccessValueForKey:@"externalAction"];
+    
+	if ( tmpObject ) {
+		return tmpObject;
+	}
+	INFO( @"no explicit external action set, using default" );
+	
+	//- we hope there is only one here...
+	NSArray *actionsArray = [EntityHelper
+		arrayOfEntityWithName:TiVoExternalActionEntityName
+		usingPredicateString:@"default = 1"
+	];
+	
+	if ( actionsArray.count==0 ) {
+		ERROR( @"no default external action set, returning nil" );
+		return nil;
+	} else if ( actionsArray.count > 1 ) {
+		WARNING( @"more than one default action set, using the first one" );
+	}
+	
+	return [actionsArray objectAtIndex:0];    
 }
 
 - (void)setItem:(WorkQueueItem *)value 
