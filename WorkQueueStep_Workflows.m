@@ -247,14 +247,19 @@
 	];
 	[queueFileHandle waitForDataInBackgroundAndNotify];
 	
-	BOOL useExternalApp = [[defaults valueForKey:@"convertWithExternalApp"] boolValue];
+	//BOOL useExternalApp = [[defaults valueForKey:@"convertWithExternalApp"] boolValue];
+	NSManagedObject *externalAction = [self externalAction];
+	INFO( @"using external action: %@", [externalAction description] );
+
 	
-	NSString *launchPath;
-	if ( useExternalApp ) {
-		launchPath = [defaults valueForKey:@"convertAppPath"];
-	} else {
-		launchPath = [[NSBundle mainBundle] pathForAuxiliaryExecutable:@"mencoder"];
+	//- we assume that it's a "local" executable... if not, resolve the path
+	//- ...I think this is safe...
+	NSString *launchPath = [[NSBundle mainBundle] pathForAuxiliaryExecutable:[externalAction valueForKey:@"path"] ];
+	if ( launchPath==nil ) {
+		//- if we did't find it, we'll trust what was typed in
+		launchPath = [externalAction valueForKey:@"path"];
 	}
+	
 	if ( !launchPath ) {
 		ERROR( @"launch path not set for conversion task, can't continue" );
 		[self removeFiles];
@@ -268,18 +273,12 @@
 	NSMutableArray *arguments = [NSMutableArray array];
 	int argumentIndex = [[defaults valueForKey:@"defaultConversionArgumentsIndex"] intValue];
 	
-	NSArray *argumentsArray = [[[[NSApp delegate]
-		valueForKey:@"conversionPresetsArray"]
-			objectAtIndex:argumentIndex]
-				objectForKey:@"arguments"
-	];
-	
 	NSDictionary *tempDict;
 	NSString *tempArgument;
 	NSString *tempValue;
 	WQArgumentSubstitutionValue tempSub;
 	
-	for ( tempDict in argumentsArray ) {
+	for ( tempDict in [externalAction valueForKey:@"arguments"] ) {
 		tempArgument = [tempDict valueForKey:@"argument"];
 		tempValue = [tempDict valueForKey:@"value"];
 		tempSub = [[tempDict valueForKey:@"variable"] intValue];

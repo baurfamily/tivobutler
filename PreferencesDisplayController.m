@@ -123,31 +123,20 @@
 	}
 }
 
-/*
-- (IBAction)selectConversionPreset:(id)sender
+- (IBAction)setDefaultConversionPreset:(id)sender
 {
-	ENTRY;
-	if (sender != self) {
-		//- tell the app delegate to save the presets we have so far
-		[conversionPresetsArray removeObjectAtIndex:lastSelectedConversionPreset];
-		[conversionPresetsArray insertObject:[conversionPresetsArrayController arrangedObjects] atIndex:lastSelectedConversionPreset];
-		[[NSApp delegate] performSelector:@selector(saveConversionPresets:) withObject:self];
-		lastSelectedConversionPreset = [[sender selectedItem] tag];
-	} else {
-		DEBUG( @"default conversion set" );
-		lastSelectedConversionPreset = 0;
-	}
-	
-	//- remove all the current objects in the controller
-	[conversionPresetsArrayController removeObjectsAtArrangedObjectIndexes:
-		[NSIndexSet indexSetWithIndexesInRange:NSMakeRange(0, [[conversionPresetsArrayController arrangedObjects] count] )]
+	NSArray *externalActionsArray = [EntityHelper
+		arrayOfEntityWithName:TiVoExternalActionEntityName
+		usingPredicateString:@"default == 1"
 	];
-	
-	//- repopulate the array controller with the new data
-	NSArray *argumentsArray = [[conversionPresetsArray objectAtIndex:lastSelectedConversionPreset] objectForKey:@"arguments"];
-	[conversionPresetsArrayController addObjects:argumentsArray];
+
+	id tempObject;
+	for ( tempObject in externalActionsArray ) {
+		[tempObject setValue:[NSNumber numberWithBool:NO] forKey:@"default"];
+	}
+
+	[[conversionPresetsArrayController selection] setValue:[NSNumber numberWithBool:YES] forKey:@"default"];
 }
-*/
 
 #pragma mark -
 #pragma mark Window display methods
