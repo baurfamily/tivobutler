@@ -5,54 +5,56 @@
 	<dict>
 		<key>name</key>
 		<string>TiVo Butler v1.0</string>
+		<key>path</key>
+		<string>mencoder</string>
 		<key>arguments</key>
 		<array>
 			<dict>
 				<key>argument</key>
 				<string>af</string>
-				<key>value</key>
+				<key>argumentValue</key>
 				<string>volume=13:1</string>
 			</dict>
 			<dict>
 				<key>argument</key>
 				<string>of</string>
-				<key>value</key>
+				<key>argumentValue</key>
 				<string>lavf</string>
 			</dict>
 			<dict>
 				<key>argument</key>
 				<string>demuxer</string>
-				<key>value</key>
+				<key>argumentValue</key>
 				<string>lavf</string>
 			</dict>
 			<dict>
 				<key>argument</key>
 				<string>lavfdopts</string>
-				<key>value</key>
+				<key>argumentValue</key>
 				<string>probesize=128</string>
 			</dict>
 			<dict>
 				<key>argument</key>
 				<string>oac</string>
-				<key>value</key>
+				<key>argumentValue</key>
 				<string>lavc</string>
 			</dict>
 			<dict>
 				<key>argument</key>
 				<string>ovc</string>
-				<key>value</key>
+				<key>argumentValue</key>
 				<string>lavc</string>
 			</dict>
 			<dict>
 				<key>argument</key>
 				<string>lavcopts</string>
-				<key>value</key>
+				<key>argumentValue</key>
 				<string>keyint=15:aglobal=1:vglobal=1:coder=1:vcodec=mpeg4:acodec=libfaac:vbitrate=1800:abitrate=128</string>
 			</dict>
 			<dict>
 				<key>argument</key>
 				<string>vf</string>
-				<key>value</key>
+				<key>argumentValue</key>
 				<string>pp=lb,scale=640:480,harddup</string>
 			</dict>
 			<dict>
@@ -70,54 +72,56 @@
 	<dict>
 		<key>name</key>
 		<string>TiVo Butler v1.0 w/noskip</string>
+		<key>path</key>
+		<string>mencoder</string>
 		<key>arguments</key>
 		<array>
 			<dict>
 				<key>argument</key>
 				<string>af</string>
-				<key>value</key>
+				<key>argumentValue</key>
 				<string>volume=13:1</string>
 			</dict>
 			<dict>
 				<key>argument</key>
 				<string>of</string>
-				<key>value</key>
+				<key>argumentValue</key>
 				<string>lavf</string>
 			</dict>
 			<dict>
 				<key>argument</key>
 				<string>demuxer</string>
-				<key>value</key>
+				<key>argumentValue</key>
 				<string>lavf</string>
 			</dict>
 			<dict>
 				<key>argument</key>
 				<string>lavfdopts</string>
-				<key>value</key>
+				<key>argumentValue</key>
 				<string>probesize=128</string>
 			</dict>
 			<dict>
 				<key>argument</key>
 				<string>oac</string>
-				<key>value</key>
+				<key>argumentValue</key>
 				<string>lavc</string>
 			</dict>
 			<dict>
 				<key>argument</key>
 				<string>ovc</string>
-				<key>value</key>
+				<key>argumentValue</key>
 				<string>lavc</string>
 			</dict>
 			<dict>
 				<key>argument</key>
 				<string>lavcopts</string>
-				<key>value</key>
+				<key>argumentValue</key>
 				<string>keyint=15:aglobal=1:vglobal=1:coder=1:vcodec=mpeg4:acodec=libfaac:vbitrate=1800:abitrate=128</string>
 			</dict>
 			<dict>
 				<key>argument</key>
 				<string>vf</string>
-				<key>value</key>
+				<key>argumentValue</key>
 				<string>pp=lb,scale=640:480,harddup</string>
 			</dict>
 			<dict>
@@ -139,54 +143,56 @@
 	<dict>
 		<key>name</key>
 		<string>TiVo Butler v1.0 w/noskip and mc</string>
+		<key>path</key>
+		<string>mencoder</string>
 		<key>arguments</key>
 		<array>
 			<dict>
 				<key>argument</key>
 				<string>af</string>
-				<key>value</key>
+				<key>argumentValue</key>
 				<string>volume=13:1</string>
 			</dict>
 			<dict>
 				<key>argument</key>
 				<string>of</string>
-				<key>value</key>
+				<key>argumentValue</key>
 				<string>lavf</string>
 			</dict>
 			<dict>
 				<key>argument</key>
 				<string>demuxer</string>
-				<key>value</key>
+				<key>argumentValue</key>
 				<string>lavf</string>
 			</dict>
 			<dict>
 				<key>argument</key>
 				<string>lavfdopts</string>
-				<key>value</key>
+				<key>argumentValue</key>
 				<string>probesize=128</string>
 			</dict>
 			<dict>
 				<key>argument</key>
 				<string>oac</string>
-				<key>value</key>
+				<key>argumentValue</key>
 				<string>lavc</string>
 			</dict>
 			<dict>
 				<key>argument</key>
 				<string>ovc</string>
-				<key>value</key>
+				<key>argumentValue</key>
 				<string>lavc</string>
 			</dict>
 			<dict>
 				<key>argument</key>
 				<string>lavcopts</string>
-				<key>value</key>
+				<key>argumentValue</key>
 				<string>keyint=15:aglobal=1:vglobal=1:coder=1:vcodec=mpeg4:acodec=libfaac:vbitrate=1800:abitrate=128</string>
 			</dict>
 			<dict>
 				<key>argument</key>
 				<string>vf</string>
-				<key>value</key>
+				<key>argumentValue</key>
 				<string>pp=lb,scale=640:480,harddup</string>
 			</dict>
 			<dict>
@@ -196,8 +202,8 @@
 			<dict>
 				<key>argument</key>
 				<string>mc</string>
-				<key>value</key>
-				<integer>0</integer>
+				<key>argumentValue</key>
+				<string>0</string>
 			</dict>
 			<dict>
 				<key>argument</key>

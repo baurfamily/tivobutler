@@ -214,59 +214,51 @@
 
 - (void)loadConversionPresets
 {
-	if (conversionPresetsArray) {
-		EXIT;
+	NSArray *presetsArray = [EntityHelper
+		arrayOfEntityWithName:TiVoExternalActionEntityName
+		usingPredicate:[NSPredicate predicateWithValue:TRUE]
+	];
+	if ( presetsArray.count ) {
+		RETURN( @"already have conversion presets... exiting" );
 		return;
 	}
 	ENTRY;
-    NSFileManager *fileManager = [NSFileManager defaultManager];
-	NSString *applicationSupportFolder = [self applicationSupportFolder];
 
-    NSError *error;
-    
-	//- check and see if user presets exist, create if not
-	NSString *userPresetsPath = [applicationSupportFolder stringByAppendingPathComponent:@"UserConversionPresets.plist"];
-	if ( ![fileManager fileExistsAtPath:userPresetsPath] ) {
-		DEBUG( @"didn't find a pre-existing user conversion presets file." );
-		NSString *defaultPresetsPath = [[NSBundle mainBundle] pathForResource:@"ConversionPresets" ofType:@"plist"];
-		if ( ![fileManager fileExistsAtPath:applicationSupportFolder isDirectory:NULL] ) {
-			DEBUG( @"creating the application support folder: %@", applicationSupportFolder );
-			[fileManager createDirectoryAtPath:applicationSupportFolder attributes:nil];
-		}
-		if ( ![fileManager copyItemAtPath:defaultPresetsPath toPath:userPresetsPath error:&error] ) {
-			DEBUG( @"failed to copy the default user conversion presets file. (%@)", [error localizedDescription] );
-			[[NSApplication sharedApplication] presentError:error];
-		}
-	}
+	NSString *defaultPresetsPath = [[NSBundle mainBundle] pathForResource:@"ConversionPresets" ofType:@"plist"];
+	NSArray *conversionPresetsArray = [NSArray arrayWithContentsOfFile:defaultPresetsPath];
 	
-	//- collect the presets from the user file
-	//conversionPresetsArray = [[NSMutableArray arrayWithContentsOfFile:userPresetsPath] retain];
-	
-	NSData *data = [NSData dataWithContentsOfFile:userPresetsPath];
-	CFStringRef errStr = NULL;
-	if (!data) {
-		ERROR( @"Failed to open user conversion presets." );
-	} else {
-		conversionPresetsArray = (NSMutableArray *)CFPropertyListCreateFromXMLData(
-			kCFAllocatorDefault,
-			(CFDataRef) data,
-			kCFPropertyListMutableContainersAndLeaves,
-			&errStr
-		);
-		if (errStr!=NULL) {
-			ERROR( @"Couldn't create internal representation of user conversion presets. (%@)", (NSString *)errStr );
-			CFRelease(errStr);
+	id tempExternalAction;
+	id tempExternalActionArgument;
+	NSMutableArray *arguments;
+	NSDictionary *presetDict;
+	NSDictionary *argumentDict;
+	for ( presetDict in conversionPresetsArray ) {
+		tempExternalAction = [[NSEntityDescription
+			insertNewObjectForEntityForName:TiVoExternalActionEntityName
+			inManagedObjectContext:managedObjectContext
+		] retain];
+		[tempExternalAction setValue:[presetDict valueForKey:@"name"] forKey:@"name"];
+		[tempExternalAction setValue:[presetDict valueForKey:@"path"] forKey:@"path"];
+		
+		int orderNum = 0;
+		arguments = [NSMutableArray array];
+		for ( argumentDict in [presetDict valueForKey:@"arguments"] ) {
+			orderNum++;
+			tempExternalActionArgument = [[NSEntityDescription
+				insertNewObjectForEntityForName:TiVoExternalActionArgumentEntityName
+				inManagedObjectContext:managedObjectContext
+			] retain];
+			
+			[tempExternalActionArgument setValue:[NSNumber numberWithInt:orderNum] forKey:@"orderNum"];
+			[tempExternalActionArgument setValue:[argumentDict valueForKey:@"argument"] forKey:@"argument"];
+			[tempExternalActionArgument setValue:[argumentDict valueForKey:@"argumentValue"] forKey:@"argumentValue"];
+			[tempExternalActionArgument setValue:[argumentDict valueForKey:@"variable"] forKey:@"variable"];
+			
+			[arguments addObject:tempExternalActionArgument];
 		}
+		INFO( @"adding arguments for external action (%@):\n%@", [tempExternalAction description], [arguments description] );
+		[tempExternalAction setValue:[NSSet setWithArray:arguments] forKey:@"arguments"];
 	}
-}
-
-- (IBAction)saveConversionPresets:(id)sender
-{
-	ENTRY;
-	[conversionPresetsArray
-		writeToFile:[[self applicationSupportFolder] stringByAppendingPathComponent:@"UserConversionPresets.plist"]
-		atomically:YES
-	];
 }
 
 @end
