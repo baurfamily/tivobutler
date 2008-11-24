@@ -8,14 +8,16 @@
 
 #import <Cocoa/Cocoa.h>
 
-#define TiVoSeriesEntityName		@"Series"
-#define TiVoSmartGroupEntityName	@"SmartGroup"
-#define TiVoStationEntityName		@"Station"
-#define TiVoPlayerEntityName		@"TiVoPlayer"
-#define TiVoProgramEntityName		@"TiVoProgram"
-#define TiVoWorkQueueFileEntityName	@"WorkQueueFile"
-#define TiVoWorkQueueStepEntityName	@"WorkQueueStep"
-#define TiVoWorkQueueItemEntityName	@"WorkQueueItem"
+#define TiVoSeriesEntityName					@"Series"
+#define TiVoSmartGroupEntityName				@"SmartGroup"
+#define TiVoStationEntityName					@"Station"
+#define TiVoPlayerEntityName					@"TiVoPlayer"
+#define TiVoProgramEntityName					@"TiVoProgram"
+#define TiVoWorkQueueFileEntityName				@"WorkQueueFile"
+#define TiVoWorkQueueStepEntityName				@"WorkQueueStep"
+#define TiVoWorkQueueItemEntityName				@"WorkQueueItem"
+#define TiVoExternalActionEntityName			@"ExternalAction"
+#define TiVoExternalActionArgumentEntityName	@"ExternalActionArgument"
 
 @interface EntityHelper : NSObject {
 

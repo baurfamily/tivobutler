@@ -11,6 +11,7 @@
 
 @implementation CalypsoXMLParser
 
+//- this is unused now, I think
 - (void)beginParseThreadWithSettings:(NSDictionary *)settingsDict
 {
 	//- this isn't safe for now, because of multi-threading issues in Core Data, et. al.
@@ -18,6 +19,7 @@
 	[self
 		parseData:[settingsDict objectForKey:@"data"]
 		fromPlayer:[settingsDict objectForKey:@"player"]
+		resetPrograms:YES
 	];
 	[pool release];
 }

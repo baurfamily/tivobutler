@@ -28,8 +28,8 @@
 	
 	[self populatePrebuiltTokens];
 	
-	[self populateConversionPresets];
-	[self selectConversionPreset:self];
+	//[self populateConversionPresets];
+	//[self selectConversionPreset:self];
 }
 
 - (void)populatePrebuiltTokens
@@ -58,6 +58,7 @@
 	}
 }
 
+/*
 - (void)populateConversionPresets
 {
 	ENTRY;
@@ -85,6 +86,7 @@
 	}
 	lastSelectedConversionPreset = 0;
 }
+*/
 
 #pragma mark -
 #pragma mark Action methods
@@ -121,6 +123,7 @@
 	}
 }
 
+/*
 - (IBAction)selectConversionPreset:(id)sender
 {
 	ENTRY;
@@ -144,7 +147,7 @@
 	NSArray *argumentsArray = [[conversionPresetsArray objectAtIndex:lastSelectedConversionPreset] objectForKey:@"arguments"];
 	[conversionPresetsArrayController addObjects:argumentsArray];
 }
-
+*/
 
 #pragma mark -
 #pragma mark Window display methods
@@ -318,6 +321,14 @@
 {
 	[[NSApplication sharedApplication] endSheet:preferencesSheetWindow];
 	[preferencesSheetWindow orderOut:self];
+}
+
+#pragma mark -
+#pragma mark Token support methods
+
+- (NSArray *)externalActionArgumentsSortDescriptors
+{
+	return [NSArray arrayWithObject:[[[NSSortDescriptor alloc] initWithKey:@"orderNum" ascending:YES] autorelease] ];
 }
 
 #pragma mark -

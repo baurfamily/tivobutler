@@ -43,13 +43,13 @@
 }
 
 - (void)populatePrebuiltTokens;
-- (void)populateConversionPresets;
+//- (void)populateConversionPresets;
 
 - (IBAction)showWindow:(id)sender;
 - (IBAction)addSmartGroup:(id)sender;
 - (IBAction)predicateEditorChanged:(id)sender;
 
-- (IBAction)selectConversionPreset:(id)sender;
+//- (IBAction)selectConversionPreset:(id)sender;
 
 //- used by the preferences dialog
 - (IBAction)showDevices:(id)sender;
