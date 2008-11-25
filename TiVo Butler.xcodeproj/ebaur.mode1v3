@@ -202,7 +202,7 @@
 			<key>Content</key>
 			<dict>
 				<key>PBXProjectModuleGUID</key>
-				<string>3F4C132A0EDA7DC0008F9BA6</string>
+				<string>3F4C139A0EDAF05E008F9BA6</string>
 				<key>PBXProjectModuleLabel</key>
 				<string>TiVo_Butler_DataModel.xcdatamodel</string>
 				<key>PBXSplitModuleInNavigatorKey</key>
@@ -210,16 +210,16 @@
 					<key>Split0</key>
 					<dict>
 						<key>PBXProjectModuleGUID</key>
-						<string>3F4C132B0EDA7DC0008F9BA6</string>
+						<string>3F4C139B0EDAF05E008F9BA6</string>
 						<key>PBXProjectModuleLabel</key>
 						<string>TiVo_Butler_DataModel.xcdatamodel</string>
 						<key>_historyCapacity</key>
 						<integer>0</integer>
 						<key>bookmark</key>
-						<string>3F4C13890EDA8180008F9BA6</string>
+						<string>3F4C14280EDBBDE2008F9BA6</string>
 						<key>history</key>
 						<array>
-							<string>3F4C13240EDA7C03008F9BA6</string>
+							<string>3F4C138F0EDAF04F008F9BA6</string>
 						</array>
 					</dict>
 					<key>SplitCount</key>
@@ -274,8 +274,6 @@
 			<key>Layout</key>
 			<array>
 				<dict>
-					<key>BecomeActive</key>
-					<true/>
 					<key>ContentConfiguration</key>
 					<dict>
 						<key>PBXBottomSmartGroupGIDs</key>
@@ -321,17 +319,18 @@
 								<string>29B97317FDCFA39411CA2CEA</string>
 								<string>3FCB2ED70D845C9400C2B5BD</string>
 								<string>29B97323FDCFA39411CA2CEA</string>
+								<string>3FCB2D160D8265BD00C2B5BD</string>
 								<string>1C37FBAC04509CD000000102</string>
-								<string>1C08E77C0454961000C914BD</string>
 							</array>
 							<key>PBXSmartGroupTreeModuleOutlineStateSelectionKey</key>
 							<array>
 								<array>
-									<integer>50</integer>
+									<integer>45</integer>
+									<integer>0</integer>
 								</array>
 							</array>
 							<key>PBXSmartGroupTreeModuleOutlineStateVisibleRectKey</key>
-							<string>{{0, 58}, {259, 979}}</string>
+							<string>{{0, 7}, {259, 979}}</string>
 						</dict>
 						<key>PBXTopSmartGroupGIDs</key>
 						<array/>
@@ -363,6 +362,8 @@
 					<key>Dock</key>
 					<array>
 						<dict>
+							<key>BecomeActive</key>
+							<true/>
 							<key>ContentConfiguration</key>
 							<dict>
 								<key>PBXProjectModuleGUID</key>
@@ -380,7 +381,7 @@
 										<key>_historyCapacity</key>
 										<integer>0</integer>
 										<key>bookmark</key>
-										<string>3F4C13880EDA8180008F9BA6</string>
+										<string>3F4C14270EDBBDE2008F9BA6</string>
 										<key>history</key>
 										<array>
 											<string>3F8E38500D4DA080009B89B3</string>
@@ -413,38 +414,38 @@
 											<string>3F6CD5FC0E8559F900C77A63</string>
 											<string>3F6CD6470E85675900C77A63</string>
 											<string>3F92B4AE0E86AFDC00766C33</string>
-											<string>3F7873EC0E9916CB00D550E0</string>
 											<string>3F7873ED0E9916CB00D550E0</string>
-											<string>3F7874710E99E7AD00D550E0</string>
 											<string>3F78752A0EA264EE00D550E0</string>
 											<string>3F78752B0EA264EE00D550E0</string>
 											<string>3F78756D0EA30C6E00D550E0</string>
 											<string>3F7875950EA59DD800D550E0</string>
 											<string>3F7875FC0EA5D2E100D550E0</string>
-											<string>3F7879A00EA8DD2F00D550E0</string>
-											<string>3F7879A20EA8DD2F00D550E0</string>
 											<string>3F787E560EACC2AF00D550E0</string>
 											<string>3F787E660EACC31800D550E0</string>
 											<string>3F67B20C0ED7A69F00B2EA1F</string>
 											<string>3FCC700C0ED8627800EF9CD7</string>
-											<string>3FCC700E0ED8627800EF9CD7</string>
 											<string>3FCC70350ED8644F00EF9CD7</string>
 											<string>3FE384B00ED8AD7C00BEAA70</string>
 											<string>3F4C12590EDA3224008F9BA6</string>
 											<string>3F4C125C0EDA3224008F9BA6</string>
 											<string>3F4C125D0EDA3224008F9BA6</string>
 											<string>3F4C125E0EDA3224008F9BA6</string>
-											<string>3F4C125F0EDA3224008F9BA6</string>
-											<string>3F4C12AF0EDA4395008F9BA6</string>
 											<string>3F4C12B00EDA4395008F9BA6</string>
-											<string>3F4C12FE0EDA5AB7008F9BA6</string>
-											<string>3F4C12FF0EDA5AB7008F9BA6</string>
 											<string>3F4C132E0EDA7E70008F9BA6</string>
-											<string>3F4C13640EDA7FC9008F9BA6</string>
-											<string>3F4C13740EDA8164008F9BA6</string>
-											<string>3F4C13750EDA8164008F9BA6</string>
 											<string>3F4C13840EDA8180008F9BA6</string>
-											<string>3F4C13850EDA8180008F9BA6</string>
+											<string>3F4C13910EDAF05E008F9BA6</string>
+											<string>3F4C13D20EDAF791008F9BA6</string>
+											<string>3F4C13D30EDAF791008F9BA6</string>
+											<string>3F4C13D40EDAF791008F9BA6</string>
+											<string>3F4C13D50EDAF791008F9BA6</string>
+											<string>3F4C13D60EDAF791008F9BA6</string>
+											<string>3F4C13D70EDAF791008F9BA6</string>
+											<string>3F4C13D80EDAF791008F9BA6</string>
+											<string>3F4C13DA0EDAF791008F9BA6</string>
+											<string>3F4C13FA0EDB9C06008F9BA6</string>
+											<string>3F4C13FB0EDB9C06008F9BA6</string>
+											<string>3F4C13FC0EDB9C06008F9BA6</string>
+											<string>3F4C13D90EDAF791008F9BA6</string>
 										</array>
 										<key>prevStack</key>
 										<array>
@@ -489,29 +490,20 @@
 											<string>3F7873770E95E4ED00D550E0</string>
 											<string>3F7873800E95E59300D550E0</string>
 											<string>3F7873A90E97541C00D550E0</string>
-											<string>3F7873F60E9916CB00D550E0</string>
 											<string>3F7873F70E9916CB00D550E0</string>
 											<string>3F7874780E99E7AD00D550E0</string>
 											<string>3F7875340EA264EE00D550E0</string>
-											<string>3F7875B50EA5BB3A00D550E0</string>
 											<string>3F7876320EA6CFE100D550E0</string>
 											<string>3FCC70120ED8627800EF9CD7</string>
 											<string>3FCC70360ED8644F00EF9CD7</string>
 											<string>3F4C12610EDA3224008F9BA6</string>
 											<string>3F4C12620EDA3224008F9BA6</string>
-											<string>3F4C12900EDA41CA008F9BA6</string>
 											<string>3F4C12910EDA41CA008F9BA6</string>
-											<string>3F4C12920EDA41CA008F9BA6</string>
 											<string>3F4C12930EDA41CA008F9BA6</string>
-											<string>3F4C12990EDA4248008F9BA6</string>
 											<string>3F4C12B40EDA4395008F9BA6</string>
 											<string>3F4C12B60EDA4395008F9BA6</string>
-											<string>3F4C12D20EDA4677008F9BA6</string>
-											<string>3F4C13010EDA5AB7008F9BA6</string>
 											<string>3F4C13020EDA5AB7008F9BA6</string>
 											<string>3F4C131D0EDA7BDA008F9BA6</string>
-											<string>3F4C131E0EDA7BDA008F9BA6</string>
-											<string>3F4C13200EDA7BDA008F9BA6</string>
 											<string>3F4C13280EDA7DC0008F9BA6</string>
 											<string>3F4C13300EDA7E70008F9BA6</string>
 											<string>3F4C13310EDA7E70008F9BA6</string>
@@ -523,8 +515,36 @@
 											<string>3F4C136A0EDA7FC9008F9BA6</string>
 											<string>3F4C13760EDA8164008F9BA6</string>
 											<string>3F4C13770EDA8164008F9BA6</string>
-											<string>3F4C13860EDA8180008F9BA6</string>
 											<string>3F4C13870EDA8180008F9BA6</string>
+											<string>3F4C13950EDAF05E008F9BA6</string>
+											<string>3F4C13960EDAF05E008F9BA6</string>
+											<string>3F4C13970EDAF05E008F9BA6</string>
+											<string>3F4C13A90EDAF5FF008F9BA6</string>
+											<string>3F4C13AA0EDAF5FF008F9BA6</string>
+											<string>3F4C13AB0EDAF5FF008F9BA6</string>
+											<string>3F4C13DC0EDAF791008F9BA6</string>
+											<string>3F4C13DD0EDAF791008F9BA6</string>
+											<string>3F4C13DE0EDAF791008F9BA6</string>
+											<string>3F4C13DF0EDAF791008F9BA6</string>
+											<string>3F4C13E00EDAF791008F9BA6</string>
+											<string>3F4C13E10EDAF791008F9BA6</string>
+											<string>3F4C13E20EDAF791008F9BA6</string>
+											<string>3F4C13E30EDAF791008F9BA6</string>
+											<string>3F4C13E40EDAF791008F9BA6</string>
+											<string>3F4C13E50EDAF791008F9BA6</string>
+											<string>3F4C13E60EDAF791008F9BA6</string>
+											<string>3F4C13E70EDAF791008F9BA6</string>
+											<string>3F4C13E80EDAF791008F9BA6</string>
+											<string>3F4C13E90EDAF791008F9BA6</string>
+											<string>3F4C13EA0EDAF791008F9BA6</string>
+											<string>3F4C13EB0EDAF791008F9BA6</string>
+											<string>3F4C13EC0EDAF791008F9BA6</string>
+											<string>3F4C13ED0EDAF791008F9BA6</string>
+											<string>3F4C13EE0EDAF791008F9BA6</string>
+											<string>3F4C13EF0EDAF791008F9BA6</string>
+											<string>3F4C13FD0EDB9C06008F9BA6</string>
+											<string>3F4C13FE0EDB9C06008F9BA6</string>
+											<string>3F4C13FF0EDB9C06008F9BA6</string>
 										</array>
 									</dict>
 									<key>SplitCount</key>
@@ -738,9 +758,9 @@
 		<string>3F4C129C0EDA4248008F9BA6</string>
 		<string>1CD10A99069EF8BA00B06720</string>
 		<string>3FE3C8E10D3DD03300D5105A</string>
-		<string>3F4C132A0EDA7DC0008F9BA6</string>
-		<string>/Users/ebaur/Projects/Current Projects/TiVo Butler v1.1/TiVo Butler.xcodeproj</string>
+		<string>3F4C139A0EDAF05E008F9BA6</string>
 		<string>1C78EAAD065D492600B07095</string>
+		<string>/Users/ebaur/Projects/Current Projects/TiVo Butler v1.1/TiVo Butler.xcodeproj</string>
 	</array>
 	<key>WindowString</key>
 	<string>14 129 1146 1038 0 0 1920 1178 </string>
@@ -973,14 +993,12 @@
 							<key>Dock</key>
 							<array>
 								<dict>
-									<key>BecomeActive</key>
-									<true/>
 									<key>ContentConfiguration</key>
 									<dict>
 										<key>PBXProjectModuleGUID</key>
 										<string>1CDD528C0622207200134675</string>
 										<key>PBXProjectModuleLabel</key>
-										<string>PreferencesDisplayController.m</string>
+										<string>TiVo_Butler_AppDelegate.m</string>
 										<key>StatusBarVisibility</key>
 										<true/>
 									</dict>
@@ -1001,6 +1019,8 @@
 							<string>554pt</string>
 						</dict>
 						<dict>
+							<key>BecomeActive</key>
+							<true/>
 							<key>ContentConfiguration</key>
 							<dict>
 								<key>PBXProjectModuleGUID</key>

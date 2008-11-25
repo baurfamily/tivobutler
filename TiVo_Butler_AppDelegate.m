@@ -8,6 +8,8 @@
 
 #import "TiVo_Butler_AppDelegate.h"
 
+#import "TiVoPlayer.h"
+
 @implementation TiVo_Butler_AppDelegate
 
 + (void)initialize
@@ -33,8 +35,34 @@
 - (void)awakeFromNib
 {
 	ENTRY;
-	//- awakeFromNib is too late for this method
+	
 	[self loadConversionPresets];
+	
+#if __DEBUG__ 
+	//- this is just because I'm lazy...
+	NSArray *tivoArray = [EntityHelper
+		arrayOfEntityWithName:TiVoPlayerEntityName
+		usingPredicate:[NSPredicate predicateWithValue:TRUE]
+	];
+	if ( tivoArray.count ) {
+		RETURN( @"already have players present" );
+	}
+	NSString *path = [[self applicationSupportFolder] stringByAppendingPathComponent:@"DefaultPlayers.plist"];
+	tivoArray = [NSArray arrayWithContentsOfFile:path];
+	
+	TiVoPlayer *tempPlayer;
+	NSDictionary *tempDict;
+	for ( tempDict in tivoArray ) {
+		tempPlayer = [NSEntityDescription
+			insertNewObjectForEntityForName:TiVoPlayerEntityName
+			inManagedObjectContext:managedObjectContext
+		];
+		tempPlayer.name = [tempDict valueForKey:@"name"];
+		tempPlayer.host = [tempDict valueForKey:@"host"];
+		tempPlayer.mediaAccessKey = [tempDict valueForKey:@"mediaAccessKey"];
+	}
+
+#endif
 }
 
 /**
@@ -42,13 +70,22 @@
     store file.  This code uses a folder named "TiVo Butler" for
     the content, either in the NSApplicationSupportDirectory location or (if the
     former cannot be found), the system's temporary directory.
+	The sub-folder is created if it isn't already there.
  */
 
 - (NSString *)applicationSupportFolder {
 
     NSArray *paths = NSSearchPathForDirectoriesInDomains(NSApplicationSupportDirectory, NSUserDomainMask, YES);
     NSString *basePath = ([paths count] > 0) ? [paths objectAtIndex:0] : NSTemporaryDirectory();
-    return [basePath stringByAppendingPathComponent:@"TiVo Butler"];
+	NSString *fullPath = [basePath stringByAppendingPathComponent:@"TiVo Butler"];
+	
+    NSFileManager *fileManager = [NSFileManager defaultManager];
+	if ( ![fileManager fileExistsAtPath:fullPath isDirectory:NULL] ) {
+		//- should probably put some more error checking here...
+		[fileManager createDirectoryAtPath:fullPath attributes:nil];
+	}
+	
+    return fullPath;
 }
 
 
@@ -81,18 +118,10 @@
         return persistentStoreCoordinator;
     }
 
-    NSFileManager *fileManager;
-    NSString *applicationSupportFolder = nil;
     NSURL *url;
     NSError *error;
-    
-    fileManager = [NSFileManager defaultManager];
-    applicationSupportFolder = [self applicationSupportFolder];
-    if ( ![fileManager fileExistsAtPath:applicationSupportFolder isDirectory:NULL] ) {
-        [fileManager createDirectoryAtPath:applicationSupportFolder attributes:nil];
-    }
-    
-    url = [NSURL fileURLWithPath: [applicationSupportFolder stringByAppendingPathComponent:TiVoButlerDataFilename]];
+
+    url = [NSURL fileURLWithPath: [[self applicationSupportFolder] stringByAppendingPathComponent:TiVoButlerDataFilename]];
     persistentStoreCoordinator = [[NSPersistentStoreCoordinator alloc] initWithManagedObjectModel: [self managedObjectModel]];
     if (![persistentStoreCoordinator addPersistentStoreWithType:TiVoButlerDataFileType configuration:nil URL:url options:nil error:&error]){
         [[NSApplication sharedApplication] presentError:error];
@@ -233,21 +262,22 @@
 	NSDictionary *presetDict;
 	NSDictionary *argumentDict;
 	for ( presetDict in conversionPresetsArray ) {
-		tempExternalAction = [[NSEntityDescription
+		tempExternalAction = [NSEntityDescription
 			insertNewObjectForEntityForName:TiVoExternalActionEntityName
 			inManagedObjectContext:managedObjectContext
-		] retain];
+		];
 		[tempExternalAction setValue:[presetDict valueForKey:@"name"] forKey:@"name"];
 		[tempExternalAction setValue:[presetDict valueForKey:@"path"] forKey:@"path"];
+		[tempExternalAction setValue:[presetDict valueForKey:@"default"] forKey:@"default"];
 		
 		int orderNum = 0;
 		arguments = [NSMutableArray array];
 		for ( argumentDict in [presetDict valueForKey:@"arguments"] ) {
 			orderNum++;
-			tempExternalActionArgument = [[NSEntityDescription
+			tempExternalActionArgument = [NSEntityDescription
 				insertNewObjectForEntityForName:TiVoExternalActionArgumentEntityName
 				inManagedObjectContext:managedObjectContext
-			] retain];
+			];
 			
 			[tempExternalActionArgument setValue:[NSNumber numberWithInt:orderNum] forKey:@"orderNum"];
 			[tempExternalActionArgument setValue:[argumentDict valueForKey:@"argument"] forKey:@"argument"];
