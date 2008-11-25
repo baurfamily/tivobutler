@@ -7,6 +7,8 @@
 		<string>TiVo Butler v1.0</string>
 		<key>path</key>
 		<string>mencoder</string>
+		<key>default</key>
+		<true/>
 		<key>arguments</key>
 		<array>
 			<dict>
@@ -74,6 +76,8 @@
 		<string>TiVo Butler v1.0 w/noskip</string>
 		<key>path</key>
 		<string>mencoder</string>
+		<key>default</key>
+		<false/>
 		<key>arguments</key>
 		<array>
 			<dict>
@@ -145,6 +149,8 @@
 		<string>TiVo Butler v1.0 w/noskip and mc</string>
 		<key>path</key>
 		<string>mencoder</string>
+		<key>default</key>
+		<false/>
 		<key>arguments</key>
 		<array>
 			<dict>

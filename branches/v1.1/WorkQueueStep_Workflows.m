@@ -176,7 +176,7 @@
 			WARNING( @"encountered empty argument for decode task, skipping..." );
 		}
 	}
-	INFO( @"decode task arguments:\n%@", [arguments description] );	//- don't want to log the MAK
+	INFO( @"decode task arguments:\n%@", [arguments description] );	//- don't want to log the MAK, oh well
 	[queueTask setArguments:arguments];
 	
 	[[NSNotificationCenter defaultCenter]
@@ -228,8 +228,6 @@
 	
 	self.currentActionPercent = [NSNumber numberWithInt:0];
 	
-	NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-	
 	[queueTask release];
 	queueTask = [[NSTask alloc] init];
 	
@@ -247,13 +245,11 @@
 	];
 	[queueFileHandle waitForDataInBackgroundAndNotify];
 	
-	//BOOL useExternalApp = [[defaults valueForKey:@"convertWithExternalApp"] boolValue];
 	NSManagedObject *externalAction = [self externalAction];
 	INFO( @"using external action: %@", [externalAction description] );
 
 	
-	//- we assume that it's a "local" executable... if not, resolve the path
-	//- ...I think this is safe...
+	//- we assume that it's a "local" executable... if not, resolve the path... I think this is safe
 	NSString *launchPath = [[NSBundle mainBundle] pathForAuxiliaryExecutable:[externalAction valueForKey:@"path"] ];
 	if ( launchPath==nil ) {
 		//- if we did't find it, we'll trust what was typed in
@@ -271,17 +267,22 @@
 	}
 
 	NSMutableArray *arguments = [NSMutableArray array];
-	int argumentIndex = [[defaults valueForKey:@"defaultConversionArgumentsIndex"] intValue];
 	
-	NSDictionary *tempDict;
+	NSManagedObject *tempObject;
 	NSString *tempArgument;
 	NSString *tempValue;
 	WQArgumentSubstitutionValue tempSub;
 	
-	for ( tempDict in [externalAction valueForKey:@"arguments"] ) {
-		tempArgument = [tempDict valueForKey:@"argument"];
-		tempValue = [tempDict valueForKey:@"value"];
-		tempSub = [[tempDict valueForKey:@"variable"] intValue];
+	NSArray *externalActionArguments = [EntityHelper
+		arrayOfEntityWithName:TiVoExternalActionArgumentEntityName
+		usingPredicate:[NSPredicate predicateWithFormat:@"externalAction = %@", externalAction]
+		withSortKeys:[NSArray arrayWithObject:@"orderNum"]
+	];
+	//TODO: make sure arguments are in order!
+	for ( tempObject in externalActionArguments ) {
+		tempArgument = [tempObject valueForKey:@"argument"];
+		tempValue = [tempObject valueForKey:@"argumentValue"];
+		tempSub = [[tempObject valueForKey:@"variable"] intValue];
 	
 		if ( tempArgument ) {
 			[arguments addObject:[NSString stringWithFormat:@"-%@", tempArgument] ];
@@ -298,10 +299,8 @@
 		}
 	}
 	
-	DEBUG( @"using launchPath: %@", launchPath );
+	INFO( @"convert task command line (sort of, don't trust spaces):\n%@ %@", launchPath, [arguments componentsJoinedByString:@" "] );
 	[queueTask setLaunchPath:launchPath];
-	
-	INFO( @"convert task arguments:\n%@", [arguments description] );
 	[queueTask setArguments:arguments];
 	
 	[[NSNotificationCenter defaultCenter]
@@ -315,6 +314,7 @@
 
 - (void)convertReadAvailableData:(NSNotification *)notification
 {
+	ENTRY;
 	NSData *data = [queueFileHandle availableData];
 	if ( [data length] ) {
 		NSString *tempString = [[[NSString alloc] initWithData:data encoding:NSASCIIStringEncoding] autorelease];

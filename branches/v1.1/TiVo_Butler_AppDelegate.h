@@ -8,7 +8,7 @@
 
 #import <Cocoa/Cocoa.h>
 
-#import "EntityToken.h"
+#import "EntityHelper.h"
 
 #import "TiVoDurationValueTransformer.h"
 #import "TiVoSizeValueTransformer.h"
@@ -32,6 +32,7 @@
 	//NSMutableArray *conversionPresetsArray;
 }
 
+- (NSString *)applicationSupportFolder;
 - (NSPersistentStoreCoordinator *)persistentStoreCoordinator;
 - (NSManagedObjectModel *)managedObjectModel;
 - (NSManagedObjectContext *)managedObjectContext;
