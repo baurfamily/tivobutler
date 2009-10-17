@@ -47,6 +47,13 @@
 		3FB7FF4E0D9A04BC00D97046 /* expires-soon-recording.png in Resources */ = {isa = PBXBuildFile; fileRef = 3FB7FF4A0D9A04BC00D97046 /* expires-soon-recording.png */; };
 		3FB7FF4F0D9A04BC00D97046 /* in-progress-recording.png in Resources */ = {isa = PBXBuildFile; fileRef = 3FB7FF4B0D9A04BC00D97046 /* in-progress-recording.png */; };
 		3FB7FF500D9A04BC00D97046 /* save-until-i-delete-recording.png in Resources */ = {isa = PBXBuildFile; fileRef = 3FB7FF4C0D9A04BC00D97046 /* save-until-i-delete-recording.png */; };
+		3FC7E0A5108A591500D97F10 /* TiVo_FS-InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 3FC7E098108A591500D97F10 /* TiVo_FS-InfoPlist.strings */; };
+		3FC7E0A6108A591500D97F10 /* TiVo_FS_MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3FC7E09A108A591500D97F10 /* TiVo_FS_MainMenu.xib */; };
+		3FC7E0A9108A591500D97F10 /* TiVo_FS.icns in Resources */ = {isa = PBXBuildFile; fileRef = 3FC7E09F108A591500D97F10 /* TiVo_FS.icns */; };
+		3FC7E0AA108A591500D97F10 /* TiVo_FS_Controller.m in Sources */ = {isa = PBXBuildFile; fileRef = 3FC7E0A1108A591500D97F10 /* TiVo_FS_Controller.m */; };
+		3FC7E0AB108A591500D97F10 /* TiVo_FS_Filesystem.m in Sources */ = {isa = PBXBuildFile; fileRef = 3FC7E0A3108A591500D97F10 /* TiVo_FS_Filesystem.m */; };
+		3FC7E0AC108A591500D97F10 /* TiVo_FS_main.m in Sources */ = {isa = PBXBuildFile; fileRef = 3FC7E0A4108A591500D97F10 /* TiVo_FS_main.m */; };
+		3FC7E0B7108A59D900D97F10 /* MacFUSE.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3FC7E0B6108A59D900D97F10 /* MacFUSE.framework */; };
 		3FCB2D190D8265BD00C2B5BD /* mencoder in Copy Executables */ = {isa = PBXBuildFile; fileRef = 3FCB2D170D8265BD00C2B5BD /* mencoder */; };
 		3FCB2D1A0D8265BD00C2B5BD /* tivodecode in Copy Executables */ = {isa = PBXBuildFile; fileRef = 3FCB2D180D8265BD00C2B5BD /* tivodecode */; };
 		3FCB2ED90D845C9400C2B5BD /* TiVoButler.icns in Resources */ = {isa = PBXBuildFile; fileRef = 3FCB2ED80D845C9400C2B5BD /* TiVoButler.icns */; };
@@ -158,6 +165,18 @@
 		3FB7FF4B0D9A04BC00D97046 /* in-progress-recording.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "in-progress-recording.png"; sourceTree = "<group>"; };
 		3FB7FF4C0D9A04BC00D97046 /* save-until-i-delete-recording.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "save-until-i-delete-recording.png"; sourceTree = "<group>"; };
 		3FB8E0FE0D8EC3CD008BD58C /* BHLogger.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = BHLogger.framework; sourceTree = "<group>"; };
+		3FC7E080108A564F00D97F10 /* TiVo FS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "TiVo FS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		3FC7E099108A591500D97F10 /* English */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; name = English; path = "TiVo_FS-InfoPlist.strings"; sourceTree = "<group>"; };
+		3FC7E09B108A591500D97F10 /* English */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = English; path = TiVo_FS_MainMenu.xib; sourceTree = "<group>"; };
+		3FC7E09D108A591500D97F10 /* TiVo_FS_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TiVo_FS_Prefix.pch; path = TiVo_FS/TiVo_FS_Prefix.pch; sourceTree = "<group>"; };
+		3FC7E09E108A591500D97F10 /* TiVo_FS-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "TiVo_FS-Info.plist"; path = "../../TiVo_FS-Info.plist"; sourceTree = "<group>"; };
+		3FC7E09F108A591500D97F10 /* TiVo_FS.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; name = TiVo_FS.icns; path = ../TiVo_FS.icns; sourceTree = "<group>"; };
+		3FC7E0A0108A591500D97F10 /* TiVo_FS_Controller.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TiVo_FS_Controller.h; path = TiVo_FS/TiVo_FS_Controller.h; sourceTree = "<group>"; };
+		3FC7E0A1108A591500D97F10 /* TiVo_FS_Controller.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TiVo_FS_Controller.m; path = TiVo_FS/TiVo_FS_Controller.m; sourceTree = "<group>"; };
+		3FC7E0A2108A591500D97F10 /* TiVo_FS_Filesystem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TiVo_FS_Filesystem.h; path = TiVo_FS/TiVo_FS_Filesystem.h; sourceTree = "<group>"; };
+		3FC7E0A3108A591500D97F10 /* TiVo_FS_Filesystem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TiVo_FS_Filesystem.m; path = TiVo_FS/TiVo_FS_Filesystem.m; sourceTree = "<group>"; };
+		3FC7E0A4108A591500D97F10 /* TiVo_FS_main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TiVo_FS_main.m; path = TiVo_FS/TiVo_FS_main.m; sourceTree = "<group>"; };
+		3FC7E0B6108A59D900D97F10 /* MacFUSE.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MacFUSE.framework; path = Library/Frameworks/MacFUSE.framework; sourceTree = SDKROOT; };
 		3FCB2D170D8265BD00C2B5BD /* mencoder */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.executable"; path = mencoder; sourceTree = "<group>"; };
 		3FCB2D180D8265BD00C2B5BD /* tivodecode */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.executable"; path = tivodecode; sourceTree = "<group>"; };
 		3FCB2ED80D845C9400C2B5BD /* TiVoButler.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = TiVoButler.icns; sourceTree = "<group>"; };
@@ -189,6 +208,14 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		3FC7E07E108A564F00D97F10 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3FC7E0B7108A59D900D97F10 /* MacFUSE.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		8D11072E0486CEB800E47090 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -238,6 +265,7 @@
 			isa = PBXGroup;
 			children = (
 				8D1107320486CEB800E47090 /* TiVo Butler.app */,
+				3FC7E080108A564F00D97F10 /* TiVo FS.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -245,6 +273,7 @@
 		29B97314FDCFA39411CA2CEA /* TiVo Butler */ = {
 			isa = PBXGroup;
 			children = (
+				3FC7E095108A57EC00D97F10 /* TiVo FS */,
 				7756732906782D8800D1FEB8 /* Models */,
 				3FB7FE390D99A0AF00D97046 /* Value Transformers */,
 				3FCB2D130D817D4A00C2B5BD /* Entities */,
@@ -256,6 +285,7 @@
 				29B97323FDCFA39411CA2CEA /* Frameworks */,
 				3FCB2D160D8265BD00C2B5BD /* 3rd Party Binaries */,
 				19C28FACFE9D520D11CA2CBB /* Products */,
+				3FC7E0B6108A59D900D97F10 /* MacFUSE.framework */,
 			);
 			name = "TiVo Butler";
 			sourceTree = "<group>";
@@ -394,6 +424,56 @@
 			name = Headers;
 			sourceTree = "<group>";
 		};
+		3FC7E095108A57EC00D97F10 /* TiVo FS */ = {
+			isa = PBXGroup;
+			children = (
+				3FC7E097108A591500D97F10 /* Resources */,
+				3FC7E0B0108A595500D97F10 /* Other Sources */,
+				3FC7E0B2108A597900D97F10 /* Controllers */,
+				3FC7E0B1108A596900D97F10 /* Classes */,
+			);
+			name = "TiVo FS";
+			sourceTree = "<group>";
+		};
+		3FC7E097108A591500D97F10 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				3FC7E09F108A591500D97F10 /* TiVo_FS.icns */,
+				3FC7E09E108A591500D97F10 /* TiVo_FS-Info.plist */,
+				3FC7E098108A591500D97F10 /* TiVo_FS-InfoPlist.strings */,
+				3FC7E09A108A591500D97F10 /* TiVo_FS_MainMenu.xib */,
+			);
+			name = Resources;
+			path = TiVo_FS/English.lproj;
+			sourceTree = "<group>";
+		};
+		3FC7E0B0108A595500D97F10 /* Other Sources */ = {
+			isa = PBXGroup;
+			children = (
+				3FC7E09D108A591500D97F10 /* TiVo_FS_Prefix.pch */,
+				3FC7E0A4108A591500D97F10 /* TiVo_FS_main.m */,
+			);
+			name = "Other Sources";
+			sourceTree = "<group>";
+		};
+		3FC7E0B1108A596900D97F10 /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				3FC7E0A2108A591500D97F10 /* TiVo_FS_Filesystem.h */,
+				3FC7E0A3108A591500D97F10 /* TiVo_FS_Filesystem.m */,
+			);
+			name = Classes;
+			sourceTree = "<group>";
+		};
+		3FC7E0B2108A597900D97F10 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				3FC7E0A0108A591500D97F10 /* TiVo_FS_Controller.h */,
+				3FC7E0A1108A591500D97F10 /* TiVo_FS_Controller.m */,
+			);
+			name = Controllers;
+			sourceTree = "<group>";
+		};
 		3FCB2D130D817D4A00C2B5BD /* Entities */ = {
 			isa = PBXGroup;
 			children = (
@@ -462,6 +542,23 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		3FC7E07F108A564F00D97F10 /* TiVo FS */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 3FC7E085108A565000D97F10 /* Build configuration list for PBXNativeTarget "TiVo FS" */;
+			buildPhases = (
+				3FC7E07C108A564F00D97F10 /* Resources */,
+				3FC7E07D108A564F00D97F10 /* Sources */,
+				3FC7E07E108A564F00D97F10 /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "TiVo FS";
+			productName = "TiVo FS";
+			productReference = 3FC7E080108A564F00D97F10 /* TiVo FS.app */;
+			productType = "com.apple.product-type.application";
+		};
 		8D1107260486CEB800E47090 /* TiVo Butler */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 26FC0A840875C7B200E6366F /* Build configuration list for PBXNativeTarget "TiVo Butler" */;
@@ -495,11 +592,22 @@
 			projectRoot = "";
 			targets = (
 				8D1107260486CEB800E47090 /* TiVo Butler */,
+				3FC7E07F108A564F00D97F10 /* TiVo FS */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		3FC7E07C108A564F00D97F10 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3FC7E0A5108A591500D97F10 /* TiVo_FS-InfoPlist.strings in Resources */,
+				3FC7E0A6108A591500D97F10 /* TiVo_FS_MainMenu.xib in Resources */,
+				3FC7E0A9108A591500D97F10 /* TiVo_FS.icns in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		8D1107290486CEB800E47090 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -539,6 +647,16 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		3FC7E07D108A564F00D97F10 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3FC7E0AA108A591500D97F10 /* TiVo_FS_Controller.m in Sources */,
+				3FC7E0AB108A591500D97F10 /* TiVo_FS_Filesystem.m in Sources */,
+				3FC7E0AC108A591500D97F10 /* TiVo_FS_main.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		8D11072C0486CEB800E47090 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -582,6 +700,22 @@
 				089C165DFE840E0CC02AAC07 /* English */,
 			);
 			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		3FC7E098108A591500D97F10 /* TiVo_FS-InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				3FC7E099108A591500D97F10 /* English */,
+			);
+			name = "TiVo_FS-InfoPlist.strings";
+			sourceTree = "<group>";
+		};
+		3FC7E09A108A591500D97F10 /* TiVo_FS_MainMenu.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				3FC7E09B108A591500D97F10 /* English */,
+			);
+			name = TiVo_FS_MainMenu.xib;
 			sourceTree = "<group>";
 		};
 		3FFF424C0DA87503008CBE8D /* MainMenu.xib */ = {
@@ -685,6 +819,54 @@
 			};
 			name = Release;
 		};
+		3FC7E083108A565000D97F10 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				COPY_PHASE_STRIP = NO;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_FIX_AND_CONTINUE = YES;
+				GCC_MODEL_TUNING = G5;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/AppKit.framework/Headers/AppKit.h";
+				INFOPLIST_FILE = "TiVo FS-Info.plist";
+				INSTALL_PATH = "$(HOME)/Applications";
+				OTHER_LDFLAGS = (
+					"-framework",
+					Foundation,
+					"-framework",
+					AppKit,
+				);
+				PREBINDING = NO;
+				PRODUCT_NAME = "TiVo FS";
+			};
+			name = Debug;
+		};
+		3FC7E084108A565000D97F10 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				GCC_ENABLE_FIX_AND_CONTINUE = NO;
+				GCC_MODEL_TUNING = G5;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/AppKit.framework/Headers/AppKit.h";
+				INFOPLIST_FILE = "TiVo FS-Info.plist";
+				INSTALL_PATH = "$(HOME)/Applications";
+				OTHER_LDFLAGS = (
+					"-framework",
+					Foundation,
+					"-framework",
+					AppKit,
+				);
+				PREBINDING = NO;
+				PRODUCT_NAME = "TiVo FS";
+				ZERO_LINK = NO;
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -702,6 +884,15 @@
 			buildConfigurations = (
 				26FC0A890875C7B200E6366F /* Debug */,
 				26FC0A8A0875C7B200E6366F /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		3FC7E085108A565000D97F10 /* Build configuration list for PBXNativeTarget "TiVo FS" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				3FC7E083108A565000D97F10 /* Debug */,
+				3FC7E084108A565000D97F10 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
