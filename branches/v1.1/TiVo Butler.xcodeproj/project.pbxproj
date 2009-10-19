@@ -54,6 +54,35 @@
 		3FC7E0AB108A591500D97F10 /* TiVo_FS_Filesystem.m in Sources */ = {isa = PBXBuildFile; fileRef = 3FC7E0A3108A591500D97F10 /* TiVo_FS_Filesystem.m */; };
 		3FC7E0AC108A591500D97F10 /* TiVo_FS_main.m in Sources */ = {isa = PBXBuildFile; fileRef = 3FC7E0A4108A591500D97F10 /* TiVo_FS_main.m */; };
 		3FC7E0B7108A59D900D97F10 /* MacFUSE.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3FC7E0B6108A59D900D97F10 /* MacFUSE.framework */; };
+		3FC7E10F108AE27500D97F10 /* BHLogger.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3FB8E0FE0D8EC3CD008BD58C /* BHLogger.framework */; };
+		3FC7E122108AE34300D97F10 /* BHLogger.framework in Copy Frameworks */ = {isa = PBXBuildFile; fileRef = 3FB8E0FE0D8EC3CD008BD58C /* BHLogger.framework */; };
+		3FC7E142108AE85300D97F10 /* EntityToken.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F41D63A0DCADD1000CB0659 /* EntityToken.m */; };
+		3FC7E143108AE89600D97F10 /* TiVo_Butler_DataModel.xcdatamodel in Sources */ = {isa = PBXBuildFile; fileRef = 770B37EC0679A11B001EADE2 /* TiVo_Butler_DataModel.xcdatamodel */; };
+		3FC7E144108AE89600D97F10 /* TiVoPlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 3FE3C8F40D3DD46C00D5105A /* TiVoPlayer.m */; };
+		3FC7E145108AE89600D97F10 /* LibraryController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F8E37E40D4D52AA009B89B3 /* LibraryController.m */; };
+		3FC7E146108AE89600D97F10 /* CalypsoXMLParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F44D8450D53042F00DA286E /* CalypsoXMLParser.m */; };
+		3FC7E147108AE89600D97F10 /* TiVoProgram.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F6A88F90D53472300212FBA /* TiVoProgram.m */; };
+		3FC7E14B108AE8BB00D97F10 /* TiVo_Butler_AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 77C8280C06725ACE000B614F /* TiVo_Butler_AppDelegate.m */; };
+		3FC7E14C108AE8BB00D97F10 /* LNSSourceListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F44C49C0D4453F800F0F6F4 /* LNSSourceListCell.m */; };
+		3FC7E14D108AE8BB00D97F10 /* LNSSourceListColumn.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F44C49E0D4453F800F0F6F4 /* LNSSourceListColumn.m */; };
+		3FC7E14E108AE8BB00D97F10 /* LNSSourceListSourceGroupCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F44C4A00D4453F800F0F6F4 /* LNSSourceListSourceGroupCell.m */; };
+		3FC7E14F108AE8BB00D97F10 /* LNSSourceListView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F44C4A20D4453F800F0F6F4 /* LNSSourceListView.m */; };
+		3FC7E150108AE8BB00D97F10 /* EntityHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 3FF63FDF0D5663DF00F2EAD9 /* EntityHelper.m */; };
+		3FC7E151108AE8BB00D97F10 /* WorkQueueController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3FF645220D5B05FA00F2EAD9 /* WorkQueueController.m */; };
+		3FC7E152108AE8BB00D97F10 /* WorkQueueItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 3FF645250D5B09D000F2EAD9 /* WorkQueueItem.m */; };
+		3FC7E153108AE8BB00D97F10 /* PredicateTesting.m in Sources */ = {isa = PBXBuildFile; fileRef = 3FF850410D71D56600BA2628 /* PredicateTesting.m */; };
+		3FC7E154108AE8BB00D97F10 /* WorkQueueDisplayController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3FF708630D89F0650041CEAE /* WorkQueueDisplayController.m */; };
+		3FC7E155108AE8BB00D97F10 /* PreferencesDisplayController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3FF70A160D8B4E240041CEAE /* PreferencesDisplayController.m */; };
+		3FC7E156108AE8BB00D97F10 /* SmartGroup.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F0FD9210D8B847A00F9C7E2 /* SmartGroup.m */; };
+		3FC7E157108AE8BB00D97F10 /* TiVoSizeValueTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = 3FB7FE340D99A06C00D97046 /* TiVoSizeValueTransformer.m */; };
+		3FC7E158108AE8BB00D97F10 /* TiVoDurationValueTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = 3FB7FE370D99A0A000D97046 /* TiVoDurationValueTransformer.m */; };
+		3FC7E159108AE8BB00D97F10 /* EntityTokenFieldValueTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F41D7100DCCA40E00CB0659 /* EntityTokenFieldValueTransformer.m */; };
+		3FC7E15A108AE8BB00D97F10 /* TiVoProgram_AccessorAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F41D9590DCD7A8000CB0659 /* TiVoProgram_AccessorAdditions.m */; };
+		3FC7E15B108AE8BB00D97F10 /* WorkQueueFile.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F90ADF60DD325000088F103 /* WorkQueueFile.m */; };
+		3FC7E15C108AE8BB00D97F10 /* WorkQueueItem_Workflows.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F90AFA00DD669C80088F103 /* WorkQueueItem_Workflows.m */; };
+		3FC7E15D108AE8BB00D97F10 /* WorkQueueStep.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F90B1EC0DD9DBC30088F103 /* WorkQueueStep.m */; };
+		3FC7E15E108AE8BB00D97F10 /* WorkQueueStep_Workflows.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F90B2020DD9DE7A0088F103 /* WorkQueueStep_Workflows.m */; };
+		3FC7E162108AE90F00D97F10 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 77C82804067257F0000B614F /* CoreData.framework */; };
 		3FCB2D190D8265BD00C2B5BD /* mencoder in Copy Executables */ = {isa = PBXBuildFile; fileRef = 3FCB2D170D8265BD00C2B5BD /* mencoder */; };
 		3FCB2D1A0D8265BD00C2B5BD /* tivodecode in Copy Executables */ = {isa = PBXBuildFile; fileRef = 3FCB2D180D8265BD00C2B5BD /* tivodecode */; };
 		3FCB2ED90D845C9400C2B5BD /* TiVoButler.icns in Resources */ = {isa = PBXBuildFile; fileRef = 3FCB2ED80D845C9400C2B5BD /* TiVoButler.icns */; };
@@ -85,6 +114,17 @@
 			dstSubfolderSpec = 10;
 			files = (
 				3FB7F8270D94D74100D97046 /* BHLogger.framework in Copy Frameworks */,
+			);
+			name = "Copy Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		3FC7E129108AE34D00D97F10 /* Copy Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				3FC7E122108AE34300D97F10 /* BHLogger.framework in Copy Frameworks */,
 			);
 			name = "Copy Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -212,6 +252,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3FC7E162108AE90F00D97F10 /* CoreData.framework in Frameworks */,
+				3FC7E10F108AE27500D97F10 /* BHLogger.framework in Frameworks */,
 				3FC7E0B7108A59D900D97F10 /* MacFUSE.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -549,6 +591,7 @@
 				3FC7E07C108A564F00D97F10 /* Resources */,
 				3FC7E07D108A564F00D97F10 /* Sources */,
 				3FC7E07E108A564F00D97F10 /* Frameworks */,
+				3FC7E129108AE34D00D97F10 /* Copy Frameworks */,
 			);
 			buildRules = (
 			);
@@ -651,6 +694,32 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3FC7E14B108AE8BB00D97F10 /* TiVo_Butler_AppDelegate.m in Sources */,
+				3FC7E143108AE89600D97F10 /* TiVo_Butler_DataModel.xcdatamodel in Sources */,
+				3FC7E144108AE89600D97F10 /* TiVoPlayer.m in Sources */,
+				3FC7E14C108AE8BB00D97F10 /* LNSSourceListCell.m in Sources */,
+				3FC7E14D108AE8BB00D97F10 /* LNSSourceListColumn.m in Sources */,
+				3FC7E14E108AE8BB00D97F10 /* LNSSourceListSourceGroupCell.m in Sources */,
+				3FC7E14F108AE8BB00D97F10 /* LNSSourceListView.m in Sources */,
+				3FC7E145108AE89600D97F10 /* LibraryController.m in Sources */,
+				3FC7E146108AE89600D97F10 /* CalypsoXMLParser.m in Sources */,
+				3FC7E147108AE89600D97F10 /* TiVoProgram.m in Sources */,
+				3FC7E150108AE8BB00D97F10 /* EntityHelper.m in Sources */,
+				3FC7E151108AE8BB00D97F10 /* WorkQueueController.m in Sources */,
+				3FC7E152108AE8BB00D97F10 /* WorkQueueItem.m in Sources */,
+				3FC7E153108AE8BB00D97F10 /* PredicateTesting.m in Sources */,
+				3FC7E154108AE8BB00D97F10 /* WorkQueueDisplayController.m in Sources */,
+				3FC7E155108AE8BB00D97F10 /* PreferencesDisplayController.m in Sources */,
+				3FC7E156108AE8BB00D97F10 /* SmartGroup.m in Sources */,
+				3FC7E157108AE8BB00D97F10 /* TiVoSizeValueTransformer.m in Sources */,
+				3FC7E158108AE8BB00D97F10 /* TiVoDurationValueTransformer.m in Sources */,
+				3FC7E142108AE85300D97F10 /* EntityToken.m in Sources */,
+				3FC7E159108AE8BB00D97F10 /* EntityTokenFieldValueTransformer.m in Sources */,
+				3FC7E15A108AE8BB00D97F10 /* TiVoProgram_AccessorAdditions.m in Sources */,
+				3FC7E15B108AE8BB00D97F10 /* WorkQueueFile.m in Sources */,
+				3FC7E15C108AE8BB00D97F10 /* WorkQueueItem_Workflows.m in Sources */,
+				3FC7E15D108AE8BB00D97F10 /* WorkQueueStep.m in Sources */,
+				3FC7E15E108AE8BB00D97F10 /* WorkQueueStep_Workflows.m in Sources */,
 				3FC7E0AA108A591500D97F10 /* TiVo_FS_Controller.m in Sources */,
 				3FC7E0AB108A591500D97F10 /* TiVo_FS_Filesystem.m in Sources */,
 				3FC7E0AC108A591500D97F10 /* TiVo_FS_main.m in Sources */,
@@ -797,6 +866,7 @@
 		26FC0A890875C7B200E6366F /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				OTHER_CFLAGS = "-D__DEBUG__=1";
@@ -824,13 +894,17 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				COPY_PHASE_STRIP = NO;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)\"",
+				);
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_ENABLE_FIX_AND_CONTINUE = YES;
 				GCC_MODEL_TUNING = G5;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/AppKit.framework/Headers/AppKit.h";
-				INFOPLIST_FILE = "TiVo FS-Info.plist";
+				GCC_PREFIX_HEADER = TiVo_FS/TiVo_FS_Prefix.pch;
+				INFOPLIST_FILE = "TiVo_FS-Info.plist";
 				INSTALL_PATH = "$(HOME)/Applications";
 				OTHER_LDFLAGS = (
 					"-framework",
@@ -849,6 +923,10 @@
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				COPY_PHASE_STRIP = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)\"",
+				);
 				GCC_ENABLE_FIX_AND_CONTINUE = NO;
 				GCC_MODEL_TUNING = G5;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
