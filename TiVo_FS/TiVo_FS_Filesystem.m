@@ -10,6 +10,32 @@
 #import "TiVo_FS_Filesystem.h"
 #import <MacFUSE/MacFUSE.h>
 
+static NSString * TVFSPathProgramGroups = @"/Program Groups";
+static NSString * TVFSPathPlayers = @"/Players";
+static NSString * TVFSPathStations = @"/Stations";
+static NSString * TVFSPathDates = @"/Dates";
+
+// Methods to help modify strings for the way we deal with paths
+@interface NSString (TVFSPathHelper)
+- (NSString *)stringWithoutLeadingSlash;
+- (NSString *)baseDirectory;
+@end
+@implementation NSString (TVFSPathHelper)
+- (NSString *)stringWithoutLeadingSlash
+{
+	return [self stringByTrimmingCharactersInSet:[NSCharacterSet characterSetWithCharactersInString:@"/"]];
+}
+- (NSString *)baseDirectory
+{
+	NSArray *components = [self pathComponents];
+	if ( [[components objectAtIndex:0] isEqualToString:@"/"] && components.count > 1 )
+	{
+		return [NSString stringWithFormat:@"/%@", [components objectAtIndex:1]];
+	}
+	return nil;
+}
+@end
+
 // Category on NSError to  simplify creating an NSError based on posix errno.
 @interface NSError (POSIX)
 + (NSError *)errorWithPOSIXCode:(int)code;
@@ -30,18 +56,80 @@
 
 #pragma mark Directory Contents
 
-- (NSArray *)contentsOfDirectoryAtPath:(NSString *)path error:(NSError **)error {
-  *error = [NSError errorWithPOSIXCode:ENOENT];
-  return nil;
+- (NSArray *)contentsOfDirectoryAtPath:(NSString *)path error:(NSError **)error
+{
+	ENTRY;
+	
+	NSMutableArray *returnArray = [NSMutableArray array];
+
+	if ( [path isEqualToString:@"/"] )
+	{
+		[returnArray addObject:[TVFSPathProgramGroups stringWithoutLeadingSlash]];
+		[returnArray addObject:[TVFSPathPlayers stringWithoutLeadingSlash]];
+		[returnArray addObject:[TVFSPathDates stringWithoutLeadingSlash]];
+		[returnArray addObject:[TVFSPathStations stringWithoutLeadingSlash]];
+	}
+	else if ( [path isEqualToString:TVFSPathPlayers] )
+	{
+		NSArray *players = [EntityHelper arrayOfEntityWithName:TiVoPlayerEntityName usingPredicate:[NSPredicate predicateWithValue:YES] ];
+
+		TiVoPlayer *player;
+		for ( player in players ) {
+			[returnArray addObject:player.name ];
+		}
+	}
+	else if ( [path isEqualToString:TVFSPathProgramGroups] )
+	{
+		//NSArray *programs 
+	}
+	else
+	{
+		WARNING( @"Asked for unexpected path: ", path );
+		*error = [NSError errorWithPOSIXCode:ENOENT];
+		return nil;
+	}
+	INFO( @"returning: %@", [returnArray description] );
+	return returnArray;
 }
 
 #pragma mark Getting Attributes
 
 - (NSDictionary *)attributesOfItemAtPath:(NSString *)path
                                 userData:(id)userData
-                                   error:(NSError **)error {
-  *error = [NSError errorWithPOSIXCode:ENOENT];
-  return nil;
+                                   error:(NSError **)error
+{
+	DEBUG( @"attributes for path: %@", path );
+	NSMutableDictionary *attributes = [NSMutableDictionary dictionary];
+	
+	NSArray *rootPaths = [NSArray arrayWithObjects:
+		TVFSPathPlayers,
+		TVFSPathProgramGroups,
+		TVFSPathStations,
+		TVFSPathDates,
+		nil
+	];
+	if ( [rootPaths containsObject:path] )
+	{
+		[attributes setValue:NSFileTypeDirectory forKey:NSFileType];
+		[attributes setValue:[NSNumber numberWithInt:0] forKey:NSFileSize];
+	}
+	else if ( [rootPaths containsObject:[path baseDirectory]] )
+	{
+		//if we're at the second level, then these are guaranted to be folders
+		if ( [[path pathComponents] count]==3 )
+		{
+			[attributes setValue:NSFileTypeDirectory forKey:NSFileType];
+			[attributes setValue:[NSNumber numberWithInt:0] forKey:NSFileSize];		
+		}
+	}
+	else
+	{
+		WARNING( @"Couldn't find path: %@", path );
+		*error = [NSError errorWithPOSIXCode:ENOENT];
+		return nil;
+	}
+	RETURN( [attributes description] );
+	return attributes;
 }
 
 - (NSDictionary *)attributesOfFileSystemForPath:(NSString *)path
