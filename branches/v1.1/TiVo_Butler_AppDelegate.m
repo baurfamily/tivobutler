@@ -46,6 +46,7 @@
 	];
 	if ( tivoArray.count ) {
 		RETURN( @"already have players present" );
+		return;
 	}
 	NSString *path = [[self applicationSupportFolder] stringByAppendingPathComponent:@"DefaultPlayers.plist"];
 	tivoArray = [NSArray arrayWithContentsOfFile:path];
