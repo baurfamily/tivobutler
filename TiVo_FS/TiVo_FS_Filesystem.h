@@ -12,6 +12,7 @@
 #import "EntityHelper.h"
 
 #import "TiVoPlayer.h"
+#import "TiVoProgram.h"
 
 // The core set of file system operations. This class will serve as the delegate
 // for GMUserFileSystemFilesystem. For more details, see the section on 
@@ -20,5 +21,9 @@
 @interface TiVo_FS_Filesystem : NSObject  {
 
 }
+
+- (NSArray *)baseDirectories;
+- (NSArray *)groupDirectoriesForGroup:(NSString *)group;
+- (NSArray *)programFilesForDirectory:(NSString *)dir inGroup:(NSString *)group;
 
 @end

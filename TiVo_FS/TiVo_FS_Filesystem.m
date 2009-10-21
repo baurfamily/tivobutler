@@ -60,16 +60,44 @@ static NSString * TVFSPathDates = @"/Dates";
 {
 	ENTRY;
 	
-	NSMutableArray *returnArray = [NSMutableArray array];
+	NSArray *returnArray;
 
-	if ( [path isEqualToString:@"/"] )
+	NSArray *components = [path pathComponents];
+
+	switch ( components.count )
 	{
-		[returnArray addObject:[TVFSPathProgramGroups stringWithoutLeadingSlash]];
-		[returnArray addObject:[TVFSPathPlayers stringWithoutLeadingSlash]];
-		[returnArray addObject:[TVFSPathDates stringWithoutLeadingSlash]];
-		[returnArray addObject:[TVFSPathStations stringWithoutLeadingSlash]];
+		case 1:
+			returnArray = [self baseDirectories];
+			break;
+		case 2:
+			returnArray = [self groupDirectoriesForGroup:[components objectAtIndex:1] ];
+			break;
+		case 3:
+			returnArray = [self programFilesForDirectory:[components objectAtIndex:2] inGroup:[components objectAtIndex:1] ];
+		default:
+			WARNING( @"Couldn't match number of components in path: %@", path );
 	}
-	else if ( [path isEqualToString:TVFSPathPlayers] )
+	return returnArray;
+}
+
+//this lists the standard groups that we have at the root of the filesystem
+- (NSArray *)baseDirectories
+{
+	NSMutableArray *returnArray = [NSMutableArray array];
+	[returnArray addObject:[TVFSPathProgramGroups stringWithoutLeadingSlash]];
+	[returnArray addObject:[TVFSPathPlayers stringWithoutLeadingSlash]];
+	[returnArray addObject:[TVFSPathDates stringWithoutLeadingSlash]];
+	[returnArray addObject:[TVFSPathStations stringWithoutLeadingSlash]];
+	return returnArray;
+}
+
+//this lists the folders in the grouping that was picked
+- (NSArray *)groupDirectoriesForGroup:(NSString *)group
+{
+	NSMutableArray *returnArray = [NSMutableArray array];
+	NSString *pathWithSlash = [NSString stringWithFormat:@"/%@", group];
+	
+	if ( [pathWithSlash isEqualToString:TVFSPathPlayers] )
 	{
 		NSArray *players = [EntityHelper arrayOfEntityWithName:TiVoPlayerEntityName usingPredicate:[NSPredicate predicateWithValue:YES] ];
 
@@ -78,17 +106,112 @@ static NSString * TVFSPathDates = @"/Dates";
 			[returnArray addObject:player.name ];
 		}
 	}
-	else if ( [path isEqualToString:TVFSPathProgramGroups] )
+	else if ( [pathWithSlash isEqualToString:TVFSPathProgramGroups] )
 	{
-		//NSArray *programs 
+		NSArray *programGroups = [EntityHelper
+			arrayOfEntityWithName:TiVoSeriesEntityName
+			usingPredicateString:@"ANY programs.deletedFromPlayer = NO"
+			withSortKeys:[NSArray arrayWithObject:@"title"]
+		];
+		id series;
+		for ( series in programGroups ) {
+			[returnArray addObject:[series valueForKey:@"title"]];
+		}
+	}
+	else if ( [pathWithSlash isEqualToString:TVFSPathStations] )
+	{
+		NSArray *stations = [EntityHelper
+			arrayOfEntityWithName:TiVoStationEntityName
+			usingPredicateString:@"ANY programs.deletedFromPlayer = NO"
+			withSortKeys:[NSArray arrayWithObject:@"name"]
+		];
+		
+		NSManagedObject *tempObject;
+		for ( tempObject in stations ) {
+			[returnArray addObject:
+				[NSString stringWithFormat:@"%@ - %@", [tempObject valueForKey:@"name"], [tempObject valueForKey:@"channel"] ]
+			];
+		}
+
+	}
+	else if ( [pathWithSlash isEqualToString:TVFSPathDates] )
+	{
+		NSArray *programs = [EntityHelper
+			arrayOfEntityWithName:TiVoProgramEntityName
+			usingPredicateString:@"deletedFromPlayer = NO"
+			withSortKeys:[NSArray arrayWithObject:@"captureDate"]
+		];
+		
+		TiVoProgram *program;
+		NSMutableSet *dateSet = [NSMutableSet set];
+		for ( program in programs ) {
+			[dateSet addObject:[program.captureDate descriptionWithCalendarFormat:@"%Y-%m-%d" timeZone:nil locale:nil]];
+		}
+		
+		returnArray = [[dateSet allObjects] mutableCopy];
 	}
 	else
 	{
-		WARNING( @"Asked for unexpected path: ", path );
-		*error = [NSError errorWithPOSIXCode:ENOENT];
+		WARNING( @"Asked for unexpected group: ", group );
 		return nil;
 	}
-	INFO( @"returning: %@", [returnArray description] );
+	return [returnArray copy];
+}
+
+//this returns the actual programs for the chosen directory
+- (NSArray *)programFilesForDirectory:(NSString *)dir inGroup:(NSString *)group
+{
+	NSString *pathWithSlash = [NSString stringWithFormat:@"/%@", group];
+	NSArray *programs;
+	
+	if ( [pathWithSlash isEqualToString:TVFSPathPlayers] )
+	{
+		programs = [EntityHelper
+			arrayOfEntityWithName:TiVoProgramEntityName
+			usingPredicate:[NSPredicate predicateWithFormat:@"player.name = %@", dir]
+			withSortKeys:[NSArray arrayWithObject:@"title"]
+		];
+	}
+	else if ( [pathWithSlash isEqualToString:TVFSPathProgramGroups] )
+	{
+		programs = [EntityHelper
+			arrayOfEntityWithName:TiVoProgramEntityName
+			usingPredicate:[NSPredicate predicateWithFormat:@"series.title = %@", dir]
+			withSortKeys:[NSArray arrayWithObject:@"title"]
+		];
+	}
+	else if ( [pathWithSlash isEqualToString:TVFSPathStations] )
+	{
+		programs = [EntityHelper
+			arrayOfEntityWithName:TiVoProgramEntityName
+			usingPredicateString:@"ANY programs.deletedFromPlayer = NO"
+			withSortKeys:[NSArray arrayWithObject:@"title"]
+		];
+	}
+	else if ( [pathWithSlash isEqualToString:TVFSPathDates] )
+	{
+		NSDate *startDate = [NSDate dateWithNaturalLanguageString:dir];
+		NSDate *endDate = [startDate addTimeInterval:60*60*24];
+		
+		programs = [EntityHelper
+			arrayOfEntityWithName:TiVoProgramEntityName
+			usingPredicate:[NSPredicate predicateWithFormat:@"captureDate >= %@ AND captureDate < %@", startDate, endDate]
+			withSortKeys:[NSArray arrayWithObject:@"captureDate"]
+		];
+	}
+	else
+	{
+		WARNING( @"Asked for unexpected group: ", group );
+		return nil;
+	}
+	
+	NSMutableArray *returnArray = [NSMutableArray array];
+	TiVoProgram *program;
+	for ( program in programs ) {
+		[returnArray addObject:
+			[NSString stringWithFormat:@"%@ (%@).tivo", program.title, program.internalID]
+		];
+	}	
 	return returnArray;
 }
 
@@ -98,7 +221,7 @@ static NSString * TVFSPathDates = @"/Dates";
                                 userData:(id)userData
                                    error:(NSError **)error
 {
-	DEBUG( @"attributes for path: %@", path );
+	DEBUG( @"attributes for path: %@ (count: %d)", path, [[path pathComponents] count] );
 	NSMutableDictionary *attributes = [NSMutableDictionary dictionary];
 	
 	NSArray *rootPaths = [NSArray arrayWithObjects:
@@ -108,6 +231,7 @@ static NSString * TVFSPathDates = @"/Dates";
 		TVFSPathDates,
 		nil
 	];
+	
 	if ( [rootPaths containsObject:path] )
 	{
 		[attributes setValue:NSFileTypeDirectory forKey:NSFileType];
@@ -115,8 +239,33 @@ static NSString * TVFSPathDates = @"/Dates";
 	}
 	else if ( [rootPaths containsObject:[path baseDirectory]] )
 	{
-		//if we're at the second level, then these are guaranted to be folders
-		if ( [[path pathComponents] count]==3 )
+		if ( [[path pathComponents] count]==4 )
+		{
+			NSScanner *scanner = [NSScanner scannerWithString:[path lastPathComponent]];
+			NSString *programName;
+			[scanner scanUpToString:@"(" intoString:&programName];
+			[scanner setScanLocation:[scanner scanLocation]+1 ];
+			NSString *internalID;
+			[scanner scanUpToString:@")" intoString:&internalID];
+			
+			//NSPredicate *predicate = [NSPredicate predicateWithFormat:@"title == %@", programName];
+			NSPredicate *predicate = [NSPredicate predicateWithFormat:@"internalID == %@", internalID ];
+			NSArray *tempArray = [EntityHelper
+				arrayOfEntityWithName:TiVoProgramEntityName
+				usingPredicate:predicate
+			];
+			
+			TiVoProgram *program = [tempArray lastObject];
+			if ( !program )
+				return nil;
+				
+			DEBUG( @"found '%@' with ID: %d, expected ID: %@", [scanner string], program.internalID, internalID );
+			
+			[attributes setValue:NSFileTypeRegular forKey:NSFileType];
+			[attributes setValue:program.sourceSize forKey:NSFileSize];
+			[attributes setValue:program.captureDate forKey:NSFileModificationDate];
+		}
+		else
 		{
 			[attributes setValue:NSFileTypeDirectory forKey:NSFileType];
 			[attributes setValue:[NSNumber numberWithInt:0] forKey:NSFileSize];		
@@ -124,6 +273,9 @@ static NSString * TVFSPathDates = @"/Dates";
 	}
 	else
 	{
+		if ( [path isEqualToString:@"/"] )
+			return nil;
+			
 		WARNING( @"Couldn't find path: %@", path );
 		*error = [NSError errorWithPOSIXCode:ENOENT];
 		return nil;
