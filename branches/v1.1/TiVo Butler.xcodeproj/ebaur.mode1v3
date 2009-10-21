@@ -197,7 +197,48 @@
 	<key>Notifications</key>
 	<array/>
 	<key>OpenEditors</key>
-	<array/>
+	<array>
+		<dict>
+			<key>Content</key>
+			<dict>
+				<key>PBXProjectModuleGUID</key>
+				<string>3FC7E45D108EE3BB00D97F10</string>
+				<key>PBXProjectModuleLabel</key>
+				<string>TiVo_Butler_DataModel.xcdatamodel</string>
+				<key>PBXSplitModuleInNavigatorKey</key>
+				<dict>
+					<key>Split0</key>
+					<dict>
+						<key>PBXProjectModuleGUID</key>
+						<string>3FC7E45E108EE3BB00D97F10</string>
+						<key>PBXProjectModuleLabel</key>
+						<string>TiVo_Butler_DataModel.xcdatamodel</string>
+						<key>_historyCapacity</key>
+						<integer>0</integer>
+						<key>bookmark</key>
+						<string>3FC7E513108EF18800D97F10</string>
+						<key>history</key>
+						<array>
+							<string>3FC7E450108EE11E00D97F10</string>
+						</array>
+					</dict>
+					<key>SplitCount</key>
+					<string>1</string>
+				</dict>
+				<key>StatusBarVisibility</key>
+				<true/>
+			</dict>
+			<key>Geometry</key>
+			<dict>
+				<key>Frame</key>
+				<string>{{0, 20}, {800, 693}}</string>
+				<key>PBXModuleWindowStatusBarHidden2</key>
+				<false/>
+				<key>RubberWindowFrame</key>
+				<string>631 144 800 734 0 0 1440 878 </string>
+			</dict>
+		</dict>
+	</array>
 	<key>PerspectiveWidths</key>
 	<array>
 		<integer>1171</integer>
@@ -290,6 +331,8 @@
 							<key>PBXSmartGroupTreeModuleOutlineStateSelectionKey</key>
 							<array>
 								<array>
+									<integer>39</integer>
+									<integer>36</integer>
 									<integer>0</integer>
 								</array>
 							</array>
@@ -315,7 +358,7 @@
 							<real>237</real>
 						</array>
 						<key>RubberWindowFrame</key>
-						<string>9 45 1165 833 0 0 1440 878 </string>
+						<string>6 45 1165 833 0 0 1440 878 </string>
 					</dict>
 					<key>Module</key>
 					<string>PBXSmartGroupTreeModule</string>
@@ -345,7 +388,7 @@
 										<key>_historyCapacity</key>
 										<integer>0</integer>
 										<key>bookmark</key>
-										<string>3FC7E2F3108C350F00D97F10</string>
+										<string>3FC7E512108EF18800D97F10</string>
 										<key>history</key>
 										<array>
 											<string>3F8E38500D4DA080009B89B3</string>
@@ -401,23 +444,23 @@
 											<string>3F4C13FC0EDB9C06008F9BA6</string>
 											<string>3FC7E0D1108A5B3C00D97F10</string>
 											<string>3FC7E0FE108AE1F400D97F10</string>
-											<string>3FC7E0FF108AE1F400D97F10</string>
 											<string>3FC7E100108AE1F400D97F10</string>
 											<string>3FC7E102108AE1F400D97F10</string>
-											<string>3FC7E104108AE1F400D97F10</string>
-											<string>3FC7E105108AE1F400D97F10</string>
 											<string>3FC7E106108AE1F400D97F10</string>
-											<string>3FC7E186108AE91D00D97F10</string>
 											<string>3FC7E187108AE91D00D97F10</string>
 											<string>3FC7E19F108BEEEE00D97F10</string>
 											<string>3FC7E1A0108BEEEE00D97F10</string>
 											<string>3FC7E1A2108BEEEE00D97F10</string>
 											<string>3FC7E1A3108BEEEE00D97F10</string>
 											<string>3FC7E20E108C03B500D97F10</string>
-											<string>3FC7E26E108C1CA200D97F10</string>
 											<string>3FC7E28C108C269700D97F10</string>
 											<string>3FC7E2BB108C2DBC00D97F10</string>
-											<string>3FC7E2E9108C346000D97F10</string>
+											<string>3FC7E318108C380C00D97F10</string>
+											<string>3FC7E350108D86F200D97F10</string>
+											<string>3FC7E459108EE3BB00D97F10</string>
+											<string>3FC7E45A108EE3BB00D97F10</string>
+											<string>3FC7E4AC108EE88700D97F10</string>
+											<string>3FC7E50D108EF10800D97F10</string>
 										</array>
 									</dict>
 									<key>SplitCount</key>
@@ -431,7 +474,7 @@
 								<key>Frame</key>
 								<string>{{0, 0}, {884, 600}}</string>
 								<key>RubberWindowFrame</key>
-								<string>9 45 1165 833 0 0 1440 878 </string>
+								<string>6 45 1165 833 0 0 1440 878 </string>
 							</dict>
 							<key>Module</key>
 							<string>PBXNavigatorGroup</string>
@@ -451,7 +494,7 @@
 								<key>Frame</key>
 								<string>{{0, 605}, {884, 187}}</string>
 								<key>RubberWindowFrame</key>
-								<string>9 45 1165 833 0 0 1440 878 </string>
+								<string>6 45 1165 833 0 0 1440 878 </string>
 							</dict>
 							<key>Module</key>
 							<string>XCDetailModule</string>
@@ -628,6 +671,7 @@
 	<integer>5</integer>
 	<key>WindowOrderList</key>
 	<array>
+		<string>3FC7E49E108EE7CC00D97F10</string>
 		<string>3FCB2CDC0D8113E900C2B5BD</string>
 		<string>3FC7E1C9108BFEBB00D97F10</string>
 		<string>3FC7E127108AE34D00D97F10</string>
@@ -635,11 +679,12 @@
 		<string>1CD10A99069EF8BA00B06720</string>
 		<string>1C530D57069F1CE1000CFCEE</string>
 		<string>3FE3C8E10D3DD03300D5105A</string>
+		<string>3FC7E45D108EE3BB00D97F10</string>
 		<string>1C78EAAD065D492600B07095</string>
 		<string>/Users/ebaur/Projects/Current Projects/TiVo Butler v1.1/TiVo Butler.xcodeproj</string>
 	</array>
 	<key>WindowString</key>
-	<string>9 45 1165 833 0 0 1440 878 </string>
+	<string>6 45 1165 833 0 0 1440 878 </string>
 	<key>WindowToolsV3</key>
 	<array>
 		<dict>
@@ -760,8 +805,8 @@
 										<string>yes</string>
 										<key>sizes</key>
 										<array>
-											<string>{{0, 0}, {451, 393}}</string>
-											<string>{{0, 393}, {451, 384}}</string>
+											<string>{{0, 0}, {471, 393}}</string>
+											<string>{{0, 393}, {471, 384}}</string>
 										</array>
 									</dict>
 									<key>VerticalSplitView</key>
@@ -776,8 +821,8 @@
 										<string>yes</string>
 										<key>sizes</key>
 										<array>
-											<string>{{0, 0}, {451, 777}}</string>
-											<string>{{451, 0}, {875, 777}}</string>
+											<string>{{0, 0}, {471, 777}}</string>
+											<string>{{471, 0}, {855, 777}}</string>
 										</array>
 									</dict>
 								</dict>
@@ -803,14 +848,14 @@
 									<key>DebugVariablesTableConfiguration</key>
 									<array>
 										<string>Name</string>
-										<real>167</real>
+										<real>141</real>
 										<string>Value</string>
 										<real>85</real>
 										<string>Summary</string>
-										<real>174</real>
+										<real>220</real>
 									</array>
 									<key>Frame</key>
-									<string>{{0, 393}, {451, 384}}</string>
+									<string>{{0, 393}, {471, 384}}</string>
 									<key>RubberWindowFrame</key>
 									<string>2 60 1326 818 0 0 1440 878 </string>
 								</dict>
@@ -1250,7 +1295,7 @@
 									<real>168</real>
 								</array>
 								<key>RubberWindowFrame</key>
-								<string>846 510 744 409 0 0 1920 1178 </string>
+								<string>501 319 744 409 0 0 1440 878 </string>
 							</dict>
 							<key>Module</key>
 							<string>PBXSmartGroupTreeModule</string>
@@ -1272,7 +1317,7 @@
 								<key>Frame</key>
 								<string>{{190, 0}, {554, 368}}</string>
 								<key>RubberWindowFrame</key>
-								<string>846 510 744 409 0 0 1920 1178 </string>
+								<string>501 319 744 409 0 0 1440 878 </string>
 							</dict>
 							<key>Module</key>
 							<string>XCDetailModule</string>
@@ -1299,17 +1344,17 @@
 			<true/>
 			<key>TableOfContents</key>
 			<array>
-				<string>3F9CCEB90DDF477B00A6B574</string>
-				<string>3F9CCEBA0DDF477B00A6B574</string>
+				<string>3FC7E49E108EE7CC00D97F10</string>
+				<string>3FC7E49F108EE7CC00D97F10</string>
 				<string>1CE0B1FE06471DED0097A5F4</string>
 				<string>1CA1AED706398EBD00589147</string>
 			</array>
 			<key>ToolbarConfiguration</key>
 			<string>xcode.toolbar.config.breakpointsV3</string>
 			<key>WindowString</key>
-			<string>846 510 744 409 0 0 1920 1178 </string>
+			<string>501 319 744 409 0 0 1440 878 </string>
 			<key>WindowToolGUID</key>
-			<string>3F9CCEB90DDF477B00A6B574</string>
+			<string>3FC7E49E108EE7CC00D97F10</string>
 			<key>WindowToolIsVisible</key>
 			<false/>
 		</dict>
