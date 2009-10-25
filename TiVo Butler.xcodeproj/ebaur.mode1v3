@@ -197,48 +197,7 @@
 	<key>Notifications</key>
 	<array/>
 	<key>OpenEditors</key>
-	<array>
-		<dict>
-			<key>Content</key>
-			<dict>
-				<key>PBXProjectModuleGUID</key>
-				<string>3FC7E45D108EE3BB00D97F10</string>
-				<key>PBXProjectModuleLabel</key>
-				<string>TiVo_Butler_DataModel.xcdatamodel</string>
-				<key>PBXSplitModuleInNavigatorKey</key>
-				<dict>
-					<key>Split0</key>
-					<dict>
-						<key>PBXProjectModuleGUID</key>
-						<string>3FC7E45E108EE3BB00D97F10</string>
-						<key>PBXProjectModuleLabel</key>
-						<string>TiVo_Butler_DataModel.xcdatamodel</string>
-						<key>_historyCapacity</key>
-						<integer>0</integer>
-						<key>bookmark</key>
-						<string>3FC7E513108EF18800D97F10</string>
-						<key>history</key>
-						<array>
-							<string>3FC7E450108EE11E00D97F10</string>
-						</array>
-					</dict>
-					<key>SplitCount</key>
-					<string>1</string>
-				</dict>
-				<key>StatusBarVisibility</key>
-				<true/>
-			</dict>
-			<key>Geometry</key>
-			<dict>
-				<key>Frame</key>
-				<string>{{0, 20}, {800, 693}}</string>
-				<key>PBXModuleWindowStatusBarHidden2</key>
-				<false/>
-				<key>RubberWindowFrame</key>
-				<string>631 144 800 734 0 0 1440 878 </string>
-			</dict>
-		</dict>
-	</array>
+	<array/>
 	<key>PerspectiveWidths</key>
 	<array>
 		<integer>1171</integer>
@@ -322,17 +281,11 @@
 								<string>29B97315FDCFA39411CA2CEA</string>
 								<string>29B97317FDCFA39411CA2CEA</string>
 								<string>1C37FBAC04509CD000000102</string>
-								<string>3FC7E0E6108AB61100D97F10</string>
-								<string>3FC7E0E7108AB61100D97F10</string>
-								<string>3FC7E180108AE91D00D97F10</string>
-								<string>3FC7E182108AE91D00D97F10</string>
-								<string>3FC7E121108AE32100D97F10</string>
 							</array>
 							<key>PBXSmartGroupTreeModuleOutlineStateSelectionKey</key>
 							<array>
 								<array>
-									<integer>39</integer>
-									<integer>36</integer>
+									<integer>23</integer>
 									<integer>0</integer>
 								</array>
 							</array>
@@ -376,7 +329,7 @@
 								<key>PBXProjectModuleGUID</key>
 								<string>1CE0B20306471E060097A5F4</string>
 								<key>PBXProjectModuleLabel</key>
-								<string>TiVo_FS_Filesystem.m</string>
+								<string>TiVo_FS_Filesystem.h</string>
 								<key>PBXSplitModuleInNavigatorKey</key>
 								<dict>
 									<key>Split0</key>
@@ -384,11 +337,11 @@
 										<key>PBXProjectModuleGUID</key>
 										<string>1CE0B20406471E060097A5F4</string>
 										<key>PBXProjectModuleLabel</key>
-										<string>TiVo_FS_Filesystem.m</string>
+										<string>TiVo_FS_Filesystem.h</string>
 										<key>_historyCapacity</key>
 										<integer>0</integer>
 										<key>bookmark</key>
-										<string>3FC7E512108EF18800D97F10</string>
+										<string>3F34FCA2109516A100FB8C89</string>
 										<key>history</key>
 										<array>
 											<string>3F8E38500D4DA080009B89B3</string>
@@ -424,7 +377,6 @@
 											<string>3F78752A0EA264EE00D550E0</string>
 											<string>3F78752B0EA264EE00D550E0</string>
 											<string>3F78756D0EA30C6E00D550E0</string>
-											<string>3F7875950EA59DD800D550E0</string>
 											<string>3F7875FC0EA5D2E100D550E0</string>
 											<string>3F787E560EACC2AF00D550E0</string>
 											<string>3F787E660EACC31800D550E0</string>
@@ -436,7 +388,6 @@
 											<string>3F4C12B00EDA4395008F9BA6</string>
 											<string>3F4C132E0EDA7E70008F9BA6</string>
 											<string>3F4C13840EDA8180008F9BA6</string>
-											<string>3F4C13910EDAF05E008F9BA6</string>
 											<string>3F4C13D30EDAF791008F9BA6</string>
 											<string>3F4C13D40EDAF791008F9BA6</string>
 											<string>3F4C13D50EDAF791008F9BA6</string>
@@ -447,7 +398,6 @@
 											<string>3FC7E100108AE1F400D97F10</string>
 											<string>3FC7E102108AE1F400D97F10</string>
 											<string>3FC7E106108AE1F400D97F10</string>
-											<string>3FC7E187108AE91D00D97F10</string>
 											<string>3FC7E19F108BEEEE00D97F10</string>
 											<string>3FC7E1A0108BEEEE00D97F10</string>
 											<string>3FC7E1A2108BEEEE00D97F10</string>
@@ -456,11 +406,15 @@
 											<string>3FC7E28C108C269700D97F10</string>
 											<string>3FC7E2BB108C2DBC00D97F10</string>
 											<string>3FC7E318108C380C00D97F10</string>
-											<string>3FC7E350108D86F200D97F10</string>
 											<string>3FC7E459108EE3BB00D97F10</string>
-											<string>3FC7E45A108EE3BB00D97F10</string>
 											<string>3FC7E4AC108EE88700D97F10</string>
-											<string>3FC7E50D108EF10800D97F10</string>
+											<string>3FC7E5761091747C00D97F10</string>
+											<string>3FC7E5771091747C00D97F10</string>
+											<string>3F34FC671093F8C000FB8C89</string>
+											<string>3F34FC681093F8C000FB8C89</string>
+											<string>3F34FC8D10941A8000FB8C89</string>
+											<string>3F34FCA1109516A100FB8C89</string>
+											<string>3F34FC9C1095146B00FB8C89</string>
 										</array>
 									</dict>
 									<key>SplitCount</key>
@@ -472,14 +426,14 @@
 							<key>GeometryConfiguration</key>
 							<dict>
 								<key>Frame</key>
-								<string>{{0, 0}, {884, 600}}</string>
+								<string>{{0, 0}, {884, 595}}</string>
 								<key>RubberWindowFrame</key>
 								<string>6 45 1165 833 0 0 1440 878 </string>
 							</dict>
 							<key>Module</key>
 							<string>PBXNavigatorGroup</string>
 							<key>Proportion</key>
-							<string>600pt</string>
+							<string>595pt</string>
 						</dict>
 						<dict>
 							<key>ContentConfiguration</key>
@@ -492,14 +446,14 @@
 							<key>GeometryConfiguration</key>
 							<dict>
 								<key>Frame</key>
-								<string>{{0, 605}, {884, 187}}</string>
+								<string>{{0, 600}, {884, 192}}</string>
 								<key>RubberWindowFrame</key>
 								<string>6 45 1165 833 0 0 1440 878 </string>
 							</dict>
 							<key>Module</key>
 							<string>XCDetailModule</string>
 							<key>Proportion</key>
-							<string>187pt</string>
+							<string>192pt</string>
 						</dict>
 					</array>
 					<key>Proportion</key>
@@ -518,9 +472,9 @@
 			</array>
 			<key>TableOfContents</key>
 			<array>
-				<string>3FC7E10B108AE1F400D97F10</string>
+				<string>3F34FC6C1093F8C100FB8C89</string>
 				<string>1CE0B1FE06471DED0097A5F4</string>
-				<string>3FC7E10C108AE1F400D97F10</string>
+				<string>3F34FC6D1093F8C100FB8C89</string>
 				<string>1CE0B20306471E060097A5F4</string>
 				<string>1CE0B20506471E060097A5F4</string>
 			</array>
@@ -671,16 +625,11 @@
 	<integer>5</integer>
 	<key>WindowOrderList</key>
 	<array>
-		<string>3FC7E49E108EE7CC00D97F10</string>
-		<string>3FCB2CDC0D8113E900C2B5BD</string>
-		<string>3FC7E1C9108BFEBB00D97F10</string>
-		<string>3FC7E127108AE34D00D97F10</string>
-		<string>3FC7E128108AE34D00D97F10</string>
-		<string>1CD10A99069EF8BA00B06720</string>
-		<string>1C530D57069F1CE1000CFCEE</string>
-		<string>3FE3C8E10D3DD03300D5105A</string>
-		<string>3FC7E45D108EE3BB00D97F10</string>
+		<string>3F34FC9910941A8000FB8C89</string>
+		<string>3F34FC9A10941A8000FB8C89</string>
 		<string>1C78EAAD065D492600B07095</string>
+		<string>1CD10A99069EF8BA00B06720</string>
+		<string>3FE3C8E10D3DD03300D5105A</string>
 		<string>/Users/ebaur/Projects/Current Projects/TiVo Butler v1.1/TiVo Butler.xcodeproj</string>
 	</array>
 	<key>WindowString</key>
@@ -705,7 +654,7 @@
 								<key>PBXProjectModuleGUID</key>
 								<string>1CD0528F0623707200166675</string>
 								<key>PBXProjectModuleLabel</key>
-								<string>TiVo_FS_Filesystem.m</string>
+								<string></string>
 								<key>StatusBarVisibility</key>
 								<true/>
 							</dict>
@@ -722,8 +671,6 @@
 							<string>400pt</string>
 						</dict>
 						<dict>
-							<key>BecomeActive</key>
-							<true/>
 							<key>ContentConfiguration</key>
 							<dict>
 								<key>PBXProjectModuleGUID</key>
@@ -763,7 +710,7 @@
 			<key>TableOfContents</key>
 			<array>
 				<string>3FE3C8E10D3DD03300D5105A</string>
-				<string>3FC7E0EB108AD50500D97F10</string>
+				<string>3F34FC6F1093F8C100FB8C89</string>
 				<string>1CD0528F0623707200166675</string>
 				<string>XCMainBuildResultsModuleGUID</string>
 			</array>
@@ -805,8 +752,8 @@
 										<string>yes</string>
 										<key>sizes</key>
 										<array>
-											<string>{{0, 0}, {471, 393}}</string>
-											<string>{{0, 393}, {471, 384}}</string>
+											<string>{{0, 0}, {477, 394}}</string>
+											<string>{{0, 394}, {477, 383}}</string>
 										</array>
 									</dict>
 									<key>VerticalSplitView</key>
@@ -821,8 +768,8 @@
 										<string>yes</string>
 										<key>sizes</key>
 										<array>
-											<string>{{0, 0}, {471, 777}}</string>
-											<string>{{471, 0}, {855, 777}}</string>
+											<string>{{0, 0}, {477, 777}}</string>
+											<string>{{477, 0}, {849, 777}}</string>
 										</array>
 									</dict>
 								</dict>
@@ -852,10 +799,10 @@
 										<string>Value</string>
 										<real>85</real>
 										<string>Summary</string>
-										<real>220</real>
+										<real>226</real>
 									</array>
 									<key>Frame</key>
-									<string>{{0, 393}, {471, 384}}</string>
+									<string>{{0, 394}, {477, 383}}</string>
 									<key>RubberWindowFrame</key>
 									<string>2 60 1326 818 0 0 1440 878 </string>
 								</dict>
@@ -883,13 +830,13 @@
 			<key>TableOfContents</key>
 			<array>
 				<string>1CD10A99069EF8BA00B06720</string>
-				<string>3FC7E119108AE2F100D97F10</string>
+				<string>3F34FC9110941A8000FB8C89</string>
 				<string>1C162984064C10D400B95A72</string>
-				<string>3FC7E11A108AE2F100D97F10</string>
-				<string>3FC7E11B108AE2F100D97F10</string>
-				<string>3FC7E11C108AE2F100D97F10</string>
-				<string>3FC7E11D108AE2F100D97F10</string>
-				<string>3FC7E11E108AE2F100D97F10</string>
+				<string>3F34FC9210941A8000FB8C89</string>
+				<string>3F34FC9310941A8000FB8C89</string>
+				<string>3F34FC9410941A8000FB8C89</string>
+				<string>3F34FC9510941A8000FB8C89</string>
+				<string>3F34FC9610941A8000FB8C89</string>
 			</array>
 			<key>ToolbarConfiguration</key>
 			<string>xcode.toolbar.config.debugV3</string>
@@ -1045,7 +992,7 @@
 			<key>TableOfContents</key>
 			<array>
 				<string>1C78EAAD065D492600B07095</string>
-				<string>3FC7E120108AE2F100D97F10</string>
+				<string>3F34FC9710941A8000FB8C89</string>
 				<string>1C78EAAC065D492600B07095</string>
 			</array>
 			<key>ToolbarConfiguration</key>
@@ -1055,7 +1002,7 @@
 			<key>WindowToolGUID</key>
 			<string>1C78EAAD065D492600B07095</string>
 			<key>WindowToolIsVisible</key>
-			<true/>
+			<false/>
 		</dict>
 		<dict>
 			<key>FirstTimeWindowDisplayed</key>
