@@ -19,7 +19,14 @@
 // GMUserFileSystemOperations found in the documentation at:
 // http://macfuse.googlecode.com/svn/trunk/core/sdk-objc/Documentation/index.html
 @interface TiVo_FS_Filesystem : NSObject  {
+	TiVoProgram *selectedProgram;
 
+	NSURLDownload *programDownload;
+	
+	unsigned long long receivedBytes;
+	unsigned long long expectedBytes;
+	
+	NSString *downloadPath;
 }
 
 - (NSArray *)baseDirectories;

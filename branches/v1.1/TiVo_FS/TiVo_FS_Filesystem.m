@@ -7,6 +7,9 @@
 //
 #import <sys/xattr.h>
 #import <sys/stat.h>
+
+#import <stdio.h>
+
 #import "TiVo_FS_Filesystem.h"
 #import <MacFUSE/MacFUSE.h>
 
@@ -215,6 +218,25 @@ static NSString * TVFSPathDates = @"/Dates";
 	return returnArray;
 }
 
+- (TiVoProgram *)programWithFileName:(NSString *)filename
+{
+	NSScanner *scanner = [NSScanner scannerWithString:filename];
+	NSString *programName;
+	[scanner scanUpToString:@"(" intoString:&programName];
+	[scanner setScanLocation:[scanner scanLocation]+1 ];
+	NSString *internalID;
+	[scanner scanUpToString:@")" intoString:&internalID];
+
+	//for some reason, this breaks if I create a predicateWithFormat: ???
+	NSString *predicateString = [NSString stringWithFormat:@"internalID == %@", internalID];
+	NSArray *tempArray = [EntityHelper
+		arrayOfEntityWithName:TiVoProgramEntityName
+		usingPredicateString:predicateString
+	];
+
+	return [tempArray lastObject];
+}
+
 #pragma mark Getting Attributes
 
 - (NSDictionary *)attributesOfItemAtPath:(NSString *)path
@@ -241,26 +263,7 @@ static NSString * TVFSPathDates = @"/Dates";
 	{
 		if ( [[path pathComponents] count]==4 )
 		{
-			NSScanner *scanner = [NSScanner scannerWithString:[path lastPathComponent]];
-			NSString *programName;
-			[scanner scanUpToString:@"(" intoString:&programName];
-			[scanner setScanLocation:[scanner scanLocation]+1 ];
-			NSString *internalID;
-			[scanner scanUpToString:@")" intoString:&internalID];
-			
-			//NSPredicate *predicate = [NSPredicate predicateWithFormat:@"title == %@", programName];
-			NSPredicate *predicate = [NSPredicate predicateWithFormat:@"internalID == %@", internalID ];
-			NSArray *tempArray = [EntityHelper
-				arrayOfEntityWithName:TiVoProgramEntityName
-				usingPredicate:predicate
-			];
-			
-			TiVoProgram *program = [tempArray lastObject];
-			if ( !program )
-				return nil;
-				
-			DEBUG( @"found '%@' with ID: %d, expected ID: %@", [scanner string], program.internalID, internalID );
-			
+			TiVoProgram *program = [self programWithFileName:[path lastPathComponent] ];
 			[attributes setValue:NSFileTypeRegular forKey:NSFileType];
 			[attributes setValue:program.sourceSize forKey:NSFileSize];
 			[attributes setValue:program.captureDate forKey:NSFileModificationDate];
@@ -295,36 +298,149 @@ static NSString * TVFSPathDates = @"/Dates";
 // method you must return the full contents of the file with each invocation. For
 // a more complex (or efficient) file system, consider supporting the openFileAtPath:,
 // releaseFileAtPath:, and readFileAtPath: delegate methods.
-#define SIMPLE_FILE_CONTENTS 1
+#define SIMPLE_FILE_CONTENTS 0
 #if SIMPLE_FILE_CONTENTS
 
-- (NSData *)contentsAtPath:(NSString *)path {
-  return nil;  // Equivalent to ENOENT
+- (NSData *)contentsAtPath:(NSString *)path
+{
+	return nil;
 }
 
 #else
 
-- (BOOL)openFileAtPath:(NSString *)path 
-                  mode:(int)mode
-              userData:(id *)userData
-                 error:(NSError **)error {
-  *error = [NSError errorWithPOSIXCode:ENOENT];
-  return NO;
+- (BOOL)openFileAtPath:(NSString *)path mode:(int)mode userData:(id *)userData error:(NSError **)error
+{	
+	ENTRY;
+	if ( selectedProgram )
+	{
+		ERROR( @"selected a new program, but the old one wasn't closed..." );
+	}
+	
+	selectedProgram = [[self programWithFileName:[path lastPathComponent]] retain];
+	
+	if ( !selectedProgram )
+		return nil;
+		
+	expectedBytes = [selectedProgram.sourceSize longLongValue];
+	
+	NSString *tempURLString = selectedProgram.contentURL;
+	if ( !tempURLString ) {
+		ERROR( @"no URL string set, can't download" );
+		return nil;
+	}
+	NSURL *url = [NSURL URLWithString:tempURLString];
+	INFO( @"Downloading from URL: %@", [url description] );
+	
+	NSURLRequest *request = [NSURLRequest requestWithURL:url];
+	
+	programDownload = [[NSURLDownload alloc] initWithRequest:request delegate:self];
+	if ( !programDownload ) {
+		ERROR( @"can't download program, download connection not created" );
+		return nil;
+	}
+	
 }
 
-- (void)releaseFileAtPath:(NSString *)path userData:(id)userData {
+- (void)releaseFileAtPath:(NSString *)path userData:(id)userData
+{
+	ENTRY;
+	//we're going to close out of the download...
+	[programDownload cancel];
+	[programDownload release], programDownload = nil;
+	expectedBytes = 0, receivedBytes = 0;
+	[selectedProgram release], selectedProgram = nil;
+	[downloadPath release], downloadPath = nil;
 }
 
-- (int)readFileAtPath:(NSString *)path 
-             userData:(id)userData
-               buffer:(char *)buffer 
-                 size:(size_t)size 
-               offset:(off_t)offset
-                error:(NSError **)error {
-  return 0;  // We've reached end of file.
+- (int)readFileAtPath:(NSString *)path userData:(id)userData buffer:(char *)buffer size:(size_t)size offset:(off_t)offset error:(NSError **)error
+{
+	FILE *file;
+	unsigned long fileLen;
+	
+	//Open file
+	file = fopen([path cStringUsingEncoding:NSASCIIStringEncoding], "rb");
+	if (!file)
+	{
+		ERROR( @"Unable to open file %@", path);
+		return 0;
+	}
+	
+	//Get file length
+	fseek(file, 0, SEEK_END);
+	fileLen=ftell(file);
+	fseek(file, 0, SEEK_SET);
+
+	if ( fileLen < (size+offset) )
+	{
+		WARNING( @"area of the file requested that has not been downloaded yet..." );
+		//we may want to wait until it's done downloading?
+		return 0;
+	}
+	
+	fseek(file, offset, SEEK_SET);
+	//Read file contents into buffer
+	fread(buffer, size, 1, file);
+	fclose(file);
+
+	return 1;
 }
 
 #endif  // #if SIMPLE_FILE_CONTENTS
+
+#pragma mark Download delegate methods
+- (void)download:(NSURLDownload *)download didFailWithError:(NSError *)error
+{
+	ERROR( @"download failed: %@\nfor URL: %@",
+		  [error localizedDescription],
+		  [[error userInfo] objectForKey:NSErrorFailingURLStringKey]
+		  );
+	[programDownload release], programDownload = nil;
+	
+	ERROR( [error localizedDescription] );
+}
+
+- (void)download:(NSURLDownload *)download didCreateDestination:(NSString *)path
+{
+	DEBUG( @"writing to path: %@", path );
+	[downloadPath release], downloadPath = [path retain];
+}
+
+- (void)download:(NSURLDownload *)download didReceiveDataOfLength:(NSUInteger)length
+{
+	receivedBytes += length;
+	int actionPercent = 100 * ( receivedBytes/expectedBytes );
+	INFO( @"currentActionPercent: %d for ( %lld / %lld )", actionPercent, receivedBytes, expectedBytes );
+}
+
+- (void)downloadDidFinish:(NSURLDownload *)download
+{
+	INFO( @"download finished: %@", [programDownload description] );
+	//not sure I want to nil this out, until the file is closed as well
+	//[programDownload release], programDownload = nil;
+}
+
+- (void)download:(NSURLDownload *)download didReceiveAuthenticationChallenge:(NSURLAuthenticationChallenge *)challenge
+{
+	ENTRY;
+	NSString *mak = [self valueForKeyPath:@"item.program.player.mediaAccessKey"];
+	
+	if ( [challenge previousFailureCount] == 0 ) {
+		NSURLCredential *newCredential =
+		[[NSURLCredential
+		  credentialWithUser:@"tivo"
+		  password:mak
+		  persistence:NSURLCredentialPersistenceNone
+		  ] autorelease
+		 ];
+		
+		[[challenge sender] useCredential:newCredential forAuthenticationChallenge:challenge];
+	} else {
+		ERROR( @"The supplied MAK was incorrect for the given IP address" );
+		[[challenge sender] cancelAuthenticationChallenge:challenge];
+		//not sure what I need to do to finish this out...
+	}
+}
+
 
 #pragma mark Symbolic Links (Optional)
 
@@ -337,7 +453,7 @@ static NSString * TVFSPathDates = @"/Dates";
 #pragma mark Extended Attributes (Optional)
 
 - (NSArray *)extendedAttributesOfItemAtPath:(NSString *)path error:(NSError **)error {
-  return [NSArray array];  // No extended attributes.
+	return [NSArray array];  // No extended attributes.
 }
 
 - (NSData *)valueOfExtendedAttribute:(NSString *)name 
