@@ -19,8 +19,6 @@
 			3FF645150D5AD84900F2EAD9 /* malloc_error_break */,
 			3F4867810D5D6D0D00C949DF /* NSException */,
 			3F4867890D5D6D5B00C949DF /* objc_exception_throw */,
-			3F4C14100EDBA0F1008F9BA6 /* WorkQueueStep_Workflows.m:229 */,
-			3FC7E50B108EF10200D97F10 /* TiVo_FS_Filesystem.m:266 */,
 		);
 		codeSenseManager = 3FE3C8EE0D3DD03400D5105A /* Code sense */;
 		executables = (
@@ -194,6 +192,7 @@
 			PBXWorkspaceStateSaveDate = 278129225;
 		};
 		perUserProjectItems = {
+			3F34FC5D1093EA4800FB8C89 /* PBXTextBookmark */ = 3F34FC5D1093EA4800FB8C89 /* PBXTextBookmark */;
 			3F34FC671093F8C000FB8C89 /* PBXTextBookmark */ = 3F34FC671093F8C000FB8C89 /* PBXTextBookmark */;
 			3F34FC681093F8C000FB8C89 /* PBXTextBookmark */ = 3F34FC681093F8C000FB8C89 /* PBXTextBookmark */;
 			3F34FC691093F8C000FB8C89 /* PBXTextBookmark */ = 3F34FC691093F8C000FB8C89 /* PBXTextBookmark */;
@@ -215,6 +214,47 @@
 			3F34FC9E1095146B00FB8C89 /* PBXTextBookmark */ = 3F34FC9E1095146B00FB8C89 /* PBXTextBookmark */;
 			3F34FCA1109516A100FB8C89 /* PBXTextBookmark */ = 3F34FCA1109516A100FB8C89 /* PBXTextBookmark */;
 			3F34FCA2109516A100FB8C89 /* PBXTextBookmark */ = 3F34FCA2109516A100FB8C89 /* PBXTextBookmark */;
+			3F34FCA31095173A00FB8C89 /* PBXTextBookmark */ = 3F34FCA31095173A00FB8C89 /* PBXTextBookmark */;
+			3F34FCA41095173A00FB8C89 /* PBXTextBookmark */ = 3F34FCA41095173A00FB8C89 /* PBXTextBookmark */;
+			3F34FCA51095173A00FB8C89 /* PBXTextBookmark */ = 3F34FCA51095173A00FB8C89 /* PBXTextBookmark */;
+			3F34FCB110951C3100FB8C89 /* PBXTextBookmark */ = 3F34FCB110951C3100FB8C89 /* PBXTextBookmark */;
+			3F34FCB210951C3100FB8C89 /* PBXTextBookmark */ = 3F34FCB210951C3100FB8C89 /* PBXTextBookmark */;
+			3F34FCB310951C3100FB8C89 /* PBXTextBookmark */ = 3F34FCB310951C3100FB8C89 /* PBXTextBookmark */;
+			3F34FCBE1095307300FB8C89 /* PBXTextBookmark */ = 3F34FCBE1095307300FB8C89 /* PBXTextBookmark */;
+			3F34FCBF1095307300FB8C89 /* PBXTextBookmark */ = 3F34FCBF1095307300FB8C89 /* PBXTextBookmark */;
+			3F34FCC01095307300FB8C89 /* PBXTextBookmark */ = 3F34FCC01095307300FB8C89 /* PBXTextBookmark */;
+			3F34FCD210953F6500FB8C89 /* PBXTextBookmark */ = 3F34FCD210953F6500FB8C89 /* PBXTextBookmark */;
+			3F34FCD310953F6500FB8C89 /* PBXTextBookmark */ = 3F34FCD310953F6500FB8C89 /* PBXTextBookmark */;
+			3F34FCD410953F6500FB8C89 /* PBXTextBookmark */ = 3F34FCD410953F6500FB8C89 /* PBXTextBookmark */;
+			3F34FCD510953F6500FB8C89 /* PBXTextBookmark */ = 3F34FCD510953F6500FB8C89 /* PBXTextBookmark */;
+			3F34FCD610953F6500FB8C89 /* PBXTextBookmark */ = 3F34FCD610953F6500FB8C89 /* PBXTextBookmark */;
+			3F34FCD710953F6500FB8C89 /* PBXTextBookmark */ = 3F34FCD710953F6500FB8C89 /* PBXTextBookmark */;
+			3F34FCD810953F6500FB8C89 /* PBXTextBookmark */ = 3F34FCD810953F6500FB8C89 /* PBXTextBookmark */;
+			3F34FCDF10953F9F00FB8C89 /* PBXTextBookmark */ = 3F34FCDF10953F9F00FB8C89 /* PBXTextBookmark */;
+			3F34FCE010953F9F00FB8C89 /* PBXTextBookmark */ = 3F34FCE010953F9F00FB8C89 /* PBXTextBookmark */;
+			3F34FCE310953FB700FB8C89 /* PBXTextBookmark */ = 3F34FCE310953FB700FB8C89 /* PBXTextBookmark */;
+			3F34FCE610953FE100FB8C89 /* PBXTextBookmark */ = 3F34FCE610953FE100FB8C89 /* PBXTextBookmark */;
+			3F34FCE710953FE100FB8C89 /* PBXTextBookmark */ = 3F34FCE710953FE100FB8C89 /* PBXTextBookmark */;
+			3F34FCE910953FFA00FB8C89 /* PBXTextBookmark */ = 3F34FCE910953FFA00FB8C89 /* PBXTextBookmark */;
+			3F34FCEA1095401E00FB8C89 /* PBXTextBookmark */ = 3F34FCEA1095401E00FB8C89 /* PBXTextBookmark */;
+			3F34FCEB1095415400FB8C89 /* PBXTextBookmark */ = 3F34FCEB1095415400FB8C89 /* PBXTextBookmark */;
+			3F34FCEC1095415400FB8C89 /* PBXTextBookmark */ = 3F34FCEC1095415400FB8C89 /* PBXTextBookmark */;
+			3F34FCED1095415400FB8C89 /* PBXTextBookmark */ = 3F34FCED1095415400FB8C89 /* PBXTextBookmark */;
+			3F34FCF0109541A600FB8C89 /* PBXTextBookmark */ = 3F34FCF0109541A600FB8C89 /* PBXTextBookmark */;
+			3F34FCF21095420000FB8C89 /* PBXTextBookmark */ = 3F34FCF21095420000FB8C89 /* PBXTextBookmark */;
+			3F34FCF31095421200FB8C89 /* PBXTextBookmark */ = 3F34FCF31095421200FB8C89 /* PBXTextBookmark */;
+			3F34FCF81095428900FB8C89 /* PBXTextBookmark */ = 3F34FCF81095428900FB8C89 /* PBXTextBookmark */;
+			3F34FCFE109543C300FB8C89 /* PBXTextBookmark */ = 3F34FCFE109543C300FB8C89 /* PBXTextBookmark */;
+			3F34FCFF109543C300FB8C89 /* PBXTextBookmark */ = 3F34FCFF109543C300FB8C89 /* PBXTextBookmark */;
+			3F34FD051095440900FB8C89 /* PBXTextBookmark */ = 3F34FD051095440900FB8C89 /* PBXTextBookmark */;
+			3F34FD061095440900FB8C89 /* PBXTextBookmark */ = 3F34FD061095440900FB8C89 /* PBXTextBookmark */;
+			3F34FD0A1095443B00FB8C89 /* PBXTextBookmark */ = 3F34FD0A1095443B00FB8C89 /* PBXTextBookmark */;
+			3F34FD0B1095443B00FB8C89 /* PBXTextBookmark */ = 3F34FD0B1095443B00FB8C89 /* PBXTextBookmark */;
+			3F34FD0C1095443B00FB8C89 /* PBXTextBookmark */ = 3F34FD0C1095443B00FB8C89 /* PBXTextBookmark */;
+			3F34FD0D1095445400FB8C89 /* PBXTextBookmark */ = 3F34FD0D1095445400FB8C89 /* PBXTextBookmark */;
+			3F34FD10109544A100FB8C89 /* PBXTextBookmark */ = 3F34FD10109544A100FB8C89 /* PBXTextBookmark */;
+			3F34FD181095473000FB8C89 /* PBXTextBookmark */ = 3F34FD181095473000FB8C89 /* PBXTextBookmark */;
+			3F34FD1C1095498300FB8C89 /* PBXTextBookmark */ = 3F34FD1C1095498300FB8C89 /* PBXTextBookmark */;
 			3F41D7270DCCBD9D00CB0659 = 3F41D7270DCCBD9D00CB0659 /* PBXTextBookmark */;
 			3F41D8FF0DCD5EE800CB0659 = 3F41D8FF0DCD5EE800CB0659 /* PBXTextBookmark */;
 			3F41D9010DCD5EE800CB0659 = 3F41D9010DCD5EE800CB0659 /* PBXTextBookmark */;
@@ -321,6 +361,13 @@
 			sepNavVisRange = "{0, 925}";
 		};
 	};
+	3F34FC5D1093EA4800FB8C89 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 3F90B2020DD9DE7A0088F103 /* WorkQueueStep_Workflows.m */;
+		rLen = 1;
+		rLoc = 228;
+		rType = 1;
+	};
 	3F34FC671093F8C000FB8C89 /* PBXTextBookmark */ = {
 		isa = PBXTextBookmark;
 		fRef = 3F90B2020DD9DE7A0088F103 /* WorkQueueStep_Workflows.m */;
@@ -346,7 +393,7 @@
 		fRef = 3FC7E0A2108A591500D97F10 /* TiVo_FS_Filesystem.h */;
 		name = "TiVo_FS_Filesystem.h: 29";
 		rLen = 0;
-		rLoc = 784;
+		rLoc = 909;
 		rType = 0;
 		vrLen = 953;
 		vrLoc = 0;
@@ -356,7 +403,7 @@
 		fRef = 3FC7E0A3108A591500D97F10 /* TiVo_FS_Filesystem.m */;
 		name = "TiVo_FS_Filesystem.m: 316";
 		rLen = 0;
-		rLoc = 10000;
+		rLoc = 10299;
 		rType = 0;
 		vrLen = 1422;
 		vrLoc = 10821;
@@ -366,7 +413,7 @@
 		fRef = 3FC7E0A3108A591500D97F10 /* TiVo_FS_Filesystem.m */;
 		name = "TiVo_FS_Filesystem.m: 368";
 		rLen = 0;
-		rLoc = 12210;
+		rLoc = 13806;
 		rType = 0;
 		vrLen = 1426;
 		vrLoc = 10937;
@@ -541,7 +588,7 @@
 		fRef = 3FC7E0A3108A591500D97F10 /* TiVo_FS_Filesystem.m */;
 		name = "TiVo_FS_Filesystem.m: 317";
 		rLen = 0;
-		rLoc = 10019;
+		rLoc = 10299;
 		rType = 0;
 		vrLen = 1149;
 		vrLoc = 9569;
@@ -716,7 +763,7 @@
 		fRef = 3FC7E0A3108A591500D97F10 /* TiVo_FS_Filesystem.m */;
 		name = "TiVo_FS_Filesystem.m: 316";
 		rLen = 0;
-		rLoc = 10017;
+		rLoc = 10299;
 		rType = 0;
 		vrLen = 1149;
 		vrLoc = 9569;
@@ -891,7 +938,7 @@
 		fRef = 3FC7E0A2108A591500D97F10 /* TiVo_FS_Filesystem.h */;
 		name = "TiVo_FS_Filesystem.h: 22";
 		rLen = 0;
-		rLoc = 650;
+		rLoc = 713;
 		rType = 0;
 		vrLen = 961;
 		vrLoc = 0;
@@ -901,7 +948,7 @@
 		fRef = 3FC7E0A3108A591500D97F10 /* TiVo_FS_Filesystem.m */;
 		name = "TiVo_FS_Filesystem.m: 344";
 		rLen = 0;
-		rLoc = 10874;
+		rLoc = 12255;
 		rType = 0;
 		vrLen = 1314;
 		vrLoc = 9944;
@@ -911,7 +958,7 @@
 		fRef = 3FC7E0A3108A591500D97F10 /* TiVo_FS_Filesystem.m */;
 		name = "TiVo_FS_Filesystem.m: 321";
 		rLen = 0;
-		rLoc = 9990;
+		rLoc = 10299;
 		rType = 0;
 		vrLen = 1235;
 		vrLoc = 10512;
@@ -937,7 +984,7 @@
 		fRef = 3FC7E0A3108A591500D97F10 /* TiVo_FS_Filesystem.m */;
 		name = "TiVo_FS_Filesystem.m: 354";
 		rLen = 4;
-		rLoc = 11027;
+		rLoc = 12415;
 		rType = 0;
 		vrLen = 942;
 		vrLoc = 10642;
@@ -947,7 +994,7 @@
 		fRef = 3FC7E0A3108A591500D97F10 /* TiVo_FS_Filesystem.m */;
 		name = "TiVo_FS_Filesystem.m: 361";
 		rLen = 0;
-		rLoc = 11140;
+		rLoc = 12739;
 		rType = 0;
 		vrLen = 1097;
 		vrLoc = 10689;
@@ -957,7 +1004,7 @@
 		fRef = 3FC7E0A2108A591500D97F10 /* TiVo_FS_Filesystem.h */;
 		name = "TiVo_FS_Filesystem.h: 25";
 		rLen = 0;
-		rLoc = 784;
+		rLoc = 909;
 		rType = 0;
 		vrLen = 922;
 		vrLoc = 0;
@@ -967,7 +1014,7 @@
 		fRef = 3FC7E0A3108A591500D97F10 /* TiVo_FS_Filesystem.m */;
 		name = "TiVo_FS_Filesystem.m: 370";
 		rLen = 0;
-		rLoc = 11292;
+		rLoc = 12891;
 		rType = 0;
 		vrLen = 1053;
 		vrLoc = 11063;
@@ -977,7 +1024,7 @@
 		fRef = 3FC7E0A3108A591500D97F10 /* TiVo_FS_Filesystem.m */;
 		name = "TiVo_FS_Filesystem.m: 370";
 		rLen = 0;
-		rLoc = 11292;
+		rLoc = 12891;
 		rType = 0;
 		vrLen = 1053;
 		vrLoc = 11063;
@@ -987,7 +1034,7 @@
 		fRef = 3FC7E0A3108A591500D97F10 /* TiVo_FS_Filesystem.m */;
 		name = "TiVo_FS_Filesystem.m: 370";
 		rLen = 0;
-		rLoc = 11292;
+		rLoc = 12891;
 		rType = 0;
 		vrLen = 1218;
 		vrLoc = 10075;
@@ -997,10 +1044,420 @@
 		fRef = 3FC7E0A2108A591500D97F10 /* TiVo_FS_Filesystem.h */;
 		name = "TiVo_FS_Filesystem.h: 22";
 		rLen = 0;
-		rLoc = 643;
+		rLoc = 619;
 		rType = 0;
 		vrLen = 961;
 		vrLoc = 0;
+	};
+	3F34FCA31095173A00FB8C89 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 3FC7E0A2108A591500D97F10 /* TiVo_FS_Filesystem.h */;
+		name = "TiVo_FS_Filesystem.h: 22";
+		rLen = 289;
+		rLoc = 620;
+		rType = 0;
+		vrLen = 922;
+		vrLoc = 0;
+	};
+	3F34FCA41095173A00FB8C89 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 3FC7E0A3108A591500D97F10 /* TiVo_FS_Filesystem.m */;
+		name = "TiVo_FS_Filesystem.m: 64";
+		rLen = 0;
+		rLoc = 2065;
+		rType = 0;
+		vrLen = 1182;
+		vrLoc = 1250;
+	};
+	3F34FCA51095173A00FB8C89 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 3FC7E0A3108A591500D97F10 /* TiVo_FS_Filesystem.m */;
+		name = "TiVo_FS_Filesystem.m: 66";
+		rLen = 0;
+		rLoc = 2065;
+		rType = 0;
+		vrLen = 1227;
+		vrLoc = 1250;
+	};
+	3F34FCB110951C3100FB8C89 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 3FC7E0A2108A591500D97F10 /* TiVo_FS_Filesystem.h */;
+		name = "TiVo_FS_Filesystem.h: 23";
+		rLen = 0;
+		rLoc = 908;
+		rType = 0;
+		vrLen = 976;
+		vrLoc = 0;
+	};
+	3F34FCB210951C3100FB8C89 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 3FC7E0A3108A591500D97F10 /* TiVo_FS_Filesystem.m */;
+		name = "TiVo_FS_Filesystem.m: 343";
+		rLen = 0;
+		rLoc = 10910;
+		rType = 0;
+		vrLen = 1192;
+		vrLoc = 9852;
+	};
+	3F34FCB310951C3100FB8C89 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 3FC7E0A3108A591500D97F10 /* TiVo_FS_Filesystem.m */;
+		name = "TiVo_FS_Filesystem.m: 325";
+		rLen = 0;
+		rLoc = 10122;
+		rType = 0;
+		vrLen = 1110;
+		vrLoc = 9737;
+	};
+	3F34FCBE1095307300FB8C89 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 3FC7E0A2108A591500D97F10 /* TiVo_FS_Filesystem.h */;
+		name = "TiVo_FS_Filesystem.h: 24";
+		rLen = 0;
+		rLoc = 874;
+		rType = 0;
+		vrLen = 1086;
+		vrLoc = 0;
+	};
+	3F34FCBF1095307300FB8C89 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 3FC7E0A3108A591500D97F10 /* TiVo_FS_Filesystem.m */;
+		name = "TiVo_FS_Filesystem.m: 359";
+		rLen = 0;
+		rLoc = 10910;
+		rType = 0;
+		vrLen = 1007;
+		vrLoc = 11742;
+	};
+	3F34FCC01095307300FB8C89 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 3FC7E0A3108A591500D97F10 /* TiVo_FS_Filesystem.m */;
+		name = "TiVo_FS_Filesystem.m: 336";
+		rLen = 0;
+		rLoc = 10299;
+		rType = 0;
+		vrLen = 1336;
+		vrLoc = 9971;
+	};
+	3F34FCD210953F6500FB8C89 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 3F6A88F90D53472300212FBA /* TiVoProgram.m */;
+		name = "TiVoProgram.m: 21";
+		rLen = 0;
+		rLoc = 399;
+		rType = 0;
+		vrLen = 819;
+		vrLoc = 164;
+	};
+	3F34FCD310953F6500FB8C89 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 3F4C135C0EDA7F95008F9BA6 /* WorkQueueStep.m */;
+		name = "WorkQueueStep.m: 178";
+		rLen = 22;
+		rLoc = 4429;
+		rType = 0;
+		vrLen = 1421;
+		vrLoc = 1633;
+	};
+	3F34FCD410953F6500FB8C89 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 3F90B2020DD9DE7A0088F103 /* WorkQueueStep_Workflows.m */;
+		name = "WorkQueueStep_Workflows.m: 87";
+		rLen = 4;
+		rLoc = 2949;
+		rType = 0;
+		vrLen = 1324;
+		vrLoc = 2086;
+	};
+	3F34FCD510953F6500FB8C89 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 3F90ADF60DD325000088F103 /* WorkQueueFile.m */;
+		name = "WorkQueueFile.m: 81";
+		rLen = 429;
+		rLoc = 2218;
+		rType = 0;
+		vrLen = 1336;
+		vrLoc = 1880;
+	};
+	3F34FCD610953F6500FB8C89 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 3FC7E0A1108A591500D97F10 /* TiVo_FS_Controller.m */;
+		name = "TiVo_FS_Controller.m: 58";
+		rLen = 0;
+		rLoc = 1944;
+		rType = 0;
+		vrLen = 1456;
+		vrLoc = 1023;
+	};
+	3F34FCD710953F6500FB8C89 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 3FC7E0A3108A591500D97F10 /* TiVo_FS_Filesystem.m */;
+		name = "TiVo_FS_Filesystem.m: 361";
+		rLen = 0;
+		rLoc = 11595;
+		rType = 0;
+		vrLen = 1545;
+		vrLoc = 10599;
+	};
+	3F34FCD810953F6500FB8C89 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 3FC7E0A3108A591500D97F10 /* TiVo_FS_Filesystem.m */;
+		name = "TiVo_FS_Filesystem.m: 364";
+		rLen = 0;
+		rLoc = 11403;
+		rType = 0;
+		vrLen = 1497;
+		vrLoc = 10582;
+	};
+	3F34FCDF10953F9F00FB8C89 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 3FC7E0A3108A591500D97F10 /* TiVo_FS_Filesystem.m */;
+		name = "TiVo_FS_Filesystem.m: 364";
+		rLen = 0;
+		rLoc = 11403;
+		rType = 0;
+		vrLen = 1546;
+		vrLoc = 10582;
+	};
+	3F34FCE010953F9F00FB8C89 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 3FC7E0A3108A591500D97F10 /* TiVo_FS_Filesystem.m */;
+		name = "TiVo_FS_Filesystem.m: 364";
+		rLen = 0;
+		rLoc = 11403;
+		rType = 0;
+		vrLen = 1497;
+		vrLoc = 10582;
+	};
+	3F34FCE310953FB700FB8C89 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 3FC7E0A3108A591500D97F10 /* TiVo_FS_Filesystem.m */;
+		name = "TiVo_FS_Filesystem.m: 364";
+		rLen = 0;
+		rLoc = 11403;
+		rType = 0;
+		vrLen = 1303;
+		vrLoc = 7865;
+	};
+	3F34FCE610953FE100FB8C89 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 3FC7E0A3108A591500D97F10 /* TiVo_FS_Filesystem.m */;
+		name = "TiVo_FS_Filesystem.m: 364";
+		rLen = 0;
+		rLoc = 11403;
+		rType = 0;
+		vrLen = 1319;
+		vrLoc = 10493;
+	};
+	3F34FCE710953FE100FB8C89 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 3FC7E0A3108A591500D97F10 /* TiVo_FS_Filesystem.m */;
+		name = "TiVo_FS_Filesystem.m: 364";
+		rLen = 0;
+		rLoc = 11403;
+		rType = 0;
+		vrLen = 1319;
+		vrLoc = 10493;
+	};
+	3F34FCE910953FFA00FB8C89 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 3FC7E0A3108A591500D97F10 /* TiVo_FS_Filesystem.m */;
+		name = "TiVo_FS_Filesystem.m: 346";
+		rLen = 0;
+		rLoc = 10556;
+		rType = 0;
+		vrLen = 1319;
+		vrLoc = 10493;
+	};
+	3F34FCEA1095401E00FB8C89 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 3FC7E0A3108A591500D97F10 /* TiVo_FS_Filesystem.m */;
+		name = "TiVo_FS_Filesystem.m: 346";
+		rLen = 0;
+		rLoc = 10556;
+		rType = 0;
+		vrLen = 1392;
+		vrLoc = 10493;
+	};
+	3F34FCEB1095415400FB8C89 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 3F90B2020DD9DE7A0088F103 /* WorkQueueStep_Workflows.m */;
+		name = "WorkQueueStep_Workflows.m: 87";
+		rLen = 4;
+		rLoc = 2949;
+		rType = 0;
+		vrLen = 1324;
+		vrLoc = 2085;
+	};
+	3F34FCEC1095415400FB8C89 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 3FC7E0A3108A591500D97F10 /* TiVo_FS_Filesystem.m */;
+		name = "TiVo_FS_Filesystem.m: 371";
+		rLen = 0;
+		rLoc = 11595;
+		rType = 0;
+		vrLen = 1612;
+		vrLoc = 10711;
+	};
+	3F34FCED1095415400FB8C89 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 3FC7E0A3108A591500D97F10 /* TiVo_FS_Filesystem.m */;
+		name = "TiVo_FS_Filesystem.m: 366";
+		rLen = 0;
+		rLoc = 11595;
+		rType = 0;
+		vrLen = 1653;
+		vrLoc = 10711;
+	};
+	3F34FCF0109541A600FB8C89 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 3FC7E0A3108A591500D97F10 /* TiVo_FS_Filesystem.m */;
+		name = "TiVo_FS_Filesystem.m: 366";
+		rLen = 0;
+		rLoc = 11349;
+		rType = 0;
+		vrLen = 1651;
+		vrLoc = 10711;
+	};
+	3F34FCF21095420000FB8C89 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 3FC7E0A3108A591500D97F10 /* TiVo_FS_Filesystem.m */;
+		name = "TiVo_FS_Filesystem.m: 253";
+		rLen = 0;
+		rLoc = 7833;
+		rType = 0;
+		vrLen = 1373;
+		vrLoc = 7753;
+	};
+	3F34FCF31095421200FB8C89 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 3FC7E0A3108A591500D97F10 /* TiVo_FS_Filesystem.m */;
+		name = "TiVo_FS_Filesystem.m: 295";
+		rLen = 0;
+		rLoc = 9069;
+		rType = 0;
+		vrLen = 1458;
+		vrLoc = 8450;
+	};
+	3F34FCF81095428900FB8C89 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 3FC7E0A3108A591500D97F10 /* TiVo_FS_Filesystem.m */;
+		name = "TiVo_FS_Filesystem.m: 453";
+		rLen = 0;
+		rLoc = 14135;
+		rType = 0;
+		vrLen = 1353;
+		vrLoc = 13319;
+	};
+	3F34FCFE109543C300FB8C89 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 3FC7E0A3108A591500D97F10 /* TiVo_FS_Filesystem.m */;
+		name = "TiVo_FS_Filesystem.m: 453";
+		rLen = 0;
+		rLoc = 14135;
+		rType = 0;
+		vrLen = 1633;
+		vrLoc = 10519;
+	};
+	3F34FCFF109543C300FB8C89 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 3FC7E0A3108A591500D97F10 /* TiVo_FS_Filesystem.m */;
+		name = "TiVo_FS_Filesystem.m: 453";
+		rLen = 0;
+		rLoc = 14135;
+		rType = 0;
+		vrLen = 1584;
+		vrLoc = 10519;
+	};
+	3F34FD051095440900FB8C89 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 3FC7E0A3108A591500D97F10 /* TiVo_FS_Filesystem.m */;
+		name = "TiVo_FS_Filesystem.m: 453";
+		rLen = 0;
+		rLoc = 14135;
+		rType = 0;
+		vrLen = 1584;
+		vrLoc = 10519;
+	};
+	3F34FD061095440900FB8C89 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 3F90B2020DD9DE7A0088F103 /* WorkQueueStep_Workflows.m */;
+		name = "WorkQueueStep_Workflows.m: 229";
+		rLen = 57;
+		rLoc = 6849;
+		rType = 0;
+		vrLen = 963;
+		vrLoc = 6270;
+	};
+	3F34FD0A1095443B00FB8C89 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 3F90B2020DD9DE7A0088F103 /* WorkQueueStep_Workflows.m */;
+		name = "WorkQueueStep_Workflows.m: 229";
+		rLen = 57;
+		rLoc = 6849;
+		rType = 0;
+		vrLen = 963;
+		vrLoc = 6270;
+	};
+	3F34FD0B1095443B00FB8C89 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 3FC7E0A3108A591500D97F10 /* TiVo_FS_Filesystem.m */;
+		name = "TiVo_FS_Filesystem.m: 453";
+		rLen = 0;
+		rLoc = 14135;
+		rType = 0;
+		vrLen = 1570;
+		vrLoc = 10533;
+	};
+	3F34FD0C1095443B00FB8C89 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 3FC7E0A3108A591500D97F10 /* TiVo_FS_Filesystem.m */;
+		name = "TiVo_FS_Filesystem.m: 453";
+		rLen = 0;
+		rLoc = 14135;
+		rType = 0;
+		vrLen = 1570;
+		vrLoc = 10533;
+	};
+	3F34FD0D1095445400FB8C89 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 3FC7E0A3108A591500D97F10 /* TiVo_FS_Filesystem.m */;
+		name = "TiVo_FS_Filesystem.m: 453";
+		rLen = 0;
+		rLoc = 14135;
+		rType = 0;
+		vrLen = 1619;
+		vrLoc = 10533;
+	};
+	3F34FD10109544A100FB8C89 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 3FC7E0A3108A591500D97F10 /* TiVo_FS_Filesystem.m */;
+		name = "TiVo_FS_Filesystem.m: 370";
+		rLen = 0;
+		rLoc = 11595;
+		rType = 0;
+		vrLen = 1523;
+		vrLoc = 10533;
+	};
+	3F34FD181095473000FB8C89 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 3FC7E0A3108A591500D97F10 /* TiVo_FS_Filesystem.m */;
+		name = "TiVo_FS_Filesystem.m: 386";
+		rLen = 0;
+		rLoc = 12205;
+		rType = 0;
+		vrLen = 1639;
+		vrLoc = 10790;
+	};
+	3F34FD1C1095498300FB8C89 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 3FC7E0A3108A591500D97F10 /* TiVo_FS_Filesystem.m */;
+		name = "TiVo_FS_Filesystem.m: 386";
+		rLen = 0;
+		rLoc = 12205;
+		rType = 0;
+		vrLen = 1466;
+		vrLoc = 11336;
 	};
 	3F41D6390DCADD1000CB0659 /* EntityToken.h */ = {
 		uiCtxt = {
@@ -1136,9 +1593,9 @@
 		hitCount = 0;
 		ignoreCount = 0;
 		location = "";
-		modificationTime = 277803386.905406;
+		modificationTime = 278217888.541057;
 		originalNumberOfMultipleMatches = 1;
-		state = 1;
+		state = 0;
 		symbolName = NSException;
 	};
 	3F4867890D5D6D5B00C949DF /* objc_exception_throw */ = {
@@ -1152,9 +1609,9 @@
 		hitCount = 0;
 		ignoreCount = 0;
 		location = libobjc.A.dylib;
-		modificationTime = 277803268.856758;
+		modificationTime = 278217888.54141;
 		originalNumberOfMultipleMatches = 1;
-		state = 1;
+		state = 2;
 		symbolName = objc_exception_throw;
 	};
 	3F4C125E0EDA3224008F9BA6 /* PBXTextBookmark */ = {
@@ -1200,6 +1657,11 @@
 		name = WorkQueueStep.m;
 		path = "/Users/ebaur/Projects/Current Projects/TiVo Butler v1.1/WorkQueueStep.m";
 		sourceTree = "<absolute>";
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {823, 2483}}";
+			sepNavSelRange = "{4429, 22}";
+			sepNavVisRange = "{1633, 1421}";
+		};
 	};
 	3F4C13610EDA7FB3008F9BA6 /* WorkQueueStep.h */ = {
 		isa = PBXFileReference;
@@ -1449,24 +1911,6 @@
 		vrLen = 1215;
 		vrLoc = 636;
 	};
-	3F4C14100EDBA0F1008F9BA6 /* WorkQueueStep_Workflows.m:229 */ = {
-		isa = PBXFileBreakpoint;
-		actions = (
-		);
-		breakpointStyle = 0;
-		continueAfterActions = 0;
-		countType = 0;
-		delayBeforeContinue = 0;
-		fileReference = 3F90B2020DD9DE7A0088F103 /* WorkQueueStep_Workflows.m */;
-		functionName = "-beginConversion";
-		hitCount = 0;
-		ignoreCount = 0;
-		lineNumber = 229;
-		location = "TiVo FS";
-		modificationTime = 277803268.677058;
-		originalNumberOfMultipleMatches = 1;
-		state = 1;
-	};
 	3F5E9AF50DA90FF1004D2EE8 /* PBXBookmark */ = {
 		isa = PBXBookmark;
 		fRef = 3F5E9AEA0DA90DAE004D2EE8 /* TiVoDocument.icns */;
@@ -1538,9 +1982,10 @@
 	};
 	3F6A88F90D53472300212FBA /* TiVoProgram.m */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {823, 1131}}";
-			sepNavSelRange = "{399, 0}";
-			sepNavVisRange = "{164, 819}";
+			sepNavIntBoundsRect = "{{0, 0}, {788, 1157}}";
+			sepNavSelRange = "{1306, 0}";
+			sepNavVisRange = "{459, 1380}";
+			sepNavWindowFrame = "{{15, 4}, {852, 874}}";
 		};
 	};
 	3F6A88FA0D53472300212FBA /* TiVoProgram.h */ = {
@@ -1704,9 +2149,9 @@
 	};
 	3F90ADF60DD325000088F103 /* WorkQueueFile.m */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {1000, 2506}}";
-			sepNavSelRange = "{4340, 0}";
-			sepNavVisRange = "{3754, 1124}";
+			sepNavIntBoundsRect = "{{0, 0}, {823, 2379}}";
+			sepNavSelRange = "{2218, 429}";
+			sepNavVisRange = "{1880, 1336}";
 		};
 	};
 	3F90AFA00DD669C80088F103 /* WorkQueueItem_Workflows.m */ = {
@@ -1732,9 +2177,9 @@
 	};
 	3F90B2020DD9DE7A0088F103 /* WorkQueueStep_Workflows.m */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {823, 5499}}";
-			sepNavSelRange = "{2163, 10}";
-			sepNavVisRange = "{9520, 1445}";
+			sepNavIntBoundsRect = "{{0, 0}, {823, 5824}}";
+			sepNavSelRange = "{6849, 57}";
+			sepNavVisRange = "{6270, 963}";
 		};
 	};
 	3F92B4AE0E86AFDC00766C33 /* PBXTextBookmark */ = {
@@ -1909,23 +2354,23 @@
 	};
 	3FC7E0A1108A591500D97F10 /* TiVo_FS_Controller.m */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {1000, 4537}}";
-			sepNavSelRange = "{9448, 6}";
-			sepNavVisRange = "{8877, 1221}";
+			sepNavIntBoundsRect = "{{0, 0}, {823, 4615}}";
+			sepNavSelRange = "{1944, 0}";
+			sepNavVisRange = "{1023, 1456}";
 		};
 	};
 	3FC7E0A2108A591500D97F10 /* TiVo_FS_Filesystem.h */ = {
 		uiCtxt = {
 			sepNavIntBoundsRect = "{{0, 0}, {823, 578}}";
-			sepNavSelRange = "{643, 0}";
-			sepNavVisRange = "{0, 961}";
+			sepNavSelRange = "{874, 0}";
+			sepNavVisRange = "{0, 1086}";
 		};
 	};
 	3FC7E0A3108A591500D97F10 /* TiVo_FS_Filesystem.m */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {823, 6500}}";
-			sepNavSelRange = "{11292, 0}";
-			sepNavVisRange = "{10075, 1218}";
+			sepNavIntBoundsRect = "{{0, 0}, {823, 6890}}";
+			sepNavSelRange = "{12191, 0}";
+			sepNavVisRange = "{11336, 1466}";
 		};
 	};
 	3FC7E0A4108A591500D97F10 /* TiVo_FS_main.m */ = {
@@ -2094,24 +2539,6 @@
 		vrLen = 1336;
 		vrLoc = 1050;
 	};
-	3FC7E50B108EF10200D97F10 /* TiVo_FS_Filesystem.m:266 */ = {
-		isa = PBXFileBreakpoint;
-		actions = (
-		);
-		breakpointStyle = 0;
-		continueAfterActions = 0;
-		countType = 0;
-		delayBeforeContinue = 0;
-		fileReference = 3FC7E0A3108A591500D97F10 /* TiVo_FS_Filesystem.m */;
-		functionName = "-attributesOfItemAtPath:userData:error:";
-		hitCount = 1;
-		ignoreCount = 0;
-		lineNumber = 266;
-		location = "TiVo FS";
-		modificationTime = 277803277.733189;
-		originalNumberOfMultipleMatches = 1;
-		state = 1;
-	};
 	3FC7E5761091747C00D97F10 /* PBXTextBookmark */ = {
 		isa = PBXTextBookmark;
 		fRef = 3F90AFA00DD669C80088F103 /* WorkQueueItem_Workflows.m */;
@@ -2147,7 +2574,7 @@
 		fRef = 3FC7E0A2108A591500D97F10 /* TiVo_FS_Filesystem.h */;
 		name = "TiVo_FS_Filesystem.h: 21";
 		rLen = 0;
-		rLoc = 650;
+		rLoc = 713;
 		rType = 0;
 		vrLen = 820;
 		vrLoc = 0;
@@ -2157,7 +2584,7 @@
 		fRef = 3FC7E0A3108A591500D97F10 /* TiVo_FS_Filesystem.m */;
 		name = "TiVo_FS_Filesystem.m: 398";
 		rLen = 0;
-		rLoc = 12947;
+		rLoc = 14649;
 		rType = 0;
 		vrLen = 1482;
 		vrLoc = 11776;
@@ -2167,7 +2594,7 @@
 		fRef = 3FC7E0A3108A591500D97F10 /* TiVo_FS_Filesystem.m */;
 		name = "TiVo_FS_Filesystem.m: 316";
 		rLen = 0;
-		rLoc = 10047;
+		rLoc = 10299;
 		rType = 0;
 		vrLen = 1213;
 		vrLoc = 9407;
@@ -2316,7 +2743,7 @@
 		hitCount = 0;
 		ignoreCount = 0;
 		location = libSystem.B.dylib;
-		modificationTime = 277803268.801088;
+		modificationTime = 278217888.831473;
 		originalNumberOfMultipleMatches = 1;
 		state = 1;
 		symbolName = malloc_error_break;
