@@ -285,7 +285,9 @@
 							<key>PBXSmartGroupTreeModuleOutlineStateSelectionKey</key>
 							<array>
 								<array>
-									<integer>23</integer>
+									<integer>15</integer>
+									<integer>13</integer>
+									<integer>1</integer>
 									<integer>0</integer>
 								</array>
 							</array>
@@ -329,7 +331,7 @@
 								<key>PBXProjectModuleGUID</key>
 								<string>1CE0B20306471E060097A5F4</string>
 								<key>PBXProjectModuleLabel</key>
-								<string>TiVo_FS_Filesystem.h</string>
+								<string>TiVo_FS_Filesystem.m</string>
 								<key>PBXSplitModuleInNavigatorKey</key>
 								<dict>
 									<key>Split0</key>
@@ -337,11 +339,11 @@
 										<key>PBXProjectModuleGUID</key>
 										<string>1CE0B20406471E060097A5F4</string>
 										<key>PBXProjectModuleLabel</key>
-										<string>TiVo_FS_Filesystem.h</string>
+										<string>TiVo_FS_Filesystem.m</string>
 										<key>_historyCapacity</key>
 										<integer>0</integer>
 										<key>bookmark</key>
-										<string>3F34FCA2109516A100FB8C89</string>
+										<string>3F34FD1C1095498300FB8C89</string>
 										<key>history</key>
 										<array>
 											<string>3F8E38500D4DA080009B89B3</string>
@@ -371,7 +373,6 @@
 											<string>3F9CD0A60DE0DE5900A6B574</string>
 											<string>3F6CD4CF0E82DDF200C77A63</string>
 											<string>3F6CD5FB0E8559F900C77A63</string>
-											<string>3F6CD6470E85675900C77A63</string>
 											<string>3F92B4AE0E86AFDC00766C33</string>
 											<string>3F7873ED0E9916CB00D550E0</string>
 											<string>3F78752A0EA264EE00D550E0</string>
@@ -392,7 +393,6 @@
 											<string>3F4C13D40EDAF791008F9BA6</string>
 											<string>3F4C13D50EDAF791008F9BA6</string>
 											<string>3F4C13D80EDAF791008F9BA6</string>
-											<string>3F4C13FC0EDB9C06008F9BA6</string>
 											<string>3FC7E0D1108A5B3C00D97F10</string>
 											<string>3FC7E0FE108AE1F400D97F10</string>
 											<string>3FC7E100108AE1F400D97F10</string>
@@ -404,17 +404,19 @@
 											<string>3FC7E1A3108BEEEE00D97F10</string>
 											<string>3FC7E20E108C03B500D97F10</string>
 											<string>3FC7E28C108C269700D97F10</string>
-											<string>3FC7E2BB108C2DBC00D97F10</string>
 											<string>3FC7E318108C380C00D97F10</string>
 											<string>3FC7E459108EE3BB00D97F10</string>
 											<string>3FC7E4AC108EE88700D97F10</string>
 											<string>3FC7E5761091747C00D97F10</string>
-											<string>3FC7E5771091747C00D97F10</string>
-											<string>3F34FC671093F8C000FB8C89</string>
 											<string>3F34FC681093F8C000FB8C89</string>
 											<string>3F34FC8D10941A8000FB8C89</string>
-											<string>3F34FCA1109516A100FB8C89</string>
-											<string>3F34FC9C1095146B00FB8C89</string>
+											<string>3F34FCBE1095307300FB8C89</string>
+											<string>3F34FCD210953F6500FB8C89</string>
+											<string>3F34FCD310953F6500FB8C89</string>
+											<string>3F34FCD510953F6500FB8C89</string>
+											<string>3F34FCD610953F6500FB8C89</string>
+											<string>3F34FD0A1095443B00FB8C89</string>
+											<string>3F34FD0B1095443B00FB8C89</string>
 										</array>
 									</dict>
 									<key>SplitCount</key>
@@ -625,12 +627,15 @@
 	<integer>5</integer>
 	<key>WindowOrderList</key>
 	<array>
+		<string>3F34FD1D1095498300FB8C89</string>
+		<string>3F34FD031095440200FB8C89</string>
+		<string>1C530D57069F1CE1000CFCEE</string>
 		<string>3F34FC9910941A8000FB8C89</string>
 		<string>3F34FC9A10941A8000FB8C89</string>
-		<string>1C78EAAD065D492600B07095</string>
 		<string>1CD10A99069EF8BA00B06720</string>
 		<string>3FE3C8E10D3DD03300D5105A</string>
 		<string>/Users/ebaur/Projects/Current Projects/TiVo Butler v1.1/TiVo Butler.xcodeproj</string>
+		<string>1C78EAAD065D492600B07095</string>
 	</array>
 	<key>WindowString</key>
 	<string>6 45 1165 833 0 0 1440 878 </string>
@@ -671,6 +676,8 @@
 							<string>400pt</string>
 						</dict>
 						<dict>
+							<key>BecomeActive</key>
+							<true/>
 							<key>ContentConfiguration</key>
 							<dict>
 								<key>PBXProjectModuleGUID</key>
@@ -868,7 +875,7 @@
 										<key>PBXProjectModuleGUID</key>
 										<string>1CDD528C0622207200134675</string>
 										<key>PBXProjectModuleLabel</key>
-										<string>TiVo_FS_Controller.m</string>
+										<string></string>
 										<key>StatusBarVisibility</key>
 										<true/>
 									</dict>
@@ -926,8 +933,8 @@
 			<key>TableOfContents</key>
 			<array>
 				<string>1C530D57069F1CE1000CFCEE</string>
-				<string>3FC7E0EF108AD50500D97F10</string>
-				<string>3FC7E0F0108AD50500D97F10</string>
+				<string>3F34FCCE10953DE200FB8C89</string>
+				<string>3F34FCCF10953DE200FB8C89</string>
 				<string>1CDD528C0622207200134675</string>
 				<string>1CD0528E0623707200166675</string>
 			</array>
@@ -1002,7 +1009,7 @@
 			<key>WindowToolGUID</key>
 			<string>1C78EAAD065D492600B07095</string>
 			<key>WindowToolIsVisible</key>
-			<false/>
+			<true/>
 		</dict>
 		<dict>
 			<key>FirstTimeWindowDisplayed</key>
@@ -1291,8 +1298,8 @@
 			<true/>
 			<key>TableOfContents</key>
 			<array>
-				<string>3FC7E49E108EE7CC00D97F10</string>
-				<string>3FC7E49F108EE7CC00D97F10</string>
+				<string>3F34FD031095440200FB8C89</string>
+				<string>3F34FD041095440200FB8C89</string>
 				<string>1CE0B1FE06471DED0097A5F4</string>
 				<string>1CA1AED706398EBD00589147</string>
 			</array>
@@ -1301,7 +1308,7 @@
 			<key>WindowString</key>
 			<string>501 319 744 409 0 0 1440 878 </string>
 			<key>WindowToolGUID</key>
-			<string>3FC7E49E108EE7CC00D97F10</string>
+			<string>3F34FD031095440200FB8C89</string>
 			<key>WindowToolIsVisible</key>
 			<false/>
 		</dict>

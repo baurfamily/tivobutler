@@ -54,6 +54,11 @@
 
 @dynamic statusImage;
 
+- (NSString *)description
+{
+	return self.title;
+}
+
 - (NSSet *)smartGroups
 {
 	//TODO: make sure this will work
