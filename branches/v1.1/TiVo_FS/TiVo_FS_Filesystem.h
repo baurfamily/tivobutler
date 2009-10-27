@@ -19,9 +19,10 @@
 // GMUserFileSystemOperations found in the documentation at:
 // http://macfuse.googlecode.com/svn/trunk/core/sdk-objc/Documentation/index.html
 @interface TiVo_FS_Filesystem : NSObject  {
-	NSMutableDictionary *selectedPrograms;	//key => NSString(program path), value => TiVoProgram
-	NSMutableDictionary *selectedProgramDownloads;	//key => TiVoProgram, value => NSURLDownload
-	NSMutableDictionary *selectedDownloadPaths;	//key => NSURLDownload, value => NSString(download path)
+	NSString *mak;
+	NSMutableDictionary *selectedPrograms;	//key => NSString(program path), value => internalID
+	NSMutableDictionary *selectedProgramDownloads;	//key => internalID, value => NSURLDownload
+	NSMutableDictionary *selectedDownloadPaths;	//key => NSURLDownload(description), value => NSString(download path)
 }
 
 - (NSArray *)baseDirectories;
