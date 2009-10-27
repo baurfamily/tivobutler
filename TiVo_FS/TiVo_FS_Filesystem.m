@@ -72,10 +72,7 @@ static NSString * TVFSPathDates = @"/Dates";
 
 - (NSArray *)contentsOfDirectoryAtPath:(NSString *)path error:(NSError **)error
 {
-	ENTRY;
-	
 	NSArray *returnArray;
-
 	NSArray *components = [path pathComponents];
 
 	switch ( components.count )
@@ -327,21 +324,22 @@ static NSString * TVFSPathDates = @"/Dates";
 	}
 	
 	TiVoProgram *program = [self programWithFileName:[path lastPathComponent]];
+	if ( !program )
+		return nil;
+
+	if ( !mak ) {
+		mak = [program.player.mediaAccessKey retain];
+	}
 	
-	//this may not work... I'm not sure if I have the object or a proxy object
-	NSArray *keys = [selectedPrograms allKeysForObject:program];
+	NSArray *keys = [selectedPrograms allKeysForObject:program.internalID];
 	if ( keys.count > 0 ) {
 		DEBUG( @"We already have a program at another path, adding this new path: %@", path );
-		[selectedPrograms setObject:program forKey:path];
+		[selectedPrograms setObject:program.internalID forKey:path];
 		return YES;
 	}
 	
-	[selectedPrograms setObject:program forKey:path];
+	[selectedPrograms setObject:program.internalID forKey:path];
 	
-	if ( !program )
-		return nil;
-		
-	//expectedBytes = [selectedProgram.sourceSize longLongValue];
 	
 	NSString *tempURLString = program.contentURL;
 	if ( !tempURLString ) {
@@ -354,7 +352,7 @@ static NSString * TVFSPathDates = @"/Dates";
 	NSURLRequest *request = [NSURLRequest requestWithURL:url];
 	
 	NSString *tempDirectory = NSTemporaryDirectory();
-	NSString *tempPath = [NSString pathWithComponents:[NSArray arrayWithObjects:tempDirectory, [path lastPathComponent], nil] ];
+	NSString *tempPath = [NSString pathWithComponents:[NSArray arrayWithObjects:tempDirectory, [NSString stringWithFormat:@"%d",program.internalID], nil] ];
 	
 	NSURLDownload *download = [[[NSURLDownload alloc] initWithRequest:request delegate:self] autorelease];
 	if ( !download ) {
@@ -366,6 +364,7 @@ static NSString * TVFSPathDates = @"/Dates";
 	[download setDeletesFileUponFailure:YES];
 	
 	[selectedProgramDownloads setObject:download forKey:program.internalID];
+	[selectedDownloadPaths setObject:tempPath forKey:[download description]];
 	
 	DEBUG( @"count of downloads: %d", selectedProgramDownloads.count );
 }
@@ -376,12 +375,12 @@ static NSString * TVFSPathDates = @"/Dates";
 	//we're going to close out of the download...
 	NSNumber *internalID = [selectedPrograms objectForKey:path];
 	NSURLDownload *download = [selectedProgramDownloads objectForKey:internalID];
-	NSString *downloadPath = [selectedDownloadPaths objectForKey:download];
+	NSString *downloadPath = [selectedDownloadPaths objectForKey:[download description]];
 
 	DEBUG( @"canceling download for program.internalID: %@", internalID );
 	[download cancel];
 	
-	[selectedDownloadPaths removeObjectForKey:download];
+	[selectedDownloadPaths removeObjectForKey:[download description]];
 	[selectedProgramDownloads removeObjectForKey:internalID];
 	NSArray *keys = [selectedPrograms allKeysForObject:internalID];
 	[selectedPrograms removeObjectsForKeys:keys];
@@ -390,18 +389,24 @@ static NSString * TVFSPathDates = @"/Dates";
 - (int)readFileAtPath:(NSString *)path userData:(id)userData buffer:(char *)buffer size:(size_t)size offset:(off_t)offset error:(NSError **)error
 {
 	ENTRY;
+	return 0;
+	
 	FILE *file;
 	unsigned long fileLen;
 	
-	NSString *downloadPath = [selectedDownloadPaths objectForKey:[selectedProgramDownloads objectForKey:[selectedPrograms objectForKey:path]]];
+	NSNumber *internalID = [selectedPrograms objectForKey:path];
+	NSURLDownload *download = [selectedProgramDownloads objectForKey:internalID];
+	NSString *downloadPath = [selectedDownloadPaths objectForKey:[download description]];
 	
+	DEBUG( @"internalID: %@", internalID );
+	DEBUG( @"download: %@", download );
 	DEBUG( @"Using '%@' for download path.", downloadPath );
 	
 	//Open file
 	file = fopen([downloadPath cStringUsingEncoding:NSASCIIStringEncoding], "rb");
 	if (!file)
 	{
-		ERROR( @"Unable to open file %@", path);
+		ERROR( @"Unable to open file %@", downloadPath);
 		return 0;
 	}
 	
@@ -434,41 +439,31 @@ static NSString * TVFSPathDates = @"/Dates";
 		[error localizedDescription],
 		[[error userInfo] objectForKey:NSErrorFailingURLStringKey]
 	);
-	//[programDownload release], programDownload = nil;
 	
 	ERROR( [error localizedDescription] );
 }
 
 - (void)download:(NSURLDownload *)download didCreateDestination:(NSString *)path
 {
-	DEBUG( @"writing to path: %@", path );
-	[selectedDownloadPaths setObject:path forKey:download];
+	DEBUG( @"changing download path to: %@", path );
+	[selectedDownloadPaths setObject:path forKey:[download description]];
 }
 
 
 - (void)download:(NSURLDownload *)download didReceiveDataOfLength:(NSUInteger)length
 {
-	INFO( @"downloaded %lld bytes", length );
-/*
-	receivedBytes += length;
-	int actionPercent = 100 * ( receivedBytes/expectedBytes );
-	INFO( @"currentActionPercent: %d for ( %lld / %lld )", actionPercent, receivedBytes, expectedBytes );
-*/
+	INFO( @"downloaded %lld bytes for download: %@", length, download );
 }
 
 - (void)downloadDidFinish:(NSURLDownload *)download
 {
 	INFO( @"download finished: %@", [download description] );
-	//not sure I want to nil this out, until the file is closed as well
-	//[programDownload release], programDownload = nil;
 }
 
 - (void)download:(NSURLDownload *)download didReceiveAuthenticationChallenge:(NSURLAuthenticationChallenge *)challenge
 {
 	ENTRY;
-	//TODO: this won't work, it references a non-existant keyPath
-	NSString *mak = [self valueForKeyPath:@"item.program.player.mediaAccessKey"];
-	
+
 	if ( [challenge previousFailureCount] == 0 ) {
 		NSURLCredential *newCredential =
 		[[NSURLCredential
